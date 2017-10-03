@@ -20,5 +20,7 @@ group :test do
   gem "poltergeist", "~> 1.16.0"
   gem "rails-controller-testing", "~> 1.0.2"
   gem "rspec-rails", "~> 3.6.1"
+  gem "shoulda-callback-matchers", "~> 1.1.4"
+  gem "shoulda-matchers", "~> 3.1.2"
   gem "simplecov", "~> 0.15.1"
 end

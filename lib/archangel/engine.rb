@@ -13,7 +13,7 @@ module Archangel
                          fixtures: false,
                          view_specs: false,
                          helper_specs: true,
-                         routing_specs: true,
+                         routing_specs: false,
                          controller_specs: true,
                          request_specs: true
 

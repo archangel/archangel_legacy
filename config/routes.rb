@@ -2,6 +2,12 @@
 
 Archangel::Engine.routes.draw do
   namespace :backend, path: "backend" do
+    # GET   /backend/site/edit
+    # GET   /backend/site
+    # PATCH /backend/site
+    # PUT   /backend/site
+    resource :site, only: %i[edit show update]
+
     # GET /backend
     root to: "dashboards#show"
   end
