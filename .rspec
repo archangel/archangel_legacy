@@ -1,0 +1,4 @@
+--require spec_helper
+--fail-fast
+--format documentation
+--order rand

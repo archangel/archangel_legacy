@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "responders"
+
 require "archangel/engine"
 
 module Archangel
