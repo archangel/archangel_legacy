@@ -5,10 +5,12 @@ source "https://rubygems.org"
 gemspec
 
 group :development do
+  gem "rubocop", "~> 0.50.0", require: false
 end
 
 group :development, :test do
-  gem "rubocop", "~> 0.50.0", require: false
+  gem "pry-byebug", "~> 3.5.0"
+  gem "sqlite3", ">= 1.3.0", platforms: %i[ruby mswin mswin64 mingw x64_mingw]
 end
 
 group :test do
@@ -18,4 +20,5 @@ group :test do
   gem "poltergeist", "~> 1.16.0"
   gem "rails-controller-testing", "~> 1.0.2"
   gem "rspec-rails", "~> 3.6.1"
+  gem "simplecov", "~> 0.15.1"
 end
