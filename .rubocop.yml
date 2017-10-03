@@ -1,0 +1,50 @@
+AllCops:
+  Include:
+    - '**/*.gemspec'
+    - '**/Gemfile'
+    - '**/Rakefile'
+  Exclude:
+    - 'bin/**/*'
+    - 'db/migrate/**/*'
+    - 'spec/dummy/**/*'
+
+Layout/DotPosition:
+  EnforcedStyle: leading
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*.gemspec'
+    - '**/*.rake'
+    - 'config/routes.rb'
+    - 'lib/archangel/testing_support/**/*.rb'
+    - 'spec/**/*.rb'
+
+Metrics/LineLength:
+  Max: 80
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '[]'
+    '%W': '[]'
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: percent
