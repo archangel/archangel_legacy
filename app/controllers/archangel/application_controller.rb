@@ -12,9 +12,19 @@ module Archangel
     responders :flash, :http_cache
 
     helper_method :current_site
+    helper_method :page_num
+    helper_method :per_page
 
     def current_site
       @current_site ||= Archangel::Site.current
+    end
+
+    def per_page
+      params.fetch(:per, per_page_default)
+    end
+
+    def page_num
+      params.fetch(Kaminari.config.param_name, 1)
     end
 
     protected
@@ -27,6 +37,10 @@ module Archangel
 
     def locale_for(locale)
       I18n.available_locales.include?(locale) ? locale : I18n.default_locale
+    end
+
+    def per_page_default
+      Kaminari.config.default_per_page
     end
   end
 end

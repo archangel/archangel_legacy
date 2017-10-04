@@ -27,6 +27,10 @@ require "rspec/rails"
 
 Dir[Rails.root.join("../support/**/*.rb")].each { |f| require f }
 
+Dir["#{File.dirname(__FILE__)}/factories/**/archangel_*.rb"].each do |f|
+  load File.expand_path(f)
+end
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|

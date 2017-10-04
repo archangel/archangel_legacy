@@ -2,6 +2,8 @@
 
 module Archangel
   class Site < ApplicationRecord
+    acts_as_paranoid
+
     before_save :stringify_meta_keywords
 
     validates :name, presence: true

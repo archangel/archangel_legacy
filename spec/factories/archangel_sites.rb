@@ -8,7 +8,7 @@ FactoryGirl.define do
     meta_description "Default description of my site"
 
     trait :deleted do
-      deleted_at { 1.day.ago }
+      deleted_at { Time.current }
     end
   end
 end

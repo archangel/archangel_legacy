@@ -5,6 +5,8 @@ require "rails_helper"
 module Archangel
   module Backend
     RSpec.describe SitesController, type: :controller do
+      before { stub_authorization! create(:user) }
+
       describe "GET #show" do
         it "assigns the requested site as @site" do
           get :show

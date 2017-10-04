@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @site.name %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @site.theme %>
+</p>
+
+<p>
+  <strong>Locale:</strong>
+  <%= @site.locale %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @site.logo %>
+</p>
+
+<p>
+  <strong>Favicon:</strong>
+  <%= @site.favicon %>
+</p>
+
+<p>
+  <strong>Meta keywords:</strong>
+  <%= @site.meta_keywords %>
+</p>
+
+<p>
+  <strong>Meta description:</strong>
+  <%= @site.meta_description %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @site.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>
