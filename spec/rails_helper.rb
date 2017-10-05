@@ -31,7 +31,7 @@ Dir["#{File.dirname(__FILE__)}/factories/**/archangel_*.rb"].each do |f|
   load File.expand_path(f)
 end
 
-ActiveRecord::Migration.maintain_test_schema!
+# ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!

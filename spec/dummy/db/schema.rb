@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003210347) do
+ActiveRecord::Schema.define(version: 20171005211738) do
 
   create_table "archangel_sites", force: :cascade do |t|
     t.string "name", default: "Archangel", null: false
@@ -23,7 +23,20 @@ ActiveRecord::Schema.define(version: 20171003210347) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_archangel_sites_on_deleted_at"
     t.index ["name"], name: "index_archangel_sites_on_name"
+  end
+
+  create_table "archangel_templates", force: :cascade do |t|
+    t.integer "parent_id"
+    t.string "name"
+    t.text "content"
+    t.boolean "partial"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_archangel_templates_on_deleted_at"
+    t.index ["parent_id"], name: "index_archangel_templates_on_parent_id"
   end
 
   create_table "archangel_users", force: :cascade do |t|

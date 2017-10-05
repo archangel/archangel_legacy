@@ -41,7 +41,7 @@ module Archangel
             }
           end
 
-          xit "has avatar for @user" do
+          it "has avatar for @user" do
             put :update, params: { profile: attributes }
 
             expect(profile.avatar.url).to(

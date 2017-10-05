@@ -10,9 +10,9 @@ FactoryGirl.define do
     confirmed_at { Time.current }
     confirmation_sent_at { Time.current }
 
-    # trait :avatar do
-    #   avatar { fixture_file_upload(uploader_test_image) }
-    # end
+    trait :avatar do
+      avatar { fixture_file_upload(uploader_test_image) }
+    end
 
     trait :admin do
       role "admin"

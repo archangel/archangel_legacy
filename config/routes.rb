@@ -40,6 +40,17 @@ Archangel::Engine.routes.draw do
     # PUT   /backend/site
     resource :site, only: %i[edit show update]
 
+    # GET    /backend/templates
+    # GET    /backend/templates/page/[PAGE]
+    # POST   /backend/templates
+    # GET    /backend/templates/new
+    # GET    /backend/templates/[ID]/edit
+    # GET    /backend/templates/[ID]
+    # PATCH  /backend/templates/[ID]
+    # PUT    /backend/templates/[ID]
+    # DELETE /backend/templates/[ID]
+    resources :templates, concerns: [:paginatable]
+
     # GET    /backend/users
     # GET    /backend/users/page/[PAGE]
     # POST   /backend/users

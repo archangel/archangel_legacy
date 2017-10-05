@@ -7,6 +7,14 @@ FactoryGirl.define do
     meta_keywords "default,keywords,of,my,site"
     meta_description "Default description of my site"
 
+    trait :logo do
+      logo { fixture_file_upload(uploader_test_image) }
+    end
+
+    trait :favicon do
+      logo { fixture_file_upload(uploader_test_favicon) }
+    end
+
     trait :deleted do
       deleted_at { Time.current }
     end

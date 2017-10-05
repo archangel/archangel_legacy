@@ -1,3 +1,4 @@
+# This migration comes from archangel (originally 20171003191001)
 class CreateArchangelSites < ActiveRecord::Migration[5.1]
   def change
     create_table :archangel_sites do |t|
