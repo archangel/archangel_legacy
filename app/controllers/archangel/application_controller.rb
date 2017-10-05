@@ -15,6 +15,13 @@ module Archangel
     helper_method :page_num
     helper_method :per_page
 
+    helper Archangel::FlashHelper
+
+    rescue_from ActionController::UnknownController,
+                AbstractController::ActionNotFound,
+                ActionView::MissingTemplate,
+                ActiveRecord::RecordNotFound, with: :render_404
+
     def current_site
       @current_site ||= Archangel::Site.current
     end
@@ -25,6 +32,21 @@ module Archangel
 
     def page_num
       params.fetch(Kaminari.config.param_name, 1)
+    end
+
+    def render_401(exception = nil)
+      render_error("archangel/errors/error_401", :unauthorized, exception)
+    end
+
+    def render_404(exception = nil)
+      render_error("archangel/errors/error_404", :not_found, exception)
+    end
+
+    def render_error(path, status, _exception)
+      respond_to do |format|
+        format.html { render(template: path, status: status) }
+        format.json { render(template: path, status: status) }
+      end
     end
 
     protected

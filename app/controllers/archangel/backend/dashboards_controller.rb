@@ -3,7 +3,7 @@
 module Archangel
   module Backend
     class DashboardsController < BackendController
-      # after_action :skip_authorization
+      after_action :skip_authorization
 
       def show; end
     end

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Archangel</title>
+  <%= stylesheet_link_tag "archangel/frontend", media: "all" %>
+  <%= javascript_include_tag "archangel/frontend" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render "archangel/shared/flash_messages" %>
+
+<%= yield %>
+
+</body>
+</html>

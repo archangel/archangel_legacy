@@ -4,20 +4,23 @@ module Archangel
   class User < ApplicationRecord
     acts_as_paranoid
 
+    mount_uploader :avatar, Archangel::AvatarUploader
+
     before_validation :parameterize_username
 
     after_initialize :column_default
 
     after_destroy :column_reset
 
-    devise :invitable, :confirmable, :database_authenticatable, :lockable,
+    devise :confirmable, :database_authenticatable, :invitable, :lockable,
            :recoverable, :registerable, :rememberable, :timeoutable, :trackable,
            :validatable
-    # , :invitable
 
+    validates :avatar, file_size: { less_than_or_equal_to: 2.megabytes }
     validates :email, presence: true, uniqueness: true, email: true
     validates :name, presence: true
-    validates :password, presence: true, length: { minimum: 8 }
+    validates :password, presence: true, length: { minimum: 8 }, on: :create
+    validates :password, allow_blank: true, length: { minimum: 8 }, on: :update
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
     validates :username, presence: true, uniqueness: true
 

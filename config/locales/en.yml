@@ -1,0 +1,12 @@
+en:
+  archangel:
+    archangel: Archangel
+    edit_resource: Edit %{resource}
+    email: Email
+    index_resource: "%{resource} Listing"
+    name: Name
+    new_resource: New %{resource}
+    no_resources: No %{resource} found.
+    profile: Profile
+    show_resource: "%{resource}"
+    username: Username

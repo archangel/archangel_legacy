@@ -1,6 +1,13 @@
-<h1>Editing Site</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:edit_resource, resource: Archangel.t(:profile)) %></h2>
 
-<%= render 'form', site: @site %>
+    <%#= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Show', @site %> |
-<%= link_to 'Back', sites_path %>
+<div class="profile-edit panel panel-default">
+  <div class="panel-body">
+    <%= render "form", profile: @profile %>
+  </div>
+</div>

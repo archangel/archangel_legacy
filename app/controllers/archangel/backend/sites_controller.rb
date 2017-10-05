@@ -27,6 +27,8 @@ module Archangel
 
       def set_resource
         @site = current_site
+
+        authorize @site
       end
 
       def resource_params

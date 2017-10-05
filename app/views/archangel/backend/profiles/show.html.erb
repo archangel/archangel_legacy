@@ -1,44 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:show_resource, resource: Archangel.t(:profile)) %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @site.name %>
-</p>
+    <%#= render "buttons" %>
+  </div>
+</div>
 
-<p>
-  <strong>Theme:</strong>
-  <%= @site.theme %>
-</p>
+<div class="profile-show panel panel-default">
+  <div class="panel-body">
+    <%#= image_tag(@profile.avatar.thumb.url, alt: @profile.username) %>
 
-<p>
-  <strong>Locale:</strong>
-  <%= @site.locale %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @profile.name %>
+    </p>
 
-<p>
-  <strong>Logo:</strong>
-  <%= @site.logo %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:username) %>:</strong>
+      <%= @profile.username %>
+    </p>
 
-<p>
-  <strong>Favicon:</strong>
-  <%= @site.favicon %>
-</p>
-
-<p>
-  <strong>Meta keywords:</strong>
-  <%= @site.meta_keywords %>
-</p>
-
-<p>
-  <strong>Meta description:</strong>
-  <%= @site.meta_description %>
-</p>
-
-<p>
-  <strong>Deleted at:</strong>
-  <%= @site.deleted_at %>
-</p>
-
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+    <p>
+      <strong><%= Archangel.t(:email) %>:</strong>
+      <%= @profile.email %>
+    </p>
+  </div>
+</div>

@@ -51,11 +51,15 @@ module Archangel
         @users = Archangel::User.where.not(id: current_user.id)
                                 .page(page_num)
                                 .per(per_page)
+
+        authorize @users
       end
 
       def set_resource
         @user = Archangel::User.where.not(id: current_user.id)
                                .find_by!(username: params[:id])
+
+        authorize @user
       end
 
       def set_new_resource
@@ -66,6 +70,8 @@ module Archangel
             user.skip_invitation = true
           end
         end
+
+        authorize @user
       end
 
       def resource_params

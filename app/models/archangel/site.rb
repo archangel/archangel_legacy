@@ -4,8 +4,14 @@ module Archangel
   class Site < ApplicationRecord
     acts_as_paranoid
 
+    mount_uploader :favicon, Archangel::FaviconUploader
+    mount_uploader :logo, Archangel::LogoUploader
+
     before_save :stringify_meta_keywords
 
+    validates :favicon, file_size: { less_than_or_equal_to: 2.megabytes }
+    validates :locale, presence: true, inclusion: { in: Archangel::LANGUAGES }
+    validates :logo, file_size: { less_than_or_equal_to: 2.megabytes }
     validates :name, presence: true
     validates :theme, presence: true,
                       inclusion: { in: Archangel.themes },

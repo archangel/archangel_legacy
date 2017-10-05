@@ -3,7 +3,7 @@
 module Archangel
   module Backend
     class ProfilesController < BackendController
-      # after_action :skip_authorization
+      after_action :skip_authorization
 
       before_action :set_resource
 

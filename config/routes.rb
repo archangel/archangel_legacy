@@ -23,6 +23,7 @@ Archangel::Engine.routes.draw do
                confirmation: "verification",
                unlock: "unlock"
              }
+
   get "account", to: redirect("account/login")
 
   namespace :backend, path: "backend" do

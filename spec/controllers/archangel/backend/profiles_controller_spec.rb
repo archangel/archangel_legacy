@@ -16,11 +16,11 @@ module Archangel
           expect(assigns(:profile)).to eq(profile)
         end
 
-        xit "has default avatar for profile" do
+        it "has default avatar for profile" do
           get :show
 
           expect(profile.avatar.url).to(
-            include("/assets/archangel/avatar")
+            include("/assets/archangel/fallback/avatar")
           )
         end
       end
@@ -34,7 +34,7 @@ module Archangel
       end
 
       describe "PUT #update" do
-        xcontext "with avatar upload" do
+        context "with avatar upload" do
           let(:attributes) do
             {
               avatar: fixture_file_upload(uploader_test_image)
@@ -107,7 +107,7 @@ module Archangel
         it "redirects to the root" do
           delete :destroy
 
-          expect(response).to redirect_to(admin_root_url)
+          expect(response).to redirect_to(backend_root_path)
         end
       end
     end
