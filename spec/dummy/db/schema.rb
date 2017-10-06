@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006163359) do
+ActiveRecord::Schema.define(version: 20171006181701) do
 
   create_table "archangel_pages", force: :cascade do |t|
     t.integer "parent_id"
@@ -108,6 +108,20 @@ ActiveRecord::Schema.define(version: 20171006163359) do
     t.index ["role"], name: "index_archangel_users_on_role"
     t.index ["unlock_token"], name: "index_archangel_users_on_unlock_token", unique: true
     t.index ["username"], name: "index_archangel_users_on_username", unique: true
+  end
+
+  create_table "archangel_widgets", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.text "content"
+    t.integer "template_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_archangel_widgets_on_deleted_at"
+    t.index ["name"], name: "index_archangel_widgets_on_name"
+    t.index ["slug"], name: "index_archangel_widgets_on_slug", unique: true
+    t.index ["template_id"], name: "index_archangel_widgets_on_template_id"
   end
 
 end

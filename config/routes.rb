@@ -73,6 +73,17 @@ Archangel::Engine.routes.draw do
     # DELETE /backend/users/[USERNAME]
     resources :users, concerns: [:paginatable]
 
+    # GET    /backend/widgets
+    # GET    /backend/widgets/page/[PAGE]
+    # POST   /backend/widgets
+    # GET    /backend/widgets/new
+    # GET    /backend/widgets/[SLUG]/edit
+    # GET    /backend/widgets/[SLUG]
+    # PATCH  /backend/widgets/[SLUG]
+    # PUT    /backend/widgets/[SLUG]
+    # DELETE /backend/widgets/[SLUG]
+    resources :widgets, concerns: [:paginatable]
+
     # GET /backend
     root to: "dashboards#show"
   end

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @widget.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @widget.slug %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @widget.content %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @widget.template_id %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @widget.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_widget_path(@widget) %> |
+<%= link_to 'Back', widgets_path %>

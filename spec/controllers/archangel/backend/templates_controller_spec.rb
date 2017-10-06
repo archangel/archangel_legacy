@@ -106,7 +106,7 @@ module Archangel
         context "with valid params" do
           let(:params) do
             {
-              name: "New template name",
+              name: "Updated template name",
               content: "<p>Updated template content.</p>",
               partial: false
             }

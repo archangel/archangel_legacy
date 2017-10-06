@@ -15,7 +15,7 @@ FactoryGirl.define do
     end
 
     trait :with_template do
-      template
+      association :template, factory: :template, partial: false
     end
 
     trait :homepage do
