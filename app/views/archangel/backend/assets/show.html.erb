@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>File name:</strong>
+  <%= @asset.file_name %>
+</p>
+
+<p>
+  <strong>File:</strong>
+  <%= @asset.file %>
+</p>
+
+<p>
+  <strong>Content type:</strong>
+  <%= @asset.content_type %>
+</p>
+
+<p>
+  <strong>File size:</strong>
+  <%= @asset.file_size %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @asset.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>

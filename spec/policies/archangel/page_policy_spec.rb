@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe PagePolicy, type: :policy do
-    subject { PagePolicy.new(user, record) }
+    subject { described_class.new(user, record) }
 
     let(:user) { create(:user) }
     let(:record) { create(:page) }

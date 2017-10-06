@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>File name</th>
+      <th>File</th>
+      <th>Content type</th>
+      <th>File size</th>
+      <th>Deleted at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assets.each do |asset| %>
+      <tr>
+        <td><%= asset.file_name %></td>
+        <td><%= asset.file %></td>
+        <td><%= asset.content_type %></td>
+        <td><%= asset.file_size %></td>
+        <td><%= asset.deleted_at %></td>
+        <td><%= link_to 'Show', asset %></td>
+        <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
+        <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Asset', new_asset_path %>

@@ -10,7 +10,7 @@ module Archangel
     end
 
     def filename
-      "favicon.ico" if original_filename
+      "favicon.ico" if original_filename.present?
     end
   end
 end

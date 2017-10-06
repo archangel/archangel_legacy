@@ -25,7 +25,7 @@ module Archangel
     end
 
     def filename
-      "logo.#{file.extension}" if original_filename
+      "logo.#{file.extension}" if original_filename.present?
     end
   end
 end

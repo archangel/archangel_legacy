@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe WidgetPolicy, type: :policy do
-    subject { WidgetPolicy.new(user, record) }
+    subject { described_class.new(user, record) }
 
     let(:user) { create(:user) }
     let(:record) { create(:widget) }

@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe TemplatePolicy, type: :policy do
-    subject { TemplatePolicy.new(user, record) }
+    subject { described_class.new(user, record) }
 
     let(:user) { create(:user) }
     let(:record) { create(:template) }

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006181701) do
+ActiveRecord::Schema.define(version: 20171006192829) do
+
+  create_table "archangel_assets", force: :cascade do |t|
+    t.string "file_name"
+    t.string "file"
+    t.string "content_type"
+    t.integer "file_size"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_archangel_assets_on_deleted_at"
+    t.index ["file_name"], name: "index_archangel_assets_on_file_name", unique: true
+  end
 
   create_table "archangel_pages", force: :cascade do |t|
     t.integer "parent_id"

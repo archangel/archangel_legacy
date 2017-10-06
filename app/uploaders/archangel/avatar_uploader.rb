@@ -25,7 +25,7 @@ module Archangel
     end
 
     def filename
-      "avatar.#{file.extension}" if original_filename
+      "avatar.#{file.extension}" if original_filename.present?
     end
   end
 end
