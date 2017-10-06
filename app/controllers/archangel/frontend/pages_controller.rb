@@ -22,9 +22,9 @@ module Archangel
       end
 
       def redirect_to_homepage?
-        return false unless page
+        return false unless @page
 
-        page.homepage?
+        @page.homepage?
       end
 
       def find_homepage

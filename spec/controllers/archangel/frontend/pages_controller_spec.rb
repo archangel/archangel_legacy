@@ -6,10 +6,20 @@ module Archangel
   module Frontend
     RSpec.describe PagesController, type: :controller do
       describe "GET #show" do
-        it "loads correct view" do
-          get :show
+        it "assigns the requested page as @page" do
+          page = create(:page)
 
-          expect(response).to render_template(:show)
+          get :show, params: { path: page.path }
+
+          expect(assigns(:page)).to eq(page)
+        end
+
+        it "redirects to homepage" do
+          page = create(:page, :homepage)
+
+          get :show, params: { path: page.path }
+
+          expect(response).to redirect_to(root_path)
         end
       end
     end
