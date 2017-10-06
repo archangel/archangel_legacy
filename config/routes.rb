@@ -51,6 +51,17 @@ Archangel::Engine.routes.draw do
     # DELETE /backend/assets/[ID]
     resources :assets, concerns: [:paginatable]
 
+    # GET    /backend/collections
+    # GET    /backend/collections/page/[PAGE]
+    # POST   /backend/collections
+    # GET    /backend/collections/new
+    # GET    /backend/collections/[SLUG]/edit
+    # GET    /backend/collections/[SLUG]
+    # PATCH  /backend/collections/[SLUG]
+    # PUT    /backend/collections/[SLUG]
+    # DELETE /backend/collections/[SLUG]
+    resources :collections, concerns: [:paginatable]
+
     # GET    /backend/pages
     # GET    /backend/pages/page/[PAGE]
     # POST   /backend/pages
