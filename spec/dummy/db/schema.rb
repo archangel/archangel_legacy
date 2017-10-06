@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005211738) do
+ActiveRecord::Schema.define(version: 20171006163359) do
+
+  create_table "archangel_pages", force: :cascade do |t|
+    t.integer "parent_id"
+    t.integer "template_id"
+    t.string "title"
+    t.string "slug"
+    t.string "path"
+    t.text "content", default: ""
+    t.boolean "homepage", default: false
+    t.string "meta_keywords"
+    t.string "meta_description"
+    t.datetime "published_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_archangel_pages_on_deleted_at"
+    t.index ["homepage"], name: "index_archangel_pages_on_homepage"
+    t.index ["parent_id"], name: "index_archangel_pages_on_parent_id"
+    t.index ["path"], name: "index_archangel_pages_on_path", unique: true
+    t.index ["published_at"], name: "index_archangel_pages_on_published_at"
+    t.index ["slug"], name: "index_archangel_pages_on_slug"
+    t.index ["template_id"], name: "index_archangel_pages_on_template_id"
+    t.index ["title"], name: "index_archangel_pages_on_title"
+  end
 
   create_table "archangel_sites", force: :cascade do |t|
     t.string "name", default: "Archangel", null: false
@@ -30,7 +54,7 @@ ActiveRecord::Schema.define(version: 20171005211738) do
   create_table "archangel_templates", force: :cascade do |t|
     t.integer "parent_id"
     t.string "name"
-    t.text "content"
+    t.text "content", default: ""
     t.boolean "partial"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false

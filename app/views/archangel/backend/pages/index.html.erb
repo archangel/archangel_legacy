@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parent</th>
+      <th>Template</th>
+      <th>Title</th>
+      <th>Slug</th>
+      <th>Path</th>
+      <th>Content</th>
+      <th>Homepage</th>
+      <th>Published at</th>
+      <th>Deleted at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= page.parent_id %></td>
+        <td><%= page.template_id %></td>
+        <td><%= page.title %></td>
+        <td><%= page.slug %></td>
+        <td><%= page.path %></td>
+        <td><%= page.content %></td>
+        <td><%= page.homepage %></td>
+        <td><%= page.published_at %></td>
+        <td><%= page.deleted_at %></td>
+        <td><%= link_to 'Show', page %></td>
+        <td><%= link_to 'Edit', edit_page_path(page) %></td>
+        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Page', new_page_path %>

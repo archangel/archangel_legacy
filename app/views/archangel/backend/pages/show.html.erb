@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @page.parent_id %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @page.template_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @page.title %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @page.slug %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @page.path %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @page.content %>
+</p>
+
+<p>
+  <strong>Homepage:</strong>
+  <%= @page.homepage %>
+</p>
+
+<p>
+  <strong>Published at:</strong>
+  <%= @page.published_at %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @page.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>

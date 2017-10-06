@@ -6,14 +6,6 @@ FactoryGirl.define do
     content "<p>This is the content of the template.<p>"
     partial false
 
-    trait :child do
-      before(:create) do |tpl|
-        parent = create(:template)
-
-        tpl.parent_id = parent.id
-      end
-    end
-
     trait :partial do
       partial true
     end

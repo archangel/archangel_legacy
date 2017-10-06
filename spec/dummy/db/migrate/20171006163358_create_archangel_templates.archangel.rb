@@ -4,7 +4,7 @@ class CreateArchangelTemplates < ActiveRecord::Migration[5.1]
     create_table :archangel_templates do |t|
       t.integer :parent_id
       t.string :name
-      t.text :content
+      t.text :content, default: ""
       t.boolean :partial
       t.datetime :deleted_at
 

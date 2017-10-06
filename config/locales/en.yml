@@ -1,6 +1,7 @@
 en:
   archangel:
     archangel: Archangel
+    duplicate_slug: duplicate slug
     edit_resource: Edit %{resource}
     email: Email
     index_resource: "%{resource} Listing"
