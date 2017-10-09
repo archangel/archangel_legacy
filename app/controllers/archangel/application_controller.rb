@@ -17,6 +17,7 @@ module Archangel
     helper_method :current_site
 
     helper Archangel::FlashHelper
+    helper Archangel::GlyphiconHelper
 
     rescue_from ActionController::UnknownController,
                 AbstractController::ActionNotFound,
