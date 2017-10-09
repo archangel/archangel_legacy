@@ -5,6 +5,16 @@ require "rails_helper"
 module Archangel
   module Frontend
     RSpec.describe PagesController, type: :controller do
+      describe "loads correct layout" do
+        it "loads correct view" do
+          page = create(:page)
+
+          get :show, params: { path: page.path }
+
+          expect(response).to render_with_layout("archangel/layouts/frontend")
+        end
+      end
+
       describe "GET #show" do
         it "assigns the requested page as @page" do
           page = create(:page)

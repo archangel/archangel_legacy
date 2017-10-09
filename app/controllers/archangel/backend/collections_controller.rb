@@ -44,7 +44,7 @@ module Archangel
       protected
 
       def permitted_attributes
-        %i[name slug]
+        %w[name slug]
       end
 
       def set_resources

@@ -40,7 +40,7 @@ module Archangel
       protected
 
       def permitted_attributes
-        %i[avatar email name password remove_avatar username]
+        %w[avatar email name password remove_avatar username]
       end
 
       def set_resource

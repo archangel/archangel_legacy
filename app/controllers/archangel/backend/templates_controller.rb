@@ -44,7 +44,7 @@ module Archangel
       protected
 
       def permitted_attributes
-        %i[content name parent_id partial]
+        %w[content name parent_id partial]
       end
 
       def set_resources

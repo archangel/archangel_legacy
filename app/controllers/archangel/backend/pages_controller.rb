@@ -44,7 +44,7 @@ module Archangel
       protected
 
       def permitted_attributes
-        %i[content homepage parent_id path published_at slug template_id title]
+        %w[content homepage parent_id path published_at slug template_id title]
       end
 
       def set_resources

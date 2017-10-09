@@ -19,6 +19,8 @@ module Archangel
     helper Archangel::FlashHelper
     helper Archangel::GlyphiconHelper
 
+    layout :load_site_layout
+
     rescue_from ActionController::UnknownController,
                 AbstractController::ActionNotFound,
                 ActionView::MissingTemplate,
@@ -55,8 +57,8 @@ module Archangel
       I18n.available_locales.include?(locale) ? locale : I18n.default_locale
     end
 
-    def per_page_default
-      Kaminari.config.default_per_page
+    def load_site_layout
+      "archangel/layouts/frontend"
     end
   end
 end

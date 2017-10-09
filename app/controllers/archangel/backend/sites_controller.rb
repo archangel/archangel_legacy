@@ -22,7 +22,7 @@ module Archangel
       protected
 
       def permitted_attributes
-        %i[favicon locale logo meta_description meta_keywords name theme]
+        %w[favicon locale logo meta_description meta_keywords name theme]
       end
 
       def set_resource

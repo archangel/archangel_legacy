@@ -9,5 +9,9 @@ module Archangel
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: %i[name username])
     end
+
+    def load_site_layout
+      "archangel/layouts/auth"
+    end
   end
 end

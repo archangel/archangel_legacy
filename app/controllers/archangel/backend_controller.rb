@@ -8,5 +8,11 @@ module Archangel
     include Archangel::AuthorizableConcern
 
     rescue_from Pundit::NotAuthorizedError, with: :render_401
+
+    protected
+
+    def load_site_layout
+      "archangel/layouts/backend"
+    end
   end
 end
