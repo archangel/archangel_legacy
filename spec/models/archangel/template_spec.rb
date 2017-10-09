@@ -14,7 +14,7 @@ module Archangel
     end
 
     context "associations" do
-      it { expect(subject).to belong_to(:parent_template) }
+      it { expect(subject).to belong_to(:parent) }
     end
   end
 end

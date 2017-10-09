@@ -1,6 +1,13 @@
-<h1>Editing Collection</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:edit_resource, resource: @collection.model_name.human.titleize) %></h2>
 
-<%= render 'form', collection: @collection %>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Show', @collection %> |
-<%= link_to 'Back', collections_path %>
+<div class="collections-edit panel panel-default">
+  <div class="panel-body">
+    <%= render "form", collection: @collection %>
+  </div>
+</div>

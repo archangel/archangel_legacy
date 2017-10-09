@@ -1,49 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:show_resource, resource: @page.model_name.human.titleize) %></h2>
 
-<p>
-  <strong>Parent:</strong>
-  <%= @page.parent_id %>
-</p>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<p>
-  <strong>Template:</strong>
-  <%= @page.template_id %>
-</p>
+<div class="pages-show panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong><%= Archangel.t(:title) %>:</strong>
+      <%= @page.title %>
+    </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:path) %>:</strong>
+      <%= frontend_page_path(@page.path) %>
+    </p>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @page.slug %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:slug) %>:</strong>
+      <%= @page.slug %>
+    </p>
 
-<p>
-  <strong>Path:</strong>
-  <%= @page.path %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:meta_keywords) %>:</strong>
+      <%= @page.meta_keywords %>
+    </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @page.content %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:meta_description) %>:</strong>
+      <%= @page.meta_description %>
+    </p>
 
-<p>
-  <strong>Homepage:</strong>
-  <%= @page.homepage %>
-</p>
-
-<p>
-  <strong>Published at:</strong>
-  <%= @page.published_at %>
-</p>
-
-<p>
-  <strong>Deleted at:</strong>
-  <%= @page.deleted_at %>
-</p>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+    <p>
+      <strong><%= Archangel.t(:content) %>:</strong>
+      <%= @page.content %>
+    </p>
+  </div>
+</div>

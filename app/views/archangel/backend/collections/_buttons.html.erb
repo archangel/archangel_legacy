@@ -1,0 +1,18 @@
+<ul class="nav nav-pills pull-right">
+  <% if member_action? || new_action? %>
+    <li><%= link_to(glyphicon_icon("chevron-left", text: Archangel.t(:back)), backend_collections_path) %></li>
+  <% end %>
+
+  <% if collection_action? || show_action? || edit_action? %>
+    <li><%= link_to(glyphicon_icon("plus", text: Archangel.t(:new)), new_backend_collection_path) %></li>
+  <% end %>
+
+  <% if show_action? %>
+    <li><%= link_to(glyphicon_icon("ok", text: Archangel.t(:edit)), edit_backend_collection_path(@collection)) %></li>
+  <% end %>
+
+  <% if show_action? || edit_action? %>
+    <li><%= link_to(glyphicon_icon("remove", text: Archangel.t(:destroy)), backend_collection_path(@collection),
+                                             method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %></li>
+  <% end %>
+</ul>

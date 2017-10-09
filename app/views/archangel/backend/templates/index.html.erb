@@ -1,35 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:index_resource, resource: @templates.model_name.human.titleize) %></h2>
 
-<h1>Templates</h1>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Parent</th>
-      <th>Name</th>
-      <th>Content</th>
-      <th>Partial</th>
-      <th>Deleted at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="templates-index panel panel-default">
+  <div class="panel-body">
+    <% if @templates.present? %>
 
-  <tbody>
-    <% @templates.each do |template| %>
-      <tr>
-        <td><%= template.parent_id %></td>
-        <td><%= template.name %></td>
-        <td><%= template.content %></td>
-        <td><%= template.partial %></td>
-        <td><%= template.deleted_at %></td>
-        <td><%= link_to 'Show', template %></td>
-        <td><%= link_to 'Edit', edit_template_path(template) %></td>
-        <td><%= link_to 'Destroy', template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= paginate @templates %>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col"><%= Archangel.t(:name) %></th>
+              <th scope="col"><%= Archangel.t(:partial) %></th>
+              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @templates.each do |template| %>
+              <tr>
+                <td><%= template.name %></td>
+                <td><%= template.partial? %></td>
+                <td class="actions text-right">
+                  <%= link_to(glyphicon_icon("info-sign", text: Archangel.t(:show)), backend_template_path(template), class: "btn btn-info btn-sm") %>
+                  <%= link_to(glyphicon_icon("ok-sign", text: Archangel.t(:edit)), edit_backend_template_path(template), class: "btn btn-warning btn-sm") %>
+                  <%= link_to(glyphicon_icon("remove-sign", text: Archangel.t(:destroy)), backend_template_path(template), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <%= paginate @templates %>
+
+    <% else %>
+
+      <p class="no-resources">
+        <%= Archangel.t(:no_resources, resource: @templates.model_name.human.pluralize.downcase) %>
+      </p>
+
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Template', new_template_path %>
+  </div>
+</div>

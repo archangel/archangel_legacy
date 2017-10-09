@@ -1,5 +1,13 @@
-<h1>New Widget</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:new_resource, resource: @widget.model_name.human.titleize) %></h2>
 
-<%= render 'form', widget: @widget %>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Back', widgets_path %>
+<div class="widgets-new panel panel-default">
+  <div class="panel-body">
+    <%= render "form", widget: @widget %>
+  </div>
+</div>

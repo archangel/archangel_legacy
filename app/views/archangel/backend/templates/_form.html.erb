@@ -1,42 +1,14 @@
-<%= form_with(model: template, local: true) do |form| %>
-  <% if template.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(template.errors.count, "error") %> prohibited this template from being saved:</h2>
+<%= simple_form_for([:backend, template]) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-      <% template.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :parent_id %>
-    <%= form.number_field :parent_id, id: :template_parent_id %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :partial %>
+    <%= f.association :parent, as: :select %>
+    <%= f.input :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :template_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :template_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :partial %>
-    <%= form.check_box :partial, id: :template_partial %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deleted_at %>
-    <%= form.datetime_select :deleted_at, id: :template_deleted_at %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions text-right">
+    <%= f.button :submit %>
   </div>
 <% end %>

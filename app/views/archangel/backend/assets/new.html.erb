@@ -1,5 +1,13 @@
-<h1>New Asset</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:new_resource, resource: @asset.model_name.human.titleize) %></h2>
 
-<%= render 'form', asset: @asset %>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Back', assets_path %>
+<div class="assets-new panel panel-default">
+  <div class="panel-body">
+    <%= render "form", asset: @asset %>
+  </div>
+</div>

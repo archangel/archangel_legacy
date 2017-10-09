@@ -1,6 +1,13 @@
-<h1>Editing Asset</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:edit_resource, resource: @asset.model_name.human.titleize) %></h2>
 
-<%= render 'form', asset: @asset %>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Show', @asset %> |
-<%= link_to 'Back', assets_path %>
+<div class="assets-edit panel panel-default">
+  <div class="panel-body">
+    <%= render "form", asset: @asset %>
+  </div>
+</div>

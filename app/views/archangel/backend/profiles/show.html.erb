@@ -2,13 +2,13 @@
   <div class="panel-body">
     <h2><%= Archangel.t(:show_resource, resource: Archangel.t(:profile)) %></h2>
 
-    <%#= render "buttons" %>
+    <%= render "buttons" %>
   </div>
 </div>
 
 <div class="profile-show panel panel-default">
   <div class="panel-body">
-    <%#= image_tag(@profile.avatar.thumb.url, alt: @profile.username) %>
+    <%= image_tag(@profile.avatar.small.url, alt: @profile.username) %>
 
     <p>
       <strong><%= Archangel.t(:name) %>:</strong>

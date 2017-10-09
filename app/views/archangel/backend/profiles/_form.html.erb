@@ -6,16 +6,16 @@
     <%= f.input :username %>
     <%= f.input :email, as: :email %>
 
-    <%#= f.input :avatar, as: :file %>
-    <%#= f.input :avatar_cache, as: :hidden %>
+    <%= f.input :avatar, as: :file %>
+    <%= f.input :avatar_cache, as: :hidden %>
 
     <div class="form-group profile_avatar_image">
       <div class="col-sm-10 col-sm-offset-2">
-        <%#= image_tag(f.object.avatar.thumb.url, alt: "") %>
+        <%= image_tag(f.object.avatar.small.url, alt: "") %>
       </div>
     </div>
 
-    <%#= f.input :remove_avatar, as: :boolean,
+    <%= f.input :remove_avatar, as: :boolean,
                                 checked_value: true,
                                 unchecked_value: false if f.object.avatar? %>
 

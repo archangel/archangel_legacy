@@ -1,29 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:show_resource, resource: @template.model_name.human.titleize) %></h2>
 
-<p>
-  <strong>Parent:</strong>
-  <%= @template.parent_id %>
-</p>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @template.name %>
-</p>
+<div class="templates-show panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @template.name %>
+    </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @template.content %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:content) %>:</strong>
+      <%= @template.content %>
+    </p>
 
-<p>
-  <strong>Partial:</strong>
-  <%= @template.partial %>
-</p>
-
-<p>
-  <strong>Deleted at:</strong>
-  <%= @template.deleted_at %>
-</p>
-
-<%= link_to 'Edit', edit_template_path(@template) %> |
-<%= link_to 'Back', templates_path %>
+    <p>
+      <strong><%= Archangel.t(:partial) %>:</strong>
+      <%= @template.partial? %>
+    </p>
+  </div>
+</div>

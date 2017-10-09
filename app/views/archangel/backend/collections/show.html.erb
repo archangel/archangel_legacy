@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:show_resource, resource: @collection.model_name.human.titleize) %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @collection.name %>
-</p>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @collection.slug %>
-</p>
+<div class="collections-show panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @collection.name %>
+    </p>
 
-<p>
-  <strong>Deleted at:</strong>
-  <%= @collection.deleted_at %>
-</p>
-
-<%= link_to 'Edit', edit_collection_path(@collection) %> |
-<%= link_to 'Back', collections_path %>
+    <p>
+      <strong><%= Archangel.t(:slug) %>:</strong>
+      <%= @collection.slug %>
+    </p>
+  </div>
+</div>

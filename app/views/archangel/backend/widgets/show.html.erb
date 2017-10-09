@@ -1,29 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:show_resource, resource: @widget.model_name.human.titleize) %></h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @widget.name %>
-</p>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @widget.slug %>
-</p>
+<div class="widgets-show panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @widget.name %>
+    </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @widget.content %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:slug) %>:</strong>
+      <%= @widget.slug %>
+    </p>
 
-<p>
-  <strong>Template:</strong>
-  <%= @widget.template_id %>
-</p>
-
-<p>
-  <strong>Deleted at:</strong>
-  <%= @widget.deleted_at %>
-</p>
-
-<%= link_to 'Edit', edit_widget_path(@widget) %> |
-<%= link_to 'Back', widgets_path %>
+    <p>
+      <strong><%= Archangel.t(:content) %>:</strong>
+      <%= @widget.content %>
+    </p>
+  </div>
+</div>

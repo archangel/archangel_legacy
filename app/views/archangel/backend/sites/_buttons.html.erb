@@ -1,0 +1,9 @@
+<ul class="nav nav-pills pull-right">
+  <% if edit_action? %>
+    <li><%= link_to(glyphicon_icon("chevron-left", text: Archangel.t(:back)), backend_site_path) %></li>
+  <% end %>
+
+  <% if show_action? %>
+    <li><%= link_to(glyphicon_icon("ok", text: Archangel.t(:edit)), edit_backend_site_path) %></li>
+  <% end %>
+</ul>

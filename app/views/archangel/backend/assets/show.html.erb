@@ -1,29 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:show_resource, resource: @asset.model_name.human.titleize) %></h2>
 
-<p>
-  <strong>File name:</strong>
-  <%= @asset.file_name %>
-</p>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<p>
-  <strong>File:</strong>
-  <%= @asset.file %>
-</p>
+<div class="assets-show panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong><%= Archangel.t(:file_name) %>:</strong>
+      <%= @asset.file_name %>
+    </p>
 
-<p>
-  <strong>Content type:</strong>
-  <%= @asset.content_type %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:file) %>:</strong>
+      <%= @asset.file %>
 
-<p>
-  <strong>File size:</strong>
-  <%= @asset.file_size %>
-</p>
+      <% if @asset.file.image? %>
+        <div>
+          <%= image_tag(@asset.file.small.url, alt: @asset.file_name) %>
+        </div>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Deleted at:</strong>
-  <%= @asset.deleted_at %>
-</p>
+    <p>
+      <strong><%= Archangel.t(:file_size) %>:</strong>
+      <%= number_to_human_size(@asset.file_size) %>
+    </p>
 
-<%= link_to 'Edit', edit_asset_path(@asset) %> |
-<%= link_to 'Back', assets_path %>
+    <p>
+      <strong><%= Archangel.t(:content_type) %>:</strong>
+      <%= @asset.content_type %>
+    </p>
+  </div>
+</div>

@@ -1,5 +1,13 @@
-<h1>New Collection</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:new_resource, resource: @collection.model_name.human.titleize) %></h2>
 
-<%= render 'form', collection: @collection %>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Back', collections_path %>
+<div class="collections-new panel panel-default">
+  <div class="panel-body">
+    <%= render "form", collection: @collection %>
+  </div>
+</div>

@@ -1,6 +1,13 @@
-<h1>Editing Page</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:edit_resource, resource: @page.model_name.human.titleize) %></h2>
 
-<%= render 'form', page: @page %>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>
+<div class="pages-edit panel panel-default">
+  <div class="panel-body">
+    <%= render "form", page: @page %>
+  </div>
+</div>

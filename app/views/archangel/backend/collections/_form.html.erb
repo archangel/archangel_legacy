@@ -1,32 +1,12 @@
-<%= form_with(model: collection, local: true) do |form| %>
-  <% if collection.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+<%= simple_form_for([:backend, collection]) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-      <% collection.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :collection_name %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :slug %>
   </div>
 
-  <div class="field">
-    <%= form.label :slug %>
-    <%= form.text_field :slug, id: :collection_slug %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deleted_at %>
-    <%= form.datetime_select :deleted_at, id: :collection_deleted_at %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions text-right">
+    <%= f.button :submit %>
   </div>
 <% end %>

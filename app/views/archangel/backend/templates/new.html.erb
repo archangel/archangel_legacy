@@ -1,5 +1,13 @@
-<h1>New Template</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:new_resource, resource: @template.model_name.human.titleize) %></h2>
 
-<%= render 'form', template: @template %>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<%= link_to 'Back', templates_path %>
+<div class="templates-new panel panel-default">
+  <div class="panel-body">
+    <%= render "form", template: @template %>
+  </div>
+</div>

@@ -1,41 +1,55 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:index_resource, resource: @users.model_name.human.titleize) %></h2>
 
-<h1>Sites</h1>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Theme</th>
-      <th>Locale</th>
-      <th>Logo</th>
-      <th>Favicon</th>
-      <th>Meta keywords</th>
-      <th>Meta description</th>
-      <th>Deleted at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @sites.each do |site| %>
-      <tr>
-        <td><%= site.name %></td>
-        <td><%= site.theme %></td>
-        <td><%= site.locale %></td>
-        <td><%= site.logo %></td>
-        <td><%= site.favicon %></td>
-        <td><%= site.meta_keywords %></td>
-        <td><%= site.meta_description %></td>
-        <td><%= site.deleted_at %></td>
-        <td><%= link_to 'Show', site %></td>
-        <td><%= link_to 'Edit', edit_site_path(site) %></td>
-        <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="users-index panel panel-default">
+  <div class="panel-body">
+    <% if @users.present? %>
+
+      <%= paginate @users %>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center"><%= Archangel.t(:avatar) %></th>
+              <th scope="col"><%= Archangel.t(:name) %></th>
+              <th scope="col"><%= Archangel.t(:username) %></th>
+              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="text-center"><%= image_tag(user.avatar.mini.url, class: "img-center img-circle img-responsive", alt: user.username) %></td>
+                <td><%= user.name %></td>
+                <td><%= user.username %></td>
+                <td class="actions text-right">
+                  <%= link_to(glyphicon_icon("info-sign", text: Archangel.t(:show)), backend_user_path(user), class: "btn btn-info btn-sm") %>
+                  <%= link_to(glyphicon_icon("ok-sign", text: Archangel.t(:edit)), edit_backend_user_path(user), class: "btn btn-warning btn-sm") %>
+                  <%= link_to(glyphicon_icon("remove-sign", text: Archangel.t(:destroy)), backend_user_path(user), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <%= paginate @users %>
+
+    <% else %>
+
+      <p class="no-resources">
+        <%= Archangel.t(:no_resources, resource: @users.model_name.human.pluralize.downcase) %>
+      </p>
+
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Site', new_site_path %>
+  </div>
+</div>

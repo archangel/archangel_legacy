@@ -5,6 +5,7 @@ require "active_support/core_ext/array/extract_options"
 
 module Archangel
   extend ActionView::Helpers::TranslationHelper
+  extend ActionView::Helpers::TagHelper
 
   class << self
     def translate(*args)

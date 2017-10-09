@@ -1,57 +1,24 @@
-<%= form_with(model: site, local: true) do |form| %>
-  <% if site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(site.errors.count, "error") %> prohibited this site from being saved:</h2>
+<%= simple_form_for([:backend, user]) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-      <% site.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :username %>
+    <%= f.input :email, as: :email %>
+
+    <div class="form-group user_avatar_image">
+      <div class="col-sm-10 col-sm-offset-2">
+        <%= image_tag(f.object.avatar.small.url, alt: "") %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :site_name %>
+    <%= f.input :avatar_cache, as: :hidden %>
+    <%= f.input(:remove_avatar, as: :boolean, checked_value: true, unchecked_value: false) if f.object.avatar? %>
+
+    <%= f.input :role, as: :select %>
   </div>
 
-  <div class="field">
-    <%= form.label :theme %>
-    <%= form.text_field :theme, id: :site_theme %>
-  </div>
-
-  <div class="field">
-    <%= form.label :locale %>
-    <%= form.text_field :locale, id: :site_locale %>
-  </div>
-
-  <div class="field">
-    <%= form.label :logo %>
-    <%= form.text_field :logo, id: :site_logo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :favicon %>
-    <%= form.text_field :favicon, id: :site_favicon %>
-  </div>
-
-  <div class="field">
-    <%= form.label :meta_keywords %>
-    <%= form.text_field :meta_keywords, id: :site_meta_keywords %>
-  </div>
-
-  <div class="field">
-    <%= form.label :meta_description %>
-    <%= form.text_field :meta_description, id: :site_meta_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deleted_at %>
-    <%= form.datetime_select :deleted_at, id: :site_deleted_at %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions text-right">
+    <%= f.button :submit %>
   </div>
 <% end %>

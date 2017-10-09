@@ -1,35 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:index_resource, resource: @assets.model_name.human.titleize) %></h2>
 
-<h1>Assets</h1>
+    <%= render "buttons" %>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>File name</th>
-      <th>File</th>
-      <th>Content type</th>
-      <th>File size</th>
-      <th>Deleted at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="assets-index panel panel-default">
+  <div class="panel-body">
+    <% if @assets.present? %>
 
-  <tbody>
-    <% @assets.each do |asset| %>
-      <tr>
-        <td><%= asset.file_name %></td>
-        <td><%= asset.file %></td>
-        <td><%= asset.content_type %></td>
-        <td><%= asset.file_size %></td>
-        <td><%= asset.deleted_at %></td>
-        <td><%= link_to 'Show', asset %></td>
-        <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
-        <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= paginate @assets %>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col"><%= Archangel.t(:file_name) %></th>
+              <th scope="col"><%= Archangel.t(:file) %></th>
+              <th scope="col"><%= Archangel.t(:content_type) %></th>
+              <th scope="col"><%= Archangel.t(:file_size) %></th>
+              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @assets.each do |asset| %>
+              <tr>
+                <td><%= asset.file_name %></td>
+                <td><%= asset.file %></td>
+                <td><%= asset.content_type %></td>
+                <td><%= number_to_human_size(asset.file_size) %></td>
+                <td class="actions text-right">
+                  <%= link_to(glyphicon_icon("info-sign", text: Archangel.t(:show)), backend_asset_path(asset), class: "btn btn-info btn-sm") %>
+                  <%= link_to(glyphicon_icon("ok-sign", text: Archangel.t(:edit)), edit_backend_asset_path(asset), class: "btn btn-warning btn-sm") %>
+                  <%= link_to(glyphicon_icon("remove-sign", text: Archangel.t(:destroy)), backend_asset_path(asset), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <%= paginate @assets %>
+
+    <% else %>
+
+      <p class="no-resources">
+        <%= Archangel.t(:no_resources, resource: @assets.model_name.human.pluralize.downcase) %>
+      </p>
+
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Asset', new_asset_path %>
+  </div>
+</div>

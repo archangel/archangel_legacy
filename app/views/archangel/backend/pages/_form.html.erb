@@ -1,62 +1,19 @@
-<%= form_with(model: page, local: true) do |form| %>
-  <% if page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+<%= simple_form_for([:backend, page]) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-      <% page.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :parent_id %>
-    <%= form.number_field :parent_id, id: :page_parent_id %>
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :slug %>
+    <%= f.input :homepage %>
+    <%= f.association :parent, as: :select %>
+    <%= f.association :template, as: :select %>
+    <%= f.input :content %>
+    <%= f.input :meta_keywords %>
+    <%= f.input :meta_description %>
+    <%= f.input :published_at %>
   </div>
 
-  <div class="field">
-    <%= form.label :template_id %>
-    <%= form.number_field :template_id, id: :page_template_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :page_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :slug %>
-    <%= form.text_field :slug, id: :page_slug %>
-  </div>
-
-  <div class="field">
-    <%= form.label :path %>
-    <%= form.text_field :path, id: :page_path %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :page_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :homepage %>
-    <%= form.check_box :homepage, id: :page_homepage %>
-  </div>
-
-  <div class="field">
-    <%= form.label :published_at %>
-    <%= form.datetime_select :published_at, id: :page_published_at %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deleted_at %>
-    <%= form.datetime_select :deleted_at, id: :page_deleted_at %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions text-right">
+    <%= f.button :submit %>
   </div>
 <% end %>

@@ -1,0 +1,68 @@
+en:
+  activerecord:
+    models:
+      archangel/asset:
+        one: Asset
+        other: Assets
+      archangel/collection:
+        one: Collection
+        other: Collections
+      archangel/page:
+        one: Page
+        other: Pages
+      archangel/site:
+        one: Site
+        other: Site
+      archangel/template:
+        one: Template
+        other: Templates
+      archangel/user:
+        one: User
+        other: Users
+      archangel/widget:
+        one: Widget
+        other: Widgets
+
+    attributes:
+      archangel/asset:
+        file: File
+        file_name: File Name
+      archangel/collection:
+        name: Name
+        slug: Slug
+      archangel/page:
+        content: Content
+        homepage: Homepage
+        meta_description: META Description
+        meta_keywords: META Keywords
+        parent_id: Parent
+        published_at: Published At
+        slug: Slug
+        template_id: Template
+        title: Title
+      archangel/site:
+        favicon: Favicon
+        logo: Logo
+        meta_description: META Description
+        meta_keywords: META Keywords
+        name: Name
+        remove_favicon: Remove Favicon
+        remove_logo: Remove Logo
+        theme: Theme
+      archangel/template:
+        content: Content
+        name: Name
+        parent_id: Parent
+        partial: Partial
+      archangel/user:
+        avatar: Avatar
+        email: Email
+        name: Name
+        password: Password
+        password_confirmation: Confirm Password
+        username: Username
+      archangel/widget:
+        content: Content
+        name: Name
+        slug: Slug
+        template_id: Template

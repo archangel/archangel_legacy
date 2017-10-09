@@ -1,15 +1,41 @@
 en:
   archangel:
+    actions: Actions
+    are_you_sure: Are you sure?
     archangel: Archangel
+    avatar: Avatar
+    back: Back
+    content: Content
+    content_type: Content Type
+    dashboard: Dashboard
+    destroy: Destroy
     duplicate_slug: duplicate slug
     duplicate_entry_slug: duplicate slug
     duplicate_field_slug: duplicate slug
+    edit: Edit
     edit_resource: Edit %{resource}
     email: Email
+    file: File
+    file_name: File Name
+    file_size: File Size
+    homepage: Homepage
     index_resource: "%{resource} Listing"
+    locale: Locale
+    logo: Logo
+    logout: Log Out
+    meta_description: META Description
+    meta_keywords: META Keywords
     name: Name
+    new: New
     new_resource: New %{resource}
     no_resources: No %{resource} found.
+    partial: Partial
+    path: Path
     profile: Profile
+    published: Published
+    show: Show
     show_resource: "%{resource}"
+    slug: Slug
+    theme: Theme
+    title: Title
     username: Username
