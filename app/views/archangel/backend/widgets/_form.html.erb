@@ -4,8 +4,8 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :slug %>
-    <%= f.association :template %>
-    <%= f.input :content %>
+    <%= f.association :template, prompt: :translate %>
+    <%= f.input :content, as: :wysiwyg %>
   </div>
 
   <div class="form-actions text-right">

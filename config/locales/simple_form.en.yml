@@ -1,7 +1,7 @@
 en:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    'yes': 'Yes'
+    'no': 'No'
     required:
       text: 'required'
       mark: '*'
@@ -10,7 +10,6 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Examples
     # labels:
     #   defaults:
     #     password: 'Password'
@@ -26,6 +25,11 @@ en:
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
+    prompts:
+      page:
+        parent: Select parent page
+        template: Select template
+      template:
+        parent: Select parent template
+      widget:
+        template: Select template

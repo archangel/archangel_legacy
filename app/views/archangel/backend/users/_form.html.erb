@@ -15,7 +15,7 @@
     <%= f.input :avatar_cache, as: :hidden %>
     <%= f.input(:remove_avatar, as: :boolean, checked_value: true, unchecked_value: false) if f.object.avatar? %>
 
-    <%= f.input :role, as: :select %>
+    <%= f.input :role, as: :role %>
   </div>
 
   <div class="form-actions text-right">

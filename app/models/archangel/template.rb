@@ -8,7 +8,9 @@ module Archangel
     validates :name, presence: true
     validates :partial, inclusion: { in: [true, false] }
 
-    belongs_to :parent, class_name: "Archangel::Template", optional: true
+    belongs_to :parent, -> { where(partial: false) },
+               class_name: "Archangel::Template",
+               optional: true
 
     default_scope { order(name: :asc) }
   end

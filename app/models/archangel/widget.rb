@@ -12,7 +12,9 @@ module Archangel
     validates :name, presence: true
     validates :slug, presence: true, uniqueness: true
 
-    belongs_to :template, class_name: "Archangel::Template", optional: true
+    belongs_to :template, -> { where(partial: true) },
+               class_name: "Archangel::Template",
+               optional: true
 
     default_scope { order(name: :asc) }
 
