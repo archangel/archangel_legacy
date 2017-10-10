@@ -24,7 +24,7 @@ module Archangel
       def redirect_to_homepage?
         return false unless @page
 
-        @page.homepage?
+        (params.fetch(:path, nil) == @page.path) && @page.homepage?
       end
 
       def find_homepage
