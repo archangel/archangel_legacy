@@ -3,8 +3,10 @@ en:
     actions: Actions
     are_you_sure: Are you sure?
     archangel: Archangel
+    assets: Assets
     avatar: Avatar
     back: Back
+    collections: Collections
     content: Content
     content_type: Content Type
     dashboard: Dashboard
@@ -30,12 +32,17 @@ en:
     new_resource: New %{resource}
     no_resources: No %{resource} found.
     partial: Partial
+    pages: Pages
     path: Path
     profile: Profile
     published: Published
     show: Show
     show_resource: "%{resource}"
+    site: Site
     slug: Slug
+    templates: Templates
     theme: Theme
     title: Title
     username: Username
+    users: Users
+    widgets: Widgets
