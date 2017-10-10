@@ -16,7 +16,9 @@ module Archangel
     protected
 
     def collection
-      @collection ||= object.meta_keywords.to_s.downcase.split(",").map(&:strip)
+      keywords = object.blank? ? "" : object.meta_keywords.to_s
+
+      @collection ||= keywords.downcase.split(",").map(&:strip)
     end
 
     def selected_options
