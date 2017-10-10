@@ -11,7 +11,7 @@ module Archangel
     end
 
     def extension_whitelist
-      %w[css gif jpeg jpg js png]
+      Archangel.config.asset_extension_whitelist
     end
 
     def default_path

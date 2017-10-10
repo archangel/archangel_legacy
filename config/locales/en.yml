@@ -22,6 +22,8 @@ en:
     file_size: File Size
     homepage: Homepage
     index_resource: "%{resource} Listing"
+    language:
+      en: English
     locale: Locale
     logo: Logo
     logout: Log Out
@@ -36,6 +38,9 @@ en:
     path: Path
     profile: Profile
     published: Published
+    role:
+      admin: Admin
+      editor: Editor
     show: Show
     show_resource: "%{resource}"
     site: Site

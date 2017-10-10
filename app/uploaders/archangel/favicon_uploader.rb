@@ -9,6 +9,10 @@ module Archangel
       "archangel/fallback/" + [version_name, "favicon.ico"].compact.join("_")
     end
 
+    def extension_whitelist
+      Archangel.config.favicon_extension_whitelist
+    end
+
     def filename
       "favicon.ico" if original_filename.present?
     end

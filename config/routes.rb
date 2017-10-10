@@ -6,6 +6,33 @@ Archangel::Engine.routes.draw do
     get "(page/:page)", action: :index, on: :collection, as: ""
   end
 
+  # GET    /account/login
+  # POST   /account/login
+  # DELETE /account/logout
+  # POST   /account/password
+  # GET    /account/password/new
+  # GET    /account/password/edit
+  # PATCH  /account/password
+  # PUT    /account/password
+  # GET    /account/cancel
+  # POST   /account
+  # GET    /account/register
+  # GET    /account/edit
+  # PATCH  /account
+  # PUT    /account
+  # DELETE /account
+  # POST   /account/verification
+  # GET    /account/verification/new
+  # GET    /account/verification
+  # POST   /account/unlock
+  # GET    /account/unlock/new
+  # GET    /account/unlock
+  # GET    /account/invitation/accept
+  # GET    /account/invitation/remove
+  # POST   /account/invitation
+  # GET    /account/invitation/new
+  # PATCH  /account/invitation
+  # PUT    /account/invitation
   devise_for :users,
              module: :devise,
              class_name: "Archangel::User",
@@ -13,8 +40,8 @@ Archangel::Engine.routes.draw do
                registrations: "archangel/auth/registrations"
              },
              path: "",
-             path_prefix: "account",
-             skip: [:omniauth_callbacks],
+             path_prefix: Archangel.config.auth_path,
+             skip: %i[omniauth_callbacks],
              path_names: {
                sign_in: "login",
                sign_out: "logout",
@@ -24,9 +51,11 @@ Archangel::Engine.routes.draw do
                unlock: "unlock"
              }
 
-  get "account", to: redirect("account/login")
+  # GET /account => /account/login
+  get Archangel.config.auth_path,
+      to: redirect("#{Archangel.config.auth_path}/login")
 
-  namespace :backend, path: "backend" do
+  namespace :backend, path: Archangel.config.backend_path do
     # GET    /backend/profile/edit
     # GET    /backend/profile
     # PATCH  /backend/profile
@@ -110,7 +139,7 @@ Archangel::Engine.routes.draw do
     root to: "dashboards#show"
   end
 
-  namespace :frontend, path: "" do
+  namespace :frontend, path: Archangel.config.frontend_path do
     # GET /[PATH]
     get "*path", to: "pages#show", as: :page
 

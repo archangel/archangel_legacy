@@ -17,7 +17,7 @@ module Archangel
     end
 
     def extension_whitelist
-      %w[gif jpeg jpg png]
+      Archangel.config.image_extension_whitelist
     end
 
     def remove_animation

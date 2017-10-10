@@ -9,9 +9,13 @@ module Archangel
 
     before_save :stringify_meta_keywords
 
-    validates :favicon, file_size: { less_than_or_equal_to: 2.megabytes }
+    validates :favicon, file_size: {
+      less_than_or_equal_to: Archangel.config.favicon_maximum_file_size
+    }
     validates :locale, presence: true, inclusion: { in: Archangel::LANGUAGES }
-    validates :logo, file_size: { less_than_or_equal_to: 2.megabytes }
+    validates :logo, file_size: {
+      less_than_or_equal_to: Archangel.config.image_maximum_file_size
+    }
     validates :name, presence: true
     validates :theme, presence: true,
                       inclusion: { in: Archangel.themes },

@@ -2,6 +2,7 @@
 
 require "acts_as_list"
 require "acts_as_tree"
+require "anyway_config"
 require "carrierwave"
 require "date_validator"
 require "devise"
@@ -19,6 +20,7 @@ require "uglifier"
 require "validates"
 
 require "archangel/engine"
+require "archangel/config"
 require "archangel/i18n"
 require "archangel/version"
 
@@ -35,8 +37,13 @@ module Archangel
   THEME_DEFAULT = "default".to_s.freeze
 
   class << self
+    def config
+      @config ||= Config.new
+    end
+    alias configuration config
+
     def themes
-      [Archangel::THEME_DEFAULT] + Archangel::THEMES
+      [THEME_DEFAULT] + THEMES
     end
   end
 end

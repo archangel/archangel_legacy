@@ -12,7 +12,8 @@ module Archangel
 
     validates :file, presence: true,
                      file_size: {
-                       less_than_or_equal_to: 2.megabytes
+                       less_than_or_equal_to:
+                         Archangel.config.asset_maximum_file_size
                      }
     validates :file_name, presence: true
 
