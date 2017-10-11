@@ -29,6 +29,28 @@ module Archangel
 
           expect(assigns(:asset)).to eq(asset)
         end
+
+        it "uses default image for not-image assets" do
+          asset = create(:asset, :stylesheet)
+
+          get :show, params: { id: asset }
+
+          expect(asset.file.url).to include("/uploads/archangel/asset/file")
+          expect(asset.file.small.url).to(
+            include("/assets/archangel/fallback/small_asset")
+          )
+        end
+
+        it "uses uploaded image for image assets" do
+          asset = create(:asset)
+
+          get :show, params: { id: asset }
+
+          expect(asset.file.url).to include("/uploads/archangel/asset/file")
+          expect(asset.file.small.url).to(
+            include("/uploads/archangel/asset/file")
+          )
+        end
       end
 
       describe "GET #new" do

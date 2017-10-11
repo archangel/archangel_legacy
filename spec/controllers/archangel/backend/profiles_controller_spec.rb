@@ -16,7 +16,7 @@ module Archangel
           expect(assigns(:profile)).to eq(profile)
         end
 
-        it "has default avatar for profile" do
+        it "uses default avatar for profile" do
           get :show
 
           expect(profile.avatar.url).to(

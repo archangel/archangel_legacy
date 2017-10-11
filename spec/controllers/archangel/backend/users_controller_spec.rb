@@ -9,11 +9,13 @@ module Archangel
 
       describe "GET #index" do
         it "assigns all users as @users" do
-          users = create_list(:user, 2)
+          user_a = create(:user, name: "First")
+          user_b = create(:user, name: "Second")
+          user_c = create(:user, name: "Third")
 
           get :index
 
-          expect(assigns(:users)).to eq(users)
+          expect(assigns(:users)).to eq([user_a, user_b, user_c])
         end
       end
 
@@ -24,6 +26,24 @@ module Archangel
           get :show, params: { id: user }
 
           expect(assigns(:user)).to eq(user)
+        end
+
+        it "uses default avatar for user" do
+          user = create(:user)
+
+          get :show, params: { id: user }
+
+          expect(user.avatar.url).to(
+            include("/assets/archangel/fallback/avatar")
+          )
+        end
+
+        it "uses uploader avatar for user" do
+          user = create(:user, :avatar)
+
+          get :show, params: { id: user }
+
+          expect(user.avatar.url).to include("/uploads/archangel/user/avatar")
         end
       end
 

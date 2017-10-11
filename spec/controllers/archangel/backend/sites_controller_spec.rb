@@ -9,9 +9,47 @@ module Archangel
 
       describe "GET #show" do
         it "assigns the requested site as @site" do
+          site = create(:site)
+
           get :show
 
-          expect(assigns(:site)).to eq(Site.current)
+          expect(assigns(:site)).to eq(site)
+        end
+
+        it "uses default favicon for site" do
+          site = create(:site)
+
+          get :show
+
+          expect(site.favicon.url).to(
+            include("/assets/archangel/fallback/favicon")
+          )
+        end
+
+        it "uses uploaded favicon for site" do
+          site = create(:site, :favicon)
+
+          get :show
+
+          expect(site.favicon.url).to include("/uploads/archangel/site/favicon")
+        end
+
+        it "uses default logo for site" do
+          site = create(:site)
+
+          get :show
+
+          expect(site.logo.url).to(
+            include("/assets/archangel/fallback/logo")
+          )
+        end
+
+        it "uses uploaded logo for site" do
+          site = create(:site, :logo)
+
+          get :show
+
+          expect(site.logo.url).to include("/uploads/archangel/site/logo")
         end
       end
 

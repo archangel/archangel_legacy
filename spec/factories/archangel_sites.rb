@@ -12,7 +12,7 @@ FactoryGirl.define do
     end
 
     trait :favicon do
-      logo { fixture_file_upload(uploader_test_favicon) }
+      favicon { fixture_file_upload(uploader_test_favicon) }
     end
 
     trait :deleted do
