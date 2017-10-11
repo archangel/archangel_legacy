@@ -6,8 +6,6 @@ module Archangel
 
     mount_uploader :file, Archangel::AssetUploader
 
-    before_validation :parameterize_file_name
-
     before_save :save_asset_attributes
 
     validates :file, presence: true,
@@ -17,13 +15,11 @@ module Archangel
                      }
     validates :file_name, presence: true
 
+    validate :valid_file_name
+
     default_scope { order(file_name: :asc) }
 
     protected
-
-    def parameterize_file_name
-      self.file_name = file_name.to_s.downcase.parameterize
-    end
 
     def save_asset_attributes
       return unless file.present? && file_changed?
@@ -32,6 +28,12 @@ module Archangel
 
       self.content_type = asset_object.content_type
       self.file_size = asset_object.size
+    end
+
+    def valid_file_name
+      return if /^[\w-]+\.[A-Za-z]{3}$/ =~ file_name
+
+      errors.add(:file_name, Archangel.t(:file_name_invalid))
     end
   end
 end

@@ -9,9 +9,9 @@ module Archangel
 
       describe "GET #index" do
         it "assigns all resources as @assets" do
-          asset_a = create(:asset, file_name: "First")
-          asset_b = create(:asset, file_name: "Second")
-          asset_c = create(:asset, file_name: "Third")
+          asset_a = create(:asset, file_name: "first.jpg")
+          asset_b = create(:asset, file_name: "second.jpg")
+          asset_c = create(:asset, file_name: "third.jpg")
 
           get :index
 

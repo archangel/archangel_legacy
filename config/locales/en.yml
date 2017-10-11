@@ -19,6 +19,7 @@ en:
     email: Email
     file: File
     file_name: File Name
+    file_name_invalid: must be valid file name
     file_size: File Size
     homepage: Homepage
     index_resource: "%{resource} Listing"
