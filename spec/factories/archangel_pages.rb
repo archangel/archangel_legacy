@@ -11,7 +11,7 @@ FactoryGirl.define do
     published_at { Time.current }
 
     trait :with_parent do
-      parent
+      association :parent, factory: :page
     end
 
     trait :with_template do
