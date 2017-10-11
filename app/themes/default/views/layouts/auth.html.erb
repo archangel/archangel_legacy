@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html dir="<%#= text_direction %>" lang="<%#= locale %>">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="<%= current_site.favicon.url %>" type="image/x-icon">
+
+    <title><%= content_for?(:title) ? yield(:title) : Archangel.t(:archangel) %></title>
+
+    <%= csrf_meta_tags %>
+
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "#{current_theme}/auth", media: "all" %>
+    <%= yield(:stylesheet) if content_for?(:stylesheet) %>
+  </head>
+  <body>
+
+    <div id="wrapper">
+      <aside id="sidebar">
+        <%#= render "layouts/auth/sidebar" %>
+      </aside>
+
+      <main id="page-wrapper" role="main">
+        <%#= render "layouts/auth/header" %>
+
+        <section class="container-fluid">
+          <%#= render "archangel/shared/flash_messages" %>
+
+          <%= yield %>
+        </section>
+
+        <%#= render "layouts/auth/footer" %>
+      </main>
+    </div>
+
+    <%= javascript_include_tag "#{current_theme}/auth" %>
+    <%= yield(:javascript) if content_for?(:javascript) %>
+
+  </body>
+</html>

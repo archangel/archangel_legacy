@@ -4,8 +4,8 @@ module Archangel
   class FrontendController < ApplicationController
     protected
 
-    def load_site_layout
-      "archangel/layouts/frontend"
+    def per_page_default
+      12
     end
   end
 end

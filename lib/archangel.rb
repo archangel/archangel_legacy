@@ -22,6 +22,7 @@ require "validates"
 require "archangel/engine"
 require "archangel/config"
 require "archangel/i18n"
+require "archangel/theme/themable_controller"
 require "archangel/version"
 
 module Archangel

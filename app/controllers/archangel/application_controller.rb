@@ -8,6 +8,7 @@ module Archangel
 
     include Archangel::ActionableConcern
     include Archangel::PaginatableConcern
+    include Archangel::ThemableConcern
 
     before_action :set_locale
 
@@ -19,7 +20,7 @@ module Archangel
     helper Archangel::FlashHelper
     helper Archangel::GlyphiconHelper
 
-    layout :load_site_layout
+    theme :theme_resolver
 
     rescue_from ActionController::UnknownController,
                 AbstractController::ActionNotFound,
@@ -47,6 +48,16 @@ module Archangel
 
     protected
 
+    def theme_resolver
+      theme = current_site.theme
+
+      Archangel::THEMES.include?(theme) ? theme : Archangel::THEME_DEFAULT
+    end
+
+    def layout_from_theme
+      "frontend"
+    end
+
     def set_locale
       locale = session[:locale].to_s.strip.to_sym
 
@@ -55,10 +66,6 @@ module Archangel
 
     def locale_for(locale)
       I18n.available_locales.include?(locale) ? locale : I18n.default_locale
-    end
-
-    def load_site_layout
-      "archangel/layouts/frontend"
     end
   end
 end

@@ -11,8 +11,8 @@ module Archangel
 
     protected
 
-    def load_site_layout
-      "archangel/layouts/backend"
+    def layout_from_theme
+      "backend"
     end
   end
 end
