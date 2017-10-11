@@ -7,6 +7,7 @@ gemspec
 group :development do
   gem "brakeman", "~> 4.0.1", require: false
   gem "rubocop", "~> 0.50.0", require: false
+  gem "scss_lint", "~> 0.55.0", require: false
 end
 
 group :development, :test do
