@@ -11,7 +11,7 @@ module Archangel
         it "loads correct view" do
           get :show
 
-          expect(response).to render_with_layout("archangel/layouts/backend")
+          expect(response).to render_with_layout("backend")
         end
       end
 

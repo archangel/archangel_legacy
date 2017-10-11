@@ -1,0 +1,6 @@
+/*
+ * This is where all of the Archangel extensions will add their stylesheets for
+ * the backend
+ *
+ *= require_self
+ */

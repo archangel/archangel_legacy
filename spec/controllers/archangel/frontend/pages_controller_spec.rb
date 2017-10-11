@@ -11,7 +11,7 @@ module Archangel
 
           get :show, params: { path: page.path }
 
-          expect(response).to render_with_layout("archangel/layouts/frontend")
+          expect(response).to render_with_layout("frontend")
         end
       end
 
