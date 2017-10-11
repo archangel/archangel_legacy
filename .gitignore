@@ -1,4 +1,5 @@
 .bundle/
+brakeman.html
 coverage/
 Gemfile.lock
 log/*.log
