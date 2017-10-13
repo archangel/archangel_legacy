@@ -9,7 +9,6 @@ module Archangel
 
     before_validation :parameterize_slug
 
-    before_save :stringify_meta_keywords
     before_save :build_path_before_save
 
     after_save :homepage_reset
@@ -58,15 +57,6 @@ module Archangel
       self.slug = slug.to_s.downcase.parameterize
     end
 
-    def stringify_meta_keywords
-      keywords = parse_keywords(meta_keywords)
-
-      self.meta_keywords = keywords.compact
-                                   .collect(&:strip)
-                                   .reject(&:blank?)
-                                   .join(",")
-    end
-
     def build_path_before_save
       parent_path = parent.blank? ? nil : parent.path
 
@@ -93,12 +83,6 @@ module Archangel
           .where(parent_id: parent_id, slug: slug)
           .where.not(id: id)
           .empty?
-    end
-
-    def parse_keywords(keywords)
-      JSON.parse(keywords)
-    rescue StandardError
-      keywords.to_s.split(", ")
     end
   end
 end

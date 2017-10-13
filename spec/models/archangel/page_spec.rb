@@ -29,7 +29,6 @@ module Archangel
       it { expect(subject).to callback(:parameterize_slug).before(:validation) }
 
       it { expect(subject).to callback(:build_path_before_save).before(:save) }
-      it { expect(subject).to callback(:stringify_meta_keywords).before(:save) }
 
       it { expect(subject).to callback(:homepage_reset).after(:save) }
 
