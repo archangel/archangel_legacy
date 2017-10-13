@@ -6,10 +6,8 @@ module Archangel
       false
     end
 
-    def input_options
-      super.tap do |options|
-        options[:include_blank] = false
-      end
+    def skip_include_blank?
+      true
     end
 
     protected
@@ -19,9 +17,9 @@ module Archangel
     end
 
     def resource_options
-      [].tap do |obj|
+      [].tap do |opt|
         Archangel::ROLES.each do |role|
-          obj << [Archangel.t("role.#{role}"), role]
+          opt << [Archangel.t("role.#{role}"), role]
         end
       end
     end

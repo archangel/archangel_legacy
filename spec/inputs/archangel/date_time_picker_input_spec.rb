@@ -11,9 +11,5 @@ module Archangel
     it "applies class to field" do
       assert_select "input.datetimepicker", count: 1
     end
-
-    it "includes group icon" do
-      assert_select "span.glyphicon.glyphicon-calendar", count: 1
-    end
   end
 end

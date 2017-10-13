@@ -1,28 +1,16 @@
 # frozen_string_literal: true
 
 module Archangel
-  class MetaKeywordsInput < SimpleForm::Inputs::CollectionSelectInput
-    def multiple?
-      true
+  class MetaKeywordsInput < SimpleForm::Inputs::Base
+    def input(wrapper_options = nil)
+      merged_input_options =
+        merge_wrapper_options(input_html_options, wrapper_options)
+
+      @builder.text_field(attribute_name, merged_input_options)
     end
 
-    def input_options
-      super.tap do |options|
-        options[:include_blank] = false
-        options[:selected] = selected_options
-      end
-    end
-
-    protected
-
-    def collection
-      keywords = object.blank? ? "" : object.meta_keywords.to_s
-
-      @collection ||= keywords.downcase.split(",").map(&:strip)
-    end
-
-    def selected_options
-      collection
+    def input_html_classes
+      super.push("metakeywords")
     end
   end
 end

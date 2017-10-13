@@ -7,7 +7,7 @@ module Archangel
     before { concat input_for(:foo, :select_field, as: :meta_keywords) }
 
     it "applies class to field" do
-      assert_select "select.meta_keywords", count: 1
+      assert_select "input.meta_keywords", count: 1
     end
   end
 end

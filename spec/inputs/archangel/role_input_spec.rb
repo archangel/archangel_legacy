@@ -12,6 +12,7 @@ module Archangel
 
     it "has options" do
       assert_select "option", count: Archangel::ROLES.count
+      assert_select "select[multiple=multiple]", count: 0
     end
   end
 end

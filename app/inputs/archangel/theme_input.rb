@@ -6,22 +6,18 @@ module Archangel
       false
     end
 
-    def input_options
-      super.tap do |options|
-        options[:include_blank] = false
-      end
+    def skip_include_blank?
+      true
     end
 
-    private
+    protected
 
     def collection
       @collection ||= resource_options
     end
 
     def resource_options
-      [].tap do |obj|
-        Archangel.themes.each { |theme| obj << [theme, theme] }
-      end
+      [].tap { |opt| Archangel.themes.each { |theme| opt << [theme, theme] } }
     end
   end
 end

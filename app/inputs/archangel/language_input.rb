@@ -6,10 +6,8 @@ module Archangel
       false
     end
 
-    def input_options
-      super.tap do |options|
-        options[:include_blank] = false
-      end
+    def skip_include_blank?
+      true
     end
 
     protected
@@ -19,9 +17,9 @@ module Archangel
     end
 
     def resource_options
-      [].tap do |obj|
-        Archangel::LANGUAGES.each do |translation|
-          obj << [Archangel.t("language.#{translation}"), translation]
+      [].tap do |opt|
+        Archangel::LANGUAGES.each do |lang|
+          opt << [Archangel.t("language.#{lang}"), lang]
         end
       end
     end
