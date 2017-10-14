@@ -1,0 +1,86 @@
+(function(object) {
+  'use strict';
+
+  object.serialize = function(obj, prefix) {
+    var p,
+        str = [];
+
+    for (p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        var k = prefix ? prefix + '[' + p + ']' : p,
+            v = obj[p];
+
+        str.push((v !== null && typeof v === 'object') ?
+          object.serialize(v, k) :
+          encodeURIComponent(k) + '=' + encodeURIComponent(v));
+      }
+    }
+
+    return str.join('&');
+  }
+
+  object.pathBuilder = function(path) {
+    var new_path = [];
+
+    if (path.constructor === Array) {
+      new_path = path.map(function(segment) { return segment; });
+    } else if (path.constructor === Object) {
+      new_path = Object.keys(path).map(function(resource) {
+                   return [
+                     resource,
+                     path[resource]
+                   ].join('/');
+                 });
+    } else if (path.constructor === String) {
+      new_path = [path];
+    }
+
+    return new_path.filter(Boolean).join('/').toLowerCase();
+  }
+
+  object.mountScope = function() {
+    var mount = '<%= Rails.application.routes.url_helpers.archangel_path %>';
+
+    return mount.replace(/\/$/, '');
+  }
+
+  object.authScope = function() {
+    return '<%= Archangel.configuration.auth_path %>';
+  }
+
+  object.backendScope = function() {
+    return '<%= Archangel.configuration.backend_path %>';
+  }
+
+  object.frontendScope = function() {
+    return '<%= Archangel.configuration.frontend_path %>';
+  }
+
+  object.mountedAt = function() {
+    return mountScope();
+  };
+
+  object.rootPath = function() {
+    return object.pathBuilder(object.mountScope());
+  };
+
+  object.pathFor = function(path, args) {
+    var final_path,
+        options = object.serialize(args || {});
+
+    final_path = object.pathBuilder(path);
+
+    if (options.length !== 0) {
+      final_path = final_path + '?' + options;
+    }
+
+    return '/' + final_path;
+  };
+
+  object.route = {
+    root_path: object.rootPath()
+  };
+
+  return object;
+
+}(Archangel || {}));

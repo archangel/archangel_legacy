@@ -78,7 +78,7 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/assets/[ID]
     # PUT    /backend/assets/[ID]
     # DELETE /backend/assets/[ID]
-    resources :assets, concerns: [:paginatable]
+    resources :assets, concerns: %i[paginatable]
 
     # GET    /backend/collections
     # GET    /backend/collections/page/[PAGE]
@@ -89,7 +89,7 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/collections/[SLUG]
     # PUT    /backend/collections/[SLUG]
     # DELETE /backend/collections/[SLUG]
-    resources :collections, concerns: [:paginatable]
+    resources :collections, concerns: %i[paginatable]
 
     # GET    /backend/pages
     # GET    /backend/pages/page/[PAGE]
@@ -100,7 +100,7 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/pages/[ID]
     # PUT    /backend/pages/[ID]
     # DELETE /backend/pages/[ID]
-    resources :pages, concerns: [:paginatable]
+    resources :pages, concerns: %i[paginatable]
 
     # GET    /backend/templates
     # GET    /backend/templates/page/[PAGE]
@@ -111,7 +111,7 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/templates/[ID]
     # PUT    /backend/templates/[ID]
     # DELETE /backend/templates/[ID]
-    resources :templates, concerns: [:paginatable]
+    resources :templates, concerns: %i[paginatable]
 
     # GET    /backend/users
     # GET    /backend/users/page/[PAGE]
@@ -122,7 +122,7 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/users/[USERNAME]
     # PUT    /backend/users/[USERNAME]
     # DELETE /backend/users/[USERNAME]
-    resources :users, concerns: [:paginatable]
+    resources :users, concerns: %i[paginatable]
 
     # GET    /backend/widgets
     # GET    /backend/widgets/page/[PAGE]
@@ -133,7 +133,7 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/widgets/[SLUG]
     # PUT    /backend/widgets/[SLUG]
     # DELETE /backend/widgets/[SLUG]
-    resources :widgets, concerns: [:paginatable]
+    resources :widgets, concerns: %i[paginatable]
 
     # GET /backend
     root to: "dashboards#show"
@@ -141,7 +141,10 @@ Archangel::Engine.routes.draw do
 
   namespace :frontend, path: Archangel.config.frontend_path do
     # GET /[PATH]
-    get "*path", to: "pages#show", as: :page
+    get ":path", to: "pages#show", as: :page,
+                 constraints: {
+                   path: %r{[\w\-\/]+}
+                 }
 
     # GET /
     root to: "pages#show"

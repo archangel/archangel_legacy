@@ -1,16 +1,28 @@
-// Default Archangel backend theme
-//
+//  Default Archangel backend theme
 //= require_self
 //
-// Archangel common theme scripts
-// none
-//
-// External assets
+//  Third-party assets
 //= require jquery2
-//= require jquery_ujs
+//= require rails-ujs
+//= require bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
+//= require selectize
+//= require summernote
 //
-// Third-party Archangel assets (from the vendor directory)
+//  Archangel helper scripts
+//= require "archangel/object"
+//= require "archangel/object/routes"
+//= require "archangel/object/routes/backend"
+//= require "archangel/object/translate"
+//= require "archangel/object/translate/datetime_picker"
+//= require "archangel/input/datetime_picker"
+//= require "archangel/input/meta_keywords"
+//= require "archangel/input/wysiwyg"
+//= require "archangel/input/parent/page"
+//
+//  Third-party Archangel assets (from the vendor directory)
 //= require archangel/backend
 //
-// Internal assets
+//  Theme assets
 //= require_tree ./backend

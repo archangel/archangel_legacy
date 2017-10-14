@@ -25,9 +25,7 @@ module Archangel
     validate :unique_slug_per_level
 
     belongs_to :parent, class_name: "Archangel::Page", optional: true
-    belongs_to :template, -> { where(partial: false) },
-               class_name: "Archangel::Template",
-               optional: true
+    belongs_to :template, -> { where(partial: false) }, optional: true
 
     default_scope { order(title: :asc) }
 

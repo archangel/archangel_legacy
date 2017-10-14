@@ -10,6 +10,27 @@ en:
     content: Content
     content_type: Content Type
     dashboard: Dashboard
+    datetimepicker:
+      clear: Clear selection
+      close: Close the picker
+      date_format: "%Y-%m-%d"
+      date_format_js: YYYY-MM-DD
+      format: "%Y-%m-%d %H:%M"
+      format_js: YYYY-MM-DD HH:mm
+      next_century: Next Century
+      next_decade: Next Decade
+      next_month: Next Month
+      next_year: Next Year
+      prev_century: Previous Century
+      prev_decade: Previous Decade
+      prev_month: Previous Month
+      prev_year: Previous Year
+      select_decade: Select Decade
+      select_month: Select Month
+      select_year: Select Year
+      time_format: "%H:%M"
+      time_format_js: HH:mm
+      today: Go to today
     destroy: Destroy
     duplicate_slug: duplicate slug
     duplicate_entry_slug: duplicate slug

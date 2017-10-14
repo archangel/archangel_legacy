@@ -1,14 +1,13 @@
 /**
- * Default Archangel frontend theme
- *
+ *  Default Archangel frontend theme
  *= require_self
  *
- * External assets
+ *  Third-party assets
  * none
  *
- * Third-party Archangel assets (from the vendor directory)
+ *  Third-party Archangel assets (from the vendor directory)
  *= require archangel/frontend
  *
- * Internal assets
+ *  Theme assets
  *= require_tree ./frontend
  */

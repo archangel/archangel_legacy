@@ -24,7 +24,7 @@ module Archangel
     def unique_slug_per_field
       return if unique_slug_per_field?
 
-      errors.add(:slug, I18n.t(:duplicate_entry_slug))
+      errors.add(:slug, Archangel.t(:duplicate_entry_slug))
     end
 
     def unique_slug_per_field?
