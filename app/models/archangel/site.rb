@@ -24,5 +24,9 @@ module Archangel
         site.name = "Archangel"
       end
     end
+
+    def to_liquid
+      Archangel::Liquid::Drops::SiteDrop.new(self)
+    end
   end
 end

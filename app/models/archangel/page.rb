@@ -43,6 +43,10 @@ module Archangel
       published_at.present?
     end
 
+    def to_liquid
+      Archangel::Liquid::Drops::PageDrop.new(self)
+    end
+
     protected
 
     def unique_slug_per_level

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="<%#= text_direction %>" lang="<%#= locale %>">
+<html dir="<%= text_direction %>" lang="<%= locale %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,23 +21,7 @@
   </head>
   <body>
 
-    <div id="wrapper">
-      <aside id="sidebar">
-        <%#= render "layouts/frontend/sidebar" %>
-      </aside>
-
-      <main id="page-wrapper" role="main">
-        <%#= render "layouts/frontend/header" %>
-
-        <section class="container-fluid">
-          <%= render "archangel/shared/flash_messages" %>
-
-          <%= yield %>
-        </section>
-
-        <%#= render "layouts/frontend/footer" %>
-      </main>
-    </div>
+    <%= yield %>
 
     <%= javascript_include_tag "#{current_theme}/frontend" %>
     <%= yield(:javascript) if content_for?(:javascript) %>
