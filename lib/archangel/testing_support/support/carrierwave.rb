@@ -13,13 +13,14 @@ RSpec.configure do |config|
 end
 
 def uploader_test_image
-  Archangel::Engine.root + "spec/fixtures/image.gif"
+  Archangel::Engine.root + "lib/archangel/testing_support/fixtures/image.gif"
 end
 
 def uploader_test_favicon
-  Archangel::Engine.root + "spec/fixtures/favicon.png"
+  Archangel::Engine.root + "lib/archangel/testing_support/fixtures/favicon.png"
 end
 
 def uploader_test_stylesheet
-  Archangel::Engine.root + "spec/fixtures/stylesheet.css"
+  Archangel::Engine.root +
+    "lib/archangel/testing_support/fixtures/stylesheet.css"
 end
