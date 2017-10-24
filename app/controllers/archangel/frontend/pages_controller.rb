@@ -6,14 +6,10 @@ module Archangel
       before_action :set_resource, only: %i[show]
 
       def show
-        if redirect_to_homepage?
-          return redirect_to root_path, status: :moved_permanently
-        end
+        return redirect_to_homepage if redirect_to_homepage?
 
-        @page.content = liquify(@page.content, {
-                                  page: @page,
-                                  site: current_site
-                                })
+        @page.content = liquify(@page.content, page: @page,
+                                               site: current_site)
 
         respond_to do |format|
           format.html do
@@ -37,8 +33,11 @@ module Archangel
         (params.fetch(:path, nil) == @page.path) && @page.homepage?
       end
 
+      def redirect_to_homepage
+        redirect_to root_path, status: :moved_permanently
+      end
+
       def find_homepage
-        # TODO: Show a default page if homepage not set
         Archangel::Page.published.homepage.first!
       end
 
@@ -46,7 +45,7 @@ module Archangel
         Archangel::Page.published.find_by!(path: path)
       end
 
-      def liquify(content, assigns)
+      def liquify(content, assigns = {})
         template = ::Liquid::Template.parse(content)
 
         template.send(liquid_renderer,
