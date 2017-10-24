@@ -1,0 +1,54 @@
+# Auth root path.
+# Default is "account"
+#
+auth_path: "account"
+
+# Backend root path.
+# Default is "backend"
+#
+backend_path: "backend"
+
+# File extension whitelist of asset uploads.
+# Default is ['css', 'gif', 'jpeg', 'jpg', 'js', 'png']
+#
+asset_extension_whitelist:
+  - css
+  - gif
+  - jpeg
+  - jpg
+  - js
+  - png
+
+# Maximum file size of for asset uploads.
+# Default is `2.megabytes`
+#
+asset_maximum_file_size: 2.megabytes
+
+# File extension whitelist of favicon uploads.
+# Default is ['gif', 'ico', 'jpeg', 'jpg', 'png']
+#
+favicon_extension_whitelist:
+  - gif
+  - ico
+  - jpeg
+  - jpg
+  - png
+
+# Maximum file size of for favicon uploads.
+# Default is `2.megabytes`
+#
+favicon_maximum_file_size: 2.megabytes
+
+# File extension whitelist of general image uploads.
+# Default is ['gif', 'jpeg', 'jpg', 'png']
+#
+image_extension_whitelist:
+  - gif
+  - jpeg
+  - jpg
+  - png
+
+# Maximum file size of for general image uploads.
+# Default is `2.megabytes`
+#
+image_maximum_file_size: 2.megabytes

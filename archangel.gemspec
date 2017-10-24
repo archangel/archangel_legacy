@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency "devise", "~> 4.3.0"
   s.add_dependency "devise_invitable", "~> 1.7.2"
   s.add_dependency "file_validators", "~> 2.1.0"
+  s.add_dependency "highline", "~> 1.7.8"
   s.add_dependency "jbuilder", "~> 2.7.0"
   s.add_dependency "kaminari", "~> 1.0.1"
   s.add_dependency "liquid", "~> 4.0.0"
