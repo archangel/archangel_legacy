@@ -15,7 +15,7 @@
 
     <p>
       <strong><%= Archangel.t(:path) %>:</strong>
-      <%= frontend_page_path(@page.path) %>
+      <%= URI.decode(frontend_page_path(@page.path)) %>
     </p>
 
     <p>

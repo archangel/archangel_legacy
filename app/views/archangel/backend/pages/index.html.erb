@@ -28,7 +28,7 @@
             <% @pages.each do |page| %>
               <tr>
                 <td><%= page.title %></td>
-                <td><%= frontend_page_path(page.path) %></td>
+                <td><%= URI.decode(frontend_page_path(page.path)) %></td>
                 <td><%= page.homepage? %></td>
                 <td><%= page.published_at %></td>
                 <td class="actions text-right">
