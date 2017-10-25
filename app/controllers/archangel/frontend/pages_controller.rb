@@ -8,13 +8,11 @@ module Archangel
       def show
         return redirect_to_homepage if redirect_to_homepage?
 
-        @page.content = liquify(@page.content, page: @page,
-                                               site: current_site)
+        @page.content =
+          content = liquify(@page.content, page: @page, site: current_site)
 
         respond_to do |format|
-          format.html do
-            render inline: @page.content, layout: layout_from_theme
-          end
+          format.html { render inline: content, layout: layout_from_theme }
           format.json
         end
       end
