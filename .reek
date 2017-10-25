@@ -1,0 +1,17 @@
+# https://github.com/troessner/reek/blob/master/defaults.reek
+---
+exclude_paths:
+  - db/migrate
+  - spec/dummy
+
+BooleanParameter:
+  enabled: false
+
+IrresponsibleModule:
+  enabled: false
+
+UnusedPrivateMethod:
+  enabled: true
+
+UtilityFunction:
+  public_methods_only: true
