@@ -48,7 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @templates = Archangel::Template.page(page_num).per(per_page)
+        @templates = Archangel::Template.order(name: :asc)
+                                        .page(page_num)
+                                        .per(per_page)
 
         authorize @templates
       end

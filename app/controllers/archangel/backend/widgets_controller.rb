@@ -48,7 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @widgets = Archangel::Widget.page(page_num).per(per_page)
+        @widgets = Archangel::Widget.order(name: :asc)
+                                    .page(page_num)
+                                    .per(per_page)
 
         authorize @widgets
       end

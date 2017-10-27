@@ -26,8 +26,6 @@ module Archangel
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
     validates :username, presence: true, uniqueness: true
 
-    default_scope { order(name: :asc) }
-
     def to_param
       username
     end

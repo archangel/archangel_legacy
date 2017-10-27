@@ -16,8 +16,6 @@ module Archangel
                class_name: "Archangel::Template",
                optional: true
 
-    default_scope { order(name: :asc) }
-
     def to_param
       slug
     end

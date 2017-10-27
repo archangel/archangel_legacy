@@ -48,7 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @assets = Archangel::Asset.page(page_num).per(per_page)
+        @assets = Archangel::Asset.order(file_name: :asc)
+                                  .page(page_num)
+                                  .per(per_page)
 
         authorize @assets
       end

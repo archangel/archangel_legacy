@@ -17,8 +17,6 @@ module Archangel
 
     validate :valid_file_name
 
-    default_scope { order(file_name: :asc) }
-
     protected
 
     def save_asset_attributes

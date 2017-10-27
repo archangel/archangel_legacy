@@ -27,8 +27,6 @@ module Archangel
     belongs_to :parent, class_name: "Archangel::Page", optional: true
     belongs_to :template, -> { where(partial: false) }, optional: true
 
-    default_scope { order(title: :asc) }
-
     scope :published, (lambda do
       where.not(published_at: nil).where("published_at <= ?", Time.now)
     end)

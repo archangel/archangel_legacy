@@ -14,8 +14,6 @@ module Archangel
     has_many :entries, dependent: :destroy
     has_many :fields, dependent: :destroy
 
-    default_scope { order(name: :asc) }
-
     def to_param
       slug
     end

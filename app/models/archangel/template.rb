@@ -11,7 +11,5 @@ module Archangel
     belongs_to :parent, -> { where(partial: false) },
                class_name: "Archangel::Template",
                optional: true
-
-    default_scope { order(name: :asc) }
   end
 end

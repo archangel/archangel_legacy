@@ -48,7 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @pages = Archangel::Page.page(page_num).per(per_page)
+        @pages = Archangel::Page.order(title: :asc)
+                                .page(page_num)
+                                .per(per_page)
 
         authorize @pages
       end

@@ -48,7 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @collections = Archangel::Collection.page(page_num).per(per_page)
+        @collections = Archangel::Collection.order(name: :asc)
+                                            .page(page_num)
+                                            .per(per_page)
 
         authorize @collections
       end
