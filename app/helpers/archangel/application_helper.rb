@@ -7,7 +7,7 @@ module Archangel
     end
 
     def text_direction
-      Archangel::RTL_LANGUAGES.include?(locale) ? "rtl" : "ltr"
+      Archangel.t("language.#{locale}.direction")
     end
   end
 end
