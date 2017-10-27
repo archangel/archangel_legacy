@@ -6,23 +6,22 @@ rescue LoadError
   puts "You must `gem install bundler` and `bundle install` to run rake tasks"
 end
 
+Dir.glob("./lib/tasks/**/*_task.rake").each { |task| load task }
+
 Bundler::GemHelper.install_tasks
-
-APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
-
-load "rails/tasks/engine.rake"
-load "rails/tasks/statistics.rake"
 
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
+
+require "archangel/testing_support/rake/dummy_rake"
 
 RSpec::Core::RakeTask.new
 
 task default: :spec
 
-desc "(Re)Create test database and run tests"
-task :test do
-  Rake::Task["app:db:reset"].invoke
-  Rake::Task["app:db:migrate"].invoke
-  Rake::Task["spec"].invoke
+desc "Generates a dummy app for Archangel"
+task :dummy_app do
+  ENV["LIB_NAME"] = "archangel"
+
+  Rake::Task["dummy:generate"].invoke
 end

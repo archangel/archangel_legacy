@@ -4,9 +4,5 @@ coverage/
 Gemfile.lock
 log/*.log
 pkg/
-spec/dummy/db/*.sqlite3
-spec/dummy/db/*.sqlite3-journal
-spec/dummy/db/schema.rb
-spec/dummy/log/*.log
-spec/dummy/tmp/
+spec/dummy/
 spec/examples.txt

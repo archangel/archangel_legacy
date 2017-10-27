@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "active_support/core_ext/string/indent"
 require "rails/generators"
 require "highline/import"
 
@@ -119,7 +120,7 @@ module Archangel
 
         insert_into_file(File.join("config", "routes.rb"),
                          after: "Rails.application.routes.draw do\n") do
-          <<-ROUTES.strip_heredoc.indent!(2)
+          <<-ROUTES.strip_heredoc.indent(2)
             # This mounts Archangel's routes at the root of your application. If you would
             # like to change where the engine is mounted, simply change the :at option to
             # reflect your needs.
