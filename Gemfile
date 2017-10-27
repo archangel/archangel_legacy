@@ -19,7 +19,7 @@ end
 group :test do
   gem "capybara", "~> 2.15.2"
   gem "database_cleaner", "~> 1.6.1"
-  gem "factory_girl_rails", "~> 4.8.0"
+  gem "factory_bot_rails", "~> 4.8.2"
   gem "poltergeist", "~> 1.16.0"
   gem "rails-controller-testing", "~> 1.0.2"
   gem "rspec-rails", "~> 3.6.1"

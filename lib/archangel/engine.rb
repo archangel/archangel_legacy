@@ -57,7 +57,7 @@ module Archangel
                          controller_specs: true,
                          request_specs: true
 
-      gen.fixture_replacement :factory_girl, dir: "spec/factories"
+      gen.fixture_replacement :factory_bot, dir: "spec/factories"
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :field, class: "Archangel::Field" do
     collection
     sequence(:label) { |n| "Field #{n} Label" }

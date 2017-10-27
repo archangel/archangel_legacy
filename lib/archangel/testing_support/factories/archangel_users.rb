@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user, class: "Archangel::User" do
     sequence(:name) { |n| "User #{n}" }
     sequence(:username) { |n| "username#{n}" }
