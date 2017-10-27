@@ -36,7 +36,7 @@ module Archangel
       end
 
       def resource_namespace
-        :site
+        controller_name.singularize.to_sym
       end
 
       def location_after_update

@@ -72,7 +72,7 @@ module Archangel
       end
 
       def resource_namespace
-        :template
+        controller_name.singularize.to_sym
       end
 
       def location_after_create
