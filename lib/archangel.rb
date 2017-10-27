@@ -6,6 +6,7 @@ require "anyway_config"
 require "bootstrap-sass"
 require "bootstrap3-datetimepicker-rails"
 require "carrierwave"
+require "cocoon"
 require "date_validator"
 require "devise"
 require "devise_invitable"
@@ -40,15 +41,14 @@ require "archangel/version"
 
 module Archangel
   LANGUAGES = %w[en].freeze
-  LANGUAGE_DEFAULT = LANGUAGES.first
-  RTL_LANGUAGES = [].freeze
+  LANGUAGE_DEFAULT = LANGUAGES.first.freeze
 
   ROLES = %w[admin editor].freeze
-  ROLE_DEFAULT = ROLES.last
+  ROLE_DEFAULT = ROLES.last.freeze
 
   THEME_DIRECTORIES = [Archangel::Engine.root, Rails.root].freeze
   THEMES = Dir["app/themes/*/"].map { |dir| File.basename(dir) }.freeze
-  THEME_DEFAULT = "default".to_s.freeze
+  THEME_DEFAULT = "default".freeze
 
   class << self
     def config

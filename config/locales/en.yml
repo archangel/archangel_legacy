@@ -1,6 +1,8 @@
 en:
   archangel:
     actions: Actions
+    add_entry: Add Entry
+    add_field: Add Field
     are_you_sure: Are you sure?
     archangel: Archangel
     assets: Assets
@@ -38,6 +40,8 @@ en:
     edit: Edit
     edit_resource: Edit %{resource}
     email: Email
+    entries: Entries
+    fields: Fields
     file: File
     file_name: File Name
     file_name_invalid: must be valid file name
@@ -45,7 +49,9 @@ en:
     homepage: Homepage
     index_resource: "%{resource} Listing"
     language:
-      en: English
+      en:
+        name: English
+        direction: ltr
     locale: Locale
     logo: Logo
     logout: Log Out
@@ -60,6 +66,8 @@ en:
     path: Path
     profile: Profile
     published: Published
+    remove_entry: Remove Entry
+    remove_field: Remove Field
     role:
       admin: Admin
       editor: Editor

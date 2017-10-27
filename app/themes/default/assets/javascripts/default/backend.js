@@ -9,6 +9,7 @@
 //= require bootstrap-datetimepicker
 //= require selectize
 //= require summernote
+//= require cocoon
 //
 //  Archangel helper scripts
 //= require "archangel/object"

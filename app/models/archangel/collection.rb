@@ -11,8 +11,13 @@ module Archangel
     validates :name, presence: true
     validates :slug, presence: true, uniqueness: true
 
-    has_many :entries, dependent: :destroy
-    has_many :fields, dependent: :destroy
+    has_many :entries, inverse_of: :collection, dependent: :destroy
+    has_many :fields, inverse_of: :collection, dependent: :destroy
+
+    accepts_nested_attributes_for :entries, reject_if: :all_blank,
+                                            allow_destroy: true
+    accepts_nested_attributes_for :fields, reject_if: :all_blank,
+                                           allow_destroy: true
 
     def to_param
       slug

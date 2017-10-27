@@ -19,7 +19,7 @@ module Archangel
     def resource_options
       [].tap do |opt|
         Archangel::LANGUAGES.each do |lang|
-          opt << [Archangel.t("language.#{lang}"), lang]
+          opt << [Archangel.t("language.#{lang}.name"), lang]
         end
       end
     end

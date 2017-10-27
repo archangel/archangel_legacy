@@ -44,7 +44,11 @@ module Archangel
       protected
 
       def permitted_attributes
-        %w[name slug]
+        [
+          :name, :slug,
+          entries_attributes: %i[id _destroy field_id value],
+          fields_attributes: %i[id _destroy classification label required slug]
+        ]
       end
 
       def set_resources

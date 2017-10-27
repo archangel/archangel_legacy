@@ -25,10 +25,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency "acts_as_list", "~> 0.9.9"
   s.add_dependency "acts_as_tree", "~> 2.7.0"
-  s.add_dependency "anyway_config", "~> 1.1.0"
+  s.add_dependency "anyway_config", "~> 1.1.1"
   s.add_dependency "bootstrap-sass", "~> 3.3.7"
   s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.17.47"
   s.add_dependency "carrierwave", "~> 1.2.1"
+  s.add_dependency "cocoon", "~> 1.2.11"
   s.add_dependency "date_validator", "~> 0.9.0"
   s.add_dependency "devise", "~> 4.3.0"
   s.add_dependency "devise_invitable", "~> 1.7.2"
