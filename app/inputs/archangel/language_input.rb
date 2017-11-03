@@ -2,10 +2,6 @@
 
 module Archangel
   class LanguageInput < SimpleForm::Inputs::CollectionSelectInput
-    def multiple?
-      false
-    end
-
     def skip_include_blank?
       true
     end
@@ -17,9 +13,9 @@ module Archangel
     end
 
     def resource_options
-      [].tap do |opt|
-        Archangel::LANGUAGES.each do |lang|
-          opt << [Archangel.t("language.#{lang}.name"), lang]
+      [].tap do |option|
+        Archangel::LANGUAGES.each do |language|
+          option << [Archangel.t("language.#{language}.name"), language]
         end
       end
     end

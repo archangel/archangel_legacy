@@ -2,10 +2,6 @@
 
 module Archangel
   class RoleInput < SimpleForm::Inputs::CollectionSelectInput
-    def multiple?
-      false
-    end
-
     def skip_include_blank?
       true
     end
@@ -17,9 +13,9 @@ module Archangel
     end
 
     def resource_options
-      [].tap do |opt|
+      [].tap do |option|
         Archangel::ROLES.each do |role|
-          opt << [Archangel.t("role.#{role}"), role]
+          option << [Archangel.t("role.#{role}"), role]
         end
       end
     end

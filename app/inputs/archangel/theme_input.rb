@@ -2,10 +2,6 @@
 
 module Archangel
   class ThemeInput < SimpleForm::Inputs::CollectionSelectInput
-    def multiple?
-      false
-    end
-
     def skip_include_blank?
       true
     end
@@ -17,7 +13,9 @@ module Archangel
     end
 
     def resource_options
-      [].tap { |opt| Archangel.themes.each { |theme| opt << [theme, theme] } }
+      [].tap do |option|
+        Archangel.themes.each { |theme| option << [theme, theme] }
+      end
     end
   end
 end
