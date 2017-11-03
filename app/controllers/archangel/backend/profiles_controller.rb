@@ -52,7 +52,7 @@ module Archangel
       end
 
       def resource_namespace
-        :profile
+        controller_name.singularize.to_sym
       end
 
       def location_after_update
