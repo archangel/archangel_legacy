@@ -7,7 +7,7 @@ module Archangel
     include Archangel::AuthenticatableConcern
     include Archangel::AuthorizableConcern
 
-    rescue_from Pundit::NotAuthorizedError, with: :render_401
+    rescue_from Pundit::NotAuthorizedError, with: :render_401_error
 
     protected
 

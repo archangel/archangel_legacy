@@ -25,17 +25,17 @@ module Archangel
     rescue_from ActionController::UnknownController,
                 AbstractController::ActionNotFound,
                 ActionView::MissingTemplate,
-                ActiveRecord::RecordNotFound, with: :render_404
+                ActiveRecord::RecordNotFound, with: :render_404_error
 
     def current_site
       @current_site ||= Archangel::Site.current
     end
 
-    def render_401(exception = nil)
+    def render_401_error(exception = nil)
       render_error("archangel/errors/error_401", :unauthorized, exception)
     end
 
-    def render_404(exception = nil)
+    def render_404_error(exception = nil)
       render_error("archangel/errors/error_404", :not_found, exception)
     end
 

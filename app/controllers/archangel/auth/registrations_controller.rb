@@ -9,7 +9,7 @@ module Archangel
       protected
 
       def allow_registration
-        return render_404 unless Archangel.config.allow_registration
+        return render_404_error unless Archangel.config.allow_registration
       end
     end
   end
