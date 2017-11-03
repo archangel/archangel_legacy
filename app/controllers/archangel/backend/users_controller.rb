@@ -56,9 +56,11 @@ module Archangel
       end
 
       def set_resource
+        resource_id = params.fetch(:id)
+
         @user = Archangel::User.where.not(id: current_user.id)
                                .order(name: :asc)
-                               .find_by!(username: params[:id])
+                               .find_by!(username: resource_id)
 
         authorize @user
       end

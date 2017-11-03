@@ -56,7 +56,9 @@ module Archangel
       end
 
       def set_resource
-        @template = Archangel::Template.find_by!(id: params[:id])
+        resource_id = params.fetch(:id)
+
+        @template = Archangel::Template.find_by!(id: resource_id)
 
         authorize @template
       end

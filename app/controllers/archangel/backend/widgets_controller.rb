@@ -56,7 +56,9 @@ module Archangel
       end
 
       def set_resource
-        @widget = Archangel::Widget.find_by!(slug: params[:id])
+        resource_id = params.fetch(:id)
+
+        @widget = Archangel::Widget.find_by!(slug: resource_id)
 
         authorize @widget
       end

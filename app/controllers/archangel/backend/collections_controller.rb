@@ -60,7 +60,9 @@ module Archangel
       end
 
       def set_resource
-        @collection = Archangel::Collection.find_by!(slug: params[:id])
+        resource_id = params.fetch(:id)
+
+        @collection = Archangel::Collection.find_by!(slug: resource_id)
 
         authorize @collection
       end

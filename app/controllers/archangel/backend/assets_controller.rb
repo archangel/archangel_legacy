@@ -56,7 +56,9 @@ module Archangel
       end
 
       def set_resource
-        @asset = Archangel::Asset.find_by!(id: params[:id])
+        resource_id = params.fetch(:id)
+
+        @asset = Archangel::Asset.find_by!(id: resource_id)
 
         authorize @asset
       end

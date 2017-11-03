@@ -56,7 +56,9 @@ module Archangel
       end
 
       def set_resource
-        @page = Archangel::Page.find_by!(id: params[:id])
+        resource_id = params.fetch(:id)
+
+        @page = Archangel::Page.find_by!(id: resource_id)
 
         authorize @page
       end
