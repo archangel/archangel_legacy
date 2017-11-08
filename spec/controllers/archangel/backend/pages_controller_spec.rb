@@ -88,6 +88,22 @@ module Archangel
             expect(response).to render_template(:new)
           end
         end
+
+        context "with restricted path" do
+          %w[account backend].each do |restricted_path|
+            it "does not allow restricted `#{restricted_path}` path" do
+              params = {
+                title: "Example Page",
+                content: "<p>Example page.</p>",
+                slug: restricted_path
+              }
+
+              post :create, params: { page: params }
+
+              expect(assigns(:page)).to be_a_new(Page)
+            end
+          end
+        end
       end
 
       describe "GET #edit" do

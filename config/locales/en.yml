@@ -68,6 +68,7 @@ en:
     published: Published
     remove_entry: Remove Entry
     remove_field: Remove Field
+    restricted_path: contains restricted path
     role:
       admin: Admin
       editor: Editor

@@ -28,7 +28,7 @@ module Archangel
     context "callbacks" do
       it { expect(subject).to callback(:parameterize_slug).before(:validation) }
 
-      it { expect(subject).to callback(:build_path_before_save).before(:save) }
+      it { expect(subject).to callback(:build_page_path).before(:save) }
 
       it { expect(subject).to callback(:homepage_reset).after(:save) }
 

@@ -9,7 +9,7 @@ module Archangel
 
     before_validation :parameterize_slug
 
-    before_save :build_path_before_save
+    before_save :build_page_path
 
     after_save :homepage_reset
 
@@ -23,6 +23,7 @@ module Archangel
     validates :title, presence: true
 
     validate :unique_slug_per_level
+    validate :within_valid_path
 
     belongs_to :parent, class_name: "Archangel::Page", optional: true
     belongs_to :template, -> { where(partial: false) }, optional: true
@@ -53,11 +54,17 @@ module Archangel
       errors.add(:slug, Archangel.t(:duplicate_slug))
     end
 
+    def within_valid_path
+      return if within_valid_path?
+
+      errors.add(:slug, Archangel.t(:restricted_path))
+    end
+
     def parameterize_slug
       self.slug = slug.to_s.downcase.parameterize
     end
 
-    def build_path_before_save
+    def build_page_path
       parent_path = parent.blank? ? nil : parent.path
 
       self.path = [parent_path, slug].compact.join("/")
@@ -83,6 +90,16 @@ module Archangel
           .where(parent_id: parent_id, slug: slug)
           .where.not(id: id)
           .empty?
+    end
+
+    def within_valid_path?
+      [
+        Archangel.config.auth_path,
+        Archangel.config.backend_path,
+        Archangel.config.frontend_path
+      ].reject(&:empty?).each do |restricted_path|
+        return false if %r{^#{slug}/?}.match?(restricted_path)
+      end
     end
   end
 end

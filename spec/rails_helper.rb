@@ -3,6 +3,12 @@
 require "simplecov"
 
 SimpleCov.start :rails do
+  add_filter "dummy_generator.rb"
+  add_filter "install_generator.rb"
+  add_filter "lib/archangel/testing_support"
+  add_filter "lib/generators/archangel/install/templates"
+  add_filter "version.rb"
+
   add_group "Inputs", "app/inputs"
   add_group "Modules", "app/modules"
   add_group "Policies", "app/policies"
@@ -28,10 +34,11 @@ require "spec_helper"
 require "pry-byebug"
 require "rspec/rails"
 
-Dir[Rails.root.join("../support/**/*.rb")].each { |f| require f }
-
 # Archangel test support files
 require "archangel/testing_support/support"
+
+# Local support files
+Dir[Rails.root.join("../support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!

@@ -31,6 +31,12 @@ module Archangel
 
           expect(response).to redirect_to(root_path)
         end
+
+        it "returns a 404 status code when page is not found" do
+          get :show, params: { path: "not-a-real-page" }
+
+          expect(response.response_code).to eq 404
+        end
       end
     end
   end
