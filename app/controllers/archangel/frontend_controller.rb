@@ -2,5 +2,6 @@
 
 module Archangel
   class FrontendController < ApplicationController
+    include Archangel::SeoableConcern
   end
 end

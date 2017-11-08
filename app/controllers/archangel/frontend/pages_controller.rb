@@ -4,6 +4,8 @@ module Archangel
   module Frontend
     class PagesController < FrontendController
       before_action :set_resource, only: %i[show]
+      before_action :assign_meta_tags, if: -> { request.get? },
+                                       unless: -> { request.xhr? }
 
       def show
         return redirect_to_homepage if redirect_to_homepage?
@@ -23,6 +25,12 @@ module Archangel
         page_path = params.fetch(:path, nil)
 
         @page = page_path.blank? ? find_homepage : find_page(page_path)
+      end
+
+      def assign_meta_tags
+        apply_meta_tags title: @page.title,
+                        description: @page.meta_description,
+                        keywords: @page.meta_keywords.split(",")
       end
 
       def redirect_to_homepage?

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html dir="<%= text_direction %>" lang="<%= locale %>">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="<%= current_site.favicon.url %>" type="image/x-icon">
-
-    <title><%= content_for?(:title) ? yield(:title) : Archangel.t(:archangel) %></title>
+    <%= display_meta_tags %>
 
     <%= csrf_meta_tags %>
 
