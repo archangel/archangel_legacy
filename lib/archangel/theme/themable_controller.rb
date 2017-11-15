@@ -49,7 +49,8 @@ module Archangel
       end
 
       def theme_view_path
-        path = @theme_name == "default" ? Archangel::Engine.root : Rails.root
+        path = Rails.root
+        path = Archangel::Engine.root if @theme_name == Archangel::THEME_DEFAULT
 
         "#{path}/app/themes/#{@theme_name}/views"
       end

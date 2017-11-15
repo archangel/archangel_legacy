@@ -20,7 +20,7 @@ module Archangel
           next if method_defined?(attr)
 
           define_method(attr) do
-            object.send(attr) if object.respond_to?(attr, true)
+            object.send(attr) if object.methods.include?(attr)
           end
         end
       end
@@ -28,12 +28,10 @@ module Archangel
       def self.drop_class_for(resource)
         if resource.respond_to?(:to_ary)
           Archangel::Liquid::CollectionDrop
+        elsif self == Archangel::Liquid::Drop
+          resource.drop_class || Archangel::Liquid::Drop
         else
-          if self == Archangel::Liquid::Drop
-            resource.drop_class || Archangel::Liquid::Drop
-          else
-            self
-          end
+          self
         end
       end
 
