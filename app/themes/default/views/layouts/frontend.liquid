@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html dir="{% text_direction %}" lang="{% locale %}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% meta_tags %}
+
+    {% csrf_meta_tags %}
+
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+    {% theme_stylesheet %}
+  </head>
+  <body>
+
+    {{ content_for_layout }}
+
+    {% theme_javascript %}
+  </body>
+</html>

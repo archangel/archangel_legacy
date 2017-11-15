@@ -1,3 +1,11 @@
 <header>
-  HEADER
+  <section>
+    <nav>
+      <ul>
+        <li><%= link_to(Archangel.t(:profile), backend_profile_path) %></li>
+        <li><%= link_to(Archangel.t(:logout), destroy_user_session_path, method: :delete) %></li>
+      </ul>
+    </nav>
+  </section>
+
 </header>

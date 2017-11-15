@@ -10,8 +10,11 @@ module Archangel
       def show
         return redirect_to_homepage if redirect_to_homepage?
 
+        assigns = { page: @page, site: current_site }
+
         @page.content =
-          content = liquify(@page.content, page: @page, site: current_site)
+          content = Archangel::Liquid::RenderService.call(@page.content,
+                                                          assigns)
 
         respond_to do |format|
           format.html { render inline: content, layout: layout_from_theme }
@@ -49,38 +52,6 @@ module Archangel
 
       def find_page(path)
         Archangel::Page.published.find_by!(path: path)
-      end
-
-      def liquify(content, assigns = {})
-        template = ::Liquid::Template.parse(content)
-
-        template.send(liquid_renderer,
-                      assigns.deep_stringify_keys,
-                      liquid_options).html_safe
-      end
-
-      def liquid_renderer
-        %w[development test].include?(Rails.env) ? :render! : :render
-      end
-
-      def liquid_options
-        {
-          filters: liquid_filters,
-          registers: liquid_registers,
-          error_mode: :lax,
-          strict_variables: false,
-          strict_filters: false
-        }
-      end
-
-      def liquid_filters
-        [Archangel::Frontend::PagesHelper]
-      end
-
-      def liquid_registers
-        {
-          view: self
-        }
       end
     end
   end
