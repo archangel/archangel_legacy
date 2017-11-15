@@ -18,6 +18,9 @@ module Archangel
       it { expect(subject).not_to allow_value("invalid").for(:published_at) }
 
       it { expect(subject).to have_db_index(:path).unique(true) }
+
+      it { expect(subject).to allow_value("{{ foo }}").for(:content) }
+      it { expect(subject).not_to allow_value("{{ foo }").for(:content) }
     end
 
     context "associations" do
