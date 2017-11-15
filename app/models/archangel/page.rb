@@ -23,6 +23,7 @@ module Archangel
     validates :title, presence: true
 
     validate :unique_slug_per_level
+    validate :valid_liquid_content
     validate :within_valid_path
 
     belongs_to :parent, class_name: "Archangel::Page", optional: true
@@ -52,6 +53,12 @@ module Archangel
       return if unique_slug_per_level?
 
       errors.add(:slug, Archangel.t(:duplicate_slug))
+    end
+
+    def valid_liquid_content
+      return if valid_liquid_content?
+
+      errors.add(:content, Archangel.t(:liquid_invalid))
     end
 
     def within_valid_path
@@ -90,6 +97,14 @@ module Archangel
           .where(parent_id: parent_id, slug: slug)
           .where.not(id: id)
           .empty?
+    end
+
+    def valid_liquid_content?
+      ::Liquid::Template.parse(content)
+
+      true
+    rescue ::Liquid::SyntaxError => _e
+      false
     end
 
     def within_valid_path?

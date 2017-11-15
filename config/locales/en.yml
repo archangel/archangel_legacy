@@ -52,6 +52,7 @@ en:
       en:
         name: English
         direction: ltr
+    liquid_invalid: contains invalid Liquid formatting
     locale: Locale
     logo: Logo
     logout: Log Out
