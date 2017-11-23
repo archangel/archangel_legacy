@@ -8,6 +8,10 @@ en:
     assets: Assets
     avatar: Avatar
     back: Back
+    classification:
+      boolean: Boolean
+      string: String
+      text: Text
     collections: Collections
     content: Content
     content_type: Content Type
@@ -35,7 +39,6 @@ en:
       today: Go to today
     destroy: Destroy
     duplicate_slug: duplicate slug
-    duplicate_entry_slug: duplicate slug
     duplicate_field_slug: duplicate slug
     edit: Edit
     edit_resource: Edit %{resource}

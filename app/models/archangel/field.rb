@@ -2,6 +2,8 @@
 
 module Archangel
   class Field < ApplicationRecord
+    CLASSIFICATIONS = %w[string text boolean].freeze
+
     acts_as_paranoid
 
     acts_as_list scope: %i[collection_id],
@@ -9,8 +11,8 @@ module Archangel
                  add_new_at: :bottom
 
     validates :classification, presence: true,
-                               inclusion: { in: %w[string text boolean] }
-    validates :collection_id, presence: true
+                               inclusion: { in: CLASSIFICATIONS }
+    validates :collection_id, presence: true, on: :update
     validates :label, presence: true
     validates :required, inclusion: { in: [true, false] }
     validates :slug, presence: true
@@ -30,7 +32,10 @@ module Archangel
     end
 
     def unique_slug_per_collection?
-      self.class.where(collection_id: collection_id).where.not(id: id).empty?
+      self.class
+          .where(collection_id: collection_id, slug: slug)
+          .where.not(id: id)
+          .empty?
     end
   end
 end

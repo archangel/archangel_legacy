@@ -12,23 +12,9 @@ module Archangel
     validates :field_id, presence: true
     validates :value, presence: true
 
-    validate :unique_slug_per_field
-
     belongs_to :collection
     belongs_to :field
 
     default_scope { order(position: :asc) }
-
-    protected
-
-    def unique_slug_per_field
-      return if unique_slug_per_field?
-
-      errors.add(:slug, Archangel.t(:duplicate_entry_slug))
-    end
-
-    def unique_slug_per_field?
-      self.class.where(field_id: field_id).where.not(id: id).empty?
-    end
   end
 end

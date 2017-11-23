@@ -6,7 +6,7 @@ module Archangel
   RSpec.describe Field, type: :model do
     context "validations" do
       it { expect(subject).to validate_presence_of(:classification) }
-      it { expect(subject).to validate_presence_of(:collection_id) }
+      it { expect(subject).to validate_presence_of(:collection_id).on(:update) }
       it { expect(subject).to validate_presence_of(:label) }
       it { expect(subject).to validate_presence_of(:slug) }
 

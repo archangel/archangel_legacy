@@ -46,7 +46,6 @@ module Archangel
       def permitted_attributes
         [
           :name, :slug,
-          entries_attributes: %i[id _destroy field_id value],
           fields_attributes: %i[id _destroy classification label required slug]
         ]
       end
@@ -71,6 +70,8 @@ module Archangel
         new_params = action_name.to_sym == :create ? resource_params : nil
 
         @collection = Archangel::Collection.new(new_params)
+
+        @collection.fields.build unless @collection.fields.present?
 
         authorize @collection
       end

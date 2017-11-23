@@ -44,7 +44,13 @@ module Archangel
           let(:params) do
             {
               name: "New Collection Name",
-              slug: "new-collection"
+              slug: "new-collection",
+              fields_attributes: [{
+                classification: "string",
+                label: "Field Label",
+                slug: "field_slug",
+                required: false
+              }]
             }
           end
 
@@ -66,13 +72,25 @@ module Archangel
 
             expect(response).to redirect_to(backend_collections_path)
           end
+
+          it "creates fields with resource" do
+            expect do
+              post :create, params: { collection: params }
+            end.to change(Field, :count).by(1)
+          end
         end
 
         context "with invalid params" do
           let(:params) do
             {
               name: nil,
-              slug: nil
+              slug: nil,
+              fields_attributes: [{
+                classification: "unknown",
+                label: nil,
+                slug: nil,
+                required: 2
+              }]
             }
           end
 
@@ -110,7 +128,7 @@ module Archangel
           end
 
           it "updates the requested resource" do
-            collection = create(:collection)
+            collection = create(:collection, :with_fields, fields_count: 1)
 
             put :update, params: { id: collection, collection: params }
 
@@ -120,7 +138,7 @@ module Archangel
           end
 
           it "assigns the requested resource as @collection" do
-            collection = create(:collection)
+            collection = create(:collection, :with_fields, fields_count: 1)
 
             put :update, params: { id: collection, collection: params }
 
@@ -128,15 +146,67 @@ module Archangel
           end
 
           it "redirects after updating resource" do
-            collection = create(:collection)
+            collection = create(:collection, :with_fields, fields_count: 1)
 
             put :update, params: { id: collection, collection: params }
 
             expect(response).to redirect_to(backend_collections_path)
           end
+
+          it "updates a field on the resource" do
+            collection = create(:collection, :with_fields, fields_count: 1)
+
+            field_params = params.merge(fields_attributes: [{
+                                          id: collection.fields.first.id,
+                                          classification: "string",
+                                          label: "Updated Field Label",
+                                          slug: "updated_field_slug",
+                                          required: false
+                                        }])
+
+            expect do
+              post :update, params: { id: collection, collection: field_params }
+            end.to_not change(Field, :count)
+          end
+
+          it "adds a field to the resource" do
+            collection = create(:collection, :with_fields, fields_count: 1)
+
+            field_params = params.merge(fields_attributes: [{
+                                          classification: "string",
+                                          label: "Updated Field Label",
+                                          slug: "updated_field_slug",
+                                          required: false
+                                        }])
+
+            expect do
+              post :update, params: { id: collection, collection: field_params }
+            end.to change(Field, :count).by(1)
+          end
+
+          it "removes a field to the resource" do
+            collection = create(:collection, :with_fields, fields_count: 1)
+
+            field_params = params.merge(fields_attributes: [{
+                                          id: collection.fields.first.id,
+                                          classification: "string",
+                                          label: "Updated Field Label",
+                                          slug: "updated_field_slug",
+                                          required: false,
+                                          _destroy: true
+                                        }])
+
+            expect do
+              post :update, params: { id: collection, collection: field_params }
+            end.to change(Field, :count).by(-1)
+          end
         end
 
         context "with invalid params" do
+          let(:collection) do
+            create(:collection, :with_fields, fields_count: 1)
+          end
+
           let(:params) do
             {
               name: nil,
@@ -145,16 +215,12 @@ module Archangel
           end
 
           it "assigns the resource as @collection" do
-            collection = create(:collection)
-
             put :update, params: { id: collection, collection: params }
 
             expect(assigns(:collection)).to eq(collection)
           end
 
           it "re-renders the `edit` view" do
-            collection = create(:collection)
-
             put :update, params: { id: collection, collection: params }
 
             expect(response).to render_template(:edit)
