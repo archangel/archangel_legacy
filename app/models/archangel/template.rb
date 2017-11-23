@@ -11,5 +11,6 @@ module Archangel
     belongs_to :parent, -> { where(partial: false) },
                class_name: "Archangel::Template",
                optional: true
+    belongs_to :site 
   end
 end

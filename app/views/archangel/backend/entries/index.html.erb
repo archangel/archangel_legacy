@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:index_resource, resource: @collection.name) %></h2>
+
+    <%= render "buttons" %>
+  </div>
+</div>
+
+<div class="collections-index panel panel-default">
+  <div class="panel-body">
+    <% if @entries.present? %>
+
+      <%= paginate @entries %>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col"><%= Archangel.t(:value) %></th>
+              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @entries.each do |entry| %>
+              <tr>
+                <td><%= entry.value %></td>
+                <td class="actions text-right">
+                  <%= link_to(glyphicon_icon("info-sign", text: Archangel.t(:show)), backend_collection_entry_path(entry.collection, entry), class: "btn btn-info btn-sm") %>
+                  <%= link_to(glyphicon_icon("ok-sign", text: Archangel.t(:edit)), edit_backend_collection_entry_path(entry.collection, entry), class: "btn btn-warning btn-sm") %>
+                  <%= link_to(glyphicon_icon("remove-sign", text: Archangel.t(:destroy)), backend_collection_entry_path(entry.collection, entry), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <%= paginate @entries %>
+
+    <% else %>
+
+      <p class="no-resources">
+        <%= Archangel.t(:no_resources, resource: @collection.name.pluralize.downcase) %>
+      </p>
+
+    <% end %>
+  </div>
+</div>

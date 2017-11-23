@@ -48,9 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @users = Archangel::User.where.not(id: current_user.id)
-                                .page(page_num)
-                                .per(per_page)
+        @users = current_site.users
+                             .where.not(id: current_user.id)
+                             .page(page_num).per(per_page)
 
         authorize @users
       end
@@ -58,18 +58,19 @@ module Archangel
       def set_resource
         resource_id = params.fetch(:id)
 
-        @user = Archangel::User.where.not(id: current_user.id)
-                               .order(name: :asc)
-                               .find_by!(username: resource_id)
+        @user = current_site.users
+                            .where.not(id: current_user.id)
+                            .order(name: :asc)
+                            .find_by!(username: resource_id)
 
         authorize @user
       end
 
       def set_new_resource
-        @user = Archangel::User.new
+        @user = current_site.users.new
 
         if action_name.to_sym == :create
-          @user = Archangel::User.invite!(resource_params) do |user|
+          @user = current_site.users.invite!(resource_params) do |user|
             user.skip_invitation = true
           end
         end

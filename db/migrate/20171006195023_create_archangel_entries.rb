@@ -1,8 +1,8 @@
 class CreateArchangelEntries < ActiveRecord::Migration[5.1]
   def change
     create_table :archangel_entries do |t|
-      t.integer :collection_id
-      t.integer :field_id
+      t.integer :collection_id, null: false
+      t.integer :field_id, null: false
       t.text :value
       t.integer :position
       t.datetime :deleted_at

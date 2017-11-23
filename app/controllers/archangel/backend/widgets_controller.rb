@@ -48,9 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @widgets = Archangel::Widget.order(name: :asc)
-                                    .page(page_num)
-                                    .per(per_page)
+        @widgets = current_site.widgets
+                               .order(name: :asc)
+                               .page(page_num).per(per_page)
 
         authorize @widgets
       end
@@ -58,7 +58,7 @@ module Archangel
       def set_resource
         resource_id = params.fetch(:id)
 
-        @widget = Archangel::Widget.find_by!(slug: resource_id)
+        @widget = current_site.widgets.find_by!(slug: resource_id)
 
         authorize @widget
       end
@@ -66,7 +66,7 @@ module Archangel
       def set_new_resource
         new_params = action_name.to_sym == :create ? resource_params : nil
 
-        @widget = Archangel::Widget.new(new_params)
+        @widget = current_site.widgets.new(new_params)
 
         authorize @widget
       end

@@ -15,6 +15,7 @@ module Archangel
 
     context "associations" do
       it { expect(subject).to belong_to(:parent) }
+      it { expect(subject).to belong_to(:site) }
     end
   end
 end

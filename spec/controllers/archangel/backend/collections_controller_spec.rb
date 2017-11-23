@@ -9,9 +9,11 @@ module Archangel
 
       describe "GET #index" do
         it "assigns all resources as @collections" do
-          collection_a = create(:collection, name: "First")
-          collection_b = create(:collection, name: "Second")
-          collection_c = create(:collection, name: "Third")
+          site = create(:site)
+
+          collection_a = create(:collection, site: site, name: "First")
+          collection_b = create(:collection, site: site, name: "Second")
+          collection_c = create(:collection, site: site, name: "Third")
 
           get :index
 

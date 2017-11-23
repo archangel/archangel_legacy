@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:edit_resource, resource: @collection.name.singularize) %></h2>
+
+    <%= render "buttons" %>
+  </div>
+</div>
+
+<div class="collections-edit panel panel-default">
+  <div class="panel-body">
+    <%= render "form", entry: @entry %>
+  </div>
+</div>

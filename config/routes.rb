@@ -89,7 +89,18 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/collections/[SLUG]
     # PUT    /backend/collections/[SLUG]
     # DELETE /backend/collections/[SLUG]
-    resources :collections, concerns: %i[paginatable]
+    resources :collections, concerns: %i[paginatable] do
+      # GET    /backend/collections/[COLLECTION_SLUG]/entries
+      # GET    /backend/collections/[COLLECTION_SLUG]/entries/page/[PAGE]
+      # POST   /backend/collections/[COLLECTION_SLUG]/entries
+      # GET    /backend/collections/[COLLECTION_SLUG]/entries/new
+      # GET    /backend/collections/[COLLECTION_SLUG]/entries/[ID]/edit
+      # GET    /backend/collections/[COLLECTION_SLUG]/entries/[ID]
+      # PATCH  /backend/collections/[COLLECTION_SLUG]/entries/[ID]
+      # PUT    /backend/collections/[COLLECTION_SLUG]/entries/[ID]
+      # DELETE /backend/collections/[COLLECTION_SLUG]/entries/[ID]
+      resources :entries, concerns: %i[paginatable]
+    end
 
     # GET    /backend/pages
     # GET    /backend/pages/page/[PAGE]

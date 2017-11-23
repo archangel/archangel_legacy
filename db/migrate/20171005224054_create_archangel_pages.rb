@@ -1,6 +1,7 @@
 class CreateArchangelPages < ActiveRecord::Migration[5.1]
   def change
     create_table :archangel_pages do |t|
+      t.integer :site_id, null: false
       t.integer :parent_id
       t.integer :template_id
       t.string :title
@@ -21,6 +22,7 @@ class CreateArchangelPages < ActiveRecord::Migration[5.1]
     add_index :archangel_pages, :parent_id
     add_index :archangel_pages, :path, unique: true
     add_index :archangel_pages, :published_at
+    add_index :archangel_pages, :site_id
     add_index :archangel_pages, :slug
     add_index :archangel_pages, :template_id
     add_index :archangel_pages, :title

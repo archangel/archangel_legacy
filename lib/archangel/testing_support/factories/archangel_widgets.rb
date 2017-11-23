@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :widget, class: "Archangel::Widget" do
+    site
     sequence(:name) { |n| "Widget #{n}" }
     sequence(:slug) { |n| "widget-#{n}" }
     content "<p>Content of the widget</p>"

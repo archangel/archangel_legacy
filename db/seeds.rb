@@ -29,7 +29,7 @@ def prompt_for_admin_password
 end
 
 # Site
-Archangel::Site.first_or_create! do |item|
+site = Archangel::Site.first_or_create! do |item|
   item.name = "Archangel"
   item.locale = "en"
 end
@@ -42,6 +42,7 @@ unless Archangel::User.first
   password = prompt_for_admin_password
 
   attributes = {
+    site: site,
     email: email,
     username: username,
     name: name,
@@ -54,7 +55,8 @@ unless Archangel::User.first
 end
 
 # Homepage
-Archangel::Page.published.find_or_create_by!(homepage: true) do |item|
+Archangel::Page.published
+               .find_or_create_by!(site: site, homepage: true) do |item|
   item.slug = "homepage-#{Time.now.to_i}"
   item.title = "Welcome to Archangel"
   item.content = "<p>Welcome to your new site.</p>"

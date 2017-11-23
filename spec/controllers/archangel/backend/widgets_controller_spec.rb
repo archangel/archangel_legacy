@@ -9,9 +9,11 @@ module Archangel
 
       describe "GET #index" do
         it "assigns all resources as @widgets" do
-          widget_a = create(:widget, name: "First")
-          widget_b = create(:widget, name: "Second")
-          widget_c = create(:widget, name: "Third")
+          site = create(:site)
+
+          widget_a = create(:widget, site: site, name: "First")
+          widget_b = create(:widget, site: site, name: "Second")
+          widget_c = create(:widget, site: site, name: "Third")
 
           get :index
 

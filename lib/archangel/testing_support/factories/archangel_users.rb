@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :user, class: "Archangel::User" do
+    site
     sequence(:name) { |n| "User #{n}" }
     sequence(:username) { |n| "username#{n}" }
     sequence(:email) { |n| "user#{n}@example.com" }

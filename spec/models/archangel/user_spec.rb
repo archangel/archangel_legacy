@@ -58,5 +58,9 @@ module Archangel
         end
       end
     end
+
+    context "associations" do
+      it { expect(subject).to belong_to(:site) }
+    end
   end
 end

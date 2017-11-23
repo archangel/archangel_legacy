@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :page, class: "Archangel::Page" do
+    site
     sequence(:title) { |n| "Page #{n} Title" }
     sequence(:slug) { |n| "page-#{n}" }
     content "<p>Content of the page</p>"

@@ -27,6 +27,7 @@ module Archangel
     validate :within_valid_path
 
     belongs_to :parent, class_name: "Archangel::Page", optional: true
+    belongs_to :site
     belongs_to :template, -> { where(partial: false) }, optional: true
 
     scope :published, (lambda do

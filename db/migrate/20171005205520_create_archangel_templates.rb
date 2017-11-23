@@ -1,6 +1,7 @@
 class CreateArchangelTemplates < ActiveRecord::Migration[5.1]
   def change
     create_table :archangel_templates do |t|
+      t.integer :site_id, null: false
       t.integer :parent_id
       t.string :name
       t.text :content, default: ""
@@ -10,7 +11,8 @@ class CreateArchangelTemplates < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :archangel_templates, :parent_id
     add_index :archangel_templates, :deleted_at
+    add_index :archangel_templates, :parent_id
+    add_index :archangel_templates, :site_id
   end
 end

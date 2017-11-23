@@ -17,6 +17,11 @@ module Archangel
     accepts_nested_attributes_for :fields, reject_if: :all_blank,
                                            allow_destroy: true
 
+    belongs_to :site
+
+    has_many :entries
+    has_many :fields
+
     def to_param
       slug
     end

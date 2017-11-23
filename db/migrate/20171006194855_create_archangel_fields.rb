@@ -1,7 +1,7 @@
 class CreateArchangelFields < ActiveRecord::Migration[5.1]
   def change
     create_table :archangel_fields do |t|
-      t.integer :collection_id
+      t.integer :collection_id, null: false
       t.string :label
       t.string :slug
       t.string :classification

@@ -48,9 +48,9 @@ module Archangel
       end
 
       def set_resources
-        @templates = Archangel::Template.order(name: :asc)
-                                        .page(page_num)
-                                        .per(per_page)
+        @templates = current_site.templates
+                                 .order(name: :asc)
+                                 .page(page_num).per(per_page)
 
         authorize @templates
       end
@@ -58,7 +58,7 @@ module Archangel
       def set_resource
         resource_id = params.fetch(:id)
 
-        @template = Archangel::Template.find_by!(id: resource_id)
+        @template = current_site.templates.find_by!(id: resource_id)
 
         authorize @template
       end
@@ -66,7 +66,7 @@ module Archangel
       def set_new_resource
         new_params = action_name.to_sym == :create ? resource_params : nil
 
-        @template = Archangel::Template.new(new_params)
+        @template = current_site.templates.new(new_params)
 
         authorize @template
       end

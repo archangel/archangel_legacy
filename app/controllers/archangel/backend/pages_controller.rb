@@ -49,9 +49,9 @@ module Archangel
       end
 
       def set_resources
-        @pages = Archangel::Page.order(title: :asc)
-                                .page(page_num)
-                                .per(per_page)
+        @pages = current_site.pages
+                             .order(title: :asc)
+                             .page(page_num).per(per_page)
 
         authorize @pages
       end
@@ -59,7 +59,7 @@ module Archangel
       def set_resource
         resource_id = params.fetch(:id)
 
-        @page = Archangel::Page.find_by!(id: resource_id)
+        @page = current_site.pages.find_by!(id: resource_id)
 
         authorize @page
       end
@@ -67,7 +67,7 @@ module Archangel
       def set_new_resource
         new_params = action_name.to_sym == :create ? resource_params : nil
 
-        @page = Archangel::Page.new(new_params)
+        @page = current_site.pages.new(new_params)
 
         authorize @page
       end

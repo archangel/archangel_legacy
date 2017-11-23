@@ -2,78 +2,81 @@
 
 module Archangel
   module Backend
-    class CollectionsController < BackendController
+    class EntriesController < BackendController
+      before_action :set_parent_resource
       before_action :set_resources, only: %i[index]
       before_action :set_resource, only: %i[destroy edit show update]
       before_action :set_new_resource, only: %i[create new]
 
       def index
-        respond_with @collections
+        respond_with @entries
       end
 
       def show
-        respond_with @collection
+        respond_with @entry
       end
 
       def new
-        respond_with @collection
+        respond_with @entry
       end
 
       def create
-        @collection.save
+        @entry.save
 
-        respond_with @collection, location: -> { location_after_create }
+        respond_with @entry, location: -> { location_after_create }
       end
 
       def edit
-        respond_with @collection
+        respond_with @entry
       end
 
       def update
-        @collection.update(resource_params)
+        @entry.update(resource_params)
 
-        respond_with @collection, location: -> { location_after_update }
+        respond_with @entry, location: -> { location_after_update }
       end
 
       def destroy
-        @collection.destroy
+        @entry.destroy
 
-        respond_with @collection, location: -> { location_after_destroy }
+        respond_with @entry, location: -> { location_after_destroy }
       end
 
       protected
 
       def permitted_attributes
-        [
-          :name, :slug,
-          fields_attributes: %i[id _destroy classification label required slug]
-        ]
+        %w[value]
+      end
+
+      def set_parent_resource
+        collection_id = params.fetch(:collection_id)
+
+        @collection = current_site.collections
+                                  .find_by!(slug: collection_id)
       end
 
       def set_resources
-        @collections = current_site.collections
-                                   .order(name: :asc)
-                                   .page(page_num).per(per_page)
+        @entries = current_site.entries
+                               .order(position: :asc)
+                               .page(page_num).per(per_page)
 
-        authorize @collections
+        authorize @entries
       end
 
       def set_resource
         resource_id = params.fetch(:id)
 
-        @collection = current_site.collections.find_by!(slug: resource_id)
+        @entry = current_site.entries.find_by!(id: resource_id)
 
-        authorize @collection
+        authorize @entry
       end
 
       def set_new_resource
         new_params = action_name.to_sym == :create ? resource_params : nil
 
-        @collection = current_site.collections.new(new_params)
+        @entry = current_site.entries.new(new_params)
 
-        @collection.fields.build unless @collection.fields.present?
-
-        authorize @collection
+        authorize @entry
       end
 
       def resource_params
@@ -97,7 +100,7 @@ module Archangel
       end
 
       def location_after_save
-        backend_collections_path
+        backend_widgets_path
       end
     end
   end

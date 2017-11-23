@@ -5,20 +5,19 @@ require "rails_helper"
 module Archangel
   module Backend
     RSpec.describe SitesController, type: :controller do
-      before { stub_authorization! create(:user) }
+      before { stub_authorization! profile }
+
+      let!(:site) { create(:site) }
+      let!(:profile) { create(:user, site: site) }
 
       describe "GET #show" do
         it "assigns the requested site as @site" do
-          site = create(:site)
-
           get :show
 
           expect(assigns(:site)).to eq(site)
         end
 
         it "uses default favicon for site" do
-          site = create(:site)
-
           get :show
 
           expect(site.favicon.url).to(
@@ -35,8 +34,6 @@ module Archangel
         end
 
         it "uses default logo for site" do
-          site = create(:site)
-
           get :show
 
           expect(site.logo.url).to(

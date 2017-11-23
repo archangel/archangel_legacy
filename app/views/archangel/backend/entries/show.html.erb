@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2><%= Archangel.t(:show_resource, resource: @collection.name.singularize) %></h2>
+
+    <%= render "buttons" %>
+  </div>
+</div>
+
+<div class="collections-show panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong><%= Archangel.t(:value) %>:</strong>
+      <%= @entry.value %>
+    </p>
+  </div>
+</div>

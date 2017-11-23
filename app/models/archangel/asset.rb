@@ -17,6 +17,8 @@ module Archangel
 
     validate :valid_file_name
 
+    belongs_to :site
+
     protected
 
     def save_asset_attributes

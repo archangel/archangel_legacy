@@ -9,9 +9,11 @@ module Archangel
 
       describe "GET #index" do
         it "assigns all resources as @templates" do
-          template_a = create(:template, name: "First")
-          template_b = create(:template, name: "Second")
-          template_c = create(:template, name: "Third")
+          site = create(:site)
+
+          template_a = create(:template, site: site, name: "First")
+          template_b = create(:template, site: site, name: "Second")
+          template_c = create(:template, site: site, name: "Third")
 
           get :index
 

@@ -5,13 +5,16 @@ require "rails_helper"
 module Archangel
   module Backend
     RSpec.describe UsersController, type: :controller do
-      before { stub_authorization! create(:user) }
+      before { stub_authorization! user }
+
+      let!(:site) { create(:site) }
+      let!(:user) { create(:user, site: site) }
 
       describe "GET #index" do
         it "assigns all users as @users" do
-          user_a = create(:user, name: "First")
-          user_b = create(:user, name: "Second")
-          user_c = create(:user, name: "Third")
+          user_a = create(:user, site: site, name: "First")
+          user_b = create(:user, site: site, name: "Second")
+          user_c = create(:user, site: site, name: "Third")
 
           get :index
 
@@ -21,7 +24,7 @@ module Archangel
 
       describe "GET #show" do
         it "assigns the requested user as @user" do
-          user = create(:user)
+          user = create(:user, site: site)
 
           get :show, params: { id: user }
 
@@ -29,7 +32,7 @@ module Archangel
         end
 
         it "uses default avatar for user" do
-          user = create(:user)
+          user = create(:user, site: site)
 
           get :show, params: { id: user }
 
@@ -39,7 +42,7 @@ module Archangel
         end
 
         it "uses uploader avatar for user" do
-          user = create(:user, :avatar)
+          user = create(:user, :avatar, site: site)
 
           get :show, params: { id: user }
 
@@ -57,7 +60,7 @@ module Archangel
 
       describe "GET #edit" do
         it "assigns the requested user as @user" do
-          user = create(:user)
+          user = create(:user, site: site)
 
           get :edit, params: { id: user }
 
@@ -96,7 +99,7 @@ module Archangel
         end
 
         context "with invalid params" do
-          let(:existing_user) { create(:user) }
+          let(:existing_user) { create(:user, site: site) }
           let(:attributes) do
             { email: existing_user.email }
           end
@@ -116,7 +119,7 @@ module Archangel
           end
 
           it "assigns the requested user as @user" do
-            user = create(:user)
+            user = create(:user, site: site)
 
             put :update, params: { id: user, user: attributes }
 
@@ -124,7 +127,7 @@ module Archangel
           end
 
           it "redirects to the user" do
-            user = create(:user)
+            user = create(:user, site: site)
 
             put :update, params: { id: user, user: attributes }
 
@@ -133,13 +136,13 @@ module Archangel
         end
 
         context "with invalid params" do
-          let(:existing_user) { create(:user) }
+          let(:existing_user) { create(:user, site: site) }
           let(:attributes) do
             { email: existing_user.email }
           end
 
           it "assigns the user as @user" do
-            user = create(:user)
+            user = create(:user, site: site)
 
             put :update, params: { id: user.to_param, user: attributes }
 
@@ -147,7 +150,7 @@ module Archangel
           end
 
           it "re-renders the 'edit' template" do
-            user = create(:user)
+            user = create(:user, site: site)
 
             put :update, params: { id: user.to_param, user: attributes }
 
@@ -158,7 +161,7 @@ module Archangel
 
       describe "DELETE #destroy" do
         it "destroys the requested user" do
-          user = create(:user)
+          user = create(:user, site: site)
 
           expect do
             delete :destroy, params: { id: user }
@@ -166,7 +169,7 @@ module Archangel
         end
 
         it "redirects to the users list" do
-          user = create(:user)
+          user = create(:user, site: site)
 
           delete :destroy, params: { id: user.to_param }
 

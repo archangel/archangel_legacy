@@ -19,6 +19,15 @@ module Archangel
                       inclusion: { in: Archangel.themes },
                       allow_blank: true
 
+    has_many :assets
+    has_many :collections
+    has_many :pages
+    has_many :templates
+    has_many :users
+    has_many :widgets
+
+    has_many :entries, through: :collections
+
     def self.current
       first_or_create do |site|
         site.name = "Archangel"

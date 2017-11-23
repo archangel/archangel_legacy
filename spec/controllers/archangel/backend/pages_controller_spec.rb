@@ -9,9 +9,11 @@ module Archangel
 
       describe "GET #index" do
         it "assigns all resources as @pages" do
-          page_a = create(:page, title: "First")
-          page_b = create(:page, title: "Second")
-          page_c = create(:page, title: "Third")
+          site = create(:site)
+
+          page_a = create(:page, site: site, title: "First")
+          page_b = create(:page, site: site, title: "Second")
+          page_c = create(:page, site: site, title: "Third")
 
           get :index
 

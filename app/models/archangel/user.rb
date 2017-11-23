@@ -26,6 +26,8 @@ module Archangel
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
     validates :username, presence: true, uniqueness: true
 
+    belongs_to :site
+
     def to_param
       username
     end

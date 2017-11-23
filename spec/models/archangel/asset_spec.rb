@@ -4,6 +4,10 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Asset, type: :model do
+    context "callbacks" do
+      it { expect(subject).to callback(:save_asset_attributes).before(:save) }
+    end
+
     context "validations" do
       it { expect(subject).to validate_presence_of(:file) }
       it { expect(subject).to validate_presence_of(:file_name) }
@@ -21,8 +25,8 @@ module Archangel
       end
     end
 
-    context "callbacks" do
-      it { expect(subject).to callback(:save_asset_attributes).before(:save) }
+    context "associations" do
+      it { expect(subject).to belong_to(:site) }
     end
   end
 end

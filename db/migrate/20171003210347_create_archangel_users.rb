@@ -2,6 +2,7 @@ class CreateArchangelUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :archangel_users do |t|
       ## Common
+      t.integer :site_id, null: false
       t.string :name, null: false, default: ""
       t.string :username, null: false, default: ""
       t.string :role
@@ -58,6 +59,7 @@ class CreateArchangelUsers < ActiveRecord::Migration[5.1]
     add_index :archangel_users, :deleted_at
     add_index :archangel_users, :name
     add_index :archangel_users, :role
+    add_index :archangel_users, :site_id
     add_index :archangel_users, :username,             unique: true
     add_index :archangel_users, :invitations_count
     add_index :archangel_users, :invitation_token,     unique: true
