@@ -1,4 +1,5 @@
-<%= simple_form_for([:backend, entry.collection, entry]) do |f| %>
+<%= simple_form_for([:backend, entry.collection, entry], as: :collection_entry,
+                                                         url: :backend_collection_entries) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
