@@ -33,7 +33,7 @@ module Archangel
       def assign_meta_tags
         apply_meta_tags title: @page.title,
                         description: @page.meta_description,
-                        keywords: @page.meta_keywords.split(",")
+                        keywords: @page.meta_keywords.to_s.split(",")
       end
 
       def redirect_to_homepage?
