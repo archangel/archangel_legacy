@@ -27,7 +27,7 @@
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td class="text-center"><%= image_tag(user.avatar.mini.url, class: "img-center img-circle img-responsive", alt: user.username) %></td>
+                <td class="text-center"><%= image_tag(user.avatar.tiny.url, class: "img-center img-circle img-responsive", alt: user.username) %></td>
                 <td><%= user.name %></td>
                 <td><%= user.username %></td>
                 <td class="actions text-right">
