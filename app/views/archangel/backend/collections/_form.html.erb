@@ -1,4 +1,4 @@
-<%= simple_form_for([:backend, collection]) do |f| %>
+<%= simple_form_for([:backend, collection], html: { autocomplete: "false" }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">

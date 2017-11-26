@@ -45,7 +45,12 @@ module Archangel
       protected
 
       def permitted_attributes
-        %w[value]
+        fields = @collection.fields.map { |record| record[:slug].to_sym }
+
+        [
+          :available_at,
+          value: fields
+        ]
       end
 
       def set_parent_resource
@@ -80,11 +85,13 @@ module Archangel
       end
 
       def resource_params
-        params.require(resource_namespace).permit(permitted_attributes)
+        params.require(resource_namespace)
+              .permit(permitted_attributes)
+              .merge(collection_id: @collection.id)
       end
 
       def resource_namespace
-        controller_name.singularize.to_sym
+        :collection_entry
       end
 
       def location_after_create
@@ -100,7 +107,7 @@ module Archangel
       end
 
       def location_after_save
-        backend_widgets_path
+        backend_collection_entries_path(@collection)
       end
     end
   end

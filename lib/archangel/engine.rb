@@ -3,6 +3,7 @@
 module Archangel
   class Engine < ::Rails::Engine
     isolate_namespace Archangel
+    engine_name "archangel"
 
     require "responders"
 

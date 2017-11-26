@@ -16,7 +16,9 @@
         <table class="table table-hover table-bordered table-striped">
           <thead>
             <tr>
+              <th class="sort-handle text-center" scope="col">&nbsp;</th>
               <th scope="col"><%= Archangel.t(:value) %></th>
+              <th scope="col"><%= Archangel.t(:available_at) %></th>
               <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
             </tr>
           </thead>
@@ -24,7 +26,9 @@
           <tbody>
             <% @entries.each do |entry| %>
               <tr>
+                <td><%= glyphicon_icon("move", title: Archangel.t(:sort)) %></td>
                 <td><%= entry.value %></td>
+                <td><%= entry.available_at %></td>
                 <td class="actions text-right">
                   <%= link_to(glyphicon_icon("info-sign", text: Archangel.t(:show)), backend_collection_entry_path(entry.collection, entry), class: "btn btn-info btn-sm") %>
                   <%= link_to(glyphicon_icon("ok-sign", text: Archangel.t(:edit)), edit_backend_collection_entry_path(entry.collection, entry), class: "btn btn-warning btn-sm") %>

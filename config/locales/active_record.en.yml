@@ -7,6 +7,12 @@ en:
       archangel/collection:
         one: Collection
         other: Collections
+      archangel/entry:
+        one: Entry
+        other: Entries
+      archangel/field:
+        one: Field
+        other: Fields
       archangel/page:
         one: Page
         other: Pages
@@ -30,6 +36,12 @@ en:
       archangel/collection:
         name: Name
         slug: Slug
+      archangel/field:
+        classification: Classification
+        label: Label
+        required: Required
+        slug: Slug
+        value: Default Value
       archangel/page:
         content: Content
         homepage: Homepage

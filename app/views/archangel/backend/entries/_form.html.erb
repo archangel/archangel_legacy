@@ -1,9 +1,21 @@
-<%= simple_form_for([:backend, entry.collection, entry], as: :collection_entry,
-                                                         url: :backend_collection_entries) do |f| %>
+<% form_url = entry.persisted? ? backend_collection_entry_path(collection, entry) : backend_collection_entries_path(collection) %>
+<%= simple_form_for([:backend, collection, entry], as: :collection_entry,
+                                                   url: form_url,
+                                                   html: { autocomplete: "false" }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :value %>
+    <%= f.simple_fields_for :value do |v| %>
+      <% for field in collection.fields %>
+        <% field_value = f.object.persisted? && f.object.value.key?(field.slug) ? f.object.value[field.slug] : field.value %>
+        <%= v.input field.slug.to_sym, as: field.classification,
+                                       label: field.label,
+                                       required: field.required,
+                                       input_html: { value: field_value } %>
+      <% end %>
+    <% end %>
+
+    <%= f.input :available_at, as: :date_time_picker %>
   </div>
 
   <div class="form-actions text-right">

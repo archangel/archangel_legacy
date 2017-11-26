@@ -3,10 +3,10 @@
     <ul>
       <li><%= link_to(Archangel.t(:dashboard), backend_root_path) %></li>
       <li><%= link_to(Archangel.t(:pages), backend_pages_path) %></li>
-      <li><%= link_to(Archangel.t(:templates), backend_templates_path) %></li>
       <li><%= link_to(Archangel.t(:collections), backend_collections_path) %></li>
       <li><%= link_to(Archangel.t(:widgets), backend_widgets_path) %></li>
       <li><%= link_to(Archangel.t(:assets), backend_assets_path) %></li>
+      <li><%= link_to(Archangel.t(:templates), backend_templates_path) %></li>
       <li><%= link_to(Archangel.t(:users), backend_users_path) %></li>
       <li><%= link_to(Archangel.t(:site), backend_site_path) %></li>
     </ul>
@@ -14,7 +14,9 @@
     <% if current_site.collections.present? %>
       <ul>
         <% for item in current_site.collections %>
-          <li><%= link_to(item.name, backend_collection_entries_path(item)) %></li>
+          <% if item.persisted? %>
+            <li><%= link_to(item.name, backend_collection_entries_path(item)) %></li>
+          <% end %>
         <% end %>
       </ul>
     <% end %>

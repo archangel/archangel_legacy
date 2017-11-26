@@ -1,4 +1,6 @@
-<%= simple_form_for([:backend, site], as: :site, url: :backend_site) do |f| %>
+<%= simple_form_for([:backend, site], as: :site,
+                                      url: :backend_site,
+                                      html: { autocomplete: "false" }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">

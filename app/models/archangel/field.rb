@@ -6,7 +6,7 @@ module Archangel
 
     acts_as_paranoid
 
-    acts_as_list scope: %i[collection_id],
+    acts_as_list scope: :collection_id,
                  top_of_list: 0,
                  add_new_at: :bottom
 

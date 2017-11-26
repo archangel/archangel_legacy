@@ -4,6 +4,7 @@ class CreateArchangelFields < ActiveRecord::Migration[5.1]
       t.integer :collection_id, null: false
       t.string :label
       t.string :slug
+      t.string :value
       t.string :classification
       t.boolean :required
       t.integer :position

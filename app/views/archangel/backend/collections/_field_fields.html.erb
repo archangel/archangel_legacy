@@ -1,8 +1,9 @@
 <div class="nested-fields">
   <%= f.input :classification, as: :field_classification %>
   <%= f.input :label %>
-  <%= f.input :required, as: :boolean %>
   <%= f.input :slug %>
+  <%= f.input :value %>
+  <%= f.input :required, as: :boolean %>
 
   <%= link_to_remove_association Archangel.t(:remove_field), f %>
 </div>

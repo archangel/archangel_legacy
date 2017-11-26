@@ -1,4 +1,6 @@
-<%= simple_form_for([:backend, profile], as: :profile, url: :backend_profile) do |f| %>
+<%= simple_form_for([:backend, profile], as: :profile,
+                                         url: :backend_profile,
+                                         html: { autocomplete: "false" }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
