@@ -35,7 +35,7 @@ RSpec.feature "Pages", type: :feature do
 
       submit_form
 
-      expect(page).to have_content Archangel.t(:duplicate_slug)
+      expect(page).to have_content "has already been taken"
     end
   end
 end

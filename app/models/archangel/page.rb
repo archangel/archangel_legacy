@@ -19,10 +19,9 @@ module Archangel
     validates :homepage, inclusion: { in: [true, false] }
     validates :path, uniqueness: true
     validates :published_at, allow_blank: true, date: true
-    validates :slug, presence: true
+    validates :slug, presence: true, uniqueness: { scope: :parent_id }
     validates :title, presence: true
 
-    validate :unique_slug_per_level
     validate :valid_liquid_content
     validate :within_valid_path
 
@@ -49,12 +48,6 @@ module Archangel
     end
 
     protected
-
-    def unique_slug_per_level
-      return if unique_slug_per_level?
-
-      errors.add(:slug, Archangel.t(:duplicate_slug))
-    end
 
     def valid_liquid_content
       return if valid_liquid_content?
@@ -91,13 +84,6 @@ module Archangel
       self.slug = "#{Time.current.to_i}_#{slug}"
 
       save
-    end
-
-    def unique_slug_per_level?
-      self.class
-          .where(parent_id: parent_id, slug: slug)
-          .where.not(id: id)
-          .empty?
     end
 
     def valid_liquid_content?

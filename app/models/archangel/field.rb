@@ -15,27 +15,10 @@ module Archangel
     validates :collection_id, presence: true, on: :update
     validates :label, presence: true
     validates :required, inclusion: { in: [true, false] }
-    validates :slug, presence: true
-
-    validate :unique_slug_per_collection
+    validates :slug, presence: true, uniqueness: { scope: :collection_id }
 
     belongs_to :collection
 
     default_scope { order(position: :asc) }
-
-    protected
-
-    def unique_slug_per_collection
-      return if unique_slug_per_collection?
-
-      errors.add(:slug, Archangel.t(:duplicate_field_slug))
-    end
-
-    def unique_slug_per_collection?
-      self.class
-          .where(collection_id: collection_id, slug: slug)
-          .where.not(id: id)
-          .empty?
-    end
   end
 end
