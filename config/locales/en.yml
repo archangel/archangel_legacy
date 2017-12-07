@@ -12,6 +12,7 @@ en:
       boolean: Boolean
       string: String
       text: Text
+    collection: Collection
     collections: Collections
     content: Content
     content_type: Content Type
