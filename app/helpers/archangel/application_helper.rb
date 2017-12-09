@@ -7,7 +7,7 @@ module Archangel
     end
 
     def text_direction
-      Archangel.t("language.#{locale}.direction")
+      Archangel.t("language.#{locale}.direction", default: "ltr")
     end
   end
 end
