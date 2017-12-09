@@ -10,15 +10,14 @@ module Archangel
       def show
         return redirect_to_homepage if redirect_to_homepage?
 
-        assigns = { page: @page, site: current_site }
-
         @page.content =
           content = Archangel::Liquid::RenderService.call(@page.content,
-                                                          assigns)
+                                                          page: @page,
+                                                          site: current_site)
 
         respond_to do |format|
           format.html { render inline: content, layout: layout_from_theme }
-          format.json
+          format.json { render json: @page, layout: false }
         end
       end
 

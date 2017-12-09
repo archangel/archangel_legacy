@@ -42,7 +42,7 @@ module Archangel
     def render_error(path, status, _exception)
       respond_to do |format|
         format.html { render(template: path, status: status) }
-        format.json { render(template: path, status: status) }
+        format.json { render(template: path, status: status, layout: false) }
       end
     end
 
