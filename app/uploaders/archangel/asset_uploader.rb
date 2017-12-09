@@ -3,11 +3,11 @@
 module Archangel
   class AssetUploader < ApplicationUploader
     version :small, if: :image_format? do
-      process resize_to_fill: [64, 64]
+      process resize_to_fit: [64, 64]
     end
 
     version :tiny, from_version: :small, if: :image_format? do
-      process resize_to_fill: [32, 32]
+      process resize_to_fit: [32, 32]
     end
 
     def extension_whitelist
