@@ -12,5 +12,5 @@ module Archangel
   end
 end
 
-::Liquid::Template.register_tag "text_direction",
-                                Archangel::Liquid::Tags::TextDirectionTag
+::Liquid::Template.register_tag("text_direction",
+                                Archangel::Liquid::Tags::TextDirectionTag)

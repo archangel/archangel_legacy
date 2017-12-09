@@ -4,10 +4,10 @@ module Archangel
   module Liquid
     module Tags
       class RenderPartialTag < ::Liquid::Tag
-        def initialize(tag_name, partial_name, options)
+        def initialize(tag_name, param, tokens)
           super
 
-          @partial_name = partial_name.gsub(/\s|"|'/, "")
+          @partial_name = param.gsub(/\s|"|'/, "")
         end
 
         def render(context)
@@ -19,5 +19,5 @@ module Archangel
   end
 end
 
-::Liquid::Template.register_tag "render_partial",
-                                Archangel::Liquid::Tags::RenderPartialTag
+::Liquid::Template.register_tag("render_partial",
+                                Archangel::Liquid::Tags::RenderPartialTag)

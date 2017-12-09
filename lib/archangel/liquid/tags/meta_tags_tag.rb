@@ -14,5 +14,5 @@ module Archangel
   end
 end
 
-::Liquid::Template.register_tag "meta_tags",
-                                Archangel::Liquid::Tags::MetaTagsTag
+::Liquid::Template.register_tag("meta_tags",
+                                Archangel::Liquid::Tags::MetaTagsTag)

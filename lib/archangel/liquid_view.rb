@@ -59,7 +59,7 @@ module Archangel
 
       controller_class = _controller.class
 
-      if controller_class.respond_to? :liquid_registers
+      if controller_class.respond_to?(:liquid_registers)
         controller_class.liquid_registers.each do |method|
           extra_registers.merge! _controller.send(method)
         end

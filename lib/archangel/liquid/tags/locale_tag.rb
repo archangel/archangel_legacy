@@ -12,4 +12,4 @@ module Archangel
   end
 end
 
-::Liquid::Template.register_tag "locale", Archangel::Liquid::Tags::LocaleTag
+::Liquid::Template.register_tag("locale", Archangel::Liquid::Tags::LocaleTag)

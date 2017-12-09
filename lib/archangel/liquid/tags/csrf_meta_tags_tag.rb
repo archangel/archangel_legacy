@@ -12,5 +12,5 @@ module Archangel
   end
 end
 
-::Liquid::Template.register_tag "csrf_meta_tags",
-                                Archangel::Liquid::Tags::CsrfMetaTagsTag
+::Liquid::Template.register_tag("csrf_meta_tags",
+                                Archangel::Liquid::Tags::CsrfMetaTagsTag)
