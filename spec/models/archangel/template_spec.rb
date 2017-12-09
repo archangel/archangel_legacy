@@ -11,6 +11,9 @@ module Archangel
       it { expect(subject).to allow_value(true).for(:partial) }
       it { expect(subject).to allow_value(false).for(:partial) }
       it { expect(subject).not_to allow_value(nil).for(:partial) }
+
+      it { expect(subject).to allow_value("{{ foo }}").for(:content) }
+      it { expect(subject).not_to allow_value("{{ foo }").for(:content) }
     end
 
     context "associations" do

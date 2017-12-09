@@ -12,6 +12,8 @@ module Archangel
     validates :name, presence: true
     validates :slug, presence: true, uniqueness: true
 
+    validate :valid_liquid_content
+
     belongs_to :site
     belongs_to :template, -> { where(partial: true) },
                class_name: "Archangel::Template",
@@ -33,6 +35,20 @@ module Archangel
       self.slug = "#{now}_#{slug}"
 
       save
+    end
+
+    def valid_liquid_content
+      return if valid_liquid_content?
+
+      errors.add(:content, Archangel.t(:liquid_invalid))
+    end
+
+    def valid_liquid_content?
+      ::Liquid::Template.parse(content)
+
+      true
+    rescue ::Liquid::SyntaxError => _e
+      false
     end
   end
 end
