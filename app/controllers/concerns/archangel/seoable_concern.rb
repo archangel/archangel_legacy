@@ -10,7 +10,7 @@ module Archangel
     end
 
     def apply_meta_tags(options = {})
-      set_meta_tags(options.reject { |_k, v| v.blank? })
+      set_meta_tags(options.reject { |_k, val| val.blank? })
     end
 
     protected
