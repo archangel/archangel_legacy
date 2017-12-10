@@ -1,24 +1,47 @@
-<section>
-  <nav>
-    <ul>
-      <li><%= link_to(Archangel.t(:dashboard), backend_root_path) %></li>
-      <li><%= link_to(Archangel.t(:pages), backend_pages_path) %></li>
-      <li><%= link_to(Archangel.t(:collections), backend_collections_path) %></li>
-      <li><%= link_to(Archangel.t(:widgets), backend_widgets_path) %></li>
-      <li><%= link_to(Archangel.t(:assets), backend_assets_path) %></li>
-      <li><%= link_to(Archangel.t(:templates), backend_templates_path) %></li>
-      <li><%= link_to(Archangel.t(:users), backend_users_path) %></li>
-      <li><%= link_to(Archangel.t(:site), backend_site_path) %></li>
-    </ul>
+<nav class="col-sm-2 col-md-2">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_root_path %>"><span class="glyphicon glyphicon-home"></span> <%= Archangel.t(:dashboard) %></a>
+    </li>
 
-    <% if current_site.collections.present? %>
-      <ul>
-        <% for item in current_site.collections %>
-          <% if item.persisted? %>
-            <li><%= link_to(item.name, backend_collection_entries_path(item)) %></li>
-          <% end %>
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_pages_path %>"><span class="glyphicon glyphicon-file"></span> <%= Archangel.t(:pages) %></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_collections_path %>"><span class="glyphicon glyphicon-th"></span> <%= Archangel.t(:collections) %></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_widgets_path %>"><span class="glyphicon glyphicon-star"></span> <%= Archangel.t(:widgets) %></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_assets_path %>"><span class="glyphicon glyphicon-paperclip"></span> <%= Archangel.t(:assets) %></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_templates_path %>"><span class="glyphicon glyphicon-pushpin"></span> <%= Archangel.t(:templates) %></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_users_path %>"><span class="glyphicon glyphicon-user"></span> <%= Archangel.t(:users) %></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<%= backend_site_path %>"><span class="glyphicon glyphicon-cog"></span> <%= Archangel.t(:site) %></a>
+    </li>
+  </ul>
+
+  <% if current_site.collections.present? %>
+    <ul class="nav">
+      <% for item in current_site.collections %>
+        <% if item.persisted? %>
+          <li>
+            <a class="nav-link" href="<%= backend_collection_entries_path(item) %>"><span class="glyphicon glyphicon-th-list"></span> <%= item.name %></a>
+          </li>
         <% end %>
-      </ul>
-    <% end %>
-  </nav>
-</section>
+      <% end %>
+    </ul>
+  <% end %>
+</nav>

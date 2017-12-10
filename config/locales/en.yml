@@ -84,6 +84,7 @@ en:
     templates: Templates
     theme: Theme
     title: Title
+    toggle_navigation: Toggle navigation
     username: Username
     users: Users
     widgets: Widgets

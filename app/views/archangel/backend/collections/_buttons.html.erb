@@ -12,7 +12,7 @@
   <% end %>
 
   <% if show_action? || edit_action? %>
-    <li><%= link_to(glyphicon_icon("file", text: Archangel.t(:entries)), backend_collection_entries_path(@collection)) %></li>
+    <li><%= link_to(glyphicon_icon("th-list", text: Archangel.t(:entries)), backend_collection_entries_path(@collection)) %></li>
 
     <li><%= link_to(glyphicon_icon("remove", text: Archangel.t(:destroy)), backend_collection_path(@collection),
                                              method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %></li>

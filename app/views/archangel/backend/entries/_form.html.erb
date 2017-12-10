@@ -8,6 +8,7 @@
     <%= f.simple_fields_for :value do |v| %>
       <% for field in collection.fields %>
         <% field_value = f.object.persisted? && f.object.value.key?(field.slug) ? f.object.value[field.slug] : field.value %>
+
         <%= v.input field.slug.to_sym, as: field.classification,
                                        label: field.label,
                                        required: field.required,

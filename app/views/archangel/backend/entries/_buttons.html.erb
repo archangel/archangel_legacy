@@ -11,7 +11,7 @@
     <li><%= link_to(glyphicon_icon("ok", text: Archangel.t(:edit)), edit_backend_collection_entry_path(@collection, @entry)) %></li>
   <% end %>
 
-  <li><%= link_to(glyphicon_icon("file", text: Archangel.t(:collection)), backend_collection_path(@collection)) %></li>
+  <li><%= link_to(glyphicon_icon("th", text: Archangel.t(:collection)), backend_collection_path(@collection)) %></li>
 
   <% if show_action? || edit_action? %>
     <li><%= link_to(glyphicon_icon("remove", text: Archangel.t(:destroy)), backend_collection_entry_path(@collection, @entry),

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="<%= text_direction %>" lang="<%= locale %>">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="shortcut icon" href="<%= current_site.favicon.url %>" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <title><%= content_for?(:title) ? yield(:title) : Archangel.t(:archangel) %></title>
+
+    <link rel="icon" href="<%= current_site.favicon.url %>" type="image/x-icon">
 
     <%= csrf_meta_tags %>
 
@@ -18,27 +18,23 @@
     <%= yield(:stylesheet) if content_for?(:stylesheet) %>
   </head>
   <body>
+    <%= render "layouts/backend/header" %>
 
-    <div id="wrapper">
-      <aside id="sidebar">
+    <div class="container-fluid">
+      <div class="row">
         <%= render "layouts/backend/sidebar" %>
-      </aside>
 
-      <main id="page-wrapper" role="main">
-        <%= render "layouts/backend/header" %>
-
-        <section class="container-fluid">
+        <main role="main" class="col-sm-10 col-md-10">
           <%= render "archangel/shared/flash_messages" %>
 
           <%= yield %>
-        </section>
-
-        <%= render "layouts/backend/footer" %>
-      </main>
+        </main>
+      </div>
     </div>
+
+    <%= render "layouts/backend/footer" %>
 
     <%= javascript_include_tag "#{current_theme}/backend" %>
     <%= yield(:javascript) if content_for?(:javascript) %>
-
   </body>
 </html>
