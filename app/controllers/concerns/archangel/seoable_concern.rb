@@ -16,13 +16,19 @@ module Archangel
     protected
 
     def apply_default_meta_tags
-      apply_meta_tags reverse:     true,
-                      site:        current_site.name,
-                      canonical:   request.url,
-                      image_src:   current_site.logo.url,
-                      description: current_site.meta_description,
-                      keywords:    current_site.meta_keywords.to_s.split(","),
-                      icon:        current_site.favicon.url
+      apply_meta_tags default_meta_tags
+    end
+
+    def default_meta_tags
+      {
+        reverse:     true,
+        site:        current_site.name,
+        canonical:   request.url,
+        image_src:   current_site.logo.url,
+        description: current_site.meta_description,
+        keywords:    current_site.meta_keywords.to_s.split(","),
+        icon:        current_site.favicon.url
+      }
     end
   end
 end

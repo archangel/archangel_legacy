@@ -10,10 +10,7 @@ module Archangel
       def show
         return redirect_to_homepage if redirect_to_homepage?
 
-        @page.content =
-          content = Archangel::Liquid::RenderService.call(@page.content,
-                                                          page: @page,
-                                                          site: current_site)
+        @page.content = content = liquid_rendered_content
 
         respond_to do |format|
           format.html { render inline: content, layout: layout_from_theme }
@@ -46,11 +43,17 @@ module Archangel
       end
 
       def find_homepage
-        Archangel::Page.published.homepage.first!
+        current_site.pages.published.homepage.first!
       end
 
       def find_page(path)
-        Archangel::Page.published.find_by!(path: path)
+        current_site.pages.published.find_by!(path: path)
+      end
+
+      def liquid_rendered_content
+        Archangel::Liquid::RenderService.call(@page.content,
+                                              page: @page,
+                                              site: current_site)
       end
     end
   end

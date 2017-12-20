@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   s.authors     = ["David Freerksen"]
   s.email       = ["dfreerksen@gmail.com"]
   s.homepage    = "https://github.com/archangel/archangel"
-  s.summary     = "Summary of Archangel."
-  s.description = "Description of Archangel."
+  s.summary     = "Archangel is a Rails CMS"
+  s.description = "Archangel is a Rails CMS"
   s.license     = "MIT"
   s.files       = `git ls-files`.split($ORS)
 
