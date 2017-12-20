@@ -16,8 +16,8 @@
         <table class="table table-hover table-bordered table-striped">
           <thead>
             <tr>
-              <th scope="col"><%= Archangel.t(:file_name) %></th>
               <th scope="col"><%= Archangel.t(:file) %></th>
+              <th scope="col"><%= Archangel.t(:file_name) %></th>
               <th scope="col"><%= Archangel.t(:content_type) %></th>
               <th scope="col"><%= Archangel.t(:file_size) %></th>
               <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
@@ -27,8 +27,8 @@
           <tbody>
             <% @assets.each do |asset| %>
               <tr>
+                <td><%= image_tag(asset.file.tiny.url, alt: asset.file_name) %></td>
                 <td><%= asset.file_name %></td>
-                <td><%= asset.file %></td>
                 <td><%= asset.content_type %></td>
                 <td><%= number_to_human_size(asset.file_size) %></td>
                 <td class="actions text-right">

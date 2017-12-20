@@ -18,10 +18,9 @@ en:
     #       email: 'E-mail to sign in.'
     #     edit:
     #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
+    hints:
+      template:
+        partial: Partial templates can only be used with Widgets
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'

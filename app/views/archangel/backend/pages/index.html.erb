@@ -18,7 +18,6 @@
             <tr>
               <th scope="col"><%= Archangel.t(:title) %></th>
               <th scope="col"><%= Archangel.t(:path) %></th>
-              <th scope="col"><%= Archangel.t(:homepage) %></th>
               <th scope="col"><%= Archangel.t(:published) %></th>
               <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
             </tr>
@@ -27,9 +26,14 @@
           <tbody>
             <% @pages.each do |page| %>
               <tr>
-                <td><%= page.title %></td>
-                <td><%= URI.decode(frontend_page_path(page.path)) %></td>
-                <td><%= page.homepage? %></td>
+                <td>
+                  <%= page.title %>
+
+                  <%= glyphicon_icon("home") if page.homepage? %>
+                </td>
+                <td>
+                  <%= URI.decode(frontend_page_path(page.path)) %>
+                </td>
                 <td><%= page.published_at %></td>
                 <td class="actions text-right">
                   <%= link_to(glyphicon_icon("info-sign", text: Archangel.t(:show)), backend_page_path(page), class: "btn btn-info btn-sm") %>
