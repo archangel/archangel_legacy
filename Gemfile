@@ -20,6 +20,7 @@ end
 
 group :test do
   gem "capybara", "~> 2.16.1"
+  gem "coveralls", "~> 0.8.21"
   gem "database_cleaner", "~> 1.6.1"
   gem "factory_bot_rails", "~> 4.8.2"
   gem "poltergeist", "~> 1.16.0"
@@ -27,5 +28,5 @@ group :test do
   gem "rspec-rails", "~> 3.7.2"
   gem "shoulda-callback-matchers", "~> 1.1.4"
   gem "shoulda-matchers", "~> 3.1.2"
-  gem "simplecov", "~> 0.15.1"
+  gem "simplecov", "~> 0.14.1"
 end
