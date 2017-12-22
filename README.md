@@ -17,7 +17,7 @@ This project rocks and uses MIT-LICENSE.
 
 ## Deploying to Heroku
 
-Deploy a sample application to play with.
+Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/archangel/sample)
 
@@ -26,7 +26,7 @@ Deploy a sample application to play with.
 Add to your application's Gemfile
 
 ```
-gem "archangel", github: "archangel/archangel"
+gem "archangel"
 ```
 
 Run the bundle command
@@ -51,7 +51,7 @@ Seed data can be created separately by running `rake db:seed`
 
 ## Updating
 
-Subsequent updates can be done by bumping the version in your Gemfile then adding the new migrations
+Subsequent updates can be done by bumping the version in your application Gemfile, then installing new migrations
 
 ```
 $ bundle exec rake archangel:install:migrations
@@ -65,11 +65,10 @@ $ bundle exec rake db:migrate
 
 ## Testing
 
-A database is needed to run tests. Drop the existing test database, create it and run migrations.
+Generate a dummy application. You will be required to generate a dummy application before running tests.
 
 ```
-$ bundle exec rails app:db:reset
-$ bundle exec rails app:db:migrate
+$ bundle exec rake dummy_app
 ```
 
 Run tests
@@ -78,22 +77,34 @@ Run tests
 $ bundle exec rake
 ```
 
-This is the same command that gets run for CI
+or
 
 ```
-$ bundle exec rake test
+$ bundle exec rake spec
+```
+
+or
+
+```
+$ bundle exec rspec spec
+```
+
+You can also enable fail fast in order to stop tests at the first failure
+
+```
+$ bundle exec rspec spec --fail-fast
 ```
 
 ## Code Analysis
 
 [Hound](https://houndci.com/) is used as the code analyzer. When making a pull request, you may get comments on style and quality violations.
 
-### Reek
+### Brakeman
 
-[Reek](https://github.com/troessner/reek) is a code smell detector for Ruby.
+[Brakeman](https://github.com/presidentbeef/brakeman) is a static analysis security vulnerability scanner.
 
 ```
-$ reek
+$ brakeman
 ```
 
 ### RuboCop
@@ -102,14 +113,6 @@ $ reek
 
 ```
 $ rubocop
-```
-
-### Brakeman
-
-[Brakeman](https://github.com/presidentbeef/brakeman) is a static analysis security vulnerability scanner.
-
-```
-$ brakeman
 ```
 
 ### scss-lint
@@ -122,17 +125,33 @@ $ scss-lint .
 
 ## Documentation
 
+[Online documentation is available](http://www.rubydoc.info/github/archangel/archangel/master)
+
+[Yard](https://github.com/lsegal/yard) is used to generate documentation.
+
 Build the documentation
+
+```
+$ yard
+```
+
+or
 
 ```
 $ yard doc
 ```
 
-List undocumented
+Build the documentation and list all undocumented objects
 
 ```
 $ yard stats --list-undoc
 ```
+
+## Developers
+
+- TODO: Archangel developer resources
+- TODO: Archangel resources for theme developers
+- TODO: Archangel resources for extension developers
 
 ## Contributing
 
