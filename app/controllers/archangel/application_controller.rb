@@ -3,6 +3,9 @@
 require "archangel/application_responder"
 
 module Archangel
+  ##
+  # Application base controller
+  #
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
@@ -27,18 +30,81 @@ module Archangel
                 ActionView::MissingTemplate,
                 ActiveRecord::RecordNotFound, with: :render_404_error
 
+    ##
+    # Current site
+    #
+    # Response
+    #   {
+    #     "id": 123,
+    #     "name": "Site Name",
+    #     "theme": "my_theme",
+    #     "locale": "en",
+    #     "logo": {
+    #       "url": "/uploads/file.png",
+    #       "large": {
+    #         "url": "/uploads/large_file.png"
+    #       },
+    #       "medium": {
+    #         "url": "/uploads/medium_file.png"
+    #       },
+    #       "small": {
+    #         "url": "/uploads/small_file.png"
+    #       },
+    #       "tiny": {
+    #         "url": "/uploads/tiny_file.png"
+    #       }
+    #     },
+    #     "content": "</p>Content of the Widget</p>",
+    #     "template_id": 123,
+    #     "meta_keywords": "keywords,for,the,site",
+    #     "meta_description": "Description of the site",
+    #     "deleted_at": null,
+    #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+    #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+    #   }
+    #
     def current_site
       @current_site ||= Archangel::Site.current
     end
 
+    ##
+    # Error 401
+    #
+    # Response
+    #   {
+    #     "status": 401,
+    #     "error": "Access is denied due to invalid credentials"
+    #   }
+    #
     def render_401_error(exception = nil)
       render_error("archangel/errors/error_401", :unauthorized, exception)
     end
 
+    ##
+    # Error 404
+    #
+    # Response
+    #   {
+    #     "status": 404,
+    #     "error": "Page not found"
+    #   }
+    #
     def render_404_error(exception = nil)
       render_error("archangel/errors/error_404", :not_found, exception)
     end
 
+    ##
+    # Error renderer
+    #
+    # Formats
+    #   HTML, JSON
+    #
+    # Response
+    #   {
+    #     "status": XYZ,
+    #     "error": "Error message"
+    #   }
+    #
     def render_error(path, status, _exception)
       respond_to do |format|
         format.html { render(template: path, status: status) }

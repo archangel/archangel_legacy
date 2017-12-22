@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Logo uploader
+  #
   class LogoUploader < ApplicationUploader
     process resize_to_fit: [512, 512]
 
@@ -20,10 +23,20 @@ module Archangel
       process resize_to_fit: [32, 32]
     end
 
+    ##
+    # Uploaded path for file
+    #
+    # @return [String] upload path
+    #
     def default_path
       "archangel/fallback/" + [version_name, "logo.png"].compact.join("_")
     end
 
+    ##
+    # Uploaded file name
+    #
+    # @return [String] file name
+    #
     def filename
       "logo.#{file.extension}" if original_filename.present?
     end

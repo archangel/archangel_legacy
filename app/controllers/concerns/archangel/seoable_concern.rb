@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Controller SEO concern
+  #
   module SeoableConcern
     extend ActiveSupport::Concern
 
@@ -9,8 +12,11 @@ module Archangel
                                               unless: -> { request.xhr? }
     end
 
-    def apply_meta_tags(options = {})
-      set_meta_tags(options.reject { |_k, val| val.blank? })
+    # Set meta tags
+    #
+    # @param meta_tags [Hash] list of meta tags
+    def apply_meta_tags(meta_tags = {})
+      set_meta_tags(meta_tags.reject { |_name, value| value.blank? })
     end
 
     protected

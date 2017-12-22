@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Entry model
+  #
   class Entry < ApplicationRecord
     acts_as_paranoid
 

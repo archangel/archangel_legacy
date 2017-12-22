@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Authentication base controller
+  #
   class AuthController < ApplicationController
     before_action :configure_permitted_parameters
 

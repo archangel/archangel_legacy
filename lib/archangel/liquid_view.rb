@@ -1,16 +1,32 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Liquid view renderer
+  #
   class LiquidView
+    def initialize(view)
+      @view = view
+    end
+
+    ##
+    # Render Liquid content
+    #
+    # @param template [String] the content
+    # @return [String] the rendered content
+    #
     def self.call(template)
       "Archangel::LiquidView.new(self).render(
         #{template.source.inspect}, local_assigns)"
     end
 
-    def initialize(view)
-      @view = view
-    end
-
+    ##
+    # Render Liquid content
+    #
+    # @param template [String] the content
+    # @param local_assigns [Hash] the local assigned variables
+    # @return [String] the rendered content
+    #
     def render(template, local_assigns = {})
       @view.controller.headers["Content-Type"] ||= "text/html; charset=utf-8"
 
@@ -20,6 +36,11 @@ module Archangel
       Archangel::Liquid::RenderService.call(template, assigns, options)
     end
 
+    ##
+    # Check if compilable
+    #
+    # @return [Boolean] if compilable
+    #
     def compilable?
       false
     end

@@ -50,13 +50,35 @@ require "archangel/liquid/tags/theme_stylesheet_tag"
 require "archangel/theme/themable_controller"
 require "archangel/version"
 
+##
+# Archangel
+#
+# @author dfreerksen
+#
 module Archangel
   class << self
+    ##
+    # Application configurations
+    #
+    # Example
+    #     Archangel.config.backend_path #=> "backend"
+    #     Archangel.config[:backend_path] #=> "backend"
+    #     Archangel.config["backend_path"] #=> "backend"
+    #
+    # @return [Object] application configurations
     def config
       @config ||= Config.new
     end
     alias configuration config
 
+    ##
+    # Available themes
+    #
+    # Example
+    #     Archangel.themes #=> ["default"]
+    #     Archangel.themes #=> ["default", "my_theme"]
+    #
+    # @return [Array] available themes
     def themes
       [THEME_DEFAULT] + THEMES
     end

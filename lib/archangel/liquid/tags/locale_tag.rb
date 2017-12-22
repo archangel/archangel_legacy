@@ -3,7 +3,19 @@
 module Archangel
   module Liquid
     module Tags
+      ##
+      # Locale custom tag for Liquid
+      #
+      # Example
+      #   {% locale %} #=> "en"
+      #
       class LocaleTag < ::Liquid::Tag
+        ##
+        # Render the locale for the theme
+        #
+        # @param context [Object] the Liquid context
+        # @return [String] the locale
+        #
         def render(context)
           context.registers[:view].locale
         end

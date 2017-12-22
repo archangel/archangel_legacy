@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Widget model
+  #
   class Widget < ApplicationRecord
     acts_as_paranoid
 
@@ -19,6 +22,11 @@ module Archangel
                class_name: "Archangel::Template",
                optional: true
 
+    ##
+    # Overwrite resource id to `slug`
+    #
+    # @return [String] the aliased resource param
+    #
     def to_param
       slug
     end

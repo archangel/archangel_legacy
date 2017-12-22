@@ -1,40 +1,234 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # @see Archangel::BackendController
+  #
   module Backend
+    ##
+    # Backend assets controller
+    #
     class AssetsController < BackendController
       before_action :set_resources, only: %i[index]
       before_action :set_resource, only: %i[destroy edit show update]
       before_action :set_new_resource, only: %i[create new]
 
+      ##
+      # Backend assets
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Request
+      #   GET /backend/assets
+      #   GET /backend/assets.json
+      #
+      # Response
+      #   [
+      #     {
+      #       "id": 123,
+      #       "site_id": 123,
+      #       "file_name": "file_name.gif",
+      #       "file": {
+      #         "url": "/uploads/file.gif",
+      #         "small": {
+      #           "url": "/uploads/small_file.gif"
+      #         },
+      #         "tiny": {
+      #           "url": "/uploads/tiny_file.gif"
+      #         }
+      #       },
+      #       "content_type": "image/gif",
+      #       "file_size": 1234,
+      #       "deleted_at": null,
+      #       "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #       "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+      #     },
+      #     ...
+      #   ]
+      #
       def index
         respond_with @assets
       end
 
+      ##
+      # Backend asset
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the asset id
+      #
+      # Request
+      #   GET /backend/assets/:id
+      #   GET /backend/assets/:id.json
+      #
+      # Response
+      #   {
+      #     "id": 123,
+      #     "site_id": 123,
+      #     "file_name": "file_name.gif",
+      #     "file": {
+      #       "url": "/uploads/file.gif",
+      #       "small": {
+      #         "url": "/uploads/small_file.gif"
+      #       },
+      #       "tiny": {
+      #         "url": "/uploads/tiny_file.gif"
+      #       }
+      #     },
+      #     "content_type": "image/gif",
+      #     "file_size": 1234,
+      #     "deleted_at": null,
+      #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+      #   }
+      #
       def show
         respond_with @asset
       end
 
+      ##
+      # New backend asset
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Request
+      #   GET /backend/assets/new
+      #   GET /backend/assets/new.json
+      #
+      # Response
+      #   {
+      #     "id": null,
+      #     "site_id": null,
+      #     "file_name": null,
+      #     "file": {
+      #       "url": null,
+      #       "small": {
+      #         "url": null
+      #       },
+      #       "tiny": {
+      #         "url": null
+      #       }
+      #     },
+      #     "content_type": null,
+      #     "file_size": null,
+      #     "deleted_at": null,
+      #     "created_at": null,
+      #     "updated_at": null
+      #   }
+      #
       def new
         respond_with @asset
       end
 
+      ##
+      # Create backend asset
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Request
+      #   POST /backend/assets
+      #   POST /backend/assets.json
+      #
+      # Paramaters
+      #   {
+      #     "asset": {
+      #       "file_name": "file_name.gif",
+      #       "file": "local/path/to/new_file.gif"
+      #     }
+      #   }
+      #
       def create
         @asset.save
 
         respond_with @asset, location: -> { location_after_create }
       end
 
+      ##
+      # Edit backend asset
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the asset id
+      #
+      # Request
+      #   GET /backend/assets/:id/edit
+      #   GET /backend/assets/:id/edit.json
+      #
+      # Response
+      #   {
+      #     "id": 123,
+      #     "site_id": 123,
+      #     "file_name": "file_name.gif",
+      #     "file": {
+      #       "url": "/uploads/file.gif",
+      #       "small": {
+      #         "url": "/uploads/small_file.gif"
+      #       },
+      #       "tiny": {
+      #         "url": "/uploads/tiny_file.gif"
+      #       }
+      #     },
+      #     "content_type": "image/gif",
+      #     "file_size": 1234,
+      #     "deleted_at": null,
+      #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+      #   }
+      #
       def edit
         respond_with @asset
       end
 
+      ##
+      # Update backend asset
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the asset id
+      #
+      # Request
+      #   PATCH /backend/assets/:id
+      #   PATCH /backend/assets/:id.json
+      #   PUT   /backend/assets/:id
+      #   PUT   /backend/assets/:id.json
+      #
+      # Paramaters
+      #   {
+      #     "asset": {
+      #       "file_name": "file_name.gif",
+      #       "file": "local/path/to/new_file.gif"
+      #       }
+      #     }
+      #   }
+      #
       def update
         @asset.update(resource_params)
 
         respond_with @asset, location: -> { location_after_update }
       end
 
+      ##
+      # Destroy backend asset
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the asset id
+      #
+      # Request
+      #   DELETE /backend/assets/:id
+      #   DELETE /backend/assetsidslug.json
+      #
       def destroy
         @asset.destroy
 

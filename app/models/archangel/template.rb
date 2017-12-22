@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Template model
+  #
   class Template < ApplicationRecord
     acts_as_paranoid
 

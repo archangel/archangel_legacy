@@ -1,11 +1,24 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Archangel themes
+  #
   module Theme
+    ##
+    # Apply Archangel theme to page
+    #
     class ThemableController
       attr_reader :theme_name
 
       class << self
+        ##
+        # Applt theme
+        #
+        # @param controller_class [Class] the controller
+        # @param theme [String] the theme
+        # @param options [Hash] the theme options
+        #
         def apply_theme(controller_class, theme, options = {})
           filter_method = before_filter_method(options)
           options = options.slice(:only, :except)
@@ -24,7 +37,8 @@ module Archangel
               theme_instance.theme_name
             end
 
-            private :layout_from_theme, :theme_instance
+            private :layout_from_theme,
+                    :theme_instance
 
             layout :layout_from_theme, options
 
@@ -48,6 +62,11 @@ module Archangel
         @theme_name = theme_name_identifier(theme)
       end
 
+      ##
+      # Archangel theme path
+      #
+      # @return [String] the path to the theme
+      #
       def theme_view_path
         path = Rails.root
         path = Archangel::Engine.root if @theme_name == Archangel::THEME_DEFAULT

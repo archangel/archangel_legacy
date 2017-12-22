@@ -10,6 +10,7 @@ group :development do
   gem "reek", "~> 4.7.2", require: false
   gem "rubocop", "~> 0.51.0", require: false
   gem "scss_lint", "~> 0.56.0", require: false
+  gem "yard", "~> 0.9.12", require: false
 end
 
 group :development, :test do

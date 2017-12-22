@@ -3,7 +3,19 @@
 module Archangel
   module Liquid
     module Tags
+      ##
+      # Theme stylesheet custom tag for Liquid
+      #
+      # Example
+      #   {% theme_stylesheet %}
+      #
       class ThemeStylesheetTag < ::Liquid::Tag
+        ##
+        # Render the stylesheet for the theme
+        #
+        # @param context [Object] the Liquid context
+        # @return [String] the stylesheet for the theme
+        #
         def render(context)
           view = context.registers[:view]
 

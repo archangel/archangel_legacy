@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # User model
+  #
   class User < ApplicationRecord
     acts_as_paranoid
 
@@ -28,6 +31,11 @@ module Archangel
 
     belongs_to :site
 
+    ##
+    # Overwrite resource id to `username`
+    #
+    # @return [String] the aliased resource param
+    #
     def to_param
       username
     end

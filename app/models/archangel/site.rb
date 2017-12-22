@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Site model
+  #
   class Site < ApplicationRecord
     acts_as_paranoid
 
@@ -28,12 +31,22 @@ module Archangel
 
     has_many :entries, through: :collections
 
+    ##
+    # Current site
+    #
+    # @return [Object] first availabe site as current site
+    #
     def self.current
       first_or_create do |site|
         site.name = "Archangel"
       end
     end
 
+    ##
+    # Liquid object for Site
+    #
+    # @return [Object] the Liquid object
+    #
     def to_liquid
       Archangel::Liquid::Drops::SiteDrop.new(self)
     end

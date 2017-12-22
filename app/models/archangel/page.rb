@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Page model
+  #
   class Page < ApplicationRecord
     extend ActsAsTree::TreeView
 
@@ -43,6 +46,11 @@ module Archangel
       published_at.present?
     end
 
+    ##
+    # Liquid object for Page
+    #
+    # @return [Object] the Liquid object
+    #
     def to_liquid
       Archangel::Liquid::Drops::PageDrop.new(self)
     end

@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # @see Archangel::AuthController
+  #
   module Auth
+    ##
+    # Authentication registrations controller
+    #
     class RegistrationsController < Devise::RegistrationsController
       before_action :allow_registration,
                     only: %i[cancel create destroy edit new update]

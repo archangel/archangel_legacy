@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Backend base controller
+  #
   class BackendController < ApplicationController
     include Pundit
 

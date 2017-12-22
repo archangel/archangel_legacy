@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Collection model
+  #
   class Collection < ApplicationRecord
     acts_as_paranoid
 
@@ -22,6 +25,11 @@ module Archangel
     has_many :entries
     has_many :fields
 
+    ##
+    # Overwrite resource id to `slug`
+    #
+    # @return [String] the aliased resource param
+    #
     def to_param
       slug
     end

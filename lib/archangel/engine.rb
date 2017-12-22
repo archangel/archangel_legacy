@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Archangel engine
+  #
   class Engine < ::Rails::Engine
     isolate_namespace Archangel
     engine_name "archangel"

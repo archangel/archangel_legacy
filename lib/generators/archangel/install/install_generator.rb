@@ -6,6 +6,9 @@ require "highline/import"
 
 module Archangel
   module Generators
+    ##
+    # @see Archangel::Generators::DummyGenerator
+    #
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
 
@@ -25,12 +28,18 @@ module Archangel
 
       desc "Install Archangel for the first time"
 
+      ##
+      # Do not allowing running the generator within the gem
+      #
       def prevent_nested_install
         return unless Rails.respond_to?(:root) && Rails.root.nil?
 
         abort "Install generator cannot be run inside Archangel extension."
       end
 
+      ##
+      # Copy files
+      #
       def add_files
         say_quietly "Copying files..."
 
@@ -44,6 +53,9 @@ module Archangel
         end
       end
 
+      ##
+      # Copy vendor files for Archangel extensions
+      #
       def add_vendor_files
         say_quietly "Copying files..."
 
@@ -53,6 +65,9 @@ module Archangel
         end
       end
 
+      ##
+      # Disallow backend indexing in robots.txt
+      #
       def disallow_robots
         return unless File.exist? "public/robots.txt"
 
@@ -62,6 +77,9 @@ module Archangel
         ROBOTS
       end
 
+      ##
+      # Create seed file if needed
+      #
       def create_seeds_file
         return unless options[:seed]
         return if File.exist?(File.join(destination_root, "db", "seeds.rb"))
@@ -71,6 +89,9 @@ module Archangel
         create_file "db/seeds.rb"
       end
 
+      ##
+      # Append Archangel seeds to seed file
+      #
       def add_archangel_seed
         return unless options[:seed]
 
@@ -83,18 +104,27 @@ module Archangel
         SEEDS
       end
 
+      ##
+      # Install Archangel migrations
+      #
       def install_migrations
         say_quietly "Installing migrations..."
 
         silence_warnings { rake "railties:install:migrations" }
       end
 
+      ##
+      # Create database is needed
+      #
       def create_database
         say_quietly "Creating database..."
 
         silence_warnings { rake "db:create" }
       end
 
+      ##
+      # Run Archangel migrations
+      #
       def run_migrations
         if options[:migrate]
           say_quietly "Running migrations..."
@@ -105,6 +135,9 @@ module Archangel
         end
       end
 
+      ##
+      # Seed database
+      #
       def seed_database
         if options[:migrate] && options[:seed]
           say_quietly "Inseminating..."
@@ -115,6 +148,9 @@ module Archangel
         end
       end
 
+      ##
+      # Insert Archangel routes
+      #
       def insert_routes
         say_quietly "Adding Archangel routes..."
 
@@ -133,6 +169,9 @@ module Archangel
         say_quietly "Your application's config/routes.rb has been updated."
       end
 
+      ##
+      # After install message
+      #
       def banner
         say_quietly "*" * 80
         say_quietly "  Done, sir! Done! Archangel has been installed!"

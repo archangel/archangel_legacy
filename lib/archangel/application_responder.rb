@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Application responder
+  #
   class ApplicationResponder < ActionController::Responder
     include Responders::FlashResponder
     include Responders::HttpCacheResponder

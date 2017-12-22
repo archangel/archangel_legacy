@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Field classification custom input for SimpleForm
+  #
   class FieldClassificationInput < SimpleForm::Inputs::CollectionSelectInput
+    ##
+    # Do not include blank select option
+    #
+    # @return [Boolean] to skip blank select option
+    #
     def skip_include_blank?
       true
     end

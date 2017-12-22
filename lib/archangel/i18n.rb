@@ -8,6 +8,19 @@ module Archangel
   extend ActionView::Helpers::TagHelper
 
   class << self
+    ##
+    # Translate
+    #
+    # Example
+    #     Archangel.translate(:hello) #=> "Hello"
+    #     Archangel.translate(:bar, :foo) #=> "Bar"
+    #     Archangel.t(:hello) #=> "Hello"
+    #     Archangel.t(:bar, :foo) #=> "Bar"
+    #     I18n.t(:hello, :archangel) #=> "Hello"
+    #     I18n.translate(:hello, :archangel) #=> "Hello"
+    #
+    # @param args [String,Array] translation paramaters
+    # @return [String] the translated string
     def translate(*args)
       options = args.extract_options!
       options[:scope] = [*options[:scope]].unshift(:archangel)

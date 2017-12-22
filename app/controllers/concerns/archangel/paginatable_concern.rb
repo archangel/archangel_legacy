@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Controller pagination concern
+  #
   module PaginatableConcern
     extend ActiveSupport::Concern
 
@@ -8,12 +11,18 @@ module Archangel
       helper_method :page_num, :per_page
     end
 
+    # Record limt count
+    #
+    # @return [Integer] the record count limit
     def per_page
-      params.fetch(:per, per_page_default)
+      params.fetch(:per, per_page_default).to_i
     end
 
+    # Current page number
+    #
+    # @return [Integer] the page number
     def page_num
-      params.fetch(Kaminari.config.param_name, 1)
+      params.fetch(Kaminari.config.param_name, 1).to_i
     end
 
     protected

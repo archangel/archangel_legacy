@@ -5,7 +5,13 @@ require "rails/generators/rails/app/app_generator"
 require "active_support/core_ext/hash"
 
 module Archangel
+  ##
+  # Archangel generator
+  #
   module Generators
+    ##
+    # Archangel dummy application generator for testing
+    #
     class DummyGenerator < Rails::Generators::Base
       desc "Creates blank Rails application, installs Archangel"
 
@@ -15,21 +21,33 @@ module Archangel
 
       source_root File.expand_path("../templates", __FILE__)
 
+      ##
+      # Rails flags available to be passed with generator
+      #
       PASSTHROUGH_OPTIONS = %i[
         skip_active_record skip_javascript database javascript quiet pretend
         force skip
       ].freeze
 
+      ##
+      # Do not allowing running the generator within the application
+      #
       def prevent_application_dummy
         return unless Rails.respond_to?(:root) && !Rails.root.nil?
 
         abort "Dummy generator cannot be run outside Archangel extension."
       end
 
+      ##
+      # Remove dummy directory
+      #
       def clean_up
         remove_directory_if_exists(dummy_path)
       end
 
+      ##
+      # Generate new dummy directory
+      #
       def generate_dummy
         opts = {}.merge(options).slice(*PASSTHROUGH_OPTIONS)
 
@@ -47,6 +65,9 @@ module Archangel
                opts
       end
 
+      ##
+      # Copy dummy application files
+      #
       def copy_dummy_config
         @lib_name = options[:lib_name]
         @database = options[:database]
@@ -56,6 +77,9 @@ module Archangel
         end
       end
 
+      ##
+      # Insert config options in test environment
+      #
       def test_default_url
         insert_into_file("#{dummy_path}/config/environments/test.rb",
                          after: "Rails.application.configure do") do
@@ -72,6 +96,9 @@ module Archangel
         end
       end
 
+      ##
+      # Remove unnecessary generated files
+      #
       def dummy_cleanup
         inside dummy_path do
           paths = %w[.gitignore db/seeds.rb Gemfile lib/tasks public/robots.txt

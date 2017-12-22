@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Asset model
+  #
   class Asset < ApplicationRecord
     acts_as_paranoid
 

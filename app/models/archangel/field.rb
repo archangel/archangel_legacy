@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Field model
+  #
   class Field < ApplicationRecord
+    ##
+    # Available field types constant
+    #
     CLASSIFICATIONS = %w[string text boolean].freeze
 
     acts_as_paranoid

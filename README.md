@@ -120,6 +120,20 @@ $ brakeman
 $ scss-lint .
 ```
 
+## Documentation
+
+Build the documentation
+
+```
+$ yard doc
+```
+
+List undocumented
+
+```
+$ yard stats --list-undoc
+```
+
 ## Contributing
 
 1.  Fork it ([https://github.com/archangel/archangel/fork](https://github.com/archangel/archangel/fork))

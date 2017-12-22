@@ -1,12 +1,45 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # @see Archangel::FrontendController
+  #
   module Frontend
+    ##
+    # Frontend pages controller
+    #
     class PagesController < FrontendController
       before_action :set_resource, only: %i[show]
       before_action :assign_meta_tags, if: -> { request.get? },
                                        unless: -> { request.xhr? }
 
+      ##
+      # Frontend page
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [String] path - the path to the page
+      #
+      # Request
+      #   GET /:path
+      #   GET /:path.json
+      #
+      # Response
+      #   {
+      #     "id": 123,
+      #     "title": "Page Title",
+      #     "path": "path/to/page",
+      #     "content": "</p>Content of the page</p>",
+      #     "homepage": false,
+      #     "meta_keywords": "keywords, for, the, page",
+      #     "meta_description": "Description of the page",
+      #     "published_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #   }
+      #
       def show
         return redirect_to_homepage if redirect_to_homepage?
 

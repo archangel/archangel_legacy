@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Controller skip authorize concern
+  #
   module SkipAuthorizableConcern
     extend ActiveSupport::Concern
 

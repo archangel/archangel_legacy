@@ -2,12 +2,11 @@
 
 module Archangel
   module Liquid
+    ##
+    # Liquid render service
+    #
     class RenderService
       attr_reader :assigns, :local_filters, :local_registers, :template
-
-      def self.call(template, assigns = {}, options = {})
-        new(template, assigns, options).call
-      end
 
       def initialize(template, assigns = {}, options = {})
         @template = template
@@ -16,6 +15,23 @@ module Archangel
         @local_registers = options.fetch(:registers, {})
       end
 
+      ##
+      # Render the Liquid content
+      #
+      # @param template [String] the content
+      # @param assigns [Hash] the local variables
+      # @param options [Hash] the options
+      # @return [String] the rendered content
+      #
+      def self.call(template, assigns = {}, options = {})
+        new(template, assigns, options).call
+      end
+
+      ##
+      # Render the Liquid content
+      #
+      # @return [String] the rendered content
+      #
       def call
         liquid = ::Liquid::Template.parse(template)
         liquid.send(liquid_renderer,

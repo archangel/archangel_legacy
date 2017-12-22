@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Application configurations
+  #
   class Config < Anyway::Config
     config_name :archangel
 
