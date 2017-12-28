@@ -12,12 +12,19 @@ module Archangel
     # Translate
     #
     # Example
+    #     # config/locales/en.yml
+    #     en:
+    #       archangel:
+    #         hello: Hello
+    #         foo:
+    #           bar: Bar
+    #
     #     Archangel.translate(:hello) #=> "Hello"
-    #     Archangel.translate(:bar, :foo) #=> "Bar"
+    #     Archangel.translate(:bar, scope: :foo) #=> "Bar"
     #     Archangel.t(:hello) #=> "Hello"
-    #     Archangel.t(:bar, :foo) #=> "Bar"
-    #     I18n.t(:hello, :archangel) #=> "Hello"
-    #     I18n.translate(:hello, :archangel) #=> "Hello"
+    #     Archangel.t(:bar, scope: :foo) #=> "Bar"
+    #     I18n.t(:hello, scope: :archangel) #=> "Hello"
+    #     I18n.translate(:hello, scope: :archangel) #=> "Hello"
     #
     # @param args [String,Array] translation paramaters
     # @return [String] the translated string
