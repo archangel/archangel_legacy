@@ -9,12 +9,20 @@ module Archangel
     let(:user) { create(:user) }
     let(:record) { create(:site) }
 
-    it { should permit(:index) }
     it { should permit(:show) }
-    it { should permit(:create) }
-    it { should permit(:new) }
-    it { should permit(:update) }
-    it { should permit(:edit) }
-    it { should permit(:destroy) }
+
+    context "with `admin` role" do
+      let(:user) { create(:user, :admin) }
+
+      it { should permit(:update) }
+      it { should permit(:edit) }
+    end
+
+    context "with `editor` role" do
+      let(:user) { create(:user, :editor) }
+
+      it { should_not permit(:update) }
+      it { should_not permit(:edit) }
+    end
   end
 end

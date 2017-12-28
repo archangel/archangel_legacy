@@ -8,9 +8,10 @@ module Archangel
       before { stub_authorization! profile }
 
       let!(:site) { create(:site) }
-      let!(:profile) { create(:user, site: site) }
 
       describe "GET #show" do
+        let!(:profile) { create(:user, :editor, site: site) }
+
         it "assigns the requested site as @site" do
           get :show
 
@@ -51,53 +52,83 @@ module Archangel
       end
 
       describe "GET #edit" do
-        it "assigns the requested site as @site" do
-          get :edit
+        context "with permissions" do
+          let!(:profile) { create(:user, :admin, site: site) }
 
-          expect(assigns(:site)).to eq(Site.current)
+          it "assigns the requested site as @site" do
+            get :edit
+
+            expect(assigns(:site)).to eq(Site.current)
+          end
+        end
+
+        context "without permissions" do
+          let!(:profile) { create(:user, :editor, site: site) }
+
+          it "redirects to site" do
+            get :edit
+
+            expect(response).to render_template("archangel/errors/error_401")
+            expect(response.status).to eq 401
+          end
         end
       end
 
       describe "PUT #update" do
-        context "with valid params" do
-          let(:params) do
-            {
-              name: "My Archangel Site Name"
-            }
+        context "with permissions" do
+          let!(:profile) { create(:user, :admin, site: site) }
+
+          context "with valid params" do
+            let(:params) do
+              {
+                name: "My Archangel Site Name"
+              }
+            end
+
+            it "updates the requested setting" do
+              put :update, params: { site: params }
+
+              Site.current.reload
+
+              expect(assigns(:site)).to eq(Site.current)
+            end
+
+            it "redirects to the collection" do
+              put :update, params: { site: params }
+
+              expect(response).to redirect_to(backend_site_path)
+            end
           end
 
-          it "updates the requested setting" do
-            put :update, params: { site: params }
+          context "with invalid params" do
+            let(:params) do
+              {
+                name: nil
+              }
+            end
 
-            Site.current.reload
+            it "assigns the site as @site" do
+              put :update, params: { site: params }
 
-            expect(assigns(:site)).to eq(Site.current)
-          end
+              expect(assigns(:site)).to eq(Site.current)
+            end
 
-          it "redirects to the collection" do
-            put :update, params: { site: params }
+            it "re-renders the `edit` template" do
+              put :update, params: { site: params }
 
-            expect(response).to redirect_to(backend_site_path)
+              expect(response).to render_template(:edit)
+            end
           end
         end
 
-        context "with invalid params" do
-          let(:params) do
-            {
-              name: nil
-            }
-          end
+        context "without permissions" do
+          let!(:profile) { create(:user, :editor, site: site) }
 
-          it "assigns the site as @site" do
-            put :update, params: { site: params }
+          it "redirects to site" do
+            put :update, params: { site: {} }
 
-            expect(assigns(:site)).to eq(Site.current)
-          end
-
-          it "re-renders the `edit` template" do
-            put :update, params: { site: params }
-
-            expect(response).to render_template(:edit)
+            expect(response).to render_template("archangel/errors/error_401")
+            expect(response.status).to eq 401
           end
         end
       end

@@ -111,7 +111,6 @@ module Archangel
       # Response
       #   {
       #     "site": {
-      #       "id": 123,
       #       "name": "Site Name",
       #       "theme": "my_theme",
       #       "locale": "en",

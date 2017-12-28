@@ -19,6 +19,10 @@ FactoryBot.define do
       role "admin"
     end
 
+    trait :editor do
+      role "editor"
+    end
+
     trait :unconfirmed do
       confirmation_token nil
       confirmed_at nil
