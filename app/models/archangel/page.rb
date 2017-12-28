@@ -42,6 +42,12 @@ module Archangel
 
     scope :homepage, (-> { where(homepage: true) })
 
+    ##
+    # Check if Page is published. Published in the past, present and future.
+    # Future publication date is also considered published.
+    #
+    # @return [Boolean] if published
+    #
     def published?
       published_at.present?
     end
