@@ -2,6 +2,9 @@
 
 module Archangel
   module Liquid
+    ##
+    # Liquid Drop for singular resources
+    #
     class Drop < ::Liquid::Drop
       class << self
         attr_accessor :_attributes

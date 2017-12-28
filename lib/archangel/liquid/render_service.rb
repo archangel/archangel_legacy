@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Archangel Liquid configurations
+  #
   module Liquid
     ##
     # Liquid render service

@@ -2,6 +2,9 @@
 
 module Archangel
   module Liquid
+    ##
+    # Liquid Drop for collection resources
+    #
     class CollectionDrop < ::Liquid::Drop
       class << self
         attr_accessor :_scopes
