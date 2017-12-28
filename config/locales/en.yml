@@ -6,6 +6,7 @@ en:
     are_you_sure: Are you sure?
     archangel: Archangel
     assets: Assets
+    available_at: Available At
     avatar: Avatar
     back: Back
     classification:
@@ -45,6 +46,8 @@ en:
     edit_resource: Edit %{resource}
     email: Email
     entries: Entries
+    error_401: Access is denied due to invalid credentials
+    error_404: Page not found. Could not find what was requested
     fields: Fields
     file: File
     file_name: File Name
@@ -66,6 +69,7 @@ en:
     new: New
     new_resource: New %{resource}
     no_resources: No %{resource} found.
+    not_found: Not Found 
     partial: Partial
     pages: Pages
     path: Path
@@ -81,10 +85,12 @@ en:
     show_resource: "%{resource}"
     site: Site
     slug: Slug
+    sort: Sort
     templates: Templates
     theme: Theme
     title: Title
     toggle_navigation: Toggle navigation
+    unauthorized: Unaruthorized
     username: Username
     users: Users
     widgets: Widgets
