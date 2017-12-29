@@ -110,9 +110,5 @@ module Archangel
     def admin_user?
       user.role == Archangel::ROLES.first # admin
     end
-
-    def editor_user?
-      user.role == Archangel::ROLES.last # editor
-    end
   end
 end
