@@ -97,7 +97,7 @@ $ bundle exec rspec spec --fail-fast
 
 ## Code Analysis
 
-[Travis CI](https://travis-ci.org/) is used for running tests. To get the best possible overview of issues with different Ruby versions, Archangel is tested with Ruby 2.2.3 (the minimum version supported), the latest of the 2.2 line, the latest of the 2.3 line, the latest of the 2.4 line and the latest head version. See `.travis.yml` for the versions of Ruby tested.
+[Travis CI](https://travis-ci.org/) is used for running tests. To get the best possible overview of issues with different Ruby versions, Archangel is tested with Ruby 2.2.3 (the minimum version supported), the latest of the 2.2 line, the latest of the 2.3 line, the latest of the 2.4 line, the latest of the 2.5 line and the latest head version. See `.travis.yml` for the versions of Ruby tested.
 
 [Hound](https://houndci.com/) is used as the code analyzer. When making a pull request, you may get comments on style and quality violations.
 
