@@ -69,7 +69,7 @@ module Archangel
             get :edit
 
             expect(response).to render_template("archangel/errors/error_401")
-            expect(response.status).to eq 401
+            expect(response).to have_http_status(:unauthorized)
           end
         end
       end
@@ -128,7 +128,7 @@ module Archangel
             put :update, params: { site: {} }
 
             expect(response).to render_template("archangel/errors/error_401")
-            expect(response.status).to eq 401
+            expect(response).to have_http_status(:unauthorized)
           end
         end
       end
