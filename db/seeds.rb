@@ -46,6 +46,7 @@ unless Archangel::User.first
     email: email,
     username: username,
     name: name,
+    role: "admin",
     password: password,
     password_confirmation: password,
     confirmed_at: Time.current
