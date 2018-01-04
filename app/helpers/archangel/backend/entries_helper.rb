@@ -6,7 +6,7 @@ module Archangel
   #
   module Backend
     ##
-    # Backend entry helpers
+    # Backend collection entry helpers
     #
     module EntriesHelper
     end

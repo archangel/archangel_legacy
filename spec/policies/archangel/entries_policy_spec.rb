@@ -16,6 +16,7 @@ module Archangel
     it { should permit(:update) }
     it { should permit(:edit) }
     it { should permit(:destroy) }
+
     it { should permit(:sort) }
   end
 end

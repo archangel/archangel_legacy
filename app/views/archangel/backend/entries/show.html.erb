@@ -8,9 +8,13 @@
 
 <div class="collections-show panel panel-default">
   <div class="panel-body">
-    <p>
-      <strong><%= Archangel.t(:value) %>:</strong>
-      <%= @entry.value %>
-    </p>
+    <%- fields = @collection.fields.map { |item| item.slug } %>
+
+    <% fields.each do |field| %>
+      <p>
+        <strong><%= field %>:</strong>
+        <%= @entry.value[field] %>
+      </p>
+    <% end %>
   </div>
 </div>

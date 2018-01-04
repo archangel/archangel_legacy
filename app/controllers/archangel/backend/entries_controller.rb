@@ -6,7 +6,7 @@ module Archangel
   #
   module Backend
     ##
-    # Backend entries controller
+    # Backend collection entries controller
     #
     class EntriesController < BackendController
       before_action :set_parent_resource
@@ -219,6 +219,43 @@ module Archangel
         respond_with @entry, location: -> { location_after_destroy }
       end
 
+      ##
+      # Update collection entry sort order
+      #
+      # Formats
+      #   JSON
+      #
+      # Params
+      #   [String] slug - the collection slug
+      #
+      # Request
+      #   POST /backend/collections/:slug/entries/sort
+      #   POST /backend/collections/:slug/entries/sort.json
+      #
+      # Paramaters
+      #   {
+      #     "collection_entry": {
+      #       "sort": ["1234", "5678", "4321"]
+      #     }
+      #   }
+      #
+      def sort
+        sort_order = resource_params[:sort]
+
+        ApplicationRecord.transaction do
+          sort_order.each_with_index do |entry_id, index|
+            entry = Archangel::Entry.where(collection: @collection)
+                                    .find_by(id: entry_id)
+
+            authorize entry
+
+            entry.set_list_position(index)
+          end
+        end
+
+        render json: { success: true }, status: :accepted
+      end
+
       protected
 
       def permitted_attributes
@@ -226,7 +263,8 @@ module Archangel
 
         [
           :available_at,
-          value: fields
+          value: fields,
+          sort: []
         ]
       end
 
@@ -239,8 +277,9 @@ module Archangel
 
       def set_resources
         @entries = current_site.entries
-                               .order(position: :asc)
-                               .page(page_num).per(per_page)
+                               .where(collection: @collection)
+                               .page(page_num)
+                               .per(per_page)
 
         authorize @entries
       end
@@ -248,7 +287,9 @@ module Archangel
       def set_resource
         resource_id = params.fetch(:id)
 
-        @entry = current_site.entries.find_by!(id: resource_id)
+        @entry = current_site.entries
+                             .where(collection: @collection)
+                             .find_by!(id: resource_id)
 
         authorize @entry
       end

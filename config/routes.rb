@@ -99,7 +99,11 @@ Archangel::Engine.routes.draw do
       # PATCH  /backend/collections/[COLLECTION_SLUG]/entries/[ID]
       # PUT    /backend/collections/[COLLECTION_SLUG]/entries/[ID]
       # DELETE /backend/collections/[COLLECTION_SLUG]/entries/[ID]
-      resources :entries, concerns: %i[paginatable]
+      # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort
+      # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort.json
+      resources :entries, concerns: %i[paginatable] do
+        post "sort", action: :sort, on: :collection, defaults: { format: :json }
+      end
     end
 
     # GET    /backend/pages
