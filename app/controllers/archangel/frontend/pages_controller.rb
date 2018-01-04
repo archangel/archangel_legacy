@@ -43,11 +43,16 @@ module Archangel
       def show
         return redirect_to_homepage if redirect_to_homepage?
 
-        @page.content = content = liquid_rendered_content
-
         respond_to do |format|
-          format.html { render inline: content, layout: layout_from_theme }
-          format.json { render json: @page, layout: false }
+          format.html do
+            render inline: liquid_rendered_template_content,
+                   layout: layout_from_theme
+          end
+          format.json do
+            @page.content = liquid_rendered_content
+
+            render json: @page, layout: false
+          end
         end
       end
 
@@ -87,6 +92,15 @@ module Archangel
         Archangel::Liquid::RenderService.call(@page.content,
                                               page: @page,
                                               site: current_site)
+      end
+
+      def liquid_rendered_template_content
+        content = liquid_rendered_content
+
+        Archangel::Liquid::TemplateRenderService.call(
+          @page.template,
+          content_for_layout: content
+        )
       end
     end
   end

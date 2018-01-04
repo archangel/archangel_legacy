@@ -47,6 +47,7 @@ require "archangel/liquid/tags/render_partial_tag"
 require "archangel/liquid/tags/text_direction_tag"
 require "archangel/liquid/tags/theme_javascript_tag"
 require "archangel/liquid/tags/theme_stylesheet_tag"
+require "archangel/liquid/template_render_service"
 require "archangel/theme/themable_controller"
 require "archangel/version"
 

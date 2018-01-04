@@ -35,7 +35,8 @@ module Archangel
         it "returns a 404 status code when page is not found" do
           get :show, params: { path: "not-a-real-page" }
 
-          expect(response.response_code).to eq 404
+          expect(response).to render_template("archangel/errors/error_404")
+          expect(response).to have_http_status(:not_found)
         end
       end
     end
