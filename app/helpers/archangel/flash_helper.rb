@@ -10,6 +10,7 @@ module Archangel
     #
     # @param flash_type [String,Symbol] the flash message type
     # @return [String] flash message type
+    #
     def flash_class_for(flash_type)
       flash_type = flash_type.to_s.downcase.parameterize
 
