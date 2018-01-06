@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave", "~> 1.2.1"
   s.add_dependency "cocoon", "~> 1.2.11"
   s.add_dependency "date_validator", "~> 0.9.0"
-  s.add_dependency "devise", "~> 4.3.0"
+  s.add_dependency "devise", "~> 4.4.0"
   s.add_dependency "devise_invitable", "~> 1.7.2"
   s.add_dependency "file_validators", "~> 2.1.0"
   s.add_dependency "highline", "~> 1.7.10"
