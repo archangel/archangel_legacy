@@ -114,6 +114,21 @@ module Archangel
 
     protected
 
+    ##
+    # Redirect location after sign out
+    #
+    # Archangel currently only allows `admin` and `editor` roles access to sign
+    # in/out. There is no other functionality available to other user groups. If
+    # an extension is applied to add more user groups, it will need to overwrite
+    # this method in order to redirect to the preferred location for the role.
+    #
+    # @param _resource_or_scope [String,Symbol] resource or scope signing out
+    # @return [String] redirect to after sign out
+    #
+    def after_sign_out_path_for(_resource_or_scope)
+      backend_root_path
+    end
+
     def theme_resolver
       theme = current_site.theme
 
