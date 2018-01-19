@@ -9,7 +9,7 @@ module Archangel
       # Example
       #   {% theme_javascript %}
       #
-      class ThemeJavascriptTag < ::Liquid::Tag
+      class ThemeJavascriptTag < BaseTag
         ##
         # Render the Javascript for the theme
         #

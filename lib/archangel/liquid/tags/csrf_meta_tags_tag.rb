@@ -2,9 +2,6 @@
 
 module Archangel
   module Liquid
-    ##
-    # Archangel custom Liquid tags
-    #
     module Tags
       ##
       # CSRF meta tag custom tag for Liquid
@@ -12,7 +9,7 @@ module Archangel
       # Example
       #   {% csrf_meta_tags %}
       #
-      class CsrfMetaTagsTag < ::Liquid::Tag
+      class CsrfMetaTagsTag < BaseTag
         ##
         # Render the CSRF meta tags for the theme
         #

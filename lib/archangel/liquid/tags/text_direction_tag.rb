@@ -9,7 +9,7 @@ module Archangel
       # Example
       #   {% text_direction %} #=> "ltr"
       #
-      class TextDirectionTag < ::Liquid::Tag
+      class TextDirectionTag < BaseTag
         ##
         # Render the text direction for the theme
         #

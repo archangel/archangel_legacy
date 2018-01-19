@@ -11,7 +11,7 @@ module Archangel
       # Example
       #   {% meta_tags %}
       #
-      class MetaTagsTag < ::Liquid::Tag
+      class MetaTagsTag < BaseTag
         ##
         # Render the meta tgas for the theme
         #

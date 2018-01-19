@@ -9,7 +9,7 @@ module Archangel
       # Example
       #   {% theme_stylesheet %}
       #
-      class ThemeStylesheetTag < ::Liquid::Tag
+      class ThemeStylesheetTag < BaseTag
         ##
         # Render the stylesheet for the theme
         #

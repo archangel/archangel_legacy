@@ -9,7 +9,7 @@ module Archangel
       # Example
       #   {% locale %} #=> "en"
       #
-      class LocaleTag < ::Liquid::Tag
+      class LocaleTag < BaseTag
         ##
         # Render the locale for the theme
         #
