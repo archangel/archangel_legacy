@@ -8,6 +8,8 @@ module Archangel
       #
       # Example
       #   {% widget "widget-name" %}
+      #   {% widget 'widget-name' %}
+      #   {% widget widget-name %}
       #
       class WidgetTag < BaseTag
         attr_reader :widget_name
@@ -35,7 +37,7 @@ module Archangel
           template = widget.template
 
           if template.present?
-            rendered_widget = render_templated_widget(template.content,
+            rendered_widget = render_templated_widget(template,
                                                       rendered_widget)
           end
 

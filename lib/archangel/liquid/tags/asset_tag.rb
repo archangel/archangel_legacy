@@ -7,14 +7,13 @@ module Archangel
       # Asset custom tag for Liquid
       #
       # Example
-      #   {% asset "my-asset.png" %}
-      #   {% asset "my-asset.png" alt="My image" %}
+      #   {% asset "my-asset.png" %} #=>
+      #     <img src="path/to/my-asset.png" alt="">
+      #   {% asset "my-asset.png" alt="My image" class="center" %}
+      #     <img src="path/to/my-asset.png" alt="My image" class="center">
       #
       class AssetTag < BaseTag
-        include ::ActionView::Helpers::TagHelper
-
-        attr_reader :asset_name
-        attr_reader :asset_params
+        attr_reader :asset_name, :asset_params
 
         def initialize(tag_name, params, tokens)
           super
@@ -41,6 +40,12 @@ module Archangel
 
         protected
 
+        def key_with_params(params)
+          matches = /\s*(["|'])?([\w-]+\.[\w]+)\1?\s*(.*)/.match(params)
+
+          [matches[2], attribute_string_to_hash(matches[3])]
+        end
+
         def load_asset_for(site)
           site.assets.find_by!(file_name: asset_name)
         rescue StandardError
@@ -54,7 +59,7 @@ module Archangel
         end
 
         def image_asset(asset)
-          attributes = { alt: "" }.merge(asset_params).merge(
+          attributes = { alt: asset.file_name }.merge(asset_params).merge(
             src: asset.file.url
           )
 
