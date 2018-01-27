@@ -32,6 +32,8 @@ module Archangel
           environments = context.environments[0]
           widget = load_widget_for(environments["site"])
 
+          return if widget.blank?
+
           rendered_widget = render_widget(widget.content, environments)
 
           template = widget.template
@@ -49,7 +51,7 @@ module Archangel
         def load_widget_for(site)
           site.widgets.find_by!(slug: widget_name)
         rescue StandardError
-          site.widgets.build(content: "<span>Widget not available</span>")
+          nil
         end
 
         def render_widget(content, assigns)

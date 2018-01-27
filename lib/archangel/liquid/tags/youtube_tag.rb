@@ -55,8 +55,8 @@ module Archangel
             height: video_height,
             frameborder: youtube_params.fetch(:frameborder, 0),
             allowtransparency: youtube_params.fetch(:allowtransparency, "true"),
-            allowFullScreen: youtube_params.fetch(:allowfullscreen,
-                                                  "allowFullScreen")
+            allowFullScreen:
+              youtube_params.fetch(:allowfullscreen, "allowFullScreen")
           }
         end
 
