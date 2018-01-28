@@ -1,0 +1,21 @@
+# https://github.com/eslint/eslint
+eslint:
+  enabled: true
+  config_file: .eslintrc
+  ignore_file: .eslintignore
+
+# https://github.com/jshint/jshint
+jshint:
+  enabled: true
+  config_file: .jshintrc
+  ignore_file: .jshintignore
+
+# # https://github.com/bbatsov/rubocop
+ruby:
+  enabled: true
+  config_file: .rubocop.yml
+
+# https://github.com/brigade/scss-lint/
+scss:
+  enabled: true
+  config_file: .scss-lint.yml
