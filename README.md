@@ -123,7 +123,7 @@ $ scss-lint .
 
 ### Code Climate
 
-[Code Climate](https://codeclimate.com/) is used as overall maintainability and security auditing. When making a pull request, you may get a failures based on violations.
+[Code Climate](https://codeclimate.com/) is used as overall maintainability. When making a pull request, you may get a failures based on violations.
 
 #### Brakeman
 
@@ -131,18 +131,6 @@ $ scss-lint .
 
 ```
 $ brakeman
-```
-
-#### Bundler Audit
-
-```
-$ bundle audit check
-```
-
-or
-
-```
-$ bundle audit check
 ```
 
 ## Documentation
