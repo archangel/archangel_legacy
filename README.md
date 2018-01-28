@@ -97,19 +97,15 @@ $ bundle exec rspec spec --fail-fast
 
 ## Code Analysis
 
+### Travis CI
+
 [Travis CI](https://travis-ci.org/) is used for running tests. To get the best possible overview of issues with different Ruby versions, Archangel is tested with multiple various of Ruby. See `.travis.yml` for the versions of Ruby tested.
 
-[Hound](https://houndci.com/) is used as the code analyzer. When making a pull request, you may get comments on style and quality violations.
+### Hound
 
-### Brakeman
+[Hound](https://houndci.com/) is used as the code analyzer in pull request. When making a pull request, you may get comments on style and quality violations.
 
-[Brakeman](https://github.com/presidentbeef/brakeman) is a static analysis security vulnerability scanner.
-
-```
-$ brakeman
-```
-
-### RuboCop
+#### RuboCop
 
 [RuboCop](https://github.com/bbatsov/rubocop) is a Ruby static code analyzer.
 
@@ -117,12 +113,36 @@ $ brakeman
 $ rubocop
 ```
 
-### scss-lint
+#### scss-lint
 
 [scss-lint](https://github.com/brigade/scss-lint) is a SCSS style analyzer.
 
 ```
 $ scss-lint .
+```
+
+### Code Climate
+
+[Code Climate](https://codeclimate.com/) is used as overall maintainability and security auditing. When making a pull request, you may get a failures based on violations.
+
+#### Brakeman
+
+[Brakeman](https://github.com/presidentbeef/brakeman) is a static analysis security vulnerability scanner.
+
+```
+$ brakeman
+```
+
+#### Bundler Audit
+
+```
+$ bundle audit check
+```
+
+or
+
+```
+$ bundle audit check
 ```
 
 ## Documentation

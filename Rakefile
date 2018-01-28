@@ -11,12 +11,15 @@ Dir.glob("./lib/tasks/**/*_task.rake").each { |task| load task }
 Bundler::GemHelper.install_tasks
 
 require "bundler/gem_tasks"
+require "bundler/audit/task"
 require "rspec/core/rake_task"
 
 require "archangel/testing_support/rake/dummy_rake"
 
+Bundler::Audit::Task.new
 RSpec::Core::RakeTask.new
 
+task audit: "bundle:audit"
 task default: :spec
 
 desc "Generates a dummy app for Archangel"
