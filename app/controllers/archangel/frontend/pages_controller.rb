@@ -89,18 +89,15 @@ module Archangel
       end
 
       def liquid_rendered_content
-        Archangel::Liquid::RenderService.call(@page.content,
-                                              page: @page,
-                                              site: current_site)
+        Archangel::RenderService.call(@page.content, page: @page,
+                                                     site: current_site)
       end
 
       def liquid_rendered_template_content
         content = liquid_rendered_content
 
-        Archangel::Liquid::TemplateRenderService.call(
-          @page.template,
-          content_for_layout: content
-        )
+        Archangel::TemplateRenderService.call(@page.template,
+                                              content_for_layout: content)
       end
     end
   end

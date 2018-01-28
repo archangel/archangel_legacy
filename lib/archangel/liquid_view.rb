@@ -33,7 +33,7 @@ module Archangel
       assigns = _assigns(local_assigns)
       options = { filters: _filters, registers: _registers }
 
-      Archangel::Liquid::RenderService.call(template, assigns, options)
+      Archangel::RenderService.call(template, assigns, options)
     end
 
     ##

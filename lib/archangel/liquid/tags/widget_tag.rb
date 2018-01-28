@@ -55,11 +55,11 @@ module Archangel
         end
 
         def render_widget(content, assigns)
-          Archangel::Liquid::RenderService.call(content, assigns)
+          Archangel::RenderService.call(content, assigns)
         end
 
         def render_templated_widget(template_content, widget_content)
-          Archangel::Liquid::TemplateRenderService.call(
+          Archangel::TemplateRenderService.call(
             template_content,
             content_for_layout: widget_content
           )
