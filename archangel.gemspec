@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
   s.files       = `git ls-files`.split($ORS)
 
-  s.required_ruby_version = ">= 2.2.3"
+  s.required_ruby_version = ">= 2.2.9"
 
   s.add_dependency "jquery-rails", ">= 4.1.0"
   s.add_dependency "rails", "~> 5.1.4"
