@@ -2,3 +2,5 @@ version: "2"
 plugins:
   brakeman:
     enabled: true
+  fixme:
+    enabled: true
