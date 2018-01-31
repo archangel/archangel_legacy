@@ -132,6 +132,15 @@ $ scss-lint .
 ```
 $ brakeman
 ```
+### bundler-audit
+
+[bundler-audit](https://github.com/rubysec/bundler-audit) checks for vulnerable versions of gems in Gemfile.lock.
+
+```
+$ bundle install
+$ bundle audit check
+$ bundle audit check --update
+```
 
 ## Documentation
 
