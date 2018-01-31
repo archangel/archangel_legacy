@@ -4,3 +4,5 @@ plugins:
     enabled: true
   fixme:
     enabled: true
+  reek:
+    enabled: true
