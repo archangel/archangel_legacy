@@ -10,16 +10,18 @@
 
 This project rocks and uses MIT-LICENSE.
 
-## Requirements
-
-- Ruby >= 2.2.3
-- Rails ~> 5.1.4
+[Online documentation is available](http://www.rubydoc.info/github/archangel/archangel/master)
 
 ## Deploying to Heroku
 
 Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/archangel/sample)
+
+## Requirements
+
+*   Ruby >= 2.2.9
+*   Rails ~> 5.1.4
 
 ## Installation
 
@@ -97,82 +99,18 @@ $ bundle exec rspec spec --fail-fast
 
 ## Code Analysis
 
-### Travis CI
-
-[Travis CI](https://travis-ci.org/) is used for running tests. To get the best possible overview of issues with different Ruby versions, Archangel is tested with multiple various of Ruby. See `.travis.yml` for the versions of Ruby tested.
-
-### Hound
-
-[Hound](https://houndci.com/) is used as the code analyzer in pull request. When making a pull request, you may get comments on style and quality violations.
-
-#### RuboCop
-
-[RuboCop](https://github.com/bbatsov/rubocop) is a Ruby static code analyzer.
-
-```
-$ rubocop
-```
-
-#### scss-lint
-
-[scss-lint](https://github.com/brigade/scss-lint) is a SCSS style analyzer.
-
-```
-$ scss-lint .
-```
-
-### Code Climate
-
-[Code Climate](https://codeclimate.com/) is used as overall maintainability. When making a pull request, you may get a failures based on violations.
-
-#### Brakeman
-
-[Brakeman](https://github.com/presidentbeef/brakeman) is a static analysis security vulnerability scanner.
-
-```
-$ brakeman
-```
-### bundler-audit
-
-[bundler-audit](https://github.com/rubysec/bundler-audit) checks for vulnerable versions of gems in Gemfile.lock.
-
-```
-$ bundle install
-$ bundle audit check
-$ bundle audit check --update
-```
-
-## Documentation
-
-[Online documentation is available](http://www.rubydoc.info/github/archangel/archangel/master)
-
-[Yard](https://github.com/lsegal/yard) is used to generate documentation.
-
-Build the documentation
-
-```
-$ yard
-```
-
-or
-
-```
-$ yard doc
-```
-
-Build the documentation and list all undocumented objects
-
-```
-$ yard stats --list-undoc
-```
+*   [Travis CI](https://travis-ci.org/) is used for running tests.
+*   [Hound](https://houndci.com/) is used as the code analyzer in pull request.
 
 ## Developers
 
-- TODO: Archangel gem development instructions and resources
-- TODO: Archangel instructions and resources for theme developers
-- TODO: Archangel instructions and resources for extension developers
+*   TODO: Archangel gem development instructions and resources
+*   TODO: Archangel instructions and resources for theme developers
+*   TODO: Archangel instructions and resources for extension developers
 
 ## Contributing
+
+A [contributing guide](CONTRIBUTING.md) is available.
 
 1.  Fork it ([https://github.com/archangel/archangel/fork](https://github.com/archangel/archangel/fork))
 2.  Create your feature branch (`git checkout -b my-new-feature`)
