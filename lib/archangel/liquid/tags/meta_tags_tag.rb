@@ -11,7 +11,7 @@ module Archangel
       # Example
       #   {% meta_tags %}
       #
-      class MetaTagsTag < BaseTag
+      class MetaTagsTag < ApplicationTag
         ##
         # Render the meta tgas for the theme
         #

@@ -22,7 +22,7 @@ module Archangel
       #   {% youtube "-X2atEH7nCg" allowtransparency="0" %}
       #   {% youtube "-X2atEH7nCg" frameborder="4" %}
       #
-      class YoutubeTag < BaseTag
+      class YoutubeTag < ApplicationTag
         attr_reader :youtube_video_id, :youtube_params
 
         def initialize(tag_name, params, tokens)

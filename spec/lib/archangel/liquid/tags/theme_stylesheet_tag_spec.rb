@@ -5,7 +5,22 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe ThemeStylesheetTag do
+      RSpec.describe ThemeStylesheetTag, type: :tag,
+                                         disable: :verify_partial_doubles do
+        before { create(:site) }
+
+        let(:context) { ::Liquid::Context.new({}, {}, view: view) }
+
+        it "renders stylesheet tag for theme" do
+          allow(view).to receive(:current_theme).and_return("default")
+
+          result = ::Liquid::Template.parse("{% theme_stylesheet %}")
+                                     .render(context)
+          expected = '<link rel="stylesheet" media="screen" ' \
+                     'href="/assets/default/frontend'
+
+          expect(result).to include(expected)
+        end
       end
     end
   end

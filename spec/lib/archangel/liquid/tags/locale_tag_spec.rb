@@ -5,7 +5,16 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe LocaleTag do
+      RSpec.describe LocaleTag, type: :tag, disable: :verify_partial_doubles do
+        let(:context) { ::Liquid::Context.new({}, {}, view: view) }
+
+        it "returns current locale" do
+          allow(view).to receive(:locale).and_return("en")
+
+          result = ::Liquid::Template.parse("{% locale %}").render(context)
+
+          expect(result).to eq("en")
+        end
       end
     end
   end

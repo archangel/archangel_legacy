@@ -9,7 +9,7 @@ module Archangel
       # Example
       #   {% theme_javascript %}
       #
-      class ThemeJavascriptTag < BaseTag
+      class ThemeJavascriptTag < ApplicationTag
         ##
         # Render the Javascript for the theme
         #

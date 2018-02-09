@@ -11,7 +11,7 @@ module Archangel
       #   {% widget 'widget-name' %}
       #   {% widget widget-name %}
       #
-      class WidgetTag < BaseTag
+      class WidgetTag < ApplicationTag
         attr_reader :widget_name
 
         def initialize(tag_name, param, tokens)

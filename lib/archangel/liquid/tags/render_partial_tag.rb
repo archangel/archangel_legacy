@@ -10,7 +10,7 @@ module Archangel
       #   {% render_partial "theme/partial" %}
       #   {% render_partial "theme/partial" param='value' param2="value" %}
       #
-      class RenderPartialTag < BaseTag
+      class RenderPartialTag < ApplicationTag
         def initialize(tag_name, param, tokens)
           super
 

@@ -17,7 +17,7 @@ module Archangel
       #   {% vimeo "183344978" allowtransparency="0" %}
       #   {% vimeo "183344978" frameborder="4" %}
       #
-      class VimeoTag < BaseTag
+      class VimeoTag < ApplicationTag
         attr_reader :vimeo_video_id, :vimeo_params
 
         def initialize(tag_name, params, tokens)

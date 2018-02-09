@@ -9,7 +9,7 @@ module Archangel
       # Example
       #   {% theme_stylesheet %}
       #
-      class ThemeStylesheetTag < BaseTag
+      class ThemeStylesheetTag < ApplicationTag
         ##
         # Render the stylesheet for the theme
         #

@@ -4,7 +4,11 @@ FactoryBot.define do
   factory :template, class: "Archangel::Template" do
     site
     sequence(:name) { |n| "Template #{n} Name" }
-    content "<p>This is the content of the template.<p>"
+    content <<-CONTENT
+      <p>BEFORE TEMPLATE<p>
+      <p>{{ content_for_layout }}<p>
+      <p>AFTER TEMPLATE<p>
+    CONTENT
     partial false
 
     trait :partial do

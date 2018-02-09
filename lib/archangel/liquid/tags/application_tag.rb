@@ -9,7 +9,7 @@ module Archangel
       ##
       # Base helper class for Liquid
       #
-      class BaseTag < ::Liquid::Tag
+      class ApplicationTag < ::Liquid::Tag
         include ::ActionView::Helpers::TagHelper
 
         protected

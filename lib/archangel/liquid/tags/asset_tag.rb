@@ -12,7 +12,7 @@ module Archangel
       #   {% asset "my-asset.png" alt="My image" class="center" %}
       #     <img src="path/to/my-asset.png" alt="My image" class="center">
       #
-      class AssetTag < BaseTag
+      class AssetTag < ApplicationTag
         attr_reader :asset_name, :asset_params
 
         def initialize(tag_name, params, tokens)

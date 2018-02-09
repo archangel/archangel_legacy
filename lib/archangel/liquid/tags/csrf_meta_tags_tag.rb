@@ -9,7 +9,7 @@ module Archangel
       # Example
       #   {% csrf_meta_tags %}
       #
-      class CsrfMetaTagsTag < BaseTag
+      class CsrfMetaTagsTag < ApplicationTag
         ##
         # Render the CSRF meta tags for the theme
         #
