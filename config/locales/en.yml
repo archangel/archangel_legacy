@@ -48,6 +48,9 @@ en:
     entries: Entries
     error_401: Access is denied due to invalid credentials
     error_404: Page not found. Could not find what was requested
+    errors:
+      syntax:
+        collection: "Syntax Error in 'collection' - Valid syntax: {% collection [var] = [source] %}"
     fields: Fields
     file: File
     file_name: File Name
@@ -69,7 +72,7 @@ en:
     new: New
     new_resource: New %{resource}
     no_resources: No %{resource} found.
-    not_found: Not Found 
+    not_found: Not Found
     partial: Partial
     pages: Pages
     path: Path

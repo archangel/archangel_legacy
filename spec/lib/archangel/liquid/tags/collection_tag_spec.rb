@@ -17,7 +17,7 @@ module Archangel
           content = "{% collection things %}"
 
           expect { ::Liquid::Template.parse(content).render(context) }.to(
-            raise_error(SyntaxError, /Syntax Error in 'assign'/)
+            raise_error(SyntaxError, Archangel.t("errors.syntax.collection"))
           )
         end
 
