@@ -52,6 +52,28 @@ module Archangel
           expect(result).to include("2: First Person")
         end
 
+        it "returns collection content with limit and offset" do
+          collection = create(:collection, site: site, slug: "my-collection")
+          create(:field, :required, collection: collection, slug: "name")
+          create(:entry, collection: collection, value: { name: "First" })
+          create(:entry, collection: collection, value: { name: "Second" })
+          create(:entry, collection: collection, value: { name: "Third" })
+
+          content = <<-LIQUID
+            {% collection things = 'my-collection' limit:1 offset:1 %}
+            {% for item in things %}
+              {{ forloop.index }}: {{ item.name }}
+            {% endfor %}
+          LIQUID
+
+          result = ::Liquid::Template.parse(content).render(context)
+
+          expect(result).to include("1: Second")
+
+          expect(result).not_to include("First")
+          expect(result).not_to include("Third")
+        end
+
         it "returns nothing for empty collection" do
           collection = create(:collection, site: site, slug: "my-collection")
           create(:field, :required, collection: collection, slug: "name")

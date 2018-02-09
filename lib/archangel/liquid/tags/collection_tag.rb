@@ -12,18 +12,36 @@ module Archangel
       #     {{ forloop.index }}: {{ item.name }}
       #   {% endfor %}
       #
+      #   {% collection things = 'my-collection' limit:5 offset:25 %}
+      #   {% for item in things %}
+      #     {{ forloop.index }}: {{ item.name }}
+      #   {% endfor %}
+      #
       class CollectionTag < ApplicationTag
         ##
-        # {% collection key = 'value' %}
+        # {% collection key = 'value' options %}
         #
         SYNTAX = /
           (?<key>#{::Liquid::VariableSignature}+)
           \s*
           =
           \s*
-          (?<value>.*)
+          (?<value>#{::Liquid::QuotedFragment}+)
+          \s*
+          (?<attributes>.*)
           \s*
         /omx
+
+        ##
+        # {% collection key = 'value' options %}
+        #
+        SYNTAX_ATTRIBUTES = /
+          (?<key>\w+)
+          \s*
+          \:
+          \s*
+          (?<value>#{::Liquid::QuotedFragment})
+        /ox
 
         def initialize(tag_name, markup, options)
           super
@@ -36,10 +54,18 @@ module Archangel
 
           @key = match[:key]
           @value = ::Liquid::Variable.new(match[:value], options).name
+          @attributes = {}
+
+          match[:attributes].scan(SYNTAX_ATTRIBUTES) do |key, value|
+            @attributes[key.to_sym] = ::Liquid::Expression.parse(value)
+          end
         end
 
         def render(context)
-          val = load_collection(value)
+          environments = context.environments.first
+          site = environments["site"]
+
+          val = load_collection(site)
 
           context.scopes.last[key] = val
           context.resource_limits.assign_score += assign_score_of(val)
@@ -53,10 +79,10 @@ module Archangel
 
         protected
 
-        attr_reader :key, :value
+        attr_reader :attributes, :key, :value
 
-        def load_collection(slug)
-          items = load_collection_for(Archangel::Site.first, slug)
+        def load_collection(site)
+          items = load_collection_for(site, value)
 
           items.each_with_object([]) do |item, collection|
             collection <<
@@ -67,7 +93,11 @@ module Archangel
         def load_collection_for(site, slug)
           collection = site.collections.find_by!(slug: slug)
 
-          site.entries.where(collection: collection).map(&:attributes)
+          site.entries
+              .where(collection: collection)
+              .limit(attributes.fetch(:limit, nil))
+              .offset(attributes.fetch(:offset, nil))
+              .map(&:attributes)
         rescue StandardError
           []
         end
