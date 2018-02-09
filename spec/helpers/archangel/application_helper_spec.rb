@@ -3,7 +3,12 @@
 require "rails_helper"
 
 module Archangel
-  RSpec.describe ApplicationHelper, type: :helper do
+  RSpec.describe ApplicationHelper, type: :helper,
+                                    disable: :verify_partial_doubles do
+    before do
+      allow(helper).to receive(:current_site).and_return(create(:site))
+    end
+
     context "#locale" do
       it "returns default application locale" do
         expect(helper.locale).to eq("en")

@@ -14,7 +14,7 @@ module Archangel
     # @return [String] site locale
     #
     def locale
-      Archangel::Site.current.locale || Archangel::LANGUAGE_DEFAULT
+      current_site.locale || Archangel::LANGUAGE_DEFAULT
     end
 
     ##
