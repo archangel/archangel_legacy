@@ -18,7 +18,7 @@ module Archangel
         end
 
         it "returns Vimeo embed with options" do
-          template = "{% vimeo '183344978' width='800' height='600' %}"
+          template = "{% vimeo '183344978' width:800 height:600 %}"
           result = ::Liquid::Template.parse(template).render(context)
 
           expect(result).to include("https://player.vimeo.com/video/183344978")

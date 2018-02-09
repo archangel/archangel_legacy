@@ -9,74 +9,104 @@ module Archangel
       # Example
       #   Given the Vimeo URL https://vimeo.com/183344978
       #   {% vimeo "183344978" %}
-      #   {% vimeo "183344978" width="800" height="600" %}
-      #   {% vimeo "183344978" id="my_video" class="my-video" %}
-      #   {% vimeo "183344978" autoplay="1" %}
-      #   {% vimeo "183344978" loop="1" %}
-      #   {% vimeo "183344978" allowfullscreen="0" %}
-      #   {% vimeo "183344978" allowtransparency="0" %}
-      #   {% vimeo "183344978" frameborder="4" %}
+      #   {% vimeo "183344978" width:800 height:60 %}
+      #   {% vimeo "183344978" id:"my_video" class:"my-video" %}
+      #   {% vimeo "183344978" autoplay:1 %}
+      #   {% vimeo "183344978" loop:1 %}
+      #   {% vimeo "183344978" allowfullscreen:0 %}
+      #   {% vimeo "183344978" allowtransparency:0 %}
+      #   {% vimeo "183344978" frameborder:4 %}
       #
       class VimeoTag < ApplicationTag
-        attr_reader :vimeo_video_id, :vimeo_params
+        ##
+        # {% vimeo 'key' attributes %}
+        #
+        SYNTAX = /
+          (?<key>#{::Liquid::QuotedFragment}+)
+          \s*
+          (?<attributes>.*)
+          \s*
+        /omx
 
-        def initialize(tag_name, params, tokens)
+        ##
+        # {% vimeo 'key' attributes %}
+        #
+        SYNTAX_ATTRIBUTES = /
+          (?<key>\w+)
+          \s*
+          \:
+          \s*
+          (?<value>#{::Liquid::QuotedFragment})
+        /ox
+
+        def initialize(tag_name, markup, options)
           super
 
-          @vimeo_video_id, @vimeo_params = key_with_params(params)
+          match = SYNTAX.match(markup)
+
+          raise SyntaxError, Archangel.t("errors.syntax.vimeo") if match.blank?
+
+          @key = ::Liquid::Variable.new(match[:key], options).name
+          @attributes = {}
+
+          match[:attributes].scan(SYNTAX_ATTRIBUTES) do |key, value|
+            @attributes[key.to_sym] = ::Liquid::Expression.parse(value)
+          end
         end
 
         ##
-        # Render the Widget
+        # Render the Vimeo video
         #
         # @param _context [Object] the Liquid context
-        # @return [String] the rendered Widget
+        # @return [String] the rendered video
         #
         def render(_context)
-          return if vimeo_video_id.blank?
+          return if key.blank?
 
           content_tag(:iframe, "", video_attributes)
         end
 
         protected
 
+        attr_reader :attributes, :key
+
         def video_attributes
           {
-            id: vimeo_params.fetch(:id, nil),
-            class: vimeo_params.fetch(:class, nil),
-            style: vimeo_params.fetch(:style, nil),
+            id: attributes.fetch(:id, nil),
+            class: attributes.fetch(:class, nil),
+            style: attributes.fetch(:style, nil),
             src: video_url,
             width: video_width,
             height: video_height,
-            frameborder: vimeo_params.fetch(:frameborder, 0),
-            allowtransparency: vimeo_params.fetch(:allowtransparency, "true"),
-            allowFullScreen: vimeo_params.fetch(:allowfullscreen,
-                                                "allowFullScreen")
+            frameborder: attributes.fetch(:frameborder, 0),
+            allowtransparency: attributes.fetch(:allowtransparency, "true"),
+            allowFullScreen:
+              attributes.fetch(:allowfullscreen, "allowFullScreen")
           }
         end
 
         def video_url
           [
-            "https://player.vimeo.com/video/#{vimeo_video_id}",
+            "https://player.vimeo.com/video/#{key}",
             video_url_params
           ].join("?")
         end
 
         def video_url_params
           {
-            autoplay: vimeo_params.fetch(:autoplay, 0),
-            loop: vimeo_params.fetch(:loop, 0),
+            autoplay: attributes.fetch(:autoplay, 0),
+            loop: attributes.fetch(:loop, 0),
             width: video_width,
             height: video_height
-          }.compact.reject { |_, v| v.blank? }.to_query
+          }.compact.reject { |_, value| value.blank? }.to_query
         end
 
         def video_width
-          vimeo_params.fetch(:width, 640)
+          attributes.fetch(:width, 640)
         end
 
         def video_height
-          vimeo_params.fetch(:height, 360)
+          attributes.fetch(:height, 360)
         end
       end
     end

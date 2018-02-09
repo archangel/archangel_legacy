@@ -9,60 +9,92 @@ module Archangel
       # Example
       #   Given the YouTube URL https://www.youtube.com/watch?v=-X2atEH7nCg
       #   {% youtube "-X2atEH7nCg" %}
-      #   {% youtube "-X2atEH7nCg" width="800" height="600" %}
-      #   {% youtube "-X2atEH7nCg" id="my_video" class="my-video" %}
-      #   {% youtube "-X2atEH7nCg" autoplay="1" %}
-      #   {% youtube "-X2atEH7nCg" captions="1" %}
-      #   {% youtube "-X2atEH7nCg" loop="1" %}
-      #   {% youtube "-X2atEH7nCg" annotations="1" %}
-      #   {% youtube "-X2atEH7nCg" start="10" %}
-      #   {% youtube "-X2atEH7nCg" end="60" %}
-      #   {% youtube "-X2atEH7nCg" showinfo="0" %}
-      #   {% youtube "-X2atEH7nCg" allowfullscreen="0" %}
-      #   {% youtube "-X2atEH7nCg" allowtransparency="0" %}
-      #   {% youtube "-X2atEH7nCg" frameborder="4" %}
+      #   {% youtube "-X2atEH7nCg" width:800 height:600 %}
+      #   {% youtube "-X2atEH7nCg" id:"my_video" class:"my-video" %}
+      #   {% youtube "-X2atEH7nCg" autoplay:1 %}
+      #   {% youtube "-X2atEH7nCg" captions: %}
+      #   {% youtube "-X2atEH7nCg" loop:1 %}
+      #   {% youtube "-X2atEH7nCg" annotations:1 %}
+      #   {% youtube "-X2atEH7nCg" start:10 %}
+      #   {% youtube "-X2atEH7nCg" end:60 %}
+      #   {% youtube "-X2atEH7nCg" showinfo:0 %}
+      #   {% youtube "-X2atEH7nCg" allowfullscreen: %}
+      #   {% youtube "-X2atEH7nCg" allowtransparency:0 %}
+      #   {% youtube "-X2atEH7nCg" frameborder:4 %}
       #
       class YoutubeTag < ApplicationTag
-        attr_reader :youtube_video_id, :youtube_params
+        ##
+        # {% youtube 'key' attributes %}
+        #
+        SYNTAX = /
+          (?<key>#{::Liquid::QuotedFragment}+)
+          \s*
+          (?<attributes>.*)
+          \s*
+        /omx
 
-        def initialize(tag_name, params, tokens)
+        ##
+        # {% youtube 'key' attributes %}
+        #
+        SYNTAX_ATTRIBUTES = /
+          (?<key>\w+)
+          \s*
+          \:
+          \s*
+          (?<value>#{::Liquid::QuotedFragment})
+        /ox
+
+        def initialize(tag_name, markup, options)
           super
 
-          @youtube_video_id, @youtube_params = key_with_params(params)
+          match = SYNTAX.match(markup)
+
+          if match.blank?
+            raise SyntaxError, Archangel.t("errors.syntax.youtube")
+          end
+
+          @key = ::Liquid::Variable.new(match[:key], options).name
+          @attributes = {}
+
+          match[:attributes].scan(SYNTAX_ATTRIBUTES) do |key, value|
+            @attributes[key.to_sym] = ::Liquid::Expression.parse(value)
+          end
         end
 
         ##
-        # Render the Widget
+        # Render the YouTube video
         #
         # @param _context [Object] the Liquid context
-        # @return [String] the rendered Widget
+        # @return [String] the rendered video
         #
         def render(_context)
-          return if youtube_video_id.blank?
+          return if key.blank?
 
           content_tag(:iframe, "", video_attributes)
         end
 
         protected
 
+        attr_reader :attributes, :key
+
         def video_attributes
           {
-            id: youtube_params.fetch(:id, nil),
-            class: youtube_params.fetch(:class, nil),
-            style: youtube_params.fetch(:style, nil),
+            id: attributes.fetch(:id, nil),
+            class: attributes.fetch(:class, nil),
+            style: attributes.fetch(:style, nil),
             src: video_url,
             width: video_width,
             height: video_height,
-            frameborder: youtube_params.fetch(:frameborder, 0),
-            allowtransparency: youtube_params.fetch(:allowtransparency, "true"),
+            frameborder: attributes.fetch(:frameborder, 0),
+            allowtransparency: attributes.fetch(:allowtransparency, "true"),
             allowFullScreen:
-              youtube_params.fetch(:allowfullscreen, "allowFullScreen")
+              attributes.fetch(:allowfullscreen, "allowFullScreen")
           }
         end
 
         def video_url
           [
-            "https://www.youtube.com/embed/#{youtube_video_id}",
+            "https://www.youtube.com/embed/#{key}",
             video_url_params
           ].join("?")
         end
@@ -70,26 +102,26 @@ module Archangel
         def video_url_params
           {
             ecver: 1,
-            color: "red",
             autohide: 2,
-            autoplay: youtube_params.fetch(:autoplay, 0),
-            cc_load_policy: youtube_params.fetch(:captions, 0),
-            iv_load_policy: youtube_params.fetch(:annotations, 0),
-            loop: youtube_params.fetch(:loop, 0),
-            showinfo: youtube_params.fetch(:showinfo, 1),
-            start: youtube_params.fetch(:start, nil),
-            end: youtube_params.fetch(:end, nil),
+            color: attributes.fetch(:color, "red"),
+            autoplay: attributes.fetch(:autoplay, 0),
+            cc_load_policy: attributes.fetch(:captions, 0),
+            iv_load_policy: attributes.fetch(:annotations, 0),
+            loop: attributes.fetch(:loop, 0),
+            showinfo: attributes.fetch(:showinfo, 1),
+            start: attributes.fetch(:start, nil),
+            end: attributes.fetch(:end, nil),
             width: video_width,
             height: video_height
-          }.compact.reject { |_, v| v.blank? }.to_query
+          }.compact.reject { |_, value| value.blank? }.to_query
         end
 
         def video_width
-          youtube_params.fetch(:width, 640)
+          attributes.fetch(:width, 640)
         end
 
         def video_height
-          youtube_params.fetch(:height, 360)
+          attributes.fetch(:height, 360)
         end
       end
     end

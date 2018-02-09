@@ -22,6 +22,17 @@ module Archangel
           expect(result).to include(expected)
         end
 
+        it "returns image with options" do
+          asset = create(:asset, site: site, file_name: "abc.jpg")
+
+          content = "{% asset '#{asset.file_name}' alt:'This is the alt tag' %}"
+          result = ::Liquid::Template.parse(content).render(context)
+          expected = "<img alt=\"This is the alt tag\" " \
+                     "src=\"/uploads/archangel/asset/file/"
+
+          expect(result).to include(expected)
+        end
+
         it "returns nothing when asset not found" do
           result = ::Liquid::Template.parse("{% asset 'whatever.jpg' %}")
                                      .render(context)

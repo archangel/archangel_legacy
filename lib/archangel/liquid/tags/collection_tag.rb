@@ -12,13 +12,16 @@ module Archangel
       #     {{ forloop.index }}: {{ item.name }}
       #   {% endfor %}
       #
-      class CollectionTag < ::Liquid::Tag
+      class CollectionTag < ApplicationTag
+        ##
+        # {% collection key = 'value' %}
+        #
         SYNTAX = /
-          (?<collection_assign>#{::Liquid::VariableSignature}+)
+          (?<key>#{::Liquid::VariableSignature}+)
           \s*
           =
           \s*
-          (?<collection_slug>.*)
+          (?<value>.*)
           \s*
         /omx
 
@@ -31,17 +34,14 @@ module Archangel
             raise SyntaxError, Archangel.t("errors.syntax.collection")
           end
 
-          collection_name = ::Liquid::Variable.new(match[:collection_slug],
-                                                   options).name
-
-          @collection_assign = match[:collection_assign]
-          @collection_slug = load_collection(collection_name)
+          @key = match[:key]
+          @value = ::Liquid::Variable.new(match[:value], options).name
         end
 
         def render(context)
-          val = collection_slug
+          val = load_collection(value)
 
-          context.scopes.last[collection_assign] = val
+          context.scopes.last[key] = val
           context.resource_limits.assign_score += assign_score_of(val)
 
           ""
@@ -53,7 +53,7 @@ module Archangel
 
         protected
 
-        attr_reader :collection_assign, :collection_slug
+        attr_reader :key, :value
 
         def load_collection(slug)
           items = load_collection_for(Archangel::Site.first, slug)

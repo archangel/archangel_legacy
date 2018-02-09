@@ -13,7 +13,7 @@ module Archangel
           ::Liquid::Context.new({ "site" => site }, {}, view: view)
         end
 
-        it "returns nothing to the view" do
+        it "raises error with invalid syntax" do
           content = "{% collection things %}"
 
           expect { ::Liquid::Template.parse(content).render(context) }.to(

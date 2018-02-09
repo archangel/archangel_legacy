@@ -12,12 +12,19 @@ module Archangel
       #   {% widget widget-name %}
       #
       class WidgetTag < ApplicationTag
-        attr_reader :widget_name
+        ##
+        # {% widget 'slug' %}
+        #
+        SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)?\s*/o
 
-        def initialize(tag_name, param, tokens)
+        def initialize(tag_name, markup, options)
           super
 
-          @widget_name = clean_param(param)
+          match = SYNTAX.match(markup)
+
+          raise SyntaxError, Archangel.t("errors.syntax.widget") if match.blank?
+
+          @slug = ::Liquid::Variable.new(match[:slug], options).name
         end
 
         ##
@@ -27,10 +34,12 @@ module Archangel
         # @return [String] the rendered Widget
         #
         def render(context)
-          return if widget_name.blank?
+          return if slug.blank?
 
-          environments = context.environments[0]
-          widget = load_widget_for(environments["site"])
+          environments = context.environments.first
+          site = environments["site"]
+
+          widget = load_widget_for(site)
 
           return if widget.blank?
 
@@ -39,8 +48,7 @@ module Archangel
           template = widget.template
 
           if template.present?
-            rendered_widget = render_templated_widget(template,
-                                                      rendered_widget)
+            rendered_widget = render_templated_widget(template, rendered_widget)
           end
 
           rendered_widget
@@ -48,8 +56,10 @@ module Archangel
 
         protected
 
+        attr_reader :slug
+
         def load_widget_for(site)
-          site.widgets.find_by!(slug: widget_name)
+          site.widgets.find_by!(slug: slug)
         rescue StandardError
           nil
         end
