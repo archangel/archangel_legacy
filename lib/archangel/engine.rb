@@ -37,7 +37,7 @@ module Archangel
         full_path = Pathname.new("#{path}/app/themes/*/assets/**/*")
 
         path_regex = %r{assets/(javascripts|stylesheets)}
-        file_regex = %r{(auth|backend|frontend).(js|css)}
+        file_regex = /(auth|backend|frontend)\.(js|css)/
         allowed_regex = %r{([^/]+)/#{path_regex}/([^/]+)/#{file_regex}}
 
         Dir.glob(full_path).each do |file|
