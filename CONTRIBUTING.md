@@ -37,13 +37,13 @@ Archangel uses [Github Issues](https://github.com/archangel/archangel/issues) to
 
 We gladly accept pull requests to Archangel.
 
-1.  Fork the repo ([https://github.com/archangel/archangel/fork](https://github.com/archangel/archangel/fork))
-2.  Clone the fork to your local machine
-3.  Run `bundle install` inside `archangel` directory
-4.  Make your updates or improvements
-5.  Commit your changes (`git commit -am 'Did some good things'`)
-6.  Push to your fork (`git push`)
-7.  Create a new Pull Request
+1. Fork the repo ([https://github.com/archangel/archangel/fork](https://github.com/archangel/archangel/fork))
+2. Clone the fork to your local machine
+3. Run `bundle install` inside `archangel` directory
+4. Make your updates or improvements
+5. Commit your changes (`git commit -am 'Did some good things'`)
+6. Push to your fork (`git push`)
+7. Create a new Pull Request
 
 ## Testing
 

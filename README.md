@@ -1,6 +1,6 @@
 # Archangel
 
-**Archangel is currently under development. It is not ready for production use.**
+** Archangel is currently under development. It is not ready for production use. **
 
 [![Travis CI](https://travis-ci.org/archangel/archangel.svg?branch=master)](https://travis-ci.org/archangel/archangel)
 [![Coverage Status](https://coveralls.io/repos/github/archangel/archangel/badge.svg?branch=master)](https://coveralls.io/github/archangel/archangel?branch=master)
@@ -20,8 +20,8 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 
 ## Requirements
 
-*   Ruby >= 2.2.9
-*   Rails ~> 5.1.4
+* Ruby >= 2.2.9
+* Rails ~> 5.1.4
 
 ## Installation
 
@@ -99,21 +99,21 @@ $ bundle exec rspec spec --fail-fast
 
 ## Code Analysis
 
-*   [Travis CI](https://travis-ci.org/) is used for running tests.
-*   [Hound](https://houndci.com/) is used as the code analyzer in pull request.
+* [Travis CI](https://travis-ci.org/) is used for running tests.
+* [Hound](https://houndci.com/) is used as the code analyzer in pull request.
 
 ## Developers
 
-*   TODO: Archangel gem development instructions and resources
-*   TODO: Archangel instructions and resources for theme developers
-*   TODO: Archangel instructions and resources for extension developers
+* TODO: Archangel gem development instructions and resources
+* TODO: Archangel instructions and resources for theme developers
+* TODO: Archangel instructions and resources for extension developers
 
 ## Contributing
 
 A [contributing guide](CONTRIBUTING.md) is available.
 
-1.  Fork it ([https://github.com/archangel/archangel/fork](https://github.com/archangel/archangel/fork))
-2.  Create your feature branch (`git checkout -b my-new-feature`)
-3.  Commit your changes (`git commit -am 'Add some feature'`)
-4.  Push to the branch (`git push origin my-new-feature`)
-5.  Create a new Pull Request
+1. Fork it ([https://github.com/archangel/archangel/fork](https://github.com/archangel/archangel/fork))
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request

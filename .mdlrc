@@ -1,0 +1,2 @@
+rules "~MD013", "~MD014"
+tags "headers", "whitespace"
