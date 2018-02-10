@@ -18,6 +18,6 @@ Stacktrace...
 
 ## Your Environment
 
--   Ruby Version:
--   Gem Version:
--   OS and Version:
+* Ruby Version:
+* Gem Version:
+* OS and Version:

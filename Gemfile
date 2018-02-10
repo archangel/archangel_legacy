@@ -7,7 +7,8 @@ gemspec
 group :development do
   gem "brakeman", "~> 4.1", require: false
   gem "bundler-audit", "~> 0.6", require: false
-  gem "listen", "~> 3.1"
+  gem "listen", "~> 3.1", require: false
+  gem "mdl", "~> 0.4", require: false
   gem "reek", "~> 4.7", require: false
   gem "rubocop", "~> 0.52", require: false
   gem "scss_lint", "~> 0.56", require: false
