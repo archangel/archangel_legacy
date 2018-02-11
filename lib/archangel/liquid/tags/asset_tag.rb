@@ -52,7 +52,9 @@ module Archangel
 
           match = SYNTAX.match(markup)
 
-          raise SyntaxError, Archangel.t("errors.syntax.asset") if match.blank?
+          if match.blank?
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.asset")
+          end
 
           @key = ::Liquid::Variable.new(match[:key], options).name
           @attributes = {}

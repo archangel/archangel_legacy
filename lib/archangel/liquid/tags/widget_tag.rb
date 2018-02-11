@@ -22,7 +22,9 @@ module Archangel
 
           match = SYNTAX.match(markup)
 
-          raise SyntaxError, Archangel.t("errors.syntax.widget") if match.blank?
+          if match.blank?
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.widget") 
+          end
 
           @slug = ::Liquid::Variable.new(match[:slug], options).name
         end

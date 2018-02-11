@@ -44,7 +44,9 @@ module Archangel
 
           match = SYNTAX.match(markup)
 
-          raise SyntaxError, Archangel.t("errors.syntax.vimeo") if match.blank?
+          if match.blank?
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.vimeo")
+          end
 
           @key = ::Liquid::Variable.new(match[:key], options).name
           @attributes = {}

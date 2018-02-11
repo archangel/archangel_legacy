@@ -50,7 +50,7 @@ module Archangel
           match = SYNTAX.match(markup)
 
           if match.blank?
-            raise SyntaxError, Archangel.t("errors.syntax.youtube")
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.youtube")
           end
 
           @key = ::Liquid::Variable.new(match[:key], options).name

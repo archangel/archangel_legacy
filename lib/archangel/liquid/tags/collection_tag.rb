@@ -49,7 +49,7 @@ module Archangel
           match = SYNTAX.match(markup)
 
           if match.blank?
-            raise SyntaxError, Archangel.t("errors.syntax.collection")
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.collection")
           end
 
           @key = match[:key]
@@ -95,8 +95,8 @@ module Archangel
 
           site.entries
               .where(collection: collection)
-              .limit(attributes.fetch(:limit, nil))
-              .offset(attributes.fetch(:offset, nil))
+              .page(attributes.fetch(:offset, 1))
+              .per(attributes.fetch(:limit, 12))
               .map(&:attributes)
         rescue StandardError
           []
@@ -111,10 +111,7 @@ module Archangel
         end
 
         def default_values(entry)
-          {
-            id: entry.fetch("id"),
-            available_at: entry.fetch("available_at")
-          }.deep_stringify_keys
+          { "id" => entry.fetch("id", 0) }
         end
       end
     end
