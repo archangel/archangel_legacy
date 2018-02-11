@@ -21,6 +21,16 @@ module Archangel
 
           get :show, params: { path: page.path }
 
+          expect(response.content_type).to eq "text/html"
+          expect(assigns(:page)).to eq(page)
+        end
+
+        it "assigns the requested page as @page for JSON request" do
+          page = create(:page)
+
+          get :show, params: { path: page.path }, format: :json
+
+          expect(response.content_type).to eq "application/json"
           expect(assigns(:page)).to eq(page)
         end
 
