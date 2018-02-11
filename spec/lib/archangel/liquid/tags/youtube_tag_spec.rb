@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe YoutubeTag, type: :tag, disable: :verify_partial_doubles do
+      RSpec.describe YoutubeTag, type: :tag do
         let(:context) { ::Liquid::Context.new({}, {}, view: view) }
 
         it "returns default YouTube embed" do

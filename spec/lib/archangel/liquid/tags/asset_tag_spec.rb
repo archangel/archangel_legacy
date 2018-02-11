@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe AssetTag, type: :tag, disable: :verify_partial_doubles do
+      RSpec.describe AssetTag, type: :tag do
         let(:site) { create(:site) }
         let(:context) do
           ::Liquid::Context.new({ "site" => site }, {}, view: view)
