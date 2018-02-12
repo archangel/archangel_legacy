@@ -11,6 +11,14 @@ module Archangel
           ::Liquid::Context.new({ "site" => site }, {}, view: view)
         end
 
+        it "raises error with invalid syntax" do
+          content = "{% asset %}"
+
+          expect { ::Liquid::Template.parse(content).render(context) }.to(
+            raise_error(::Liquid::SyntaxError)
+          )
+        end
+
         it "returns image asset" do
           asset = create(:asset, site: site, file_name: "abc.jpg")
 

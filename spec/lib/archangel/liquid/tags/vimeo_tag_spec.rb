@@ -8,6 +8,14 @@ module Archangel
       RSpec.describe VimeoTag, type: :tag do
         let(:context) { ::Liquid::Context.new({}, {}, view: view) }
 
+        it "raises error with invalid syntax" do
+          content = "{% vimeo %}"
+
+          expect { ::Liquid::Template.parse(content).render(context) }.to(
+            raise_error(::Liquid::SyntaxError)
+          )
+        end
+
         it "returns default Vimeo embed" do
           result = ::Liquid::Template.parse("{% vimeo '183344978' %}")
                                      .render(context)

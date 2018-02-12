@@ -15,7 +15,7 @@ module Archangel
         ##
         # {% widget 'slug' %}
         #
-        SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)?\s*/o
+        SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)\s*/o
 
         def initialize(tag_name, markup, options)
           super
@@ -23,7 +23,7 @@ module Archangel
           match = SYNTAX.match(markup)
 
           if match.blank?
-            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.widget") 
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.widget")
           end
 
           @slug = ::Liquid::Variable.new(match[:slug], options).name

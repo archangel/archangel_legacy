@@ -8,6 +8,14 @@ module Archangel
       RSpec.describe YoutubeTag, type: :tag do
         let(:context) { ::Liquid::Context.new({}, {}, view: view) }
 
+        it "raises error with invalid syntax" do
+          content = "{% youtube %}"
+
+          expect { ::Liquid::Template.parse(content).render(context) }.to(
+            raise_error(::Liquid::SyntaxError)
+          )
+        end
+
         it "returns default YouTube embed" do
           result = ::Liquid::Template.parse("{% youtube '-X2atEH7nCg' %}")
                                      .render(context)

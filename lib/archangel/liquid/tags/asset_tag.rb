@@ -7,9 +7,9 @@ module Archangel
       # Asset custom tag for Liquid
       #
       # Example
-      #   {% asset "my-asset.png" %} #=>
-      #     <img src="path/to/my-asset.png" alt="">
-      #   {% asset "my-asset.png" alt="My image" class="center" %}
+      #   {% asset 'my-asset.png' %} #=>
+      #     <img src="path/to/my-asset.png" alt="my-asset.png">
+      #   {% asset 'my-asset.png' alt:'My image' class:'center' %} #=>
       #     <img src="path/to/my-asset.png" alt="My image" class="center">
       #
       class AssetTag < ApplicationTag
@@ -23,14 +23,14 @@ module Archangel
             [\w-]+\.[\w]+
             |
             #{::Liquid::QuotedString}
-          )+
+          )
         /ox
 
         ##
         # {% asset 'key' attributes %}
         #
         SYNTAX = /
-          (?<key>#{KEY_SYNTAX}+)
+          (?<key>#{KEY_SYNTAX})
           \s*
           (?<attributes>.*)
           \s*
