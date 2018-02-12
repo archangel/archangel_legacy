@@ -29,9 +29,7 @@ module Archangel
       end
 
       def self.drop_class_for(resource)
-        if resource.respond_to?(:to_ary)
-          Archangel::Liquid::CollectionDrop
-        elsif self == Archangel::Liquid::Drop
+        if self == Archangel::Liquid::Drop
           resource.drop_class || Archangel::Liquid::Drop
         else
           self

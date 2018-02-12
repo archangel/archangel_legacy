@@ -8,6 +8,8 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/archangel/archangel.svg)](https://gemnasium.com/github.com/archangel/archangel)
 [![Inline docs](http://inch-ci.org/github/archangel/archangel.svg?branch=master)](http://inch-ci.org/github/archangel/archangel)
 
+Archangel is a Rails CMS
+
 This project rocks and uses MIT-LICENSE.
 
 [Online documentation is available](http://www.rubydoc.info/github/archangel/archangel/master)
