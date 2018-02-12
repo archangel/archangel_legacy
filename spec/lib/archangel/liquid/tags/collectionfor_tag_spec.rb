@@ -28,14 +28,14 @@ module Archangel
           create(:collection, site: site, slug: "my-collection")
 
           content = <<-LIQUID
-            {% collectionfor item in 'my-collection' %}
+            {%- collectionfor item in 'my-collection' -%}
               {{ forloop.index }}: {{ item.name }}
-            {% endcollectionfor %}
+            {%- endcollectionfor -%}
           LIQUID
 
           result = ::Liquid::Template.parse(content).render(context)
 
-          expect(result).to eq("            \n")
+          expect(result).to eq("")
         end
 
         it "returns collection content" do
@@ -101,14 +101,14 @@ module Archangel
 
         it "returns nothing for unknown collection" do
           content = <<-LIQUID
-            {% collectionfor item in 'unknown-collection' %}
+            {%- collectionfor item in 'unknown-collection' -%}
               {{ forloop.index }}: {{ item.name }}
-            {% endcollectionfor %}
+            {%- endcollectionfor -%}
           LIQUID
 
           result = ::Liquid::Template.parse(content).render(context)
 
-          expect(result).to eq("            \n")
+          expect(result).to eq("")
         end
       end
     end

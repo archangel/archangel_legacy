@@ -76,28 +76,28 @@ module Archangel
           create(:field, :required, collection: collection, slug: "name")
 
           content = <<-LIQUID
-            {% collection things = 'my-collection' %}
-            {% for item in things %}
+            {%- collection things = 'my-collection' -%}
+            {%- for item in things -%}
               {{ item.name }}
-            {% endfor %}
+            {%- endfor -%}
           LIQUID
 
           result = ::Liquid::Template.parse(content).render(context)
 
-          expect(result).to eq("            \n            \n")
+          expect(result).to eq("")
         end
 
         it "returns nothing for unknown collection" do
           content = <<-LIQUID
-            {% collection things = 'unknown-collection' %}
-            {% for item in things %}
+            {%- collection things = 'unknown-collection' -%}
+            {%- for item in things -%}
               {{ item.name }}
-            {% endfor %}
+            {%- endfor -%}
           LIQUID
 
           result = ::Liquid::Template.parse(content).render(context)
 
-          expect(result).to eq("            \n            \n")
+          expect(result).to eq("")
         end
       end
     end
