@@ -52,7 +52,6 @@ en:
       syntax:
         asset: "Syntax Error in 'asset' - Valid syntax: {% asset '[name]' %}"
         collection: "Syntax Error in 'collection' - Valid syntax: {% collection [key] = '[value]' %}"
-        render_partial: "Syntax Error in 'render_partial' - Valid syntax: {% render_partial '[path]' %}"
         vimeo: "Syntax Error in 'vimeo' - Valid syntax: {% vimeo '[key]' width:640 height:480 %}"
         widget: "Syntax Error in 'widget' - Valid syntax: {% widget '[slug]' %}"
         youtube: "Syntax Error in 'youtube' - Valid syntax: {% youtube '[key]' width:640 height:480 %}"
