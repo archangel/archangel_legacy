@@ -42,16 +42,11 @@ module Archangel
 
         def collection_segment(context)
           offsets = context.registers[:for] ||= {}
-          offset = if @from == :continue
-                     offsets[@name].to_i
-                   else
-                     context.evaluate(@from).to_i
-                   end
+          offset = context.evaluate(@from).to_i
           limit = context.evaluate(@limit)
 
           environments = context.environments.first
-          collection = load_collection(environments["site"], offset, limit)
-          segment = collection
+          segment = load_collection(environments["site"], offset, limit)
 
           segment.reverse! if @reversed
 

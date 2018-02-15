@@ -99,6 +99,54 @@ module Archangel
           expect(result).to include("3: Third")
         end
 
+        it "returns collection content with a break" do
+          collection = create(:collection, site: site, slug: "my-collection")
+          create(:field, :required, collection: collection, slug: "name")
+          create(:entry, collection: collection, value: { name: "First" })
+          create(:entry, collection: collection, value: { name: "Second" })
+          create(:entry, collection: collection, value: { name: "Third" })
+
+          content = <<-LIQUID
+            {%- collectionfor item in 'my-collection' -%}
+              {% if item.name == 'Second' %}
+                {% break %}
+              {% else %}
+                {{ item.name }}
+              {% endif %}
+            {%- endcollectionfor -%}
+          LIQUID
+
+          result = ::Liquid::Template.parse(content).render(context)
+
+          expect(result).to include("Third")
+          expect(result).not_to include("Second")
+          expect(result).not_to include("First")
+        end
+
+        it "returns collection content with a continue" do
+          collection = create(:collection, site: site, slug: "my-collection")
+          create(:field, :required, collection: collection, slug: "name")
+          create(:entry, collection: collection, value: { name: "First" })
+          create(:entry, collection: collection, value: { name: "Second" })
+          create(:entry, collection: collection, value: { name: "Third" })
+
+          content = <<-LIQUID
+            {%- collectionfor item in 'my-collection' -%}
+              {% if item.name == 'Second' %}
+                {% continue %}
+              {% else %}
+                {{ item.name }}
+              {% endif %}
+            {%- endcollectionfor -%}
+          LIQUID
+
+          result = ::Liquid::Template.parse(content).render(context)
+
+          expect(result).to include("Third")
+          expect(result).not_to include("Second")
+          expect(result).to include("First")
+        end
+
         it "returns nothing for unknown collection" do
           content = <<-LIQUID
             {%- collectionfor item in 'unknown-collection' -%}
