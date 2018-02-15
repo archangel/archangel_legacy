@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe ApplicationTag, type: :tag do
+      RSpec.describe ApplicationTag, type: :liquid_tag do
       end
     end
   end

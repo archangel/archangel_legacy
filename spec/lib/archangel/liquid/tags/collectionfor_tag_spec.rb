@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe CollectionforTag, type: :tag do
+      RSpec.describe CollectionforTag, type: :liquid_tag do
         let(:site) { create(:site) }
 
         let(:context) do

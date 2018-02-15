@@ -2,12 +2,12 @@
 
 module Archangel
   module TestingSupport
-    module Tags
+    module LiquidTags
       extend ActiveSupport::Concern
       include Archangel::TestingSupport::ViewControllerContext
 
       included do
-        metadata[:type] = :tag
+        metadata[:type] = :liquid_tag
 
         before(:each) { setup_view_and_controller }
       end
@@ -16,5 +16,5 @@ module Archangel
 end
 
 RSpec.configure do |config|
-  config.include Archangel::TestingSupport::Tags, type: :tag
+  config.include Archangel::TestingSupport::LiquidTags, type: :liquid_tag
 end

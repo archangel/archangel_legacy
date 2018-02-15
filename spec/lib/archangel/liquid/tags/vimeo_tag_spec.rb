@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe VimeoTag, type: :tag do
+      RSpec.describe VimeoTag, type: :liquid_tag do
         let(:context) { ::Liquid::Context.new({}, {}, view: view) }
 
         it "raises error with invalid syntax" do

@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe WidgetTag, type: :tag do
+      RSpec.describe WidgetTag, type: :liquid_tag do
         let(:site) { create(:site) }
         let(:context) do
           ::Liquid::Context.new({ "site" => site }, {}, view: view)

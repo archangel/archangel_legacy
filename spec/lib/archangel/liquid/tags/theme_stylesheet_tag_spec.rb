@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   module Liquid
     module Tags
-      RSpec.describe ThemeStylesheetTag, type: :tag,
+      RSpec.describe ThemeStylesheetTag, type: :liquid_tag,
                                          disable: :verify_partial_doubles do
         before { create(:site) }
 
