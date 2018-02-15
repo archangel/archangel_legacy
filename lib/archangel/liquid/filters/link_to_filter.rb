@@ -4,23 +4,25 @@ module Archangel
   module Liquid
     module Filters
       ##
-      # link_to custom filter for Liquid
+      # Link custom filters for Liquid
       #
       module LinkToFilter
-        include ActionView::Helpers::UrlHelper
-
         ##
         # link_to a string
         #
         # Example
-        #   {{ "Some text" | link_to "https://example.com" }}
+        #   {{ "Some text" | link_to: "https://example.com" }}
         #     # => "<a href="https://example.com">Some text</a>"
         #
-        # @param input [String] string to titleize
-        # @return [String] the titleized string
+        # @param anchor [String] string to link
+        # @return [String] the link
         #
-        def link_to(anchor, *args)
-          link_to(args.first, anchor)
+        def link_to(link_text, *args)
+          link = args.first
+
+          return link_text if link.blank?
+
+          "<a href=\"#{link}\">#{link_text}</a>"
         end
       end
     end
