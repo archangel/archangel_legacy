@@ -8,7 +8,11 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/archangel/archangel.svg)](https://gemnasium.com/github.com/archangel/archangel)
 [![Inline docs](http://inch-ci.org/github/archangel/archangel.svg?branch=master)](http://inch-ci.org/github/archangel/archangel)
 
-Archangel is a Rails CMS
+![Archangel](archangel.png "Archangel")
+
+Archangel is a Rails CMS.
+
+The Archangel logo is made by [Joshua Boyd](http://www.joshadamboyd.com/)
 
 This project rocks and uses MIT-LICENSE.
 

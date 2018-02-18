@@ -29,7 +29,7 @@ module Archangel
     # @return [String] upload path
     #
     def default_path
-      "archangel/fallback/" + [version_name, "avatar.jpg"].compact.join("_")
+      "archangel/fallback/" + [version_name, "avatar.png"].compact.join("_")
     end
 
     ##
