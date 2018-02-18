@@ -13,7 +13,7 @@ module Archangel
       #
       class WidgetTag < ApplicationTag
         ##
-        # {% widget 'slug' %}
+        # Regex for tag syntax
         #
         SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)\s*/o
 

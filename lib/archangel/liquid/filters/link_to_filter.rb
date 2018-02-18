@@ -2,6 +2,9 @@
 
 module Archangel
   module Liquid
+    ##
+    # Archangel custom Liquid filters
+    #
     module Filters
       ##
       # Link custom filters for Liquid
@@ -14,7 +17,7 @@ module Archangel
         #   {{ "Some text" | link_to: "https://example.com" }}
         #     # => "<a href="https://example.com">Some text</a>"
         #
-        # @param anchor [String] string to link
+        # @param link_text [String] string to link
         # @return [String] the link
         #
         def link_to(link_text, *args)

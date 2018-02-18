@@ -14,7 +14,7 @@ module Archangel
       #
       class AssetTag < ApplicationTag
         ##
-        # {% asset 'key' attributes %}
+        # Regex for tag key
         #
         KEY_SYNTAX = /
           #{::Liquid::QuotedString}
@@ -27,7 +27,7 @@ module Archangel
         /ox
 
         ##
-        # {% asset 'key' attributes %}
+        # Regex for tag syntax
         #
         SYNTAX = /
           (?<key>#{KEY_SYNTAX})
@@ -37,7 +37,7 @@ module Archangel
         /omx
 
         ##
-        # {% asset 'key' attributes %}
+        # Regex for attributes
         #
         SYNTAX_ATTRIBUTES = /
           (?<key>\w+)

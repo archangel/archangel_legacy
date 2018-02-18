@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Archangel
+  ##
+  # Archangel custom Liquid resources
+  #
   module Liquid
     ##
     # Liquid Drop for singular resources

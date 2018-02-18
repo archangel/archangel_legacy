@@ -19,7 +19,7 @@ module Archangel
       #
       class CollectionTag < ApplicationTag
         ##
-        # {% collection key = 'value' options %}
+        # Regex for tag syntax
         #
         SYNTAX = /
           (?<key>#{::Liquid::VariableSignature}+)
@@ -33,7 +33,7 @@ module Archangel
         /omx
 
         ##
-        # {% collection key = 'value' options %}
+        # Regex for attributes
         #
         SYNTAX_ATTRIBUTES = /
           (?<key>\w+)
@@ -61,6 +61,12 @@ module Archangel
           end
         end
 
+        ##
+        # Render the collection object
+        #
+        # @param context [Object] the Liquid context
+        # @return [Hash] the object
+        #
         def render(context)
           environments = context.environments.first
           site = environments["site"]
@@ -70,7 +76,7 @@ module Archangel
           context.scopes.last[key] = val
           context.resource_limits.assign_score += assign_score_of(val)
 
-          ""
+          {}
         end
 
         def blank?

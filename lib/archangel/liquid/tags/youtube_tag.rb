@@ -24,7 +24,7 @@ module Archangel
       #
       class YoutubeTag < ApplicationTag
         ##
-        # {% youtube 'key' attributes %}
+        # Regex for tag syntax
         #
         SYNTAX = /
           (?<key>#{::Liquid::QuotedFragment}+)
@@ -34,7 +34,7 @@ module Archangel
         /omx
 
         ##
-        # {% youtube 'key' attributes %}
+        # Regex for attributes
         #
         SYNTAX_ATTRIBUTES = /
           (?<key>\w+)

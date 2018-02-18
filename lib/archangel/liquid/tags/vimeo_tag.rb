@@ -19,7 +19,7 @@ module Archangel
       #
       class VimeoTag < ApplicationTag
         ##
-        # {% vimeo 'key' attributes %}
+        # Regex for tag syntax
         #
         SYNTAX = /
           (?<key>#{::Liquid::QuotedFragment}+)
@@ -29,7 +29,7 @@ module Archangel
         /omx
 
         ##
-        # {% vimeo 'key' attributes %}
+        # Regex for attributes
         #
         SYNTAX_ATTRIBUTES = /
           (?<key>\w+)
