@@ -76,7 +76,7 @@ module Archangel
           context.scopes.last[key] = val
           context.resource_limits.assign_score += assign_score_of(val)
 
-          {}
+          ""
         end
 
         def blank?
