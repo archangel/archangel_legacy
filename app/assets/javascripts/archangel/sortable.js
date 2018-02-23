@@ -4,7 +4,7 @@ $(function() {
   var sort_element = document.getElementById('sortable'),
       sortable_object = new Sortable(sort_element, {
         animation: 150,
-        handle: '.glyphicon-sort',
+        handle: '.fa-sort',
         draggable: 'tr',
         ghostClass: 'sortable-ghost',
         dragClass: 'sortable-drag',

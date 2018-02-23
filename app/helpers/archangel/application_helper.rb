@@ -5,6 +5,8 @@ module Archangel
   # Application helpers
   #
   module ApplicationHelper
+    include FontAwesome::Rails::IconHelper
+
     ##
     # Site locale. Default `en`
     #

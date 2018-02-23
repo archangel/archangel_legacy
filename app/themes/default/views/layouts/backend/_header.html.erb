@@ -16,11 +16,11 @@
       <div class="collapse navbar-collapse" id="archangel-header-navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="<%= backend_profile_path %>"><span class="glyphicon glyphicon-user"></span> <%= Archangel.t(:profile) %></a>
+            <a href="<%= backend_profile_path %>"><%= fa_icon("user-circle") %> <%= Archangel.t(:profile) %></a>
           </li>
 
           <li>
-            <a rel="nofollow" data-method="delete" href="<%= destroy_user_session_path %>"><span class="glyphicon glyphicon-log-out"></span> <%= Archangel.t(:logout) %></a>
+            <a rel="nofollow" data-method="delete" href="<%= destroy_user_session_path %>"><%= fa_icon("power-off") %> <%= Archangel.t(:logout) %></a>
           </li>
         </ul>
       </div>

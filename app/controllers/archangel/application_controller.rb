@@ -21,7 +21,6 @@ module Archangel
     helper_method :current_site
 
     helper Archangel::FlashHelper
-    helper Archangel::GlyphiconHelper
 
     theme :theme_resolver
 

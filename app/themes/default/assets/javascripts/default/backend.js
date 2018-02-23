@@ -2,8 +2,9 @@
 //= require_self
 //
 //  Third-party assets
-//= require jquery2
+//= require jquery3
 //= require rails-ujs
+//= require popper
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
