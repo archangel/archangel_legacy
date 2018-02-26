@@ -1,13 +1,13 @@
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="card card-default">
+  <div class="card-body">
     <h2><%= Archangel.t(:show_resource, resource: Archangel.t(:profile)) %></h2>
 
     <%= render "buttons" %>
   </div>
 </div>
 
-<div class="profile-show panel panel-default">
-  <div class="panel-body">
+<div class="profile-show card card-default">
+  <div class="card-body">
     <%= image_tag(@profile.avatar.small.url, alt: @profile.username) %>
 
     <p>

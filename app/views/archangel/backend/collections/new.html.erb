@@ -1,13 +1,13 @@
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="card card-default">
+  <div class="card-body">
     <h2><%= Archangel.t(:new_resource, resource: @collection.model_name.human.titleize) %></h2>
 
     <%= render "buttons" %>
   </div>
 </div>
 
-<div class="collections-new panel panel-default">
-  <div class="panel-body">
+<div class="collections-new card card-default">
+  <div class="card-body">
     <%= render "form", collection: @collection %>
   </div>
 </div>

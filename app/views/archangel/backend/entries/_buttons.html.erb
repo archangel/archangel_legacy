@@ -1,20 +1,20 @@
 <ul class="nav nav-pills pull-right">
   <% if member_action? || new_action? %>
-    <li><%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_collection_entries_path(@collection)) %></li>
+    <li><%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_collection_entries_path(@collection), class: "btn btn-link btn-float") %></li>
   <% end %>
 
   <% if collection_action? || show_action? || edit_action? %>
-    <li><%= link_to(fa_icon("plus", text: Archangel.t(:new)), new_backend_collection_entry_path(@collection)) %></li>
+    <li><%= link_to(fa_icon("plus", text: Archangel.t(:new)), new_backend_collection_entry_path(@collection), class: "btn btn-link btn-float") %></li>
   <% end %>
 
   <% if show_action? %>
-    <li><%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_collection_entry_path(@collection, @entry)) %></li>
+    <li><%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_collection_entry_path(@collection, @entry), class: "btn btn-link btn-float") %></li>
   <% end %>
 
-  <li><%= link_to(fa_icon("folder-open", text: Archangel.t(:collection)), backend_collection_path(@collection)) %></li>
+  <li><%= link_to(fa_icon("folder-open", text: Archangel.t(:collection)), backend_collection_path(@collection), class: "btn btn-link btn-float") %></li>
 
   <% if show_action? || edit_action? %>
-    <li><%= link_to(fa_icon("times", text: Archangel.t(:destroy)), backend_collection_entry_path(@collection, @entry),
+    <li><%= link_to(fa_icon("times", text: Archangel.t(:destroy)), backend_collection_entry_path(@collection, @entry), class: "btn btn-link btn-float",
                                      method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %></li>
   <% end %>
 </ul>

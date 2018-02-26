@@ -1,13 +1,13 @@
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="card card-default">
+  <div class="card-body">
     <h2><%= Archangel.t(:index_resource, resource: @pages.model_name.human.titleize) %></h2>
 
     <%= render "buttons" %>
   </div>
 </div>
 
-<div class="pages-index panel panel-default">
-  <div class="panel-body">
+<div class="pages-index card card-default">
+  <div class="card-body">
     <% if @pages.present? %>
 
       <%= paginate @pages %>

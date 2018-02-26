@@ -1,0 +1,10 @@
+// Buttons =====================================================================
+
+.btn {
+  &-secondary,
+  &-secondary:hover,
+  &-warning,
+  &-warning:hover {
+    color: $white;
+  }
+}

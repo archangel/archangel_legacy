@@ -1,13 +1,13 @@
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="card card-default">
+  <div class="card-body">
     <h2><%= Archangel.t(:show_resource, resource: @asset.model_name.human.titleize) %></h2>
 
     <%= render "buttons" %>
   </div>
 </div>
 
-<div class="assets-show panel panel-default">
-  <div class="panel-body">
+<div class="assets-show card card-default">
+  <div class="card-body">
     <p>
       <strong><%= Archangel.t(:file_name) %>:</strong>
       <%= @asset.file_name %>

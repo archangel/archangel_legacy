@@ -1,11 +1,8 @@
-@import '../variables';
-
+@import '../shared/variables';
 @import 'bootstrap';
+@import '../shared/overrides';
+
 @import 'font-awesome';
 @import 'bootstrap-datetimepicker';
 @import 'selectize';
 @import 'summernote';
-
-form {
-  position: relative;
-}

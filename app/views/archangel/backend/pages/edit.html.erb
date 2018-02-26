@@ -1,13 +1,13 @@
-<div class="panel panel-default">
-  <div class="panel-body">
+<div class="card card-default">
+  <div class="card-body">
     <h2><%= Archangel.t(:edit_resource, resource: @page.model_name.human.titleize) %></h2>
 
     <%= render "buttons" %>
   </div>
 </div>
 
-<div class="pages-edit panel panel-default">
-  <div class="panel-body">
+<div class="pages-edit card card-default">
+  <div class="card-body">
     <%= render "form", page: @page %>
   </div>
 </div>
