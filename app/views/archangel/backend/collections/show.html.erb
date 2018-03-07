@@ -1,21 +1,29 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:show_resource, resource: @collection.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("circle") %> <%= Archangel.t(:show_resource, resource: @collection.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="collections-show card card-default">
-  <div class="card-body">
-    <p>
-      <strong><%= Archangel.t(:name) %>:</strong>
-      <%= @collection.name %>
-    </p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-    <p>
-      <strong><%= Archangel.t(:slug) %>:</strong>
-      <%= @collection.slug %>
-    </p>
+        <div class="card-body">
+          <p>
+            <strong><%= Archangel.t(:name) %>:</strong>
+            <%= @collection.name %>
+          </p>
+
+          <p>
+            <strong><%= Archangel.t(:slug) %>:</strong>
+            <%= @collection.slug %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

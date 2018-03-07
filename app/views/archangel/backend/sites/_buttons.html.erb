@@ -1,9 +1,9 @@
-<ul class="nav nav-pills pull-right">
+<div class="btn-group pull-right" role="group" aria-label="Button group">
   <% if edit_action? %>
-    <li><%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_site_path, class: "btn btn-link btn-float") %></li>
+    <%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_site_path, class: "btn btn-link btn-float") %>
   <% end %>
 
   <% if show_action? %>
-    <li><%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_site_path, class: "btn btn-link btn-float") %></li>
+    <%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_site_path, class: "btn btn-link btn-float") %>
   <% end %>
-</ul>
+</div>

@@ -1,37 +1,45 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:show_resource, resource: @asset.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("paperclip") %> <%= Archangel.t(:show_resource, resource: @asset.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="assets-show card card-default">
-  <div class="card-body">
-    <p>
-      <strong><%= Archangel.t(:file_name) %>:</strong>
-      <%= @asset.file_name %>
-    </p>
-
-    <p>
-      <strong><%= Archangel.t(:file) %>:</strong>
-      <%= @asset.file %>
-
-      <% if @asset.file.image? %>
-        <div>
-          <%= image_tag(@asset.file.small.url, alt: @asset.file_name) %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
         </div>
-      <% end %>
-    </p>
 
-    <p>
-      <strong><%= Archangel.t(:file_size) %>:</strong>
-      <%= number_to_human_size(@asset.file_size) %>
-    </p>
+        <div class="card-body">
+          <p>
+            <strong><%= Archangel.t(:file_name) %>:</strong>
+            <%= @asset.file_name %>
+          </p>
 
-    <p>
-      <strong><%= Archangel.t(:content_type) %>:</strong>
-      <%= @asset.content_type %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:file) %>:</strong>
+            <%= @asset.file %>
+
+            <% if @asset.file.image? %>
+              <div>
+                <%= image_tag(@asset.file.small.url, alt: @asset.file_name) %>
+              </div>
+            <% end %>
+          </p>
+
+          <p>
+            <strong><%= Archangel.t(:file_size) %>:</strong>
+            <%= number_to_human_size(@asset.file_size) %>
+          </p>
+
+          <p>
+            <strong><%= Archangel.t(:content_type) %>:</strong>
+            <%= @asset.content_type %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

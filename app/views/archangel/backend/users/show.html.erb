@@ -1,28 +1,36 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:show_resource, resource: @user.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("user") %> <%= Archangel.t(:show_resource, resource: @user.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="users-show card card-default">
-  <div class="card-body">
-    <%= image_tag(@user.avatar.small.url, alt: @user.username) %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-    <p>
-      <strong><%= Archangel.t(:name) %>:</strong>
-      <%= @user.name %>
-    </p>
+        <div class="card-body">
+          <%= image_tag(@user.avatar.small.url, alt: @user.username) %>
 
-    <p>
-      <strong><%= Archangel.t(:username) %>:</strong>
-      <%= @user.username %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:name) %>:</strong>
+            <%= @user.name %>
+          </p>
 
-    <p>
-      <strong><%= Archangel.t(:email) %>:</strong>
-      <%= @user.email %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:username) %>:</strong>
+            <%= @user.username %>
+          </p>
+
+          <p>
+            <strong><%= Archangel.t(:email) %>:</strong>
+            <%= @user.email %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

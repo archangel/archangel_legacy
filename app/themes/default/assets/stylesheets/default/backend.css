@@ -9,5 +9,5 @@
  *= require archangel/backend
  *
  *  Theme assets
- *= require_tree ./backend
+ *= require default/backend/core
  */

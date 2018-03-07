@@ -1,52 +1,60 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:index_resource, resource: @templates.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("flag") %> <%= Archangel.t(:index_resource, resource: @templates.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="templates-index card card-default">
-  <div class="card-body">
-    <% if @templates.present? %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-      <%= paginate @templates %>
+        <div class="card-body">
+          <% if @templates.present? %>
 
-      <div class="table-responsive">
-        <table class="table table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th scope="col"><%= Archangel.t(:name) %></th>
-              <th scope="col"><%= Archangel.t(:partial) %></th>
-              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
-            </tr>
-          </thead>
+            <%= paginate @templates %>
 
-          <tbody>
-            <% @templates.each do |template| %>
-              <tr>
-                <td><%= template.name %></td>
-                <td><%= template.partial? %></td>
-                <td class="actions text-right">
-                  <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_template_path(template), class: "btn btn-info btn-sm") %>
-                  <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_template_path(template), class: "btn btn-warning btn-sm") %>
-                  <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_template_path(template), class: "btn btn-danger btn-sm",
-                                                      method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"><%= Archangel.t(:name) %></th>
+                    <th scope="col"><%= Archangel.t(:partial) %></th>
+                    <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @templates.each do |template| %>
+                    <tr>
+                      <td><%= template.name %></td>
+                      <td><%= template.partial? %></td>
+                      <td class="actions text-right">
+                        <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_template_path(template), class: "btn btn-info btn-sm") %>
+                        <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_template_path(template), class: "btn btn-warning btn-sm") %>
+                        <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_template_path(template), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <%= paginate @templates %>
+
+          <% else %>
+
+            <p class="no-resources">
+              <%= Archangel.t(:no_resources, resource: @templates.model_name.human.pluralize.downcase) %>
+            </p>
+
+          <% end %>
+        </div>
       </div>
-
-      <%= paginate @templates %>
-
-    <% else %>
-
-      <p class="no-resources">
-        <%= Archangel.t(:no_resources, resource: @templates.model_name.human.pluralize.downcase) %>
-      </p>
-
-    <% end %>
+    </div>
   </div>
 </div>

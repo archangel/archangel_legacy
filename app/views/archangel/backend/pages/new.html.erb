@@ -1,13 +1,21 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:new_resource, resource: @page.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("file") %> <%= Archangel.t(:new_resource, resource: @page.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="pages-new card card-default">
-  <div class="card-body">
-    <%= render "form", page: @page %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
+
+        <div class="card-body">
+          <%= render "form", page: @page %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

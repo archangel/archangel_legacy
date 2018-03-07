@@ -1,8 +1,22 @@
-@import '../shared/variables';
+// Bootstrap theme variables
+//
+@import '../common/variables';
+//
+// Bootstrap
+//
 @import 'bootstrap';
-@import '../shared/overrides';
-
+//
+// Bootstrap theme
+//
+@import '../common/overrides';
+//
+// Archangel common libraries
+//
+// none
+//
+// 3rd party
+//
 @import 'font-awesome';
-@import 'bootstrap-datetimepicker';
-@import 'selectize';
-@import 'summernote';
+// @import 'bootstrap-datetimepicker';
+// @import 'selectize';
+// @import 'summernote';

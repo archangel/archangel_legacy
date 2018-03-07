@@ -1,13 +1,21 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:new_resource, resource: @collection.name.singularize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("circle") %> <%= Archangel.t(:new_resource, resource: @collection.name.singularize) %></h2>
   </div>
 </div>
 
-<div class="collections-new card card-default">
-  <div class="card-body">
-    <%= render "form", collection: @collection, entry: @entry %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
+
+        <div class="card-body">
+          <%= render "form", collection: @collection, entry: @entry %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

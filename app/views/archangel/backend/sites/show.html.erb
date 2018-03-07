@@ -1,40 +1,48 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:show_resource, resource: @site.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("cog") %> <%= Archangel.t(:show_resource, resource: @site.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="site-show card card-default">
-  <div class="card-body">
-    <p>
-      <%= image_tag(@site.logo.small.url, alt: @site.name) %>
-    </p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-    <p>
-      <strong><%= Archangel.t(:name) %>:</strong>
-      <%= @site.name %>
-    </p>
+        <div class="card-body">
+          <p>
+            <%= image_tag(@site.logo.small.url, alt: @site.name) %>
+          </p>
 
-    <p>
-      <strong><%= Archangel.t(:theme) %>:</strong>
-      <%= @site.theme %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:name) %>:</strong>
+            <%= @site.name %>
+          </p>
 
-    <p>
-      <strong><%= Archangel.t(:locale) %>:</strong>
-      <%= @site.locale %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:theme) %>:</strong>
+            <%= @site.theme %>
+          </p>
 
-    <p>
-      <strong><%= Archangel.t(:meta_keywords) %>:</strong>
-      <%= @site.meta_keywords %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:locale) %>:</strong>
+            <%= @site.locale %>
+          </p>
 
-    <p>
-      <strong><%= Archangel.t(:meta_description) %>:</strong>
-      <%= @site.meta_description %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:meta_keywords) %>:</strong>
+            <%= @site.meta_keywords %>
+          </p>
+
+          <p>
+            <strong><%= Archangel.t(:meta_description) %>:</strong>
+            <%= @site.meta_description %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

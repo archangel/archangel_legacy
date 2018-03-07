@@ -1,56 +1,64 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:index_resource, resource: @assets.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+    <h2><%= fa_icon("paperclip") %> <%= Archangel.t(:index_resource, resource: @assets.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="assets-index card card-default">
-  <div class="card-body">
-    <% if @assets.present? %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-      <%= paginate @assets %>
+        <div class="card-body">
+          <% if @assets.present? %>
 
-      <div class="table-responsive">
-        <table class="table table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th scope="col"><%= Archangel.t(:file) %></th>
-              <th scope="col"><%= Archangel.t(:file_name) %></th>
-              <th scope="col"><%= Archangel.t(:content_type) %></th>
-              <th scope="col"><%= Archangel.t(:file_size) %></th>
-              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
-            </tr>
-          </thead>
+            <%= paginate @assets %>
 
-          <tbody>
-            <% @assets.each do |asset| %>
-              <tr>
-                <td><%= image_tag(asset.file.tiny.url, alt: asset.file_name) %></td>
-                <td><%= asset.file_name %></td>
-                <td><%= asset.content_type %></td>
-                <td><%= number_to_human_size(asset.file_size) %></td>
-                <td class="actions text-right">
-                  <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_asset_path(asset), class: "btn btn-info btn-sm") %>
-                  <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_asset_path(asset), class: "btn btn-warning btn-sm") %>
-                  <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_asset_path(asset), class: "btn btn-danger btn-sm",
-                                                      method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"><%= Archangel.t(:file) %></th>
+                    <th scope="col"><%= Archangel.t(:file_name) %></th>
+                    <th scope="col"><%= Archangel.t(:content_type) %></th>
+                    <th scope="col"><%= Archangel.t(:file_size) %></th>
+                    <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @assets.each do |asset| %>
+                    <tr>
+                      <td><%= image_tag(asset.file.tiny.url, alt: asset.file_name) %></td>
+                      <td><%= asset.file_name %></td>
+                      <td><%= asset.content_type %></td>
+                      <td><%= number_to_human_size(asset.file_size) %></td>
+                      <td class="actions text-right">
+                        <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_asset_path(asset), class: "btn btn-info btn-sm") %>
+                        <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_asset_path(asset), class: "btn btn-warning btn-sm") %>
+                        <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_asset_path(asset), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <%= paginate @assets %>
+
+          <% else %>
+
+            <p class="no-resources">
+              <%= Archangel.t(:no_resources, resource: @assets.model_name.human.pluralize.downcase) %>
+            </p>
+
+          <% end %>
+        </div>
       </div>
-
-      <%= paginate @assets %>
-
-    <% else %>
-
-      <p class="no-resources">
-        <%= Archangel.t(:no_resources, resource: @assets.model_name.human.pluralize.downcase) %>
-      </p>
-
-    <% end %>
+    </div>
   </div>
 </div>
