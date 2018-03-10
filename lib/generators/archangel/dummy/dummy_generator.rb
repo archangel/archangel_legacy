@@ -19,7 +19,7 @@ module Archangel
       class_option :database, default: "sqlite",
                               desc: "Type of database to use in dummy app."
 
-      source_root File.expand_path("../templates", __FILE__)
+      source_root File.expand_path("templates", __dir__)
 
       ##
       # Rails flags available to be passed with generator
@@ -33,7 +33,7 @@ module Archangel
       # Do not allowing running the generator within the application
       #
       def prevent_application_dummy
-        return unless Rails.respond_to?(:root) && !Rails.root.nil?
+        return unless Rails.try(:root) && !Rails.root.blank?
 
         abort "Dummy generator cannot be run outside Archangel extension."
       end
@@ -108,8 +108,7 @@ module Archangel
         end
       end
 
-      attr_reader :lib_name
-      attr_reader :database
+      attr_reader :database, :lib_name
 
       protected
 

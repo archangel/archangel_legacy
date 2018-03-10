@@ -71,7 +71,7 @@ module Archangel
             return value if value
 
             association = object.send(attr)
-            return nil if association.nil?
+            return nil if association.blank?
 
             drop_instance =
               Archangel::Liquid::Drop.dropify(association, options)

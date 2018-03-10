@@ -5,12 +5,15 @@ require "rails/generators"
 require "highline/import"
 
 module Archangel
+  ##
+  # Archangel generator
+  #
   module Generators
     ##
     # Archangel install generator
     #
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path("../templates", __FILE__)
+      source_root File.expand_path("templates", __dir__)
 
       class_option :admin_email, type: :string, desc: "Admin email address"
       class_option :admin_name, type: :string, desc: "Admin name"
@@ -32,7 +35,7 @@ module Archangel
       # Do not allowing running the generator within the gem
       #
       def prevent_nested_install
-        return unless Rails.respond_to?(:root) && Rails.root.nil?
+        return unless Rails.try(:root) && Rails.root.blank?
 
         abort "Install generator cannot be run inside Archangel extension."
       end
