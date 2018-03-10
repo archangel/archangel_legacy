@@ -2,15 +2,21 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # Authorization helpers for testing
+    #
     module AuthorizationHelpers
+      ##
+      # Authorization helpers for controller testing
+      #
       module Controller
         def stub_authorization!(user = double("user"))
-          user.nil? ? stub_nil_authorization : stub_user_authorization(user)
+          user.blank? ? stub_blank_authorization : stub_user_authorization(user)
         end
 
         private
 
-        def stub_nil_authorization
+        def stub_blank_authorization
           allow(request.env["warden"]).to(receive(:authenticate!))
                                       .and_throw(:warden, scope: :user)
           allow(controller).to receive(:current_user).and_return(nil)
@@ -23,6 +29,9 @@ module Archangel
         end
       end
 
+      ##
+      # Authorization helpers for feature testing
+      #
       module Feature
         include Warden::Test::Helpers
 

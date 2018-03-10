@@ -2,6 +2,9 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # Controller helpers for testing
+    #
     module ControllerHelpers
       extend ActiveSupport::Concern
 

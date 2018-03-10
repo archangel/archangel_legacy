@@ -2,6 +2,9 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # Form helpers for testing
+    #
     module FormHelpers
       def submit_form
         find("input[name='commit']").click

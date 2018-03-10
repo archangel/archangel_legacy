@@ -2,6 +2,9 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # Routing helpers for testing
+    #
     module RoutingHelpers
       extend ActiveSupport::Concern
 
