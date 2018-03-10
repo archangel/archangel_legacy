@@ -2,6 +2,9 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # SimpleForm input meta type for testing
+    #
     module InputExampleGroup
       extend ActiveSupport::Concern
 

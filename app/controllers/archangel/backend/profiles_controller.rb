@@ -134,7 +134,7 @@ module Archangel
       #   }
       #
       def update
-        empty_password_params! if resource_params[:password].blank?
+        empty_password_params if resource_params.fetch(:password, nil).blank?
 
         successfully_updated =
           if needs_password?(@profile, resource_params)
@@ -143,7 +143,7 @@ module Archangel
             @profile.update_without_password(resource_params)
           end
 
-        reauth_current_user(successfully_updated)
+        reauth_current_user if successfully_updated
 
         respond_with @profile, location: -> { location_after_update }
       end
@@ -194,7 +194,7 @@ module Archangel
         backend_profile_path
       end
 
-      def empty_password_params!
+      def empty_password_params
         resource_params.delete(:password)
         resource_params.delete(:password_confirmation)
       end
@@ -203,8 +203,8 @@ module Archangel
         params[:password].present?
       end
 
-      def reauth_current_user(successful)
-        bypass_sign_in(@profile) if successful
+      def reauth_current_user
+        bypass_sign_in(@profile)
       end
     end
   end

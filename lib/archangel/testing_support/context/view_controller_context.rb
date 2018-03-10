@@ -2,6 +2,9 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # View Controller testing support
+    #
     module ViewControllerContext
       extend ActiveSupport::Concern
 

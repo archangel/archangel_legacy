@@ -43,6 +43,13 @@ module Archangel
           (?<value>#{::Liquid::QuotedFragment})
         /ox
 
+        ##
+        # Collection for Liquid
+        #
+        # @param tag_name [String] the Liquid tag name
+        # @param markup [String] the passed options
+        # @param options [Object] options
+        #
         def initialize(tag_name, markup, options)
           super
 

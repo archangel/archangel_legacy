@@ -5,8 +5,22 @@ module Archangel
   # Application base policy
   #
   class ApplicationPolicy
-    attr_reader :user, :record
+    ##
+    # Record to check
+    #
+    attr_reader :record
 
+    ##
+    # User to check policy for
+    #
+    attr_reader :user
+
+    ##
+    # Policy initializer
+    #
+    # @param user [Object] the user
+    # @param record [Object] the record
+    #
     def initialize(user, record)
       @user = user
       @record = record
@@ -88,8 +102,22 @@ module Archangel
     # Nested scope resource
     #
     class Scope
-      attr_reader :user, :scope
+      ##
+      # Scope to check
+      #
+      attr_reader :scope
 
+      ##
+      # User to check policy for
+      #
+      attr_reader :user
+
+      ##
+      # Policy scope initializer
+      #
+      # @param user [Object] the user
+      # @param scope [Object] the scope
+      #
       def initialize(user, scope)
         @user = user
         @scope = scope

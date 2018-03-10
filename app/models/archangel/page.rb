@@ -109,13 +109,15 @@ module Archangel
     end
 
     def within_valid_path?
-      [
-        Archangel.config.auth_path,
-        Archangel.config.backend_path,
-        Archangel.config.frontend_path
-      ].reject(&:empty?).each do |restricted_path|
-        return false if %r{^#{slug}/?}.match?(restricted_path)
+      reserved_paths.reject(&:empty?).each do |path|
+        return false if %r{^#{slug}/?}.match?(path)
       end
+    end
+
+    def reserved_paths
+      Archangel.config.to_h.select do |key, _val|
+        %i[auth_path backend_path frontend_path].include?(key)
+      end.values
     end
   end
 end

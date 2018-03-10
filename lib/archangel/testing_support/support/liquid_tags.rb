@@ -2,6 +2,9 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # Liquid tag meta type for testing
+    #
     module LiquidTags
       extend ActiveSupport::Concern
       include Archangel::TestingSupport::ViewControllerContext

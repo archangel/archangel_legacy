@@ -2,6 +2,9 @@
 
 module Archangel
   module TestingSupport
+    ##
+    # Liquid filter meta type for testing
+    #
     module LiquidFilters
       extend ActiveSupport::Concern
       include Archangel::TestingSupport::ViewControllerContext

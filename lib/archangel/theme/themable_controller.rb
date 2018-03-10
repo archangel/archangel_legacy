@@ -9,11 +9,14 @@ module Archangel
     # Apply Archangel theme to page
     #
     class ThemableController
+      ##
+      # Theme name
+      #
       attr_reader :theme_name
 
       class << self
         ##
-        # Applt theme
+        # Apply theme
         #
         # @param controller_class [Class] the controller
         # @param theme [String] the theme
@@ -57,6 +60,12 @@ module Archangel
         end
       end
 
+      ##
+      # Theme initializer
+      #
+      # @param controller [Object] the controller
+      # @param theme [String] the theme
+      #
       def initialize(controller, theme)
         @controller = controller
         @theme_name = theme_name_identifier(theme)
