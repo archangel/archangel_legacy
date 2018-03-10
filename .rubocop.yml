@@ -21,9 +21,6 @@ Metrics/BlockLength:
     - 'lib/archangel/testing_support/**/*.rb'
     - 'spec/**/*.rb'
 
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: always
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
