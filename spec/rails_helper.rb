@@ -19,7 +19,7 @@ end
 ENV["RAILS_ENV"] ||= "test"
 
 begin
-  require File.expand_path("../dummy/config/environment", __FILE__)
+  require File.expand_path("dummy/config/environment", __dir__)
 rescue LoadError
   puts "Could not load test application. Run `bundle exec rake dummy_app` first"
   exit
