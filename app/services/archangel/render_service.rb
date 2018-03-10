@@ -5,8 +5,33 @@ module Archangel
   # Liquid render service
   #
   class RenderService
-    attr_reader :assigns, :local_filters, :local_registers, :template
+    ##
+    # Variable assignments
+    #
+    attr_reader :assigns
 
+    ##
+    # Local filters
+    #
+    attr_reader :local_filters
+
+    ##
+    # Local registers
+    #
+    attr_reader :local_registers
+
+    ##
+    # Template to Liquidize
+    #
+    attr_reader :template
+
+    ##
+    # Liquid renderer
+    #
+    # @param template [String] the Liquid template
+    # @param assigns [Object] the variable assignments
+    # @param options [Object] the Liquid options
+    #
     def initialize(template, assigns = {}, options = {})
       @template = template
       @assigns = assigns

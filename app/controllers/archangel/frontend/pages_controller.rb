@@ -58,45 +58,91 @@ module Archangel
 
       protected
 
+      ##
+      # Find and assign resource to the view
+      #
       def set_resource
         page_path = params.fetch(:path, nil)
 
         @page = page_path.blank? ? find_homepage : find_page(page_path)
       end
 
+      ##
+      # Assign meta tags to view
+      #
       def assign_meta_tags
-        apply_meta_tags title: @page.title,
-                        description: @page.meta_description,
-                        keywords: @page.meta_keywords.to_s.split(",")
+        apply_meta_tags(page_meta_tags)
       end
 
+      ##
+      # Meta tags for the page
+      #
+      # @return [Object] the page meta tags
+      #
+      def page_meta_tags
+        {
+          title: @page.title,
+          description: @page.meta_description,
+          keywords: @page.meta_keywords.to_s.split(",")
+        }
+      end
+
+      ##
+      # Check to redirect to homepage root path
+      #
+      # @return [Boolean] redirect or not
+      #
       def redirect_to_homepage?
         return false unless @page
 
         (params.fetch(:path, nil) == @page.path) && @page.homepage?
       end
 
+      ##
+      # Redirect to homepage root path is page is marked as the homepage
+      #
       def redirect_to_homepage
         redirect_to root_path, status: :moved_permanently
       end
 
+      ##
+      # Find the homepage
+      #
+      # @return [Object] the homepage
+      #
       def find_homepage
         current_site.pages.published.homepage.first!
       end
 
+      ##
+      # Find the requested page
+      #
+      # @return [Object] the page
+      #
       def find_page(path)
         current_site.pages.published.find_by!(path: path)
       end
 
+      ##
+      # Render content
+      #
+      # @return [String] the rendered Liquid content
+      #
       def liquid_rendered_content
         Archangel::RenderService.call(@page.content, page: @page,
                                                      site: current_site)
       end
 
+      ##
+      # Render content with template
+      #
+      # @return [String] the rendered Liquid template
+      #
       def liquid_rendered_template_content
         content = liquid_rendered_content
 
         Archangel::TemplateRenderService.call(@page.template,
+                                              site: current_site,
                                               content_for_layout: content)
       end
     end

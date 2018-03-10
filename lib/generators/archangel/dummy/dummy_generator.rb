@@ -22,6 +22,16 @@ module Archangel
       source_root File.expand_path("templates", __dir__)
 
       ##
+      # Database type
+      #
+      attr_reader :database
+
+      ##
+      # Library name
+      #
+      attr_reader :lib_name
+
+      ##
       # Rails flags available to be passed with generator
       #
       PASSTHROUGH_OPTIONS = %i[
@@ -107,8 +117,6 @@ module Archangel
           paths.each { |path| remove_file path }
         end
       end
-
-      attr_reader :database, :lib_name
 
       protected
 

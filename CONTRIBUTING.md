@@ -134,3 +134,9 @@ Build the documentation and list all undocumented objects
 ```
 $ yard stats --list-undoc
 ```
+
+Inch documentation statistics can be generated
+
+```
+$ inch
+```

@@ -69,11 +69,16 @@ module Archangel
     ##
     # Error 401
     #
+    # Render a 401 (unauthorized) error response
+    #
     # Response
     #   {
     #     "status": 401,
     #     "error": "Access is denied due to invalid credentials"
     #   }
+    #
+    # @param exception [Object] error object
+    # @return [String] response
     #
     def render_401_error(exception = nil)
       render_error("archangel/errors/error_401", :unauthorized, exception)
@@ -82,11 +87,16 @@ module Archangel
     ##
     # Error 404
     #
+    # Render a 404 (not found) error response
+    #
     # Response
     #   {
     #     "status": 404,
     #     "error": "Page not found"
     #   }
+    #
+    # @param exception [Object] error object
+    # @return [String] response
     #
     def render_404_error(exception = nil)
       render_error("archangel/errors/error_404", :not_found, exception)
@@ -103,6 +113,11 @@ module Archangel
     #     "status": XYZ,
     #     "error": "Error message"
     #   }
+    #
+    # @param path [String] error template path
+    # @param status [String,Symbol] response status code
+    # @param _exception [Object] error object
+    # @return [String] response
     #
     def render_error(path, status, _exception)
       respond_to do |format|
