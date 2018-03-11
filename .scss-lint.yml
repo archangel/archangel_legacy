@@ -9,3 +9,7 @@ exclude:
 linters:
   ImportantRule:
     enabled: false
+
+  NestingDepth:
+    enabled: true
+    max_depth: 4
