@@ -84,12 +84,14 @@ app-root {
     // }
   }
 
-  .main, .app-footer {
+  .main,
+  .app-footer {
     margin-left: $sidebar-width;
   }
 
   &.sidebar-hidden {
-    .main, .app-footer {
+    .main,
+    .app-footer {
       margin-left: 0;
     }
   }
@@ -116,7 +118,8 @@ app-root {
     }
 
     &.sidebar-fixed {
-      .main, .app-footer {
+      .main,
+      .app-footer {
         margin-left: $sidebar-compact-width;
       }
 
@@ -125,7 +128,8 @@ app-root {
       }
 
       &.sidebar-hidden {
-        .main, .app-footer {
+        .main,
+        .app-footer {
           margin-left: 0;
         }
       }
@@ -148,7 +152,8 @@ app-root {
     }
 
     &.sidebar-fixed {
-      .main, .app-footer {
+      .main,
+      .app-footer {
         margin-left: $sidebar-minimized-width;
       }
 
@@ -157,7 +162,8 @@ app-root {
       }
 
       &.sidebar-hidden {
-        .main, .app-footer {
+        .main,
+        .app-footer {
           margin-left: 0;
         }
       }
@@ -185,12 +191,14 @@ app-root {
     }
   }
 
-  .main, .app-footer {
+  .main,
+  .app-footer {
     margin-right: $aside-menu-width;
   }
 
   &.aside-menu-hidden {
-    .main, .app-footer {
+    .main,
+    .app-footer {
       margin-right: 0;
     }
   }
@@ -255,13 +263,15 @@ app-root {
     }
   }
 
-  &.sidebar-hidden, &.sidebar-off-canvas {
+  &.sidebar-hidden,
+  &.sidebar-off-canvas {
     .main .breadcrumb {
       left: 0;
     }
   }
 
-  &.aside-menu-hidden, &.aside-menu-off-canvas {
+  &.aside-menu-hidden,
+  &.aside-menu-off-canvas {
     .main .breadcrumb {
       right: 0;
     }
@@ -363,7 +373,8 @@ app-root {
     }
   }
 
-  .main, .app-footer {
+  .main,
+  .app-footer {
     margin-left: 0 !important;
   }
 

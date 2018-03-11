@@ -90,7 +90,8 @@
     text-transform: uppercase;
   }
 
-  .nav-divider, .divider {
+  .nav-divider,
+  .divider {
     height: 10px;
   }
 
@@ -362,7 +363,8 @@
         @include sidebar-width($sidebar-borders, $sidebar-minimized-width);
       }
 
-      .nav-divider, .divider,
+      .nav-divider,
+      .divider,
       .nav-title,
       .sidebar-footer,
       .sidebar-form,

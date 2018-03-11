@@ -120,7 +120,8 @@
     right: 0;
     //height: inherit;
 
-    a, button {
+    a,
+    button {
       display: block;
       float: left;
       width: 50px;
@@ -137,7 +138,8 @@
         text-decoration: none;
       }
 
-      [class^="icon-"], [class*=" icon-"] {
+      [class^="icon-"],
+      [class*=" icon-"] {
         display: inline-block;
         vertical-align: middle;
       }
@@ -156,7 +158,8 @@
       width: 230px;
       margin: 6px;
 
-      .input-group-prepend, .input-group-append {
+      .input-group-prepend,
+      .input-group-append {
         background: #fff;
       }
 
@@ -185,7 +188,8 @@
 }
 
 .card {
-  &.drag, .drag {
+  &.drag,
+  .drag {
     cursor: move;
   }
 }

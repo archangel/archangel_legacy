@@ -50,12 +50,14 @@
   }
 
   .sidebar-fixed {
-    .main, .app-footer {
+    .main,
+    .app-footer {
       margin-right: $sidebar-width;
     }
 
     &.sidebar-hidden {
-      .main, .app-footer {
+      .main,
+      .app-footer {
         margin-right: 0;
       }
     }
@@ -74,12 +76,14 @@
     }
 
     &.sidebar-fixed {
-      .main, .app-footer {
+      .main,
+      .app-footer {
         margin-right: $sidebar-minimized-width;
       }
 
       &.sidebar-hidden {
-        .main, .app-footer {
+        .main,
+        .app-footer {
           margin-left: 0;
         }
       }
@@ -102,13 +106,15 @@
       left: 0;
     }
 
-    .main, .app-footer {
+    .main,
+    .app-footer {
       //margin-right: 0;
       margin-left: $aside-menu-width;
     }
 
     &.aside-menu-hidden {
-      .main, .app-footer {
+      .main,
+      .app-footer {
         margin-left: 0;
       }
     }
@@ -144,7 +150,7 @@
               margin-top: 2px;
               // margin-left: 10px;
             }
-            
+
             &.nav-dropdown-toggle {
               &::before {
                 position: absolute;
