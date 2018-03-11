@@ -7,16 +7,19 @@
 
   .nav-tabs {
     border-color: $border-color;
+
     .nav-link {
       padding: $aside-menu-nav-padding-y $aside-menu-nav-padding-x;
       color: $body-color;
       border-top: 0;
+
       &.active {
         color: theme-color("primary");
         border-right-color: $border-color;
         border-left-color: $border-color;
       }
     }
+
     .nav-item:first-child {
       .nav-link {
         border-left: 0;

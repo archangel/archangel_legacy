@@ -165,11 +165,14 @@
     @each $color, $value in $theme-colors {
       &.nav-link-#{$color} {
         background: $value;
+
         i {
           color: rgba(255,255,255,.7);
         }
+
         &:hover {
           background: darken($value,5%) !important;
+
           i {
             color: #fff;
           }
@@ -206,6 +209,7 @@
     @if $enable-sidebar-nav-rounded {
       border-radius: $border-radius;
     }
+
     > .nav-dropdown-items {
       max-height: 1500px;
     }
@@ -285,6 +289,7 @@
 
     &:hover {
       background-color: $sidebar-minimizer-hover-bg;
+
       &::before {
         background-image: $sidebar-minimizer-hover-indicator;
       }
@@ -343,6 +348,7 @@
     .hidden-cn {
       display: none;
     }
+
     .sidebar {
       z-index: $zindex-sticky - 1;
 
@@ -442,6 +448,7 @@
 
         &:hover {
           background: $sidebar-nav-link-hover-bg;
+
           > .nav-dropdown-items {
             position: absolute;
             left: $sidebar-minimized-width;

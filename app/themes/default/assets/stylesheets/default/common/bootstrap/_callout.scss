@@ -22,16 +22,20 @@
   border: 1px solid $border-color;
   border-left-width: .25rem;
 }
+
 .callout code {
   border-radius: .25rem;
 }
+
 .callout h4 {
   margin-top: 0;
   margin-bottom: .25rem;
 }
+
 .callout p:last-child {
   margin-bottom: 0;
 }
+
 .callout + .callout {
   margin-top: - .25rem;
 }

@@ -56,6 +56,7 @@ app-root {
     z-index: $zindex-sticky;
     width: 100%;
   }
+
   .app-body {
     margin-top: $navbar-height;
   }
@@ -129,6 +130,7 @@ app-root {
         }
       }
     }
+
     .sidebar-minimizer {
       display: none;
     }
@@ -294,9 +296,11 @@ app-root {
 .aside-menu {
   transition: margin-left $layout-transition-speed, margin-right $layout-transition-speed, width $layout-transition-speed, flex $layout-transition-speed;
 }
+
 .sidebar-nav {
   transition: width $layout-transition-speed;
 }
+
 .breadcrumb {
   transition: left $layout-transition-speed, right $layout-transition-speed, width $layout-transition-speed;
 }

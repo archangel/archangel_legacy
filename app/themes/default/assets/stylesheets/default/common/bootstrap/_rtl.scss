@@ -134,14 +134,17 @@
         .nav-item {
           .nav-link {
             direction: rtl;
+
             i {
               margin: 0 0 0 ($sidebar-nav-link-padding-x / 2);
             }
+
             .badge {
               float: left;
               margin-top: 2px;
               // margin-left: 10px;
             }
+            
             &.nav-dropdown-toggle {
               &::before {
                 position: absolute;
@@ -151,6 +154,7 @@
               }
             }
           }
+
           &.nav-dropdown {
             &.open {
               > .nav-link.nav-dropdown-toggle::before {
@@ -166,16 +170,19 @@
   .sidebar-minimized .sidebar {
     .nav-link {
       padding-right: 0;
+
       i {
         float: right;
         padding: 0;
         margin: 0;
       }
+
       .badge {
         right: auto;
         left: 15px;
       }
     }
+
     .nav > .nav-dropdown {
 
       &:hover {

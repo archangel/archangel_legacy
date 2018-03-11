@@ -1,10 +1,10 @@
 .card {
   margin-bottom: 1.5 * $spacer;
 
-  // Cards with color accent
   @each $color, $value in $theme-colors {
     &.bg-#{$color} {
       border-color: darken($value, 12.5%);
+
       .card-header {
         background-color: darken($value, 3%);
         border-color: darken($value, 12.5%);
@@ -61,9 +61,11 @@
   .btn {
     margin-top: - $input-btn-padding-y;
   }
+
   .btn-sm {
     margin-top: - $input-btn-padding-y-sm;
   }
+
   .btn-lg {
     margin-top: - $input-btn-padding-y-lg;
   }
@@ -111,6 +113,7 @@
   > i {
     margin-right: $spacer / 2;
   }
+
   .card-actions {
     position: absolute;
     top: 0;

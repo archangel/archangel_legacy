@@ -51,6 +51,7 @@
     border-radius: 2px;
     transition: opacity background .15s ease-out;
   }
+
   @if $type == text or $type == icon {
     .switch-label::before,
     .switch-label::after {
@@ -62,11 +63,13 @@
       text-align: center;
       transition: inherit;
     }
+
     .switch-label::before {
       right: 1px;
       color: $gray-200;
       content: attr(data-off);
     }
+
     .switch-label::after {
       left: 1px;
       color: #fff;
@@ -74,12 +77,15 @@
       opacity: 0;
     }
   }
+
   .switch-input:checked ~ .switch-label {
     //background: $gray-lightest;
   }
+
   .switch-input:checked ~ .switch-label::before {
     opacity: 0;
   }
+
   .switch-input:checked ~ .switch-label::after {
     opacity: 1;
   }
@@ -115,9 +121,11 @@
     &.switch-lg {
       @include switch-size($switch-lg-width, $switch-lg-height, $switch-lg-font-size, $handle-margin);
     }
+
     &.switch-sm {
       @include switch-size($switch-sm-width, $switch-sm-height, $switch-sm-font-size, $handle-margin);
     }
+
     &.switch-xs {
       @include switch-size($switch-xs-width, $switch-xs-height, $switch-xs-font-size, $handle-margin);
     }
@@ -127,9 +135,11 @@
     &.switch-lg {
       @include switch-size($switch-text-lg-width, $switch-text-lg-height, $switch-text-lg-font-size, $handle-margin);
     }
+
     &.switch-sm {
       @include switch-size($switch-text-sm-width, $switch-text-sm-height, $switch-text-sm-font-size, $handle-margin);
     }
+
     &.switch-xs {
       @include switch-size($switch-text-xs-width, $switch-text-xs-height, $switch-text-xs-font-size, $handle-margin);
     }
@@ -139,9 +149,11 @@
     &.switch-lg {
       @include switch-size($switch-icon-lg-width, $switch-icon-lg-height, $switch-icon-lg-font-size, $handle-margin);
     }
+
     &.switch-sm {
       @include switch-size($switch-icon-sm-width, $switch-icon-sm-height, $switch-icon-sm-font-size, $handle-margin);
     }
+
     &.switch-xs {
       @include switch-size($switch-icon-xs-width, $switch-icon-xs-height, $switch-icon-xs-font-size, $handle-margin);
     }
@@ -151,9 +163,11 @@
     &.switch-lg {
       @include switch-size($switch-lg-width, $switch-lg-height, $switch-lg-font-size, 0);
     }
+
     &.switch-sm {
       @include switch-size($switch-sm-width, $switch-sm-height, $switch-sm-font-size, 0);
     }
+
     &.switch-xs {
       @include switch-size($switch-xs-width, $switch-xs-height, $switch-xs-font-size, 0);
     }
@@ -280,6 +294,7 @@ $switch-icon-xs-font-size: 7px;
   .switch-label::before {
     right: 2px !important;
   }
+
   .switch-label::after {
     left: 2px !important;
   }
