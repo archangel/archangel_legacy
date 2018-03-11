@@ -1,9 +1,9 @@
 .aside-menu {
+  @include borders($aside-menu-borders);
   z-index: $zindex-sticky - 1;
   width: $aside-menu-width;
   color: $aside-menu-color;
   background: $aside-menu-bg;
-  @include borders($aside-menu-borders);
 
   .nav-tabs {
     border-color: $border-color;

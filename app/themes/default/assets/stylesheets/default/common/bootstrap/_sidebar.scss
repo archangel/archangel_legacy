@@ -1,11 +1,11 @@
 // scss-lint:disable NestingDepth, SelectorDepth
 .sidebar {
+  @include borders($sidebar-borders);
   display: flex;
   flex-direction: column;
   padding: $sidebar-padding;
   color: $sidebar-color;
   background: $sidebar-bg;
-  @include borders($sidebar-borders);
 
   .sidebar-close {
     position: absolute;
@@ -46,12 +46,12 @@
   }
 
   .sidebar-nav {
+    @include sidebar-width($sidebar-borders, $sidebar-width);
     position: relative;
     flex: 1;
     overflow-x: hidden;
     overflow-y: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    @include sidebar-width($sidebar-borders, $sidebar-width);
 
     &::-webkit-scrollbar {
       position: absolute;
@@ -114,12 +114,12 @@
   }
 
   .nav-link {
+    @include borders($sidebar-nav-link-borders);
     display: block;
     padding: $sidebar-nav-link-padding-y $sidebar-nav-link-padding-x;
     color: $sidebar-nav-link-color;
     text-decoration: none;
     background: $sidebar-nav-link-bg;
-    @include borders($sidebar-nav-link-borders);
     @if $enable-sidebar-nav-rounded {
       border-radius: $border-radius;
     }
@@ -139,9 +139,9 @@
     }
 
     &.active {
+      @include borders($sidebar-nav-link-active-borders);
       color: $sidebar-nav-link-active-color;
       background: $sidebar-nav-link-active-bg;
-      @include borders($sidebar-nav-link-active-borders);
 
       i {
         color: $sidebar-nav-link-active-icon-color;
@@ -149,9 +149,9 @@
     }
 
     &:hover {
+      @include borders($sidebar-nav-link-hover-borders);
       color: $sidebar-nav-link-hover-color;
       background: $sidebar-nav-link-hover-bg;
-      @include borders($sidebar-nav-link-hover-borders);
 
       i {
         color: $sidebar-nav-link-hover-icon-color;
@@ -204,8 +204,8 @@
 
   // ex.  <li class="nav-item nav-dropdown">
   .nav-dropdown.open {
-    background: $sidebar-nav-dropdown-bg;
     @include borders($sidebar-nav-dropdown-borders);
+    background: $sidebar-nav-dropdown-bg;
     @if $enable-sidebar-nav-rounded {
       border-radius: $border-radius;
     }
@@ -255,18 +255,19 @@
   }
 
   .sidebar-footer {
+    @include borders($sidebar-footer-borders);
     flex: 0 0 $sidebar-footer-height;
     padding: $sidebar-footer-padding-y $sidebar-footer-padding-x;
     background: $sidebar-footer-bg;
-    @include borders($sidebar-footer-borders);
   }
 
   .sidebar-minimizer {
+    @include borders($sidebar-minimizer-borders);
     position: relative;
     flex: 0 0 $sidebar-minimizer-height;
     background-color: $sidebar-minimizer-bg;
     border: 0;
-    @include borders($sidebar-minimizer-borders);
+
 
     &::before {
       position: absolute;
@@ -353,8 +354,8 @@
       z-index: $zindex-sticky - 1;
 
       .sidebar-nav {
-        overflow: visible;
         @include sidebar-width($sidebar-borders, $sidebar-minimized-width);
+        overflow: visible;
       }
 
       .nav {

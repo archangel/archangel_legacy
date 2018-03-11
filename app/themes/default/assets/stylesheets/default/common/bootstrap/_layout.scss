@@ -311,12 +311,12 @@ app-root {
 
 @include media-breakpoint-down(md) {
   .app-header.navbar {
+    @include borders($navbar-brand-border);
     position: fixed !important;
     z-index: $zindex-sticky;
     width: 100%;
     text-align: center;
     background-color: $navbar-brand-bg;
-    @include borders($navbar-brand-border);
 
     .navbar-toggler {
       @if (lightness( $navbar-brand-bg ) > 40) {

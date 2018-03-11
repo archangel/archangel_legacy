@@ -1,20 +1,20 @@
 .app-header.navbar {
+  @include borders($navbar-border);
   position: relative;
   flex-direction: row;
   height: $navbar-height;
   padding: 0;
   margin: 0;
   background-color: $navbar-bg;
-  @include borders($navbar-border);
 
   .navbar-brand {
+    @include borders($navbar-brand-border);
     display: inline-block;
     width: $navbar-brand-width;
     height: $navbar-height;
     padding: $navbar-padding-y $navbar-padding-x;
     margin-right: 0;
     background-color: $navbar-brand-bg;
-    @include borders($navbar-brand-border);
   }
 
   .navbar-toggler {
@@ -112,11 +112,11 @@
   .brand-minimized {
     .app-header.navbar {
       .navbar-brand {
+        @include borders($navbar-brand-minimized-border);
         width: $navbar-brand-minimized-width;
         background-color: $navbar-brand-minimized-bg;
         background-image: $navbar-brand-minimized-logo;
         background-size: $navbar-brand-minimized-logo-size;
-        @include borders($navbar-brand-minimized-border);
       }
     }
   }

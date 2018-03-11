@@ -42,6 +42,7 @@ button {
 .btn-vine,
 .btn-foursquare,
 .btn-vimeo {
+  @include button-social-size($input-btn-padding-y, $input-btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius);
   position: relative;
   overflow: hidden;
   color: #fff !important;
@@ -79,8 +80,6 @@ button {
       margin-left: 0 !important;
     }
   }
-
-  @include button-social-size($input-btn-padding-y, $input-btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius);
 
   &.btn-lg {
     @include button-social-size($input-btn-padding-y-lg, $input-btn-padding-x-lg, $font-size-lg, $line-height-lg, $btn-border-radius-lg);

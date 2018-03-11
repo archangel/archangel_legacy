@@ -6,12 +6,12 @@
   @include border-radius($border-radius);
 
   &::before {
+    @include border-radius($border-radius);
     width: ($padding-y * 2) + ($font-size * $line-height);
     height: ($padding-y * 2) + ($font-size * $line-height);
     padding: $padding-y 0;
     font-size: $font-size;
     line-height: $line-height;
-    @include border-radius($border-radius);
   }
 
   span {

@@ -1,4 +1,4 @@
 .breadcrumb {
-  position: relative;
   @include borders($breadcrumb-borders);
+  position: relative;
 }
