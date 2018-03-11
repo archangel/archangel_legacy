@@ -9,8 +9,8 @@ button {
 }
 
 .btn {
-  [class^="icon-"],
-  [class*=" icon-"] {
+  [class^='icon-'],
+  [class*=' icon-'] {
     display: inline-block;
     margin-top: -2px;
     vertical-align: middle;
@@ -52,7 +52,7 @@ button {
     top: 0;
     left: 0;
     display: block;
-    font-family: "FontAwesome";
+    font-family: 'FontAwesome';
     font-style: normal;
     font-weight: normal;
     -moz-osx-font-smoothing: grayscale;
@@ -97,7 +97,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f09a";
+    content: '\f09a';
     background: darken($color, 5%);
 
   }
@@ -116,7 +116,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f099";
+    content: '\f099';
     background: darken($color, 5%);
 
   }
@@ -135,7 +135,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f0e1";
+    content: '\f0e1';
     background: darken($color, 5%);
 
   }
@@ -154,7 +154,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f16e";
+    content: '\f16e';
     background: darken($color, 5%);
 
   }
@@ -173,7 +173,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f173";
+    content: '\f173';
     background: darken($color, 5%);
 
   }
@@ -192,7 +192,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f168";
+    content: '\f168';
     background: darken($color, 5%);
 
   }
@@ -211,7 +211,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f09b";
+    content: '\f09b';
     background: darken($color, 5%);
 
   }
@@ -230,7 +230,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f13b";
+    content: '\f13b';
     background: darken($color, 5%);
 
   }
@@ -249,7 +249,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f19b";
+    content: '\f19b';
     background: darken($color, 5%);
 
   }
@@ -268,7 +268,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f16c";
+    content: '\f16c';
     background: darken($color, 5%);
 
   }
@@ -287,7 +287,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f13c";
+    content: '\f13c';
     background: darken($color, 5%);
 
   }
@@ -306,7 +306,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f167";
+    content: '\f167';
     background: darken($color, 5%);
 
   }
@@ -325,7 +325,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f17d";
+    content: '\f17d';
     background: darken($color, 5%);
 
   }
@@ -344,7 +344,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f0d5";
+    content: '\f0d5';
     background: darken($color, 5%);
 
   }
@@ -363,7 +363,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f16d";
+    content: '\f16d';
     background: darken($color, 5%);
 
   }
@@ -382,7 +382,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f0d2";
+    content: '\f0d2';
     background: darken($color, 5%);
 
   }
@@ -401,7 +401,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f189";
+    content: '\f189';
     background: darken($color, 5%);
 
   }
@@ -420,7 +420,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f19e";
+    content: '\f19e';
     background: darken($color, 5%);
 
   }
@@ -439,7 +439,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f1b4";
+    content: '\f1b4';
     background: darken($color, 5%);
 
   }
@@ -458,7 +458,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f16b";
+    content: '\f16b';
     background: darken($color, 5%);
 
   }
@@ -477,7 +477,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f1a1";
+    content: '\f1a1';
     background: darken($color, 5%);
 
   }
@@ -496,7 +496,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f1bc";
+    content: '\f1bc';
     background: darken($color, 5%);
 
   }
@@ -515,7 +515,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f1ca";
+    content: '\f1ca';
     background: darken($color, 5%);
 
   }
@@ -534,7 +534,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f180";
+    content: '\f180';
     background: darken($color, 5%);
 
   }
@@ -553,7 +553,7 @@ button {
   background: $color;
 
   &::before {
-    content: "\f194";
+    content: '\f194';
     background: darken($color, 5%);
 
   }
