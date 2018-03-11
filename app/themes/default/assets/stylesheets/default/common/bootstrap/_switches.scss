@@ -33,6 +33,7 @@
   }
 
   .switch-label {
+    background-color: $white;
     border: 1px solid $border-color;
     border-radius: 2px;
     display: block;
@@ -43,12 +44,7 @@
     text-transform: uppercase;
     transition: opacity background .15s ease-out;
     @if $type == icon {
-      font-family: FontAwesome;
-    }
-    @if $type == ddd {
-      background-color: $gray-100;
-    } @else {
-      background-color: $white;
+      font-family: 'FontAwesome';
     }
   }
 
@@ -100,19 +96,10 @@
     top: $handle-margin;
     transition: left .15s ease-out;
     width: $height - $handle-margin * 2;
-    @if $type == ddd {
-      border: 0;
-      box-shadow: 0 2px 5px rgba($black, .3);
-    }
   }
 
   .switch-input:checked ~ .switch-handle {
     left: $width - $height + $handle-margin;
-  }
-
-
-  @if $type == ddd {
-    @extend %switch-pill;
   }
 
   //size variations
@@ -158,19 +145,6 @@
       @include switch-size($switch-icon-xs-width, $switch-icon-xs-height, $switch-icon-xs-font-size, $handle-margin);
     }
 
-  } @else if $type == ddd {
-
-    &.switch-lg {
-      @include switch-size($switch-lg-width, $switch-lg-height, $switch-lg-font-size, 0);
-    }
-
-    &.switch-sm {
-      @include switch-size($switch-sm-width, $switch-sm-height, $switch-sm-font-size, 0);
-    }
-
-    &.switch-xs {
-      @include switch-size($switch-xs-width, $switch-xs-height, $switch-xs-font-size, 0);
-    }
   }
 }
 
@@ -278,10 +252,6 @@ $switch-icon-xs-font-size: 7px;
 
 .switch.switch-icon {
   @include switch('icon', $switch-icon-width, $switch-icon-height, $switch-icon-font-size, $handle-margin);
-}
-
-.switch.switch-3d {
-  @include switch('ddd', $switch-width, $switch-height, $switch-font-size, 0);
 }
 
 //pills style
