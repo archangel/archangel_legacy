@@ -177,11 +177,11 @@
 @mixin switch-variant($color) {
   > .switch-input:checked ~ .switch-label {
     background: $color !important;
-    border-color: darken($color,10%);
+    border-color: darken($color, 10%);
   }
 
   > .switch-input:checked ~ .switch-handle {
-    border-color: darken($color,10%);
+    border-color: darken($color, 10%);
   }
 }
 

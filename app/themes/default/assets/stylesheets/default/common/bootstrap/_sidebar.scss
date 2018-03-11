@@ -167,11 +167,11 @@
         background: $value;
 
         i {
-          color: rgba(255,255,255,.7);
+          color: rgba(255, 255, 255, .7);
         }
 
         &:hover {
-          background: darken($value,5%) !important;
+          background: darken($value, 5%) !important;
 
           i {
             color: #fff;
