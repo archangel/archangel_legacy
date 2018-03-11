@@ -18,38 +18,37 @@
 }
 
 .card-header {
-
   .icon-bg {
-    display: inline-block;
-    padding: $card-spacer-y $card-spacer-x !important;
-    margin-top: -$card-spacer-y;
-    margin-right: $card-spacer-x;
-    margin-bottom: -$card-spacer-y;
-    margin-left: -$card-spacer-x;
-    line-height: inherit;
-    color: $card-icon-color;
-    vertical-align: bottom;
     background: $card-icon-bg;
     border-right: $card-border-width solid $card-border-color;
+    color: $card-icon-color;
+    display: inline-block;
+    line-height: inherit;
+    margin-bottom: -$card-spacer-y;
+    margin-left: -$card-spacer-x;
+    margin-right: $card-spacer-x;
+    margin-top: -$card-spacer-y;
+    padding: $card-spacer-y $card-spacer-x !important;
+    vertical-align: bottom;
   }
 
   .nav.nav-tabs {
-    margin-top: -$card-spacer-y;
-    margin-bottom: -$card-spacer-y;
     border-bottom: 0;
+    margin-bottom: -$card-spacer-y;
+    margin-top: -$card-spacer-y;
 
     .nav-item {
       border-top: 0;
     }
 
     .nav-link {
-      padding: $card-spacer-y $card-spacer-x / 2;
-      color: $text-muted;
       border-top: 0;
+      color: $text-muted;
+      padding: $card-spacer-y $card-spacer-x / 2;
 
       &.active {
-        color: $body-color;
         background: #fff;
+        color: $body-color;
       }
     }
   }
@@ -75,10 +74,10 @@
 
   ul {
     display: table;
-    width: 100%;
-    padding: 0;
     margin: 0;
+    padding: 0;
     table-layout: fixed;
+    width: 100%;
 
     li {
       display: table-cell;
@@ -94,10 +93,10 @@
   }
 
   &.card-outline-top {
-    border-top-width: 2px;
-    border-right-color: $border-color;
     border-bottom-color: $border-color;
     border-left-color: $border-color;
+    border-right-color: $border-color;
+    border-top-width: 2px;
   }
 }
 
@@ -115,24 +114,24 @@
   }
 
   .card-actions {
-    position: absolute;
-    top: 0;
-    right: 0;
     //height: inherit;
+    position: absolute;
+    right: 0;
+    top: 0;
 
     a,
     button {
-      display: block;
-      float: left;
-      width: 50px;
-      padding: $card-spacer-y 0;
-      margin: 0 !important;
-      color: $body-color;
-      text-align: center;
       background: transparent;
       border: 0;
       border-left: 1px solid $border-color;
       box-shadow: 0;
+      color: $body-color;
+      display: block;
+      float: left;
+      margin: 0 !important;
+      padding: $card-spacer-y 0;
+      text-align: center;
+      width: 50px;
 
       &:hover {
         text-decoration: none;
@@ -155,8 +154,8 @@
     }
 
     .input-group {
-      width: 230px;
       margin: 6px;
+      width: 230px;
 
       .input-group-prepend,
       .input-group-append {
@@ -171,11 +170,11 @@
 }
 
 .card-full {
-  margin-top: - $spacer;
-  margin-right: - $grid-gutter-width / 2;
-  margin-left: - $grid-gutter-width / 2;
   border: 0;
   border-bottom: $card-border-width solid $border-color;
+  margin-left: - $grid-gutter-width / 2;
+  margin-right: - $grid-gutter-width / 2;
+  margin-top: - $spacer;
 }
 
 @include media-breakpoint-up(sm) {

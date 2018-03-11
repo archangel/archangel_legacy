@@ -43,21 +43,21 @@ button {
 .btn-foursquare,
 .btn-vimeo {
   @include button-social-size($input-btn-padding-y, $input-btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius);
-  position: relative;
-  overflow: hidden;
   color: #fff !important;
+  overflow: hidden;
+  position: relative;
   text-align: center;
 
   &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
     display: block;
     font-family: 'FontAwesome';
-    font-style: normal;
-    font-weight: normal;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    left: 0;
+    position: absolute;
+    top: 0;
   }
 
   &:hover {
@@ -88,7 +88,6 @@ button {
   &.btn-sm {
     @include button-social-size($input-btn-padding-y-sm, $input-btn-padding-x-sm, $font-size-sm, $line-height-sm, $btn-border-radius-sm);
   }
-
 }
 
 .btn-facebook {
@@ -96,9 +95,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f09a';
     background: darken($color, 5%);
-
+    content: '\f09a';
   }
 
   &:hover {
@@ -115,9 +113,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f099';
     background: darken($color, 5%);
-
+    content: '\f099';
   }
 
   &:hover {
@@ -134,9 +131,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f0e1';
     background: darken($color, 5%);
-
+    content: '\f0e1';
   }
 
   &:hover {
@@ -153,9 +149,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f16e';
     background: darken($color, 5%);
-
+    content: '\f16e';
   }
 
   &:hover {
@@ -172,9 +167,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f173';
     background: darken($color, 5%);
-
+    content: '\f173';
   }
 
   &:hover {
@@ -191,9 +185,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f168';
     background: darken($color, 5%);
-
+    content: '\f168';
   }
 
   &:hover {
@@ -210,9 +203,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f09b';
     background: darken($color, 5%);
-
+    content: '\f09b';
   }
 
   &:hover {
@@ -229,9 +221,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f13b';
     background: darken($color, 5%);
-
+    content: '\f13b';
   }
 
   &:hover {
@@ -248,9 +239,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f19b';
     background: darken($color, 5%);
-
+    content: '\f19b';
   }
 
   &:hover {
@@ -267,9 +257,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f16c';
     background: darken($color, 5%);
-
+    content: '\f16c';
   }
 
   &:hover {
@@ -286,9 +275,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f13c';
     background: darken($color, 5%);
-
+    content: '\f13c';
   }
 
   &:hover {
@@ -305,9 +293,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f167';
     background: darken($color, 5%);
-
+    content: '\f167';
   }
 
   &:hover {
@@ -324,9 +311,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f17d';
     background: darken($color, 5%);
-
+    content: '\f17d';
   }
 
   &:hover {
@@ -343,9 +329,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f0d5';
     background: darken($color, 5%);
-
+    content: '\f0d5';
   }
 
   &:hover {
@@ -362,9 +347,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f16d';
     background: darken($color, 5%);
-
+    content: '\f16d';
   }
 
   &:hover {
@@ -381,9 +365,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f0d2';
     background: darken($color, 5%);
-
+    content: '\f0d2';
   }
 
   &:hover {
@@ -400,9 +383,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f189';
     background: darken($color, 5%);
-
+    content: '\f189';
   }
 
   &:hover {
@@ -419,9 +401,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f19e';
     background: darken($color, 5%);
-
+    content: '\f19e';
   }
 
   &:hover {
@@ -438,9 +419,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f1b4';
     background: darken($color, 5%);
-
+    content: '\f1b4';
   }
 
   &:hover {
@@ -457,9 +437,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f16b';
     background: darken($color, 5%);
-
+    content: '\f16b';
   }
 
   &:hover {
@@ -476,9 +455,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f1a1';
     background: darken($color, 5%);
-
+    content: '\f1a1';
   }
 
   &:hover {
@@ -495,9 +473,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f1bc';
     background: darken($color, 5%);
-
+    content: '\f1bc';
   }
 
   &:hover {
@@ -514,9 +491,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f1ca';
     background: darken($color, 5%);
-
+    content: '\f1ca';
   }
 
   &:hover {
@@ -533,9 +509,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f180';
     background: darken($color, 5%);
-
+    content: '\f180';
   }
 
   &:hover {
@@ -552,9 +527,8 @@ button {
   background: $color;
 
   &::before {
-    content: '\f194';
     background: darken($color, 5%);
-
+    content: '\f194';
   }
 
   &:hover {

@@ -1,17 +1,17 @@
 @mixin button-social-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
-  padding: $padding-y $padding-x;
+  @include border-radius($border-radius);
+  border: 0;
   font-size: $font-size;
   line-height: $line-height;
-  border: 0;
-  @include border-radius($border-radius);
+  padding: $padding-y $padding-x;
 
   &::before {
     @include border-radius($border-radius);
-    width: ($padding-y * 2) + ($font-size * $line-height);
-    height: ($padding-y * 2) + ($font-size * $line-height);
-    padding: $padding-y 0;
     font-size: $font-size;
+    height: ($padding-y * 2) + ($font-size * $line-height);
     line-height: $line-height;
+    padding: $padding-y 0;
+    width: ($padding-y * 2) + ($font-size * $line-height);
   }
 
   span {
@@ -19,30 +19,30 @@
   }
 
   &.icon {
-    width: ($padding-y * 2) + ($font-size * $line-height);
     height: ($padding-y * 2) + ($font-size * $line-height);
+    width: ($padding-y * 2) + ($font-size * $line-height);
   }
 }
 
 @mixin avatar($width, $status-width) {
-  position: relative;
   display: inline-block;
+  position: relative;
   width: $width;
 
   .img-avatar {
-    width: $width;
     height: $width;
+    width: $width;
   }
 
   .avatar-status {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: block;
-    width: $status-width;
-    height: $status-width;
     border: 1px solid #fff;
     border-radius: 50em;
+    bottom: 0;
+    display: block;
+    height: $status-width;
+    position: absolute;
+    right: 0;
+    width: $status-width;
   }
 }
 
@@ -100,8 +100,8 @@
 @mixin bg-variant($parent, $color) {
   #{$parent} {
     @include border-radius($card-border-radius-inner $card-border-radius-inner $card-border-radius-inner $card-border-radius-inner);
-    color: #fff !important;
     background-color: $color !important;
+    color: #fff !important;
   }
 
   a#{$parent} {
@@ -112,6 +112,6 @@
 }
 
 @mixin card-accent-variant($color) {
-  border-top-width: 2px;
   border-top-color: $color;
+  border-top-width: 2px;
 }

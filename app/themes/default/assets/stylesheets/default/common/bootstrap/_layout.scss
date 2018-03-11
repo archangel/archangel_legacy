@@ -35,14 +35,11 @@ app-root {
   }
 
   .sidebar {
-    // $sidebar-width is the width of the columns
     flex: 0 0 $sidebar-width;
-    // put the nav on the left
     order: -1;
   }
 
   .aside-menu {
-    // $aside-menu-width is the width of the columns
     flex: 0 0 $aside-menu-width;
   }
 }
@@ -53,8 +50,8 @@ app-root {
 .header-fixed {
   .app-header {
     position: fixed;
-    z-index: $zindex-sticky;
     width: 100%;
+    z-index: $zindex-sticky;
   }
 
   .app-body {
@@ -73,15 +70,10 @@ app-root {
 
 .sidebar-fixed {
   .sidebar {
-    position: fixed;
-    z-index: $zindex-sticky - 1;
-    width: $sidebar-width;
     height: calc(100vh - #{$navbar-height});
-    // margin-top: - $navbar-height;
-
-    // .sidebar-nav {
-    //   height: calc(100vh - #{$navbar-height});
-    // }
+    position: fixed;
+    width: $sidebar-width;
+    z-index: $zindex-sticky - 1;
   }
 
   .main,
@@ -99,9 +91,9 @@ app-root {
 
 .sidebar-off-canvas {
   .sidebar {
+    height: calc(100vh - #{$navbar-height});
     position: fixed;
     z-index: $zindex-sticky - 1;
-    height: calc(100vh - #{$navbar-height});
   }
 }
 
@@ -182,9 +174,9 @@ app-root {
 
 .aside-menu-fixed {
   .aside-menu {
+    height: 100%;
     position: fixed;
     right: 0;
-    height: 100%;
 
     .tab-content {
       height: calc(100vh - #{$aside-menu-nav-padding-y * 2 + $font-size-base} - #{$navbar-height});
@@ -206,10 +198,10 @@ app-root {
 
 .aside-menu-off-canvas {
   .aside-menu {
+    height: 100%;
     position: fixed;
     right: 0;
     z-index: $zindex-sticky - 1;
-    height: 100%;
 
     .tab-content {
       height: calc(100vh - #{$aside-menu-nav-padding-y * 2 + $font-size-base} - #{$navbar-height});
@@ -227,26 +219,26 @@ app-root {
   }
 
   .breadcrumb {
-    position: fixed;
-    top: $navbar-height;
-    right: 0;
     left: 0;
+    position: fixed;
+    right: 0;
+    top: $navbar-height;
     z-index: $zindex-sticky - 2;
   }
 
   // if sidebar + main + aside
   .main:nth-child(2) {
     .breadcrumb {
-      right: $aside-menu-width;
       left: $sidebar-width;
+      right: $aside-menu-width;
     }
   }
 
   // if sidebar + main
   .main:first-child {
     .breadcrumb {
-      right: $aside-menu-width;
       left: 0;
+      right: $aside-menu-width;
     }
   }
 
@@ -283,12 +275,12 @@ app-root {
 //
 .footer-fixed {
   .app-footer {
+    bottom: 0;
+    height: $footer-height;
+    left: 0;
     position: fixed;
     right: 0;
-    bottom: 0;
-    left: 0;
     z-index: $zindex-sticky;
-    height: $footer-height;
   }
 
   .app-body {
@@ -322,11 +314,11 @@ app-root {
 @include media-breakpoint-down(md) {
   .app-header.navbar {
     @include borders($navbar-brand-border);
-    position: fixed !important;
-    z-index: $zindex-sticky;
-    width: 100%;
-    text-align: center;
     background-color: $navbar-brand-bg;
+    position: fixed !important;
+    text-align: center;
+    width: 100%;
+    z-index: $zindex-sticky;
 
     .navbar-toggler {
       @if (lightness( $navbar-brand-bg ) > 40) {
@@ -337,9 +329,9 @@ app-root {
     }
 
     .navbar-brand {
-      position: absolute;
       left: 50%;
       margin-left: - ($navbar-brand-width / 2);
+      position: absolute;
     }
   }
 
@@ -349,23 +341,23 @@ app-root {
 
   .breadcrumb-fixed {
     .main:nth-child(2) .breadcrumb {
-      right: auto;
       left: auto;
+      right: auto;
       width: 100%;
     }
   }
 
   .sidebar {
-    position: fixed;
-    z-index: $zindex-sticky - 1;
-    width: $mobile-sidebar-width;
     height: calc(100vh - #{$navbar-height});
     margin-left: - $mobile-sidebar-width;
+    position: fixed;
+    width: $mobile-sidebar-width;
+    z-index: $zindex-sticky - 1;
 
     .sidebar-nav,
     .nav {
-      width: $mobile-sidebar-width;
       min-height: calc(100vh - #{$navbar-height});
+      width: $mobile-sidebar-width;
     }
 
     .sidebar-minimizer {
@@ -378,10 +370,6 @@ app-root {
     margin-left: 0 !important;
   }
 
-  // .aside-menu {
-  //   margin-right: - $aside-menu-width;
-  // }
-
   .sidebar-hidden {
     .sidebar {
       margin-left: - $mobile-sidebar-width;
@@ -390,13 +378,13 @@ app-root {
 
   .sidebar-mobile-show {
     .sidebar {
-      width: $mobile-sidebar-width;
       margin-left: 0;
+      width: $mobile-sidebar-width;
     }
 
     .main {
-      margin-right: - $mobile-sidebar-width !important;
       margin-left: $mobile-sidebar-width !important;
+      margin-right: - $mobile-sidebar-width !important;
     }
   }
 }

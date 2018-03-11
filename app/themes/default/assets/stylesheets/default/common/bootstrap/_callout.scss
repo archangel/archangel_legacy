@@ -1,19 +1,19 @@
 .callout {
-  position: relative;
-  padding: 0 $spacer;
-  margin: $spacer 0;
   border: 0 solid $border-color;
   border-left-width: .25rem;
+  margin: $spacer 0;
+  padding: 0 $spacer;
+  position: relative;
 
   @if $enable-rounded {
     border-radius: .25rem;
   }
 
   .chart-wrapper {
+    float: right;
+    left: 50%;
     position: absolute;
     top: 10px;
-    left: 50%;
-    float: right;
     width: 50%;
   }
 }
@@ -28,8 +28,8 @@
 }
 
 .callout h4 {
-  margin-top: 0;
   margin-bottom: .25rem;
+  margin-top: 0;
 }
 
 .callout p:last-child {
