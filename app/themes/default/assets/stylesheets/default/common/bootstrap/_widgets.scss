@@ -1,6 +1,6 @@
 .social-box {
   @include border-radius($card-border-radius);
-  background: #fff;
+  background: $white;
   border: $card-border-width solid $card-border-color;
   margin-bottom: 2 * $card-spacer-y;
   min-height: 160px;
@@ -55,28 +55,28 @@
   &.facebook {
     i {
       background: $facebook;
-      color: #fff;
+      color: $white;
     }
   }
 
   &.twitter {
     i {
       background: $twitter;
-      color: #fff;
+      color: $white;
     }
   }
 
   &.linkedin {
     i {
       background: $linkedin;
-      color: #fff;
+      color: $white;
     }
   }
 
   &.google-plus {
     i {
       background: $google-plus;
-      color: #fff;
+      color: $white;
     }
   }
 }

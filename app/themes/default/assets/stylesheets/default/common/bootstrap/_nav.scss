@@ -7,14 +7,14 @@
     }
 
     &.active {
-      background: #fff;
-      border-bottom-color: #fff;
+      background: $white;
+      border-bottom-color: $white;
       border-color: $border-color;
       color: $gray-800;
 
       &:focus {
-        background: #fff;
-        border-bottom-color: #fff;
+        background: $white;
+        border-bottom-color: $white;
         border-color: $border-color;
       }
     }
@@ -22,7 +22,7 @@
 }
 
 .tab-content {
-  background: #fff;
+  background: $white;
   border: 1px solid $border-color;
   margin-top: -1px;
 

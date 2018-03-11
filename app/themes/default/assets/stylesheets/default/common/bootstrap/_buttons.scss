@@ -43,7 +43,7 @@ button {
 .btn-foursquare,
 .btn-vimeo {
   @include button-social-size($input-btn-padding-y, $input-btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius);
-  color: #fff !important;
+  color: $white !important;
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -61,7 +61,7 @@ button {
   }
 
   &:hover {
-    color: #fff;
+    color: $white;
   }
 
   &.icon {

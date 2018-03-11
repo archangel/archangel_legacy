@@ -48,7 +48,7 @@
     @if $type == ddd {
       background-color: $gray-100;
     } @else {
-      background-color: #fff;
+      background-color: $white;
     }
   }
 
@@ -71,7 +71,7 @@
     }
 
     .switch-label::after {
-      color: #fff;
+      color: $white;
       content: attr(data-on);
       left: 1px;
       opacity: 0;
@@ -91,7 +91,7 @@
   }
 
   .switch-handle {
-    background: #fff;
+    background: $white;
     border: 1px solid $border-color;
     border-radius: 1px;
     height: $height - $handle-margin * 2;
@@ -102,7 +102,7 @@
     width: $height - $handle-margin * 2;
     @if $type == ddd {
       border: 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+      box-shadow: 0 2px 5px rgba($black, .3);
     }
   }
 
@@ -187,7 +187,7 @@
 
 @mixin switch-outline-variant($color) {
   > .switch-input:checked ~ .switch-label {
-    background: #fff !important;
+    background: $white !important;
     border-color: $color;
 
     &::after {
@@ -202,7 +202,7 @@
 
 @mixin switch-outline-alt-variant($color) {
   > .switch-input:checked ~ .switch-label {
-    background: #fff !important;
+    background: $white !important;
     border-color: $color;
 
     &::after {

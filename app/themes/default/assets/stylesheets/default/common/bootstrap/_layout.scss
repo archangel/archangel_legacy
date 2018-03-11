@@ -324,7 +324,7 @@ app-root {
       @if (lightness( $navbar-brand-bg ) > 40) {
         color: $navbar-color;
       } @else {
-        color: #fff;
+        color: $white;
       }
     }
 

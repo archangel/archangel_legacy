@@ -14,7 +14,7 @@
 }
 
 .text-white .text-muted {
-  color: rgba(255, 255, 255, .6) !important;
+  color: rgba($white, .6) !important;
 }
 
 .card-header {
@@ -47,14 +47,14 @@
       padding: $card-spacer-y $card-spacer-x / 2;
 
       &.active {
-        background: #fff;
+        background: $white;
         color: $body-color;
       }
     }
   }
 
   &.card-header-inverse {
-    color: #fff;
+    color: $white;
   }
 
   .btn {
@@ -89,7 +89,7 @@
 
 [class*="card-outline-"] {
   .card-body {
-    background: #fff !important;
+    background: $white !important;
   }
 
   &.card-outline-top {
@@ -159,7 +159,7 @@
 
       .input-group-prepend,
       .input-group-append {
-        background: #fff;
+        background: $white;
       }
 
       input {
@@ -194,6 +194,6 @@
 }
 
 .card-placeholder {
-  background: rgba(0, 0, 0, .025);
+  background: rgba($black, .025);
   border: 1px dashed $gray-300;
 }
