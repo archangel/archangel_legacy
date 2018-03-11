@@ -112,7 +112,7 @@
 
 
   @if $type == ddd {
-    @extend .switch-pill;
+    @extend %switch-pill;
   }
 
   //size variations

@@ -1,10 +1,10 @@
 .pagination-datatables,
 .pagination {
   li {
-    @extend .page-item;
+    @extend %page-item;
 
     a {
-      @extend .page-link;
+      @extend %page-link;
     }
   }
 }
@@ -26,7 +26,7 @@
 
 // navbar dropdown fix
 .navbar .dropdown-toggle {
-  @extend .nav-link;
+  @extend %nav-link;
 
   .img-avatar {
     height: $navbar-height - 20px;
@@ -35,5 +35,5 @@
 }
 
 .card-block {
-  @extend .card-body;
+  @extend %card-body;
 }
