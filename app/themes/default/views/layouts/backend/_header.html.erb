@@ -14,7 +14,7 @@
 
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link" href="<%= backend_profile_path %>"><%= image_tag(current_user.avatar.tiny.url, alt: current_user.name, class: "rounded-circle") %> <span class="d-md-down-none"><%= Archangel.t(:profile) %></span></a>
+      <a class="nav-link" href="<%= backend_profile_path %>"><%= fa_icon("user") %> <span class="d-md-down-none"><%= Archangel.t(:profile) %></span></a>
     </li>
 
     <li class="nav-item">
