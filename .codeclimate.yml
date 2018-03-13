@@ -2,9 +2,16 @@ version: "2"
 plugins:
   brakeman:
     enabled: true
+  eslint:
+    enabled: true
+    channel: "eslint-4"
   fixme:
     enabled: true
   markdownlint:
     enabled: true
   reek:
+    enabled: true
+  rubocop:
+    enabled: true
+  scss-lint:
     enabled: true
