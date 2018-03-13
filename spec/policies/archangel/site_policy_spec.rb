@@ -16,6 +16,7 @@ module Archangel
 
       it { should permit(:update) }
       it { should permit(:edit) }
+      it { should permit(:sample) }
     end
 
     context "with `editor` role" do
@@ -23,6 +24,7 @@ module Archangel
 
       it { should_not permit(:update) }
       it { should_not permit(:edit) }
+      it { should permit(:sample) }
     end
   end
 end
