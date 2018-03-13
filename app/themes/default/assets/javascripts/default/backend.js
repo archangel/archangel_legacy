@@ -30,4 +30,7 @@
 //= require archangel/backend
 //
 //  Theme assets
+//= require default/common/navigation
+//= require default/common/sidebar
+//= require default/common/cards
 //= require default/backend/core
