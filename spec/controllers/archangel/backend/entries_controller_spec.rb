@@ -254,7 +254,10 @@ module Archangel
                            value: ActiveSupport::JSON.encode(slug: "second"))
 
           params = {
-            sort: [entry_a.id, entry_b.id]
+            sort: {
+              "0" => entry_a.id,
+              "1" => entry_b.id
+            }
           }
 
           post :sort, params: {
