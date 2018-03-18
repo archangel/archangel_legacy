@@ -434,6 +434,7 @@
           width: $sidebar-width;
 
           .nav-link {
+            padding-left: $aside-menu-nav-padding-x;
             width: $sidebar-width;
           }
         }
