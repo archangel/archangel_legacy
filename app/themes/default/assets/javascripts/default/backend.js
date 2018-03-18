@@ -11,20 +11,20 @@
 // require selectize
 // require summernote
 // require cocoon
-// require sortable.min
+//= require sortable.min
 //
 //  Archangel helper scripts
-// require "archangel/object"
-// require "archangel/object/routes"
-// require "archangel/object/routes/backend"
+//= require "archangel/object"
+//= require "archangel/object/routes"
+//= require "archangel/object/routes/backend"
 // require "archangel/object/translate"
 // require "archangel/object/translate/datetime_picker"
-// require "archangel/object/url"
+//= require "archangel/object/url"
 // require "archangel/input/datetime_picker"
 // require "archangel/input/meta_keywords"
 // require "archangel/input/wysiwyg"
 // require "archangel/input/parent/page"
-// require "archangel/sortable"
+//= require "archangel/sortable"
 //
 //  Third-party Archangel assets (from the vendor directory)
 //= require archangel/backend
@@ -33,4 +33,5 @@
 //= require default/common/navigation
 //= require default/common/sidebar
 //= require default/common/cards
+//
 //= require default/backend/core

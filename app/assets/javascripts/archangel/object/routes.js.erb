@@ -1,7 +1,7 @@
 (function(object) {
   'use strict';
 
-  object.serialize = function(obj, prefix) {
+  object.serializeParams = function(obj, prefix) {
     var p,
         str = [];
 
@@ -11,7 +11,7 @@
             v = obj[p];
 
         str.push((v !== null && typeof v === 'object') ?
-          object.serialize(v, k) :
+          object.serializeParams(v, k) :
           encodeURIComponent(k) + '=' + encodeURIComponent(v));
       }
     }
@@ -20,22 +20,22 @@
   }
 
   object.pathBuilder = function(path) {
-    var new_path = [];
+    var newPath = [];
 
     if (path.constructor === Array) {
-      new_path = path.map(function(segment) { return segment; });
+      newPath = path.map(function(segment) { return segment; });
     } else if (path.constructor === Object) {
-      new_path = Object.keys(path).map(function(resource) {
-                   return [
-                     resource,
-                     path[resource]
-                   ].join('/');
-                 });
+      newPath = Object.keys(path).map(function(resource) {
+                  return [
+                    resource,
+                    path[resource]
+                  ].join('/');
+                });
     } else if (path.constructor === String) {
-      new_path = [path];
+      newPath = [path];
     }
 
-    return new_path.filter(Boolean).join('/').toLowerCase();
+    return newPath.filter(Boolean).join('/').toLowerCase();
   }
 
   object.mountScope = function() {
@@ -65,20 +65,18 @@
   };
 
   object.pathFor = function(path, args) {
-    var final_path,
-        options = object.serialize(args || {});
-
-    final_path = object.pathBuilder(path);
+    var finalPath = object.pathBuilder(path),
+        options = object.serializeParams(args || {});
 
     if (options.length !== 0) {
-      final_path = final_path + '?' + options;
+      finalPath = finalPath + '?' + options;
     }
 
-    return '/' + final_path;
+    return '/' + finalPath;
   };
 
   object.route = {
-    root_path: object.rootPath()
+    rootPath: object.rootPath()
   };
 
   return object;

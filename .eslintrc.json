@@ -8,17 +8,21 @@
     "sourceType": "module"
   },
   "globals": {
-    "document": true,
     "window": true,
+    "document": true,
     "$": true,
     "jQuery": true,
-    "Archangel": true
+    "Archangel": true,
+    "Sortable": true
   },
   "rules": {
     "indent": [
       "error",
       2,
-      { "VariableDeclarator": 2 }
+      {
+        "MemberExpression": 1,
+        "VariableDeclarator": 2
+      }
     ],
     "linebreak-style": [
       "error",

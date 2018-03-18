@@ -11,90 +11,90 @@
 
   object.route.backend = {
     // Dashboard
-    root_path: object.backendPath(),
+    rootPath: object.backendPath(),
 
     // Assets
-    assets_path: object.backendPathFor('assets'),
-    new_asset_path: object.backendPathFor('assets/new'),
-    asset_path: function (id) {
+    assetsPath: object.backendPathFor('assets'),
+    newAssetPath: object.backendPathFor('assets/new'),
+    assetPath: function (id) {
       return object.backendPathFor('assets/' + id);
     },
-    edit_asset_path: function (id) {
+    editAssetPath: function (id) {
       return object.backendPathFor('assets/' + id + '/edit');
     },
 
     // Collections
-    collections_path: object.backendPathFor('collections'),
-    new_collection_path: object.backendPathFor('collections/new'),
-    collection_path: function (slug) {
+    collectionsPath: object.backendPathFor('collections'),
+    newCollectionPath: object.backendPathFor('collections/new'),
+    collectionPath: function (slug) {
       return object.backendPathFor('collections/' + slug);
     },
-    edit_collection_path: function (slug) {
+    editCollectionPath: function (slug) {
       return object.backendPathFor('collections/' + slug + '/edit');
     },
 
     // Collection Entries
-    collection_entries_path: function (slug) {
+    collectionEntriesPath: function (slug) {
       return object.backendPathFor('collections/' + slug + '/entries');
     },
-    new_collection_entry_path: function (slug) {
+    newCollectionEntryPath: function (slug) {
       return object.backendPathFor('collections/' + slug + '/entries/new');
     },
-    collection_entry_path: function (slug, id) {
+    collectionEntryPath: function (slug, id) {
       return object.backendPathFor('collections/' + slug + '/entries/' + id);
     },
-    edit_collection_entry_path: function (slug, id) {
+    editCollectionEntryPath: function (slug, id) {
       return object.backendPathFor('collections/' + slug + '/entries/' + id + '/edit');
     },
-    sort_collection_entry_path: function (slug) {
+    sortCollectionEntryPath: function (slug) {
       return object.backendPathFor('collections/' + slug + '/entries/sort');
     },
 
     // Pages
-    pages_path: object.backendPathFor('pages'),
-    new_page_path: object.backendPathFor('pages/new'),
-    page_path: function (id) {
+    pagesPath: object.backendPathFor('pages'),
+    newPagePath: object.backendPathFor('pages/new'),
+    pagePath: function (id) {
       return object.backendPathFor('pages/' + id);
     },
-    edit_page_path: function (id) {
+    editPagePath: function (id) {
       return object.backendPathFor('pages/' + id + '/edit');
     },
 
     // Profile
-    profile_path: object.backendPathFor('profile'),
-    edit_profile_path: object.backendPathFor('profile/edit'),
+    profilePath: object.backendPathFor('profile'),
+    editProfilePath: object.backendPathFor('profile/edit'),
 
     // Site
-    site_path: object.backendPathFor('site'),
-    edit_site_path: object.backendPathFor('site/edit'),
+    sitePath: object.backendPathFor('site'),
+    editSitePath: object.backendPathFor('site/edit'),
 
     // Templates
-    templates_path: object.backendPathFor('templates'),
-    new_template_path: object.backendPathFor('templates/new'),
-    template_path: function (id) {
+    templatesPath: object.backendPathFor('templates'),
+    newTemplatePath: object.backendPathFor('templates/new'),
+    templatePath: function (id) {
       return object.backendPathFor('templates/' + id);
     },
-    edit_template_path: function (id) {
+    editTemplatePath: function (id) {
       return object.backendPathFor('templates/' + id + '/edit');
     },
 
     // Users
-    users_path: object.backendPathFor('users'),
-    new_user_path: object.backendPathFor('users/new'),
-    user_path: function (username) {
+    usersPath: object.backendPathFor('users'),
+    newUserPath: object.backendPathFor('users/new'),
+    userPath: function (username) {
       return object.backendPathFor('users/' + username);
     },
-    edit_user_path: function (username) {
+    editUserPath: function (username) {
       return object.backendPathFor('users/' + username + '/edit');
     },
 
     // Widgets
-    widgets_path: object.backendPathFor('widgets'),
-    new_widget_path: object.backendPathFor('widgets/new'),
-    widget_path: function (slug) {
+    widgetsPath: object.backendPathFor('widgets'),
+    newWidgetPath: object.backendPathFor('widgets/new'),
+    widgetPath: function (slug) {
       return object.backendPathFor('widgets/' + slug);
     },
-    edit_widget_path: function (slug) {
+    editWidgetPath: function (slug) {
       return object.backendPathFor('widgets/' + slug + '/edit');
     }
   };

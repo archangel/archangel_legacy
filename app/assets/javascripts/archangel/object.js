@@ -17,6 +17,9 @@ var Archangel = (function(object) {
     return obj1;
   }
 
+  object.authTokenName = window._auth_token_name;
+  object.authToken = window._auth_token;
+
   return object;
 
 }(Archangel || {}));

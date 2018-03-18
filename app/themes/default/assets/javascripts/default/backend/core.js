@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  jQuery(function() {
+  document.addEventListener('DOMContentLoaded', function() {
     // Nothing
   });
 }());
