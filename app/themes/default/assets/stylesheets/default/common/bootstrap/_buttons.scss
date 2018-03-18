@@ -20,7 +20,6 @@ button {
 .btn-facebook,
 .btn-twitter,
 .btn-linkedin,
-.btn-flickr,
 .btn-tumblr,
 .btn-xing,
 .btn-github,
@@ -33,14 +32,8 @@ button {
 .btn-google-plus,
 .btn-instagram,
 .btn-pinterest,
-.btn-vk,
-.btn-yahoo,
-.btn-behance,
-.btn-dropbox,
 .btn-reddit,
 .btn-spotify,
-.btn-vine,
-.btn-foursquare,
 .btn-vimeo {
   @include button-social-size($input-btn-padding-y, $input-btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius);
   color: $white !important;
@@ -133,24 +126,6 @@ button {
   &::before {
     background: darken($color, 5%);
     content: '\f0e1';
-  }
-
-  &:hover {
-    background: darken($color, 5%);
-
-    &::before {
-      background: darken($color, 10%);
-    }
-  }
-}
-
-.btn-flickr {
-  $color: $flickr;
-  background: $color;
-
-  &::before {
-    background: darken($color, 5%);
-    content: '\f16e';
   }
 
   &:hover {
@@ -378,78 +353,6 @@ button {
   }
 }
 
-.btn-vk {
-  $color: $vk;
-  background: $color;
-
-  &::before {
-    background: darken($color, 5%);
-    content: '\f189';
-  }
-
-  &:hover {
-    background: darken($color, 5%);
-
-    &::before {
-      background: darken($color, 10%);
-    }
-  }
-}
-
-.btn-yahoo {
-  $color: $yahoo;
-  background: $color;
-
-  &::before {
-    background: darken($color, 5%);
-    content: '\f19e';
-  }
-
-  &:hover {
-    background: darken($color, 5%);
-
-    &::before {
-      background: darken($color, 10%);
-    }
-  }
-}
-
-.btn-behance {
-  $color: $behance;
-  background: $color;
-
-  &::before {
-    background: darken($color, 5%);
-    content: '\f1b4';
-  }
-
-  &:hover {
-    background: darken($color, 5%);
-
-    &::before {
-      background: darken($color, 10%);
-    }
-  }
-}
-
-.btn-dropbox {
-  $color: $dropbox;
-  background: $color;
-
-  &::before {
-    background: darken($color, 5%);
-    content: '\f16b';
-  }
-
-  &:hover {
-    background: darken($color, 5%);
-
-    &::before {
-      background: darken($color, 10%);
-    }
-  }
-}
-
 .btn-reddit {
   $color: $reddit;
   background: $color;
@@ -475,42 +378,6 @@ button {
   &::before {
     background: darken($color, 5%);
     content: '\f1bc';
-  }
-
-  &:hover {
-    background: darken($color, 5%);
-
-    &::before {
-      background: darken($color, 10%);
-    }
-  }
-}
-
-.btn-vine {
-  $color: $vine;
-  background: $color;
-
-  &::before {
-    background: darken($color, 5%);
-    content: '\f1ca';
-  }
-
-  &:hover {
-    background: darken($color, 5%);
-
-    &::before {
-      background: darken($color, 10%);
-    }
-  }
-}
-
-.btn-foursquare {
-  $color: $foursquare;
-  background: $color;
-
-  &::before {
-    background: darken($color, 5%);
-    content: '\f180';
   }
 
   &:hover {
