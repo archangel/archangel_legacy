@@ -22,6 +22,21 @@
             <strong><%= Archangel.t(:slug) %>:</strong>
             <%= @collection.slug %>
           </p>
+
+          <p>
+            <pre>
+              <code>
+{% collectionfor item in "<%= @collection.slug %>" %}
+  {{ forloop.index }}: {{ item.id }}
+{% endcollectionfor %}
+
+{% collection items = "<%= @collection.slug %>" %}
+{% for item in items %}
+  {{ forloop.index }}: {{ item.id }}
+{% endfor %}
+              </code>
+            </pre>
+          </p>
         </div>
       </div>
     </div>

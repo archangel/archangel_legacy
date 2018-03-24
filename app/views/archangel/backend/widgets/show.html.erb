@@ -27,6 +27,14 @@
             <strong><%= Archangel.t(:content) %>:</strong>
             <%= @widget.content %>
           </p>
+
+          <p>
+            <pre>
+              <code>
+{% widget "<%= @widget.slug %>" %}
+              </code>
+            </pre>
+          </p>
         </div>
       </div>
     </div>

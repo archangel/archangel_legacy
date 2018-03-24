@@ -38,6 +38,14 @@
             <strong><%= Archangel.t(:content_type) %>:</strong>
             <%= @asset.content_type %>
           </p>
+
+          <p>
+            <pre>
+              <code>
+{% asset "<%= @asset.file_name %>" %}
+              </code>
+            </pre>
+          </p>
         </div>
       </div>
     </div>
