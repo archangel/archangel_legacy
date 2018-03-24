@@ -95,6 +95,8 @@ en:
     site: Site
     slug: Slug
     sort: Sort
+    sortable:
+      success: Sort order has been updated
     templates: Templates
     theme: Theme
     title: Title

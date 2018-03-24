@@ -1,7 +1,9 @@
 $(function() {
   'use strict';
 
-  var requestObject = new XMLHttpRequest(),
+  var sortableItems = document.querySelectorAll('#sortable'),
+      sortableItemCount = sortableItems.length,
+      requestObject = new XMLHttpRequest(),
       dataSerializer = function(obj, prefix) {
         var p,
             str = [];
@@ -18,15 +20,12 @@ $(function() {
         }
 
         return str.join('&');
-      },
-      sortElement = document.getElementById('sortable'),
-      sortableObject = new Sortable(sortElement, {
-        animation: 150,
-        handle: '.fa-sort',
-        draggable: 'tr',
-        ghostClass: 'sortable-ghost',
-        dragClass: 'sortable-drag',
-        onEnd: function () {
+      };
+
+  for (var i = 0; i < sortableItemCount; i += 1) {
+    var item = sortableItems[i],
+        sortableObject,
+        onEndSortable = function () {
           var sortOrder = sortableObject.toArray(),
               collectionSlug = Archangel.url.segment('collections'),
               postUrl = Archangel.route.backend.sortCollectionEntryPath(collectionSlug),
@@ -42,17 +41,32 @@ $(function() {
           requestObject.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
           requestObject.onload = function (event) {
             if (event.target.status >= 200 && event.target.status < 400) {
-              alert(event.target.responseText);
+              var successMsg = Archangel.translate.sortable.success;
+
+              Archangel.flash.success(successMsg);
             } else {
-              alert(event.target.statusText);
+              var errorMsg = 'Request failed: ' + event.target.statusText;
+
+              Archangel.flash.error(errorMsg);
             }
           };
 
           requestObject.onerror = function (event) {
-            alert('Request failed: ' + event.target.statusText);
+            var errorMsg = 'Request failed: ' + event.target.statusText;
+
+            Archangel.flash.error(errorMsg);
           };
 
           requestObject.send(dataSerializer(postData));
-        }
-      });
+        };
+
+    sortableObject = new Sortable(item, {
+      animation: 150,
+      handle: '.fa-sort',
+      draggable: 'tr',
+      ghostClass: 'sortable-ghost',
+      dragClass: 'sortable-drag',
+      onEnd: onEndSortable
+    });
+  }
 });
