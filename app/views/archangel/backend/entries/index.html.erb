@@ -35,7 +35,7 @@
                 <tbody id="sortable">
                   <% @entries.each do |entry| %>
                     <tr data-id="<%= entry.id %>">
-                      <td><%= fa_icon("sort", title: Archangel.t(:sort)) %></td>
+                      <td class="text-center"><%= fa_icon("sort", title: Archangel.t(:sort)) %></td>
                       <% fields.each do |field| %>
                         <td><%= entry.value[field] %></td>
                       <% end %>
