@@ -25,7 +25,7 @@
                   <tr>
                     <th class="sort-handle text-center" scope="col">&nbsp;</th>
                     <% fields.each do |field| %>
-                      <th scope="col"><%= field %></th>
+                      <th scope="col"><%= field.titleize %></th>
                     <% end %>
                     <th scope="col"><%= Archangel.t(:available_at) %></th>
                     <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
