@@ -1,9 +1,11 @@
 <div class="btn-group pull-right" role="group" aria-label="Button group">
   <% if edit_action? %>
-    <%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_site_path, class: "btn btn-link btn-float") %>
+    <%= link_to(fa_icon("chevron-left"), backend_site_path, class: "btn btn-link btn-float") %>
+    <span class="d-sm-down-none"><%= Archangel.t(:back) %></span>
   <% end %>
 
   <% if show_action? %>
-    <%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_site_path, class: "btn btn-link btn-float") %>
+    <%= link_to(fa_icon("check"), edit_backend_site_path, class: "btn btn-link btn-float") %>
+    <span class="d-sm-down-none"><%= Archangel.t(:edit) %></span>
   <% end %>
 </div>
