@@ -116,7 +116,7 @@
         background-color: $navbar-brand-minimized-bg;
         background-image: $navbar-brand-minimized-logo;
         background-size: $navbar-brand-minimized-logo-size;
-        text-indent: -999px;
+        display: none;
         width: $navbar-brand-minimized-width;
       }
     }
