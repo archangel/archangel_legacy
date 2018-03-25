@@ -13,6 +13,7 @@ en:
       boolean: Boolean
       string: String
       text: Text
+    close: Close
     collection: Collection
     collections: Collections
     content: Content
@@ -80,6 +81,7 @@ en:
     partial: Partial
     pages: Pages
     path: Path
+    powered_by: Powered by
     profile: Profile
     published: Published
     remove_entry: Remove Entry
@@ -93,6 +95,8 @@ en:
     site: Site
     slug: Slug
     sort: Sort
+    sortable:
+      success: Sort order has been updated
     templates: Templates
     theme: Theme
     title: Title
@@ -100,4 +104,5 @@ en:
     unauthorized: Unaruthorized
     username: Username
     users: Users
+    website: Website
     widgets: Widgets

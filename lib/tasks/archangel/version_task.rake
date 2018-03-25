@@ -3,6 +3,6 @@
 namespace :archangel do
   desc "Current Archangel version"
   task :version do
-    puts "Archangel #{Archangel::VERSION}"
+    puts "Archangel #{Archangel.version}"
   end
 end

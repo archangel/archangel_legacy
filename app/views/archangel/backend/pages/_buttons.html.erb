@@ -1,18 +1,18 @@
-<ul class="nav nav-pills pull-right">
+<div class="btn-group pull-right" role="group" aria-label="Button group">
   <% if member_action? || new_action? %>
-    <li><%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_pages_path) %></li>
+    <%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_pages_path, class: "btn btn-link") %>
   <% end %>
 
   <% if collection_action? || show_action? || edit_action? %>
-    <li><%= link_to(fa_icon("plus", text: Archangel.t(:new)), new_backend_page_path) %></li>
+    <%= link_to(fa_icon("plus", text: Archangel.t(:new)), new_backend_page_path, class: "btn btn-link") %>
   <% end %>
 
   <% if show_action? %>
-    <li><%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_page_path(@page)) %></li>
+    <%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_page_path(@page), class: "btn btn-link") %>
   <% end %>
 
   <% if show_action? || edit_action? %>
-    <li><%= link_to(fa_icon("times", text: Archangel.t(:destroy)), backend_page_path(@page),
-                                     method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %></li>
+    <%= link_to(fa_icon("times", text: Archangel.t(:destroy)), backend_page_path(@page), class: "btn btn-link",
+                                 method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
   <% end %>
-</ul>
+</div>

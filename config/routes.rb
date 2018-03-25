@@ -67,7 +67,9 @@ Archangel::Engine.routes.draw do
     # GET   /backend/site
     # PATCH /backend/site
     # PUT   /backend/site
-    resource :site, only: %i[edit show update]
+    resource :site, only: %i[edit show update] do
+      get :sample
+    end
 
     # GET    /backend/assets
     # GET    /backend/assets/page/[PAGE]

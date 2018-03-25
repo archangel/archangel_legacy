@@ -1,60 +1,68 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <h2><%= Archangel.t(:index_resource, resource: @pages.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+<div class="card card-default">
+  <div class="card-body">
+    <h2><%= fa_icon("file") %> <%= Archangel.t(:index_resource, resource: @pages.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="pages-index panel panel-default">
-  <div class="panel-body">
-    <% if @pages.present? %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-      <%= paginate @pages %>
+        <div class="card-body">
+          <% if @pages.present? %>
 
-      <div class="table-responsive">
-        <table class="table table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th scope="col"><%= Archangel.t(:title) %></th>
-              <th scope="col"><%= Archangel.t(:path) %></th>
-              <th scope="col"><%= Archangel.t(:published) %></th>
-              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
-            </tr>
-          </thead>
+            <%= paginate @pages %>
 
-          <tbody>
-            <% @pages.each do |page| %>
-              <tr>
-                <td>
-                  <%= page.title %>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"><%= Archangel.t(:title) %></th>
+                    <th scope="col"><%= Archangel.t(:path) %></th>
+                    <th scope="col"><%= Archangel.t(:published) %></th>
+                    <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+                  </tr>
+                </thead>
 
-                  <%= fa_icon("home") if page.homepage? %>
-                </td>
-                <td>
-                  <%= URI.decode(frontend_page_path(page.path)) %>
-                </td>
-                <td><%= page.published_at %></td>
-                <td class="actions text-right">
-                  <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_page_path(page), class: "btn btn-info btn-sm") %>
-                  <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_page_path(page), class: "btn btn-warning btn-sm") %>
-                  <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_page_path(page), class: "btn btn-danger btn-sm",
-                                                      method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+                <tbody>
+                  <% @pages.each do |page| %>
+                    <tr>
+                      <td>
+                        <%= page.title %>
+
+                        <%= fa_icon("home") if page.homepage? %>
+                      </td>
+                      <td>
+                        <%= URI.decode(frontend_page_path(page.path)) %>
+                      </td>
+                      <td><%= page.published_at %></td>
+                      <td class="actions text-right">
+                        <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_page_path(page), class: "btn btn-info btn-sm") %>
+                        <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_page_path(page), class: "btn btn-warning btn-sm") %>
+                        <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_page_path(page), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <%= paginate @pages %>
+
+          <% else %>
+
+            <p class="no-resources">
+              <%= Archangel.t(:no_resources, resource: @pages.model_name.human.pluralize.downcase) %>
+            </p>
+
+          <% end %>
+        </div>
       </div>
-
-      <%= paginate @pages %>
-
-    <% else %>
-
-      <p class="no-resources">
-        <%= Archangel.t(:no_resources, resource: @pages.model_name.human.pluralize.downcase) %>
-      </p>
-
-    <% end %>
+    </div>
   </div>
 </div>

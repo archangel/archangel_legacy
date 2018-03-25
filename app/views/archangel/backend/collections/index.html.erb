@@ -1,52 +1,60 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <h2><%= Archangel.t(:index_resource, resource: @collections.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+<div class="card card-default">
+  <div class="card-body">
+    <h2><%= fa_icon("circle") %> <%= Archangel.t(:index_resource, resource: @collections.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="collections-index panel panel-default">
-  <div class="panel-body">
-    <% if @collections.present? %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-      <%= paginate @collections %>
+        <div class="card-body">
+          <% if @collections.present? %>
 
-      <div class="table-responsive">
-        <table class="table table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th scope="col"><%= Archangel.t(:name) %></th>
-              <th scope="col"><%= Archangel.t(:slug) %></th>
-              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
-            </tr>
-          </thead>
+            <%= paginate @collections %>
 
-          <tbody>
-            <% @collections.each do |collection| %>
-              <tr>
-                <td><%= collection.name %></td>
-                <td><%= collection.slug %></td>
-                <td class="actions text-right">
-                  <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_collection_path(collection), class: "btn btn-info btn-sm") %>
-                  <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_collection_path(collection), class: "btn btn-warning btn-sm") %>
-                  <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_collection_path(collection), class: "btn btn-danger btn-sm",
-                                                      method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col"><%= Archangel.t(:name) %></th>
+                    <th scope="col"><%= Archangel.t(:slug) %></th>
+                    <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @collections.each do |collection| %>
+                    <tr>
+                      <td><%= collection.name %></td>
+                      <td><%= collection.slug %></td>
+                      <td class="actions text-right">
+                        <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_collection_path(collection), class: "btn btn-info btn-sm") %>
+                        <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_collection_path(collection), class: "btn btn-warning btn-sm") %>
+                        <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_collection_path(collection), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <%= paginate @collections %>
+
+          <% else %>
+
+            <p class="no-resources">
+              <%= Archangel.t(:no_resources, resource: @collections.model_name.human.pluralize.downcase) %>
+            </p>
+
+          <% end %>
+        </div>
       </div>
-
-      <%= paginate @collections %>
-
-    <% else %>
-
-      <p class="no-resources">
-        <%= Archangel.t(:no_resources, resource: @collections.model_name.human.pluralize.downcase) %>
-      </p>
-
-    <% end %>
+    </div>
   </div>
 </div>

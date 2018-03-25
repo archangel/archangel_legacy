@@ -1,3 +1,15 @@
-@import '../variables';
-
+// Bootstrap theme variables
+//
+@import '../common/variables';
+//
+// Bootstrap
+//
 @import 'bootstrap';
+//
+// Bootstrap theme
+//
+@import '../common/overrides';
+//
+// 3rd party
+//
+@import 'font-awesome';

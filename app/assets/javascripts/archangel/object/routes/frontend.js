@@ -11,10 +11,10 @@
 
   object.route.frontend = {
     // Homepage
-    root_path: object.frontendPath(),
+    rootPath: object.frontendPath(),
 
     // Page
-    page_path: function(path) {
+    pagePath: function(path) {
       return object.frontendPathFor(path);
     }
   };

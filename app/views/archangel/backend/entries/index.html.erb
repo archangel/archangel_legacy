@@ -1,60 +1,68 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <h2><%= Archangel.t(:index_resource, resource: @collection.name) %></h2>
-
-    <%= render "buttons" %>
+<div class="card card-default">
+  <div class="card-body">
+    <h2><%= fa_icon("circle") %> <%= Archangel.t(:index_resource, resource: @collection.name) %></h2>
   </div>
 </div>
 
-<div class="collections-index panel panel-default">
-  <div class="panel-body">
-    <% if @entries.present? %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-      <%= paginate @entries %>
+        <div class="card-body">
+          <% if @entries.present? %>
 
-      <%- fields = @collection.fields.map { |item| item.slug } %>
+            <%= paginate @entries %>
 
-      <div class="table-responsive">
-        <table class="table table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th class="sort-handle text-center" scope="col">&nbsp;</th>
-              <% fields.each do |field| %>
-                <th scope="col"><%= field %></th>
-              <% end %>
-              <th scope="col"><%= Archangel.t(:available_at) %></th>
-              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
-            </tr>
-          </thead>
+            <%- fields = @collection.fields.map { |item| item.slug } %>
 
-          <tbody id="sortable">
-            <% @entries.each do |entry| %>
-              <tr data-id="<%= entry.id %>">
-                <td><%= fa_icon("sort", title: Archangel.t(:sort)) %></td>
-                <% fields.each do |field| %>
-                  <td><%= entry.value[field] %></td>
-                <% end %>
-                <td><%= entry.available_at %></td>
-                <td class="actions text-right">
-                  <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_collection_entry_path(entry.collection, entry), class: "btn btn-info btn-sm") %>
-                  <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_collection_entry_path(entry.collection, entry), class: "btn btn-warning btn-sm") %>
-                  <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_collection_entry_path(entry.collection, entry), class: "btn btn-danger btn-sm",
-                                                      method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+            <div class="table-responsive">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th class="sort-handle text-center" scope="col">&nbsp;</th>
+                    <% fields.each do |field| %>
+                      <th scope="col"><%= field.titleize %></th>
+                    <% end %>
+                    <th scope="col"><%= Archangel.t(:available_at) %></th>
+                    <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+                  </tr>
+                </thead>
+
+                <tbody id="sortable">
+                  <% @entries.each do |entry| %>
+                    <tr data-id="<%= entry.id %>">
+                      <td class="text-center"><%= fa_icon("sort", title: Archangel.t(:sort)) %></td>
+                      <% fields.each do |field| %>
+                        <td><%= entry.value[field] %></td>
+                      <% end %>
+                      <td><%= entry.available_at %></td>
+                      <td class="actions text-right">
+                        <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_collection_entry_path(entry.collection, entry), class: "btn btn-info btn-sm") %>
+                        <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_collection_entry_path(entry.collection, entry), class: "btn btn-warning btn-sm") %>
+                        <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_collection_entry_path(entry.collection, entry), class: "btn btn-danger btn-sm",
+                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+
+            <%= paginate @entries %>
+
+          <% else %>
+
+            <p class="no-resources">
+              <%= Archangel.t(:no_resources, resource: @collection.name.pluralize.downcase) %>
+            </p>
+
+          <% end %>
+        </div>
       </div>
-
-      <%= paginate @entries %>
-
-    <% else %>
-
-      <p class="no-resources">
-        <%= Archangel.t(:no_resources, resource: @collection.name.pluralize.downcase) %>
-      </p>
-
-    <% end %>
+    </div>
   </div>
 </div>

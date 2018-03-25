@@ -12,8 +12,10 @@ node_modules/
 pkg/
 po/
 spec/dummy/
+package-lock.json
 spec/examples.txt
 Thumbs.db
+yarn.lock
 
 !/app/themes/
 /app/themes/*

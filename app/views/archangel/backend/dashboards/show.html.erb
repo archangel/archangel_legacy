@@ -1,15 +1,23 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <h2><%= Archangel.t(:show_resource, resource: Archangel.t(:dashboard)) %></h2>
-
-    <%= render "buttons" %>
+<div class="card card-default">
+  <div class="card-body">
+    <h2><%= fa_icon("home") %> <%= Archangel.t(:show_resource, resource: Archangel.t(:dashboard)) %></h2>
   </div>
 </div>
 
-<div class="dashboard-show panel panel-default">
-  <div class="panel-body">
-    <p>
-      <%= Archangel.t(:dashboard) %>
-    </p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
+
+        <div class="card-body">
+          <p>
+            <%= Archangel.t(:dashboard) %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

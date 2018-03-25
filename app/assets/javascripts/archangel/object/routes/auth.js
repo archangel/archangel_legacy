@@ -11,10 +11,10 @@
 
   object.route.auth = {
     // Root
-    root_path: object.authPath(),
+    rootPath: object.authPath(),
 
     // Login
-    login_path: object.authPathFor('login')
+    loginPath: object.authPathFor('login')
   };
 
   return object;

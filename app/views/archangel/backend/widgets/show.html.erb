@@ -1,26 +1,42 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <h2><%= Archangel.t(:show_resource, resource: @widget.model_name.human.titleize) %></h2>
-
-    <%= render "buttons" %>
+<div class="card card-default">
+  <div class="card-body">
+    <h2><%= fa_icon("star") %> <%= Archangel.t(:show_resource, resource: @widget.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="widgets-show panel panel-default">
-  <div class="panel-body">
-    <p>
-      <strong><%= Archangel.t(:name) %>:</strong>
-      <%= @widget.name %>
-    </p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card pages-index">
+        <div class="card-header">
+          <%= render "buttons" %>
+        </div>
 
-    <p>
-      <strong><%= Archangel.t(:slug) %>:</strong>
-      <%= @widget.slug %>
-    </p>
+        <div class="card-body">
+          <p>
+            <strong><%= Archangel.t(:name) %>:</strong>
+            <%= @widget.name %>
+          </p>
 
-    <p>
-      <strong><%= Archangel.t(:content) %>:</strong>
-      <%= @widget.content %>
-    </p>
+          <p>
+            <strong><%= Archangel.t(:slug) %>:</strong>
+            <%= @widget.slug %>
+          </p>
+
+          <p>
+            <strong><%= Archangel.t(:content) %>:</strong>
+            <%= @widget.content %>
+          </p>
+
+          <p>
+            <pre>
+              <code>
+{% widget "<%= @widget.slug %>" %}
+              </code>
+            </pre>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

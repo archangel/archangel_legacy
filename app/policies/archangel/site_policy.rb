@@ -14,5 +14,14 @@ module Archangel
     def update?
       admin_user?
     end
+
+    ##
+    # Check if `#sample` action is authorized for current user.
+    #
+    # @return [Boolean] if action is authorized
+    #
+    def sample?
+      true
+    end
   end
 end

@@ -235,17 +235,18 @@ module Archangel
       # Paramaters
       #   {
       #     "collection_entry": {
-      #       "sort": ["1234", "5678", "4321"]
+      #       "sort": ["0" => "1234", "1" => "5678", "2" => "4321"]
       #     }
       #   }
       #
       def sort
-        sort_order = resource_params[:sort]
+        sort_order = sort_resource_params.fetch(:sort)
 
         ApplicationRecord.transaction do
-          sort_order.each_with_index do |entry_id, index|
-            entry = Archangel::Entry.where(collection: @collection)
-                                    .find_by(id: entry_id)
+          sort_order.each do |index, entry_id|
+            entry = current_site.entries
+                                .where(collection: @collection)
+                                .find_by(id: entry_id.to_i)
 
             authorize entry
 
@@ -263,8 +264,13 @@ module Archangel
 
         [
           :available_at,
-          value: fields,
-          sort: []
+          value: fields
+        ]
+      end
+
+      def permitted_sort_attributes
+        [
+          sort: {}
         ]
       end
 
@@ -306,6 +312,12 @@ module Archangel
         params.require(resource_namespace)
               .permit(permitted_attributes)
               .merge(collection_id: @collection.id)
+      end
+
+      def sort_resource_params
+        params.clone
+              .require(resource_namespace)
+              .permit(permitted_sort_attributes)
       end
 
       def resource_namespace
