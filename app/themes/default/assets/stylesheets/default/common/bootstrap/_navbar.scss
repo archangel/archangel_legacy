@@ -114,8 +114,6 @@
       .navbar-brand {
         @include borders($navbar-brand-minimized-border);
         background-color: $navbar-brand-minimized-bg;
-        background-image: $navbar-brand-minimized-logo;
-        background-size: $navbar-brand-minimized-logo-size;
         display: none;
         width: $navbar-brand-minimized-width;
       }
