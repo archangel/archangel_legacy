@@ -1,40 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="<%= text_direction %>" lang="<%= locale %>">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" href="<%= current_site.favicon.url %>" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><%= content_for?(:title) ? yield(:title) : Archangel.t(:archangel) %></title>
 
-    <%= csrf_meta_tags %>
+    <link rel="shortcut icon" href="<%= current_site.favicon.url %>">
 
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script>
-    <![endif]-->
+    <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "#{current_theme}/auth", media: "all" %>
     <%= yield(:stylesheet) if content_for?(:stylesheet) %>
   </head>
-  <body>
+  <body class="app flex-row align-items-center">
 
-    <div id="wrapper">
-      <main id="page-wrapper" role="main">
-        <%= render "layouts/auth/header" %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <%= render "archangel/shared/flash_messages" %>
 
-        <section class="container-fluid">
-          <%= render "archangel/shared/flash_messages" %>
-
-          <%= yield %>
-        </section>
-
-        <%= render "layouts/auth/footer" %>
-      </main>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <%= javascript_include_tag "#{current_theme}/auth" %>
     <%= yield(:javascript) if content_for?(:javascript) %>
-
   </body>
 </html>
