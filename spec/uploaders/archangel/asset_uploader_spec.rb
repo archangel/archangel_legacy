@@ -7,6 +7,10 @@ module Archangel
     let(:asset) { create(:asset) }
     let(:uploader) { described_class.new(asset, :file) }
 
+    it "uses default image" do
+      expect(subject.default_url).to include("assets/archangel/fallback/asset")
+    end
+
     it "allows certain extensions" do
       expect(subject.extension_whitelist).to eq %i[css gif jpeg jpg js png]
     end

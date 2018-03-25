@@ -19,6 +19,10 @@ module Archangel
       uploader.remove!
     end
 
+    it "uses default image" do
+      expect(subject.default_url).to include("assets/archangel/fallback/logo")
+    end
+
     it "scales an original image to be no larger than 512 by 512 pixels" do
       expect(uploader).to be_no_larger_than(512, 512)
     end
