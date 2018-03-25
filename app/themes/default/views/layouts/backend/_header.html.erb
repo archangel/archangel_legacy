@@ -12,13 +12,15 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <ul class="nav navbar-nav ml-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="<%= backend_profile_path %>"><%= fa_icon("user") %> <span class="d-md-down-none"><%= Archangel.t(:profile) %></span></a>
-    </li>
+  <div class="btn-group ml-auto" role="toolbar" aria-label="Toolbar">
+    <a class="nav-link" href="<%= backend_profile_path %>">
+      <span class="d-md-down-none"><%= Archangel.t(:profile) %></span>
+      <%= fa_icon("user") %>
+    </a>
 
-    <li class="nav-item">
-      <a class="nav-link" data-method="delete" href="<%= destroy_user_session_path %>" rel="nofollow"><%= fa_icon("power-off") %> <span class="d-md-down-none"><%= Archangel.t(:logout) %></span></a>
-    </li>
-  </ul>
+    <a class="nav-link" data-method="delete" href="<%= destroy_user_session_path %>" rel="nofollow">
+      <span class="d-md-down-none"><%= Archangel.t(:logout) %></span>
+      <%= fa_icon("power-off") %>
+    </a>
+  </div>
 </header>

@@ -1,25 +1,20 @@
 <div class="btn-group pull-right" role="group" aria-label="Button group">
   <% if member_action? || new_action? %>
-    <%= link_to(fa_icon("chevron-left"), backend_collections_path, class: "btn btn-link btn-float") %>
-    <span class="d-sm-down-none"><%= Archangel.t(:back) %></span>
+    <%= link_to(fa_icon("chevron-left", text: Archangel.t(:back)), backend_collections_path, class: "btn btn-link") %>
   <% end %>
 
   <% if collection_action? || show_action? || edit_action? %>
-    <%= link_to(fa_icon("plus"), new_backend_collection_path, class: "btn btn-link btn-float") %>
-    <span class="d-sm-down-none"><%= Archangel.t(:new) %></span>
+    <%= link_to(fa_icon("plus", text: Archangel.t(:new)), new_backend_collection_path, class: "btn btn-link") %>
   <% end %>
 
   <% if show_action? %>
-    <%= link_to(fa_icon("check"), edit_backend_collection_path(@collection), class: "btn btn-link btn-float") %>
-    <span class="d-sm-down-none"><%= Archangel.t(:edit) %></span>
+    <%= link_to(fa_icon("check", text: Archangel.t(:edit)), edit_backend_collection_path(@collection), class: "btn btn-link") %>
   <% end %>
 
   <% if show_action? || edit_action? %>
-    <%= link_to(fa_icon("folder-open"), backend_collection_entries_path(@collection), class: "btn btn-link btn-float") %>
-    <span class="d-sm-down-none"><%= Archangel.t(:entries) %></span>
+    <%= link_to(fa_icon("folder-open", text: Archangel.t(:entries)), backend_collection_entries_path(@collection), class: "btn btn-link") %>
 
-    <%= link_to(fa_icon("times"), backend_collection_path(@collection), class: "btn btn-link btn-float",
+    <%= link_to(fa_icon("times", text: Archangel.t(:destroy)), backend_collection_path(@collection), class: "btn btn-link",
                                  method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
-    <span class="d-sm-down-none"><%= Archangel.t(:destroy) %></span>
   <% end %>
 </div>
