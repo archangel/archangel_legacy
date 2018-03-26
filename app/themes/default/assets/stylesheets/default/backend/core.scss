@@ -8,11 +8,11 @@
 //
 // Bootstrap theme
 //
-@import '../common/overrides';
+@import '../common/bootstrap';
+@import '../common/selectize';
 //
 // 3rd party
 //
 @import 'font-awesome';
 // @import 'bootstrap-datetimepicker';
-// @import 'selectize';
-// @import 'summernote';
+@import 'summernote';
