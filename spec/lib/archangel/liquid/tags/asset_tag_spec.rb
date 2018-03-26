@@ -30,6 +30,39 @@ module Archangel
           expect(result).to include(expected)
         end
 
+        context "with `size` attribute" do
+          %w[small tiny].each do |size|
+            it "returns `#{size}` sized image asset" do
+              asset = create(:asset, site: site, file_name: "abc.jpg")
+
+              content = <<-LIQUID
+                {% asset '#{asset.file_name}' size: '#{size}' %}
+              LIQUID
+
+              result = ::Liquid::Template.parse(content).render(context)
+              expected = "<img alt=\"#{asset.file_name}\" " \
+                         "src=\"/uploads/archangel/asset/" \
+                         "file/#{asset.id}/#{size}_"
+
+              expect(result).to include(expected)
+            end
+          end
+
+          it "returns original image asset" do
+            asset = create(:asset, site: site, file_name: "abc.jpg")
+
+            content = <<-LIQUID
+              {% asset '#{asset.file_name}' size: 'unknown_size' %}
+            LIQUID
+
+            result = ::Liquid::Template.parse(content).render(context)
+            expected = "<img alt=\"#{asset.file_name}\" " \
+                       "src=\"/uploads/archangel/asset/file/#{asset.id}/"
+
+            expect(result).to include(expected)
+          end
+        end
+
         it "returns image with options" do
           asset = create(:asset, site: site, file_name: "abc.jpg")
 

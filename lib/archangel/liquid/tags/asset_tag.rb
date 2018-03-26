@@ -8,7 +8,9 @@ module Archangel
       #
       # Example
       #   {% asset 'my-asset.png' %} #=>
-      #     <img src="path/to/my-asset.png" alt="my-asset.png">
+      #     <img src="path/to/my-asset.png" alt:"my-asset.png">
+      #   {% asset 'my-asset.png' size:'medium' %} #=>
+      #     <img src="path/to/medium_my-asset.png" alt:"my-asset.png">
       #   {% asset 'my-asset.png' alt:'My image' class:'center' %} #=>
       #     <img src="path/to/my-asset.png" alt="My image" class="center">
       #
@@ -66,9 +68,7 @@ module Archangel
           @key = ::Liquid::Variable.new(match[:key], options).name
           @attributes = {}
 
-          match[:attributes].scan(SYNTAX_ATTRIBUTES) do |key, value|
-            @attributes[key.to_sym] = ::Liquid::Expression.parse(value)
-          end
+          build_attributes(match[:attributes])
         end
 
         ##
@@ -90,7 +90,18 @@ module Archangel
 
         protected
 
-        attr_reader :attributes, :key
+        attr_reader :attributes, :key, :size
+
+        def build_attributes(attrs)
+          attrs.scan(SYNTAX_ATTRIBUTES) do |key, value|
+            @attributes[key.to_sym] = ::Liquid::Expression.parse(value)
+          end
+
+          size = attributes.fetch(:size, nil)
+
+          @size = %w[small tiny].include?(size) ? size : nil
+          @attributes.delete(:size)
+        end
 
         def load_asset_for(site)
           site.assets.find_by!(file_name: key)
@@ -108,10 +119,14 @@ module Archangel
           params = {
             alt: asset.file_name
           }.merge(attributes).merge(
-            src: asset.file.url
+            src: sized_image_asset(asset.file)
           ).compact.reject { |_, value| value.blank? }
 
           tag("img", params)
+        end
+
+        def sized_image_asset(file)
+          size.blank? ? file.url : file.send(size).url
         end
       end
     end
