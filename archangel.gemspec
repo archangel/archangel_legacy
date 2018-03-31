@@ -7,7 +7,7 @@ require "archangel/version"
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "archangel"
-  s.version     = Archangel::VERSION
+  s.version     = Archangel.version
   s.authors     = ["David Freerksen"]
   s.email       = ["dfreerksen@gmail.com"]
   s.homepage    = "https://github.com/archangel/archangel"

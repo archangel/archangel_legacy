@@ -90,13 +90,5 @@ module Archangel
     def themes
       [THEME_DEFAULT] + THEMES
     end
-
-    ##
-    # Archangel version
-    #
-    # @return [String] current version
-    def version
-      VERSION
-    end
   end
 end
