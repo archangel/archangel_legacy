@@ -11,8 +11,12 @@
 @import '../common/bootstrap';
 @import '../common/selectize';
 //
-// 3rd party
+// 3rd party (from gems)
 //
 @import 'font-awesome';
 // @import 'bootstrap-datetimepicker';
-@import 'summernote';
+//
+// 3rd party (from vendor)
+//
+@import 'trumbowyg/trumbowyg';
+@import 'trumbowyg/plugins/colors/trumbowyg.colors';

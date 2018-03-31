@@ -12,6 +12,7 @@ module Archangel
       before_action :set_resources, only: %i[index]
       before_action :set_resource, only: %i[destroy edit show update]
       before_action :set_new_resource, only: %i[create new]
+      before_action :set_wysiwyg_resource, only: %i[wysiwyg]
 
       ##
       # Backend assets
@@ -235,6 +236,40 @@ module Archangel
         respond_with @asset, location: -> { location_after_destroy }
       end
 
+      ##
+      # Create backend asset from WYSIWYG upload
+      #
+      # Formats
+      #   JSON
+      #
+      # Request
+      #   POST /backend/wysiwyg
+      #   POST /backend/wysiwyg.json
+      #
+      # Paramaters
+      #   {
+      #     "file": "local/path/to/new_file.gif"
+      #   }
+      #
+      # Response
+      #   {
+      #     "success": true,
+      #     "url": "file_name.gif"
+      #   }
+      #
+      def wysiwyg
+        @asset.save
+
+        asset_response = {
+          success: true,
+          url: @asset.file.url
+        }
+
+        respond_to do |format|
+          format.json { render json: asset_response }
+        end
+      end
+
       protected
 
       def permitted_attributes
@@ -261,6 +296,16 @@ module Archangel
         new_params = action_name.to_sym == :create ? resource_params : nil
 
         @asset = current_site.assets.new(new_params)
+
+        authorize @asset
+      end
+
+      def set_wysiwyg_resource
+        wysiwyg_params = params.permit(permitted_attributes).reverse_merge(
+          file_name: "#{SecureRandom.hex}.jpg"
+        )
+
+        @asset = current_site.assets.new(wysiwyg_params)
 
         authorize @asset
       end

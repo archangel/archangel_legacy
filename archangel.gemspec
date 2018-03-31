@@ -48,6 +48,5 @@ Gem::Specification.new do |s|
   s.add_dependency "responders", "~> 2.4.0"
   s.add_dependency "selectize-rails", "~> 0.12.4"
   s.add_dependency "simple_form", "~> 3.5.0"
-  s.add_dependency "summernote-rails", "~> 0.8.10"
   s.add_dependency "validates", "~> 1.0.0"
 end

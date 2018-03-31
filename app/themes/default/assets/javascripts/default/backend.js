@@ -1,7 +1,7 @@
 //  Default Archangel backend theme
 //= require_self
 //
-//  Third-party assets
+//  Third-party assets (from gems)
 //= require jquery3
 //= require rails-ujs
 //= require popper
@@ -9,9 +9,17 @@
 // require moment
 // require bootstrap-datetimepicker
 //= require selectize
-//= require summernote
 //= require cocoon
-//= require sortable.min
+//
+//  Third-party assets (from vendor)
+//= require sortable/sortable
+//= require trumbowyg/trumbowyg
+//= require trumbowyg/plugins/allowtagsfrompaste/trumbowyg.allowtagsfrompaste
+//= require trumbowyg/plugins/base64/trumbowyg.base64
+//= require trumbowyg/plugins/cleanpaste/trumbowyg.cleanpaste
+//= require trumbowyg/plugins/colors/trumbowyg.colors
+//= require trumbowyg/plugins/noembed/trumbowyg.noembed
+//= require trumbowyg/plugins/upload/trumbowyg.upload
 //
 //  Archangel helper scripts
 //= require "archangel/object"

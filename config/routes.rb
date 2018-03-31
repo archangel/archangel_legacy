@@ -68,6 +68,7 @@ Archangel::Engine.routes.draw do
     # PATCH /backend/site
     # PUT   /backend/site
     resource :site, only: %i[edit show update] do
+      # GET   /backend/site/sample
       get :sample
     end
 
@@ -80,7 +81,10 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/assets/[ID]
     # PUT    /backend/assets/[ID]
     # DELETE /backend/assets/[ID]
-    resources :assets, concerns: %i[paginatable]
+    resources :assets, concerns: %i[paginatable] do
+      # POST  /backend/assets/wysiwyg
+      post "wysiwyg", on: :collection
+    end
 
     # GET    /backend/collections
     # GET    /backend/collections/page/[PAGE]
@@ -101,10 +105,10 @@ Archangel::Engine.routes.draw do
       # PATCH  /backend/collections/[COLLECTION_SLUG]/entries/[ID]
       # PUT    /backend/collections/[COLLECTION_SLUG]/entries/[ID]
       # DELETE /backend/collections/[COLLECTION_SLUG]/entries/[ID]
-      # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort
-      # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort.json
       resources :entries, concerns: %i[paginatable] do
-        post "sort", action: :sort, on: :collection, defaults: { format: :json }
+        # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort
+        # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort.json
+        post "sort", on: :collection, defaults: { format: :json }
       end
     end
 

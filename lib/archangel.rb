@@ -26,7 +26,6 @@ require "responders"
 require "sass-rails"
 require "selectize-rails"
 require "simple_form"
-require "summernote-rails"
 require "uglifier"
 require "validates"
 

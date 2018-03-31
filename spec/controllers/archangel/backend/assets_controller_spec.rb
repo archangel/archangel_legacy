@@ -203,6 +203,35 @@ module Archangel
           expect(response).to redirect_to(backend_assets_path)
         end
       end
+
+      describe "POST #wysiwyg" do
+        context "with valid params" do
+          let(:params) do
+            {
+              file: fixture_file_upload(uploader_test_image)
+            }
+          end
+
+          it "creates a new resource" do
+            expect do
+              post :wysiwyg, format: :json, params: params
+            end.to change(Asset, :count).by(1)
+          end
+
+          it "assigns a newly created resource as @asset" do
+            post :wysiwyg, format: :json, params: params
+
+            expect(assigns(:asset)).to be_a(Asset)
+            expect(assigns(:asset)).to be_persisted
+          end
+
+          it "redirects after creating resource" do
+            post :wysiwyg, format: :json, params: params
+
+            expect(response.body).to include("success\":true")
+          end
+        end
+      end
     end
   end
 end
