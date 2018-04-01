@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jbuilder", "~> 2.7.0"
   s.add_dependency "kaminari", "~> 1.1.1"
   s.add_dependency "liquid", "~> 4.0.0"
-  s.add_dependency "meta-tags", "~> 2.8.0"
+  s.add_dependency "meta-tags", "~> 2.9.0"
   s.add_dependency "mini_magick", "~> 4.8.0"
   s.add_dependency "momentjs-rails", "~> 2.20.1"
   s.add_dependency "paranoia", "~> 2.4.0"
