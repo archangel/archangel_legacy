@@ -24,9 +24,7 @@ FactoryBot.define do
     end
 
     trait :unconfirmed do
-      confirmation_token nil
       confirmed_at nil
-      confirmation_sent_at nil
     end
 
     trait :reset do

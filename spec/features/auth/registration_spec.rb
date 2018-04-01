@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Auth login page", type: :feature do
+RSpec.feature "Auth registration", type: :feature do
   describe "when registration is disabled" do
     it "returns a 404" do
       visit archangel.new_user_registration_path
