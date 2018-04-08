@@ -83,6 +83,14 @@ $ bundle exec rspec spec --fail-fast
 
 Various tools are used to make sure code is linted and formatted correctly.
 
+### Reek
+
+[Reek](https://github.com/troessner/reek) is a code smell detector for Ruby.
+
+```
+$ reek
+```
+
 ### RuboCop
 
 [RuboCop](https://github.com/bbatsov/rubocop) is a Ruby static code analyzer.
