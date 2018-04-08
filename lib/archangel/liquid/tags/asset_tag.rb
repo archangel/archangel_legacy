@@ -15,6 +15,8 @@ module Archangel
       #     <img src="path/to/my-asset.png" alt="My image" class="center">
       #
       class AssetTag < ApplicationTag
+        include ::ActionView::Helpers::UrlHelper
+
         ##
         # Regex for tag key
         #
@@ -110,9 +112,11 @@ module Archangel
         end
 
         def asset_decider(asset)
-          return unless %r{image/[gif|jpeg|jpg|png]} =~ asset.content_type
-
-          image_asset(asset)
+          if %r{image/[gif|jpeg|jpg|png]} =~ asset.content_type
+            image_asset(asset)
+          else
+            linked_asset(asset)
+          end
         end
 
         def image_asset(asset)
@@ -123,6 +127,12 @@ module Archangel
           ).compact.reject { |_, value| value.blank? }
 
           tag("img", params)
+        end
+
+        def linked_asset(asset)
+          options = attributes.compact.reject { |_, value| value.blank? }
+
+          link_to(asset.file_name, asset.file.url, options)
         end
 
         def sized_image_asset(file)

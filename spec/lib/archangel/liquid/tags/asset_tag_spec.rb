@@ -19,59 +19,63 @@ module Archangel
           )
         end
 
-        it "returns image asset" do
-          asset = create(:asset, site: site, file_name: "abc.jpg")
+        it "returns link for non-image asset" do
+          asset = create(:asset, :stylesheet, site: site)
 
           result = ::Liquid::Template.parse("{% asset '#{asset.file_name}' %}")
                                      .render(context)
-          expected = "<img alt=\"#{asset.file_name}\" " \
-                     "src=\"/uploads/archangel/asset/file/"
+          expected = %r{<a href="#{asset.file.url}">#{asset.file_name}\</a>}
 
-          expect(result).to include(expected)
+          expect(result).to match(expected)
+        end
+
+        it "returns image asset" do
+          asset = create(:asset, site: site)
+
+          result = ::Liquid::Template.parse("{% asset '#{asset.file_name}' %}")
+                                     .render(context)
+
+          expect(result).to match(
+            %r{<img alt="#{asset.file_name}" src="#{asset.file.url}" />}
+          )
         end
 
         context "with `size` attribute" do
           %w[small tiny].each do |size|
             it "returns `#{size}` sized image asset" do
-              asset = create(:asset, site: site, file_name: "abc.jpg")
+              asset = create(:asset, site: site)
 
-              content = <<-LIQUID
-                {% asset '#{asset.file_name}' size: '#{size}' %}
-              LIQUID
-
+              content = "{% asset '#{asset.file_name}' size: '#{size}' %}"
               result = ::Liquid::Template.parse(content).render(context)
-              expected = "<img alt=\"#{asset.file_name}\" " \
-                         "src=\"/uploads/archangel/asset/" \
-                         "file/#{asset.id}/#{size}_"
 
-              expect(result).to include(expected)
+              asset_file_url = asset.file.send(size.to_sym).url
+
+              expect(result).to match(
+                %r{<img alt="#{asset.file_name}" src="#{asset_file_url}" />}
+              )
             end
           end
 
           it "returns original image asset" do
-            asset = create(:asset, site: site, file_name: "abc.jpg")
+            asset = create(:asset, site: site)
 
-            content = <<-LIQUID
-              {% asset '#{asset.file_name}' size: 'unknown_size' %}
-            LIQUID
-
+            content = "{% asset '#{asset.file_name}' size: 'unknown_size' %}"
             result = ::Liquid::Template.parse(content).render(context)
-            expected = "<img alt=\"#{asset.file_name}\" " \
-                       "src=\"/uploads/archangel/asset/file/#{asset.id}/"
 
-            expect(result).to include(expected)
+            expect(result).to match(
+              %r{<img alt="#{asset.file_name}" src="#{asset.file.url}" />}
+            )
           end
         end
 
         it "returns image with options" do
-          asset = create(:asset, site: site, file_name: "abc.jpg")
+          asset = create(:asset, site: site)
 
           content = "{% asset '#{asset.file_name}' alt:'This is the alt tag' %}"
           result = ::Liquid::Template.parse(content).render(context)
-          expected = "<img alt=\"This is the alt tag\" " \
-                     "src=\"/uploads/archangel/asset/file/"
-
-          expect(result).to include(expected)
+          expect(result).to match(
+            %r{<img alt="This is the alt tag" src="#{asset.file.url}" />}
+          )
         end
 
         it "returns nothing when asset not found" do
