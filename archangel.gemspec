@@ -47,6 +47,6 @@ Gem::Specification.new do |s|
   s.add_dependency "pundit", "~> 1.1.0"
   s.add_dependency "responders", "~> 2.4.0"
   s.add_dependency "selectize-rails", "~> 0.12.4"
-  s.add_dependency "simple_form", "~> 3.5.0"
+  s.add_dependency "simple_form", "~> 4.0.0"
   s.add_dependency "validates", "~> 1.0.0"
 end
