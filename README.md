@@ -26,7 +26,7 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 
 ## Requirements
 
-* Ruby >= 2.2.9
+* Ruby >= 2.2.10
 * Rails ~> 5.1.4
 
 ## Installation
