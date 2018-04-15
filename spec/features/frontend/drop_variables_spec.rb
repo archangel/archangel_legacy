@@ -33,6 +33,40 @@ RSpec.feature "Default variables", type: :feature do
 
       expect(page).to have_content("Current Page: /foo/bar")
     end
+
+    it "knows it is on the current page" do
+      content = <<-CONTENT
+        {% if current_page == page.path %}
+          Is Current Page?: Yup!
+        {% else %}
+          Is Current Page?: Nope!
+        {% endif %}
+      CONTENT
+
+      post = create(:page, site: site, content: content)
+
+      visit archangel.frontend_page_path(post.path)
+
+      expect(page).to have_content("Is Current Page?: Yup!")
+      expect(page).not_to have_content("Is Current Page?: Nope!")
+    end
+
+    it "knows it is not on the current page" do
+      content = <<-CONTENT
+        {% if current_page == '/some-other-page' %}
+          Is Current Page?: Yup!
+        {% else %}
+          Is Current Page?: Nope!
+        {% endif %}
+      CONTENT
+
+      post = create(:page, site: site, content: content)
+
+      visit archangel.frontend_page_path(post.path)
+
+      expect(page).not_to have_content("Is Current Page?: Yup!")
+      expect(page).to have_content("Is Current Page?: Nope!")
+    end
   end
 
   describe "for page" do
