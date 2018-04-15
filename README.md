@@ -62,13 +62,13 @@ Seed data can be created separately by running `rake db:seed`
 Subsequent updates can be done by bumping the version in your application Gemfile, then installing new migrations
 
 ```
-$ bundle exec rake archangel:install:migrations
+$ bundle exec rails archangel:install:migrations
 ```
 
 Run migrations
 
 ```
-$ bundle exec rake db:migrate
+$ bundle exec rails db:migrate
 ```
 
 ## Testing
@@ -107,16 +107,20 @@ $ bundle exec rspec spec --fail-fast
 
 * [Travis CI](https://travis-ci.org/) is used for running tests.
 * [Hound](https://houndci.com/) is used as the code analyzer in pull request.
+* [Code Climate](https://codeclimate.com/) is used to analyze overall maintainability.
 
 ## Developers
 
-* TODO: Archangel gem development instructions and resources
-* TODO: Archangel instructions and resources for theme developers
-* TODO: Archangel instructions and resources for extension developers
+General documentation for developers
+
+* [Documentation for Archangel gem developers](https://github.com/archangel/archangel/blob/master/docs/Developers.md)
+* [Documentation for extension developers](https://github.com/archangel/archangel/blob/master/docs/ExtensionDevelopers.md)
+* [Documentation for theme developers](https://github.com/archangel/archangel/blob/master/docs/ThemeDevelopers.md)
+* [Documentation for releasing a gem version](https://github.com/archangel/archangel/blob/master/docs/Release.md) (maintainers only)
 
 ## Contributing
 
-A [contributing guide](CONTRIBUTING.md) is available.
+A [contributing guide](https://github.com/archangel/archangel/blob/master/CONTRIBUTING.md) is available.
 
 1. Fork it ([https://github.com/archangel/archangel/fork](https://github.com/archangel/archangel/fork))
 2. Create your feature branch (`git checkout -b my-new-feature`)
