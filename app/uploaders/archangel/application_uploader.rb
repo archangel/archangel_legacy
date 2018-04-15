@@ -44,15 +44,6 @@ module Archangel
     end
 
     ##
-    # Remove all animation frames from GIF images
-    #
-    # @return [Object] first frame of GIF file
-    #
-    def remove_animation
-      manipulate!(&:collapse!) if content_type == "image/gif"
-    end
-
-    ##
     # Check if file is an image based on file content_type
     #
     # @return [Boolean] if file is an image
