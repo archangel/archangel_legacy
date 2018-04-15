@@ -47,7 +47,7 @@ We gladly accept pull requests to Archangel.
 
 ## Testing
 
-Tests are always necessary. If you find yourself thinking, "DO I need to write tests for this?," the answer is yes. [Travis CI](https://travis-ci.org/) is used for running tests. To get the best possible overview of issues with different Ruby versions, Archangel is tested with multiple various of Ruby. See [`.travis.yml`](.travis.yml) for the versions of Ruby tested.
+Tests are always necessary. If you find yourself thinking, "Do I need to write tests for this?," the answer is yes. [Travis CI](https://travis-ci.org/) is used for running tests. To get the best possible overview of issues with different Ruby versions, Archangel is tested with multiple various of Ruby. See [`.travis.yml`](.travis.yml) for the versions of Ruby tested.
 
 Generate a dummy application. You will be required to generate a dummy application before running tests.
 
