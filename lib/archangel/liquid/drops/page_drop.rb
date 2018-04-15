@@ -10,8 +10,7 @@ module Archangel
       # Liquid drop for a Page
       #
       class PageDrop < Archangel::Liquid::Drop
-        attributes :title, :path, :meta_keywords, :meta_description,
-                   :published_at
+        attributes :meta_description, :meta_keywords, :published_at, :title
 
         # Page id as a string
         #
@@ -19,6 +18,14 @@ module Archangel
         #
         def id
           object.id.to_s
+        end
+
+        # Page path with leading slash
+        #
+        # @return [String] the path
+        #
+        def path
+          "/#{object.path}"
         end
       end
     end

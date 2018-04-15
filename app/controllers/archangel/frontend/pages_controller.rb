@@ -129,8 +129,9 @@ module Archangel
       # @return [String] the rendered Liquid content
       #
       def liquid_rendered_content
-        Archangel::RenderService.call(@page.content, page: @page,
-                                                     site: current_site)
+        variables = default_liquid_assign
+
+        Archangel::RenderService.call(@page.content, variables)
       end
 
       ##
@@ -140,10 +141,17 @@ module Archangel
       #
       def liquid_rendered_template_content
         content = liquid_rendered_content
+        variables = default_liquid_assign.merge(content_for_layout: content)
 
-        Archangel::TemplateRenderService.call(@page.template,
-                                              site: current_site,
-                                              content_for_layout: content)
+        Archangel::TemplateRenderService.call(@page.template, variables)
+      end
+
+      def default_liquid_assign
+        {
+          current_page: request.fullpath,
+          page: @page.to_liquid,
+          site: current_site.to_liquid
+        }
       end
     end
   end
