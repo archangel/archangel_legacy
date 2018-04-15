@@ -33,11 +33,11 @@
         <a class="nav-link" href="<%= backend_site_path %>"><%= fa_icon("cog") %> <%= Archangel.t(:site) %></a>
       </li>
 
-      <li class="nav-title">
-        <%= Archangel.t(:collections) %>
-      </li>
-
       <% if current_site.collections.present? %>
+        <li class="nav-title">
+          <%= Archangel.t(:collections) %>
+        </li>
+        
         <% for item in current_site.collections %>
           <% if item.persisted? %>
             <li class="nav-item">
