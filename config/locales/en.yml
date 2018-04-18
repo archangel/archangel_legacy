@@ -77,7 +77,7 @@ en:
     name: Name
     new: New
     new_resource: New %{resource}
-    no_resources: No %{resource} found.
+    no_resources: No %{resources} found.
     not_found: Not Found
     partial: Partial
     pages: Pages
