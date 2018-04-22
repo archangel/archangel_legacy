@@ -41,15 +41,6 @@ module Archangel
       Archangel::RenderService.call(template, assigns, options)
     end
 
-    ##
-    # Check if compilable
-    #
-    # @return [Boolean] if compilable
-    #
-    def compilable?
-      false
-    end
-
     protected
 
     def default_assigns(local_assigns)
