@@ -30,14 +30,11 @@ module Archangel
             define_method :layout_from_theme do
               theme_instance.theme_name
             end
+            alias_method :current_theme, :layout_from_theme
 
             define_method :theme_instance do
               @theme_instance ||=
                 Archangel::Theme::ThemableController.new(self, theme)
-            end
-
-            define_method :current_theme do
-              theme_instance.theme_name
             end
 
             private :layout_from_theme,
