@@ -12,8 +12,6 @@
 
 Archangel is a Rails CMS.
 
-The Archangel logo is made by [Joshua Boyd](http://www.joshadamboyd.com/)
-
 This project rocks and uses MIT-LICENSE.
 
 [Online documentation is available](http://www.rubydoc.info/github/archangel/archangel/master)
@@ -117,6 +115,11 @@ General documentation for developers
 * [Documentation for extension developers](https://github.com/archangel/archangel/blob/master/docs/ExtensionDevelopers.md)
 * [Documentation for theme developers](https://github.com/archangel/archangel/blob/master/docs/ThemeDevelopers.md)
 * [Documentation for releasing a gem version](https://github.com/archangel/archangel/blob/master/docs/Release.md) (maintainers only)
+
+## Special Thanks
+
+* The Archangel logo is made by [Joshua Boyd](http://www.joshadamboyd.com/)
+* The amazing people from [@archangel-dlt](https://github.com/archangel-dlt/) that originally had the "archangel" gem name and were kind enough to give it up
 
 ## Contributing
 
