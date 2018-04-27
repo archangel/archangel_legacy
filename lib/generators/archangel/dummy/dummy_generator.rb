@@ -67,6 +67,7 @@ module Archangel
         opts[:skip_git] = true
         opts[:old_style_hash] = false
         opts[:skip_turbolinks] = true
+        opts[:skip_bootsnap] = true
 
         puts "Generating dummy Rails application..."
 
