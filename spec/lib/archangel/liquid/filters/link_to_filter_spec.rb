@@ -11,10 +11,6 @@ module Archangel
           ::Liquid::Context.new({ "site" => site }, {}, view: view)
         end
 
-        def link_to(link_text, *args)
-          link_to(args.first, link_text)
-        end
-
         context "#link_to" do
           let(:link_text) { "Hello world!" }
 
