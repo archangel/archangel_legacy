@@ -24,8 +24,7 @@ module Archangel
 
     theme :theme_resolver
 
-    rescue_from ActionController::UnknownController,
-                AbstractController::ActionNotFound,
+    rescue_from AbstractController::ActionNotFound,
                 ActionView::MissingTemplate,
                 ActiveRecord::RecordNotFound, with: :render_404_error
 
