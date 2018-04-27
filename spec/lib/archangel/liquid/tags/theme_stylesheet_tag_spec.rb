@@ -7,9 +7,10 @@ module Archangel
     module Tags
       RSpec.describe ThemeStylesheetTag, type: :liquid_tag,
                                          disable: :verify_partial_doubles do
-        before { create(:site) }
-
-        let(:context) { ::Liquid::Context.new({}, {}, view: view) }
+        let(:site) { create(:site) }
+        let(:context) do
+          ::Liquid::Context.new({ "site" => site }, {}, view: view)
+        end
 
         it "renders stylesheet tag for theme" do
           allow(view).to receive(:current_theme).and_return("default")

@@ -7,7 +7,6 @@ module Archangel
     module Tags
       RSpec.describe CollectionTag, type: :liquid_tag do
         let(:site) { create(:site) }
-
         let(:context) do
           ::Liquid::Context.new({ "site" => site }, {}, view: view)
         end
