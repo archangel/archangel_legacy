@@ -26,7 +26,7 @@ task :dummy_app do
   Rake::Task["dummy:generate"].invoke
 end
 
-desc "Remove any generates files and directories"
+desc "Remove any generated files and directories"
 task :clean do
   %w[Gemfile.lock spec/examples.txt].each { |file| rm_f file }
 
