@@ -1,0 +1,4 @@
+en:
+  archangel:
+    hello: "Hello world"
+    <%= extension_name %>: <%= class_name %>

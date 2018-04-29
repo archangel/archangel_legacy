@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+require "archangel"
+
+require "<%= extension_name %>/engine"
+require "<%= extension_name %>/version"
+
+module <%= class_name %>
+end
