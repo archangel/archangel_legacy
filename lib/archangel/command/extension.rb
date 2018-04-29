@@ -64,12 +64,12 @@ module Archangel
         def archangel_version
           Archangel.version[/(.*)\./, 1]
         end
+      end
 
+      no_tasks do
         def prefix_name
-          prefix = "archangel_"
           ext_name = extension_name.downcase
-
-          ext_name = prefix + ext_name unless ext_name =~ /^#{prefix}/
+          ext_name = "archangel_#{ext_name}" unless ext_name =~ /^archangel_/
 
           @extension_name = Thor::Util.snake_case(ext_name)
         end
