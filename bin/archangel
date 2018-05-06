@@ -3,6 +3,8 @@
 require "thor"
 require "thor/group"
 
+require "archangel/version"
+
 case ARGV.first.downcase
 when "extension"
   require "archangel/command/extension"
