@@ -8,8 +8,6 @@ end
 
 Dir.glob("./lib/tasks/**/*_task.rake").each { |task| load task }
 
-Bundler::GemHelper.install_tasks
-
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 
