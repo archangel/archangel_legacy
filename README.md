@@ -85,10 +85,13 @@ General documentation for developers
 * [Documentation for theme developers](https://github.com/archangel/archangel/blob/master/docs/Theme/Developers.md)
 * [Documentation for releasing a gem version](https://github.com/archangel/archangel/blob/master/docs/Release.md) (maintainers only)
 
+## Logo
+
+Archangel's logo was created by [Joshua Boyd](http://www.joshadamboyd.com/).
+
 ## Special Thanks
 
-* The Archangel logo is made by [Joshua Boyd](http://www.joshadamboyd.com/)
-* The amazing people from [@archangel-dlt](https://github.com/archangel-dlt/) that originally had the "archangel" gem name and were kind enough to give it up
+[@archangel-dlt](https://github.com/archangel-dlt/) originally had the "archangel" gem name and were kind enough to give it up
 
 ## Contributing
 
