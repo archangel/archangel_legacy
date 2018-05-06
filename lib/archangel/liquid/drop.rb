@@ -60,26 +60,36 @@ module Archangel
       end
 
       def self.associate(type, attrs)
-        options = attrs.extract_options!
         self._associations = _associations.dup
+
+        associate_attributes(type, attrs)
+      end
+
+      def self.associate_attributes(type, attrs)
+        options = attrs.extract_options!
 
         attrs.each do |attr|
           next if method_defined?(attr)
 
-          define_method attr do
-            value = instance_variable_get("@_#{attr}")
-            return value if value
+          define_method_attribute(attr)
 
-            association = object.send(attr)
-            return nil if association.blank?
+          _associations[attr] = { type: type, options: options }
+        end
+      end
 
-            drop_instance =
-              Archangel::Liquid::Drop.dropify(association, options)
+      def self.define_method_attribute(attr)
+        options = attrs.extract_options!
 
-            instance_variable_set("@_#{attr}", drop_instance)
-          end
+        define_method attr do
+          value = instance_variable_get("@_#{attr}")
+          return value if value
 
-          self._associations[attr] = { type: type, options: options }
+          association = object.send(attr)
+          return nil if association.blank?
+
+          drop_instance = Archangel::Liquid::Drop.dropify(association, options)
+
+          instance_variable_set("@_#{attr}", drop_instance)
         end
       end
 
