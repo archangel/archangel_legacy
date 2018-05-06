@@ -1,23 +1,15 @@
 # Summary
 
-A few sentences describing the issue.
-
-Expected behavior...
-
-Actual behavior...
-
-Possible fix...
-
-Stacktrace...
+A few sentences describing the issue; including expected behavior, actual behavior, possible fix or stacktrace.
 
 ## Steps to Reproduce
 
-1.
-2.
-3.
+1. Do this...
+2. Do that...
+3. ...
 
 ## Your Environment
 
-* Ruby Version:
-* Gem Version:
-* OS and Version:
+* Ruby Version: 2.5
+* Rails Version: 5
+* Archangel Version: < 1

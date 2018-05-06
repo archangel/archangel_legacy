@@ -25,7 +25,7 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 ## Requirements
 
 * Ruby >= 2.2.10
-* Rails ~> 5.1.4
+* Rails ~> 5.1
 
 ## Installation
 
@@ -69,38 +69,6 @@ Run migrations
 $ bundle exec rails db:migrate
 ```
 
-## Testing
-
-Generate a dummy application. You will be required to generate a dummy application before running tests.
-
-```
-$ bundle exec rake dummy_app
-```
-
-Run tests
-
-```
-$ bundle exec rake
-```
-
-or
-
-```
-$ bundle exec rake spec
-```
-
-or
-
-```
-$ bundle exec rspec spec
-```
-
-You can also enable fail fast in order to stop tests at the first failure
-
-```
-$ bundle exec rspec spec --fail-fast
-```
-
 ## Code Analysis
 
 * [Travis CI](https://travis-ci.org/) is used for running tests.
@@ -111,6 +79,7 @@ $ bundle exec rspec spec --fail-fast
 
 General documentation for developers
 
+* [Contributing Guide](https://github.com/archangel/archangel/blob/master/CONTRIBUTING.md)
 * [Documentation for Archangel gem developers](https://github.com/archangel/archangel/blob/master/docs/Developers.md)
 * [Documentation for extension developers](https://github.com/archangel/archangel/blob/master/docs/ExtensionDevelopers.md)
 * [Documentation for theme developers](https://github.com/archangel/archangel/blob/master/docs/ThemeDevelopers.md)

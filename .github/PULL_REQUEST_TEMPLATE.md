@@ -11,8 +11,3 @@ A few sentences describing the changes and overall goal(s) of the pull request.
 
 * Feature or item being removed or modified
 * ...
-
-## Migrations
-
-* [ ] Yes
-* [X] No
