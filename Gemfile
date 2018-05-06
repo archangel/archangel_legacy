@@ -23,11 +23,11 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara", "~> 2.17"
+  gem "capybara", "~> 3.0"
   gem "coveralls", "~> 0.8"
   gem "database_cleaner", "~> 1.6"
   gem "factory_bot_rails", "~> 4.8"
-  gem "poltergeist", "~> 1.17"
+  gem "poltergeist", "~> 1.18"
   gem "rails-controller-testing", "~> 1.0"
   gem "rspec-rails", "~> 3.7"
   gem "shoulda-callback-matchers", "~> 1.1"
