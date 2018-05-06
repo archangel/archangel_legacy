@@ -1,0 +1,28 @@
+{
+  "globals": {
+    "$": true,
+    "Archangel": true,
+    "document": true,
+    "jQuery": true,
+    "localStorage": true,
+    "Sortable": true,
+    "window": true,
+    "XMLHttpRequest": true
+  },
+  "boss": true,
+  "curly": true,
+  "debug": false,
+  "devel": false,
+  "eqeqeq": true,
+  "esversion": 6,
+  "evil": false,
+  "jquery": true,
+  "lastsemic": true,
+  "newcap": false,
+  "node": true,
+  "onecase": true,
+  "quotmark": "single",
+  "strict": true,
+  "undef": true,
+  "unused": true
+}
