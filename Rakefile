@@ -28,9 +28,11 @@ end
 
 desc "Remove any generated files and directories"
 task :clean do
-  %w[Gemfile.lock spec/examples.txt].each { |file| rm_f file }
+  %w[
+    brakeman.html Gemfile.lock spec/examples.txt yarn.lock
+  ].each { |file| rm_f file }
 
   %w[
-    .yardoc coverage doc pkg archangel_* spec/dummy
+    .yardoc coverage doc pkg archangel_* node_modules pkg spec/dummy
   ].each { |directory| rm_rf directory }
 end
