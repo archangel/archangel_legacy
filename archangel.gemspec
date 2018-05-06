@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.description = "Archangel is a Rails CMS"
   s.license     = "MIT"
   s.files       = `git ls-files -z`.split("\x0")
-  s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.executables = ["archangel"]
 
   s.required_ruby_version = ">= 2.2.10"
 
