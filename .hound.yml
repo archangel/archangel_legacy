@@ -10,8 +10,8 @@ jshint:
   config_file: .jshintrc
   ignore_file: .jshintignore
 
-# # https://github.com/bbatsov/rubocop
-ruby:
+# https://github.com/bbatsov/rubocop
+rubocop:
   enabled: true
   config_file: .rubocop.yml
 
