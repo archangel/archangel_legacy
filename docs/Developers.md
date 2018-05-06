@@ -44,6 +44,16 @@ $ bundle exec rspec spec --fail-fast
 
 Various tools are used to ensure code is linted and formatted correctly.
 
+### JSHint
+
+[jshint](https://github.com/jshint/jshint) is a Javascript style analyzer.
+
+```
+$ jshint app/assets
+```
+
+> NOTE: Integrations for multiple text editors and IDEs are [also available](http://jshint.com/install/).
+
 ### Reek
 
 [Reek](https://github.com/troessner/reek) is a code smell detector for Ruby.
@@ -51,6 +61,8 @@ Various tools are used to ensure code is linted and formatted correctly.
 ```
 $ reek
 ```
+
+> NOTE: Integrations for multiple text editors and IDEs are [also available](https://github.com/troessner/reek#editor-integrations).
 
 ### RuboCop
 
