@@ -2,7 +2,7 @@
 
 Feeling bored? Looking for ideas?
 
-_\* In no particular order_
+_ \* In no particular order_
 
 * Preview
   * Page preview

@@ -81,8 +81,8 @@ General documentation for developers
 
 * [Contributing Guide](https://github.com/archangel/archangel/blob/master/CONTRIBUTING.md)
 * [Documentation for Archangel gem developers](https://github.com/archangel/archangel/blob/master/docs/Developers.md)
-* [Documentation for extension developers](https://github.com/archangel/archangel/blob/master/docs/ExtensionDevelopers.md)
-* [Documentation for theme developers](https://github.com/archangel/archangel/blob/master/docs/ThemeDevelopers.md)
+* [Documentation for extension developers](https://github.com/archangel/archangel/blob/master/docs/Extension/Developers.md)
+* [Documentation for theme developers](https://github.com/archangel/archangel/blob/master/docs/Theme/Developers.md)
 * [Documentation for releasing a gem version](https://github.com/archangel/archangel/blob/master/docs/Release.md) (maintainers only)
 
 ## Special Thanks

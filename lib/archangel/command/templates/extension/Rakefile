@@ -6,8 +6,6 @@ rescue LoadError
   puts "You must `gem install bundler` and `bundle install` to run rake tasks"
 end
 
-Dir.glob("./lib/tasks/**/*_task.rake").each { |task| load task }
-
 Bundler::GemHelper.install_tasks
 
 require "bundler/gem_tasks"
@@ -19,18 +17,9 @@ RSpec::Core::RakeTask.new
 
 task default: :spec
 
-desc "Generates a dummy app for Archangel"
+desc "Generates a dummy app for testing"
 task :dummy_app do
-  ENV["LIB_NAME"] = "archangel"
+  ENV["LIB_NAME"] = "<%= extension_name %>"
 
   Rake::Task["dummy:generate"].invoke
-end
-
-desc "Remove any generated files and directories"
-task :clean do
-  %w[Gemfile.lock spec/examples.txt].each { |file| rm_f file }
-
-  %w[
-    .yardoc coverage doc pkg archangel_* spec/dummy
-  ].each { |directory| rm_rf directory }
 end

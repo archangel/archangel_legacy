@@ -2,9 +2,9 @@
 
 This is documentation for developing the Archangel gem
 
-Documentation for theme developers [is available](https://github.com/archangel/archangel/blob/master/docs/ThemeDevelopers.md).
+Documentation for theme developers [is available](https://github.com/archangel/archangel/blob/master/docs/Theme/Developers.md).
 
-Documentation for theme developers [is available](https://github.com/archangel/archangel/blob/master/docs/ExtensionDevelopers.md).
+Documentation for theme developers [is available](https://github.com/archangel/archangel/blob/master/docs/Extension/Developers.md).
 
 ## Testing
 

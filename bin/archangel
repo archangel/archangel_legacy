@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require "thor"
+require "thor/group"
+
+case ARGV.first.downcase
+when "extension"
+  require "archangel/command/extension"
+
+  ARGV.shift
+
+  Archangel::Command::Extension.start
+else
+  puts "Unknown Archangel command."
+end

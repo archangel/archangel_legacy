@@ -1,6 +1,12 @@
 # Releasing Gem
 
-1. Bump the gem version in `lib/archangel/version.rb`
+1. Clean up generated files
+
+   ```
+   $ bundle exec rake clean
+   ```
+
+2. Bump the gem version in `lib/archangel/version.rb`
 
     Follow the rules of [Semantic Versioning](https://semver.org/). For example:
 
@@ -16,10 +22,10 @@
 
    This will create a new .gem file in `pkg/`. Fix any errors or warnings that come up.
 
-3. Create the gem, tag it in Github and release to Rubygems
+4. Create the gem, tag it in Github and release to Rubygems
 
     ```
     $ bundle exec rake release
     ```
 
-4. Profit!
+5. Profit!

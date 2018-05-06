@@ -1,0 +1,11 @@
+coverage/
+pkg/
+spec/dummy/
+.DS_Store
+.Trashes
+Desktop.ini
+Gemfile.lock
+log/*.log
+rspec.log
+spec/examples.txt
+Thumbs.db

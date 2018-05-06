@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
   s.summary     = "Archangel CMS"
   s.description = "Archangel is a Rails CMS"
   s.license     = "MIT"
-  s.files       = `git ls-files`.split($ORS)
+  s.files       = `git ls-files -z`.split("\x0")
+  s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
 
   s.required_ruby_version = ">= 2.2.10"
 
@@ -48,5 +49,6 @@ Gem::Specification.new do |s|
   s.add_dependency "responders", "~> 2.4"
   s.add_dependency "selectize-rails", "~> 0.12"
   s.add_dependency "simple_form", "~> 4.0"
+  s.add_dependency "thor", "~> 0.19"
   s.add_dependency "validates", "~> 1.0"
 end
