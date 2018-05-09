@@ -34,12 +34,14 @@
       </li>
 
       <% if current_site.collections.present? %>
-        <li class="nav-title">
-          <%= Archangel.t(:collections) %>
-        </li>
-
-        <% for item in current_site.collections %>
+        <% current_site.collections.each_with_index do |item, index| %>
           <% if item.persisted? %>
+            <% if index.zero? %>
+              <li class="nav-title">
+                <%= Archangel.t(:collections) %>
+              </li>
+            <% end %>
+
             <li class="nav-item">
               <a class="nav-link" href="<%= backend_collection_entries_path(item) %>"><%= fa_icon("circle") %> <%= item.name %></a>
             </li>
