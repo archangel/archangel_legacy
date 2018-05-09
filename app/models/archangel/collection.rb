@@ -14,8 +14,8 @@ module Archangel
     validates :name, presence: true
     validates :slug, presence: true, uniqueness: true
 
-    has_many :entries, inverse_of: :collection, dependent: :destroy
-    has_many :fields, inverse_of: :collection, dependent: :destroy
+    has_many :entries, inverse_of: :collection
+    has_many :fields, inverse_of: :collection
 
     accepts_nested_attributes_for :fields, reject_if: :all_blank,
                                            allow_destroy: true
