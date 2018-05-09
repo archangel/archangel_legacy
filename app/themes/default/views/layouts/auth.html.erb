@@ -22,6 +22,8 @@
             <div class="card-body">
               <%= render "archangel/shared/flash_messages" %>
 
+              <%= image_tag(current_site.logo.medium.url, alt: current_site.name, class: "mx-auto d-block") %>
+
               <%= yield %>
             </div>
           </div>
