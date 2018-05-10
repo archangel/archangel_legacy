@@ -57,7 +57,7 @@ module Archangel
         silence_output
 
         Dir.chdir("spec/dummy") do
-          subject = Archangel::Command::Extension.new([extension_name])
+          subject = described_class.new([extension_name])
           subject.invoke_all
         end
       end

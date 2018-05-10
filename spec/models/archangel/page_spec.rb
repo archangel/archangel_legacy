@@ -44,7 +44,7 @@ module Archangel
         it "returns all where published_at <= now" do
           page = create(:page)
 
-          expect(Page.published.first).to eq(page)
+          expect(described_class.published.first).to eq(page)
         end
       end
 
@@ -52,13 +52,13 @@ module Archangel
         it "returns all where published_at is nil" do
           page = create(:page, :unpublished)
 
-          expect(Page.unpublished.first).to eq(page)
+          expect(described_class.unpublished.first).to eq(page)
         end
 
         it "returns all where published_at is > now" do
           page = create(:page, :future)
 
-          expect(Page.unpublished.first).to eq(page)
+          expect(described_class.unpublished.first).to eq(page)
         end
       end
 
@@ -66,7 +66,7 @@ module Archangel
         it "returns all where homepage is true" do
           page = create(:page, :homepage)
 
-          expect(Page.homepage.first).to eq(page)
+          expect(described_class.homepage.first).to eq(page)
         end
       end
     end
