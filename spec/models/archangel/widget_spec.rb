@@ -25,5 +25,28 @@ module Archangel
       it { expect(subject).to belong_to(:site) }
       it { expect(subject).to belong_to(:template) }
     end
+
+    context "#to_param" do
+      it "uses `slug` as the identifier for routes" do
+        resource = build(:widget, slug: "foo")
+
+        expect(resource.to_param).to eq("foo")
+      end
+    end
+
+    context "#column_reset" do
+      before { ::Timecop.freeze }
+      after { ::Timecop.return }
+
+      it "resets `slug` to `slug` + current time" do
+        resource = create(:widget)
+
+        slug = resource.slug
+
+        resource.destroy!
+
+        expect(resource.slug).to eq "#{Time.current.to_i}_#{slug}"
+      end
+    end
   end
 end

@@ -21,5 +21,28 @@ module Archangel
       it { expect(subject).to have_many(:entries) }
       it { expect(subject).to have_many(:fields) }
     end
+
+    context "#to_param" do
+      it "uses `slug` as the identifier for routes" do
+        resource = build(:collection, slug: "foo")
+
+        expect(resource.to_param).to eq("foo")
+      end
+    end
+
+    context "#column_reset" do
+      before { ::Timecop.freeze }
+      after { ::Timecop.return }
+
+      it "resets `slug` to `slug` + current time" do
+        resource = create(:collection)
+
+        slug = resource.slug
+
+        resource.destroy!
+
+        expect(resource.slug).to eq "#{Time.current.to_i}_#{slug}"
+      end
+    end
   end
 end

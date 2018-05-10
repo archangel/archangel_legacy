@@ -71,7 +71,7 @@ module Archangel
       end
     end
 
-    context "#published?" do
+    context ".published?" do
       it "is published" do
         page = build(:page)
 
@@ -88,6 +88,29 @@ module Archangel
         page = build(:page, :unpublished)
 
         expect(page.published?).to be_falsey
+      end
+    end
+
+    context "#to_liquid" do
+      it "returns a Liquid object" do
+        resource = build(:page)
+
+        expect(resource.to_liquid).to be_a(Archangel::Liquid::Drops::PageDrop)
+      end
+    end
+
+    context "#column_reset" do
+      before { ::Timecop.freeze }
+      after { ::Timecop.return }
+
+      it "resets `slug` to `slug` + current time" do
+        resource = create(:page)
+
+        slug = resource.slug
+
+        resource.destroy!
+
+        expect(resource.slug).to eq "#{Time.current.to_i}_#{slug}"
       end
     end
   end

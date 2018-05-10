@@ -62,5 +62,28 @@ module Archangel
     context "associations" do
       it { expect(subject).to belong_to(:site) }
     end
+
+    context "#to_param" do
+      it "uses `slug` as the identifier for routes" do
+        resource = build(:user, username: "foo")
+
+        expect(resource.to_param).to eq("foo")
+      end
+    end
+
+    context "#column_reset" do
+      before { ::Timecop.freeze }
+      after { ::Timecop.return }
+
+      it "resets `slug` to `slug` + current time" do
+        resource = create(:user)
+
+        username = resource.username
+
+        resource.destroy!
+
+        expect(resource.username).to eq "#{Time.current.to_i}_#{username}"
+      end
+    end
   end
 end
