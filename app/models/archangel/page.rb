@@ -20,7 +20,7 @@ module Archangel
 
     validates :content, presence: true
     validates :homepage, inclusion: { in: [true, false] }
-    validates :path, uniqueness: true
+    validates :path, uniqueness: { scope: :site_id }
     validates :published_at, allow_blank: true, date: true
     validates :slug, presence: true, uniqueness: { scope: :parent_id }
     validates :title, presence: true

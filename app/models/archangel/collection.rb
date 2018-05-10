@@ -12,7 +12,7 @@ module Archangel
     after_destroy :column_reset
 
     validates :name, presence: true
-    validates :slug, presence: true, uniqueness: true
+    validates :slug, presence: true, uniqueness: { scope: :site_id }
 
     has_many :entries, inverse_of: :collection
     has_many :fields, inverse_of: :collection

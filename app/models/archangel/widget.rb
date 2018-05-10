@@ -13,7 +13,7 @@ module Archangel
 
     validates :content, presence: true
     validates :name, presence: true
-    validates :slug, presence: true, uniqueness: true
+    validates :slug, presence: true, uniqueness: { scope: :site_id }
 
     validate :valid_liquid_content
 

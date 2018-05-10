@@ -10,7 +10,7 @@ module Archangel
     before_validation :parameterize_slug
 
     validates :bar, presence: true
-    validates :slug, presence: true, uniqueness: true
+    validates :slug, presence: true, uniqueness: { scope: :site_id }
 
     belongs_to :site
 

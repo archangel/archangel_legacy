@@ -22,12 +22,14 @@ module Archangel
     validates :avatar, file_size: {
       less_than_or_equal_to: Archangel.config.image_maximum_file_size
     }
-    validates :email, presence: true, uniqueness: true, email: true
+    validates :email, presence: true,
+                      email: true,
+                      uniqueness: { scope: :site_id }
     validates :name, presence: true
     validates :password, presence: true, length: { minimum: 8 }, on: :create
     validates :password, allow_blank: true, length: { minimum: 8 }, on: :update
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
-    validates :username, presence: true, uniqueness: true
+    validates :username, presence: true, uniqueness: { scope: :site_id }
 
     belongs_to :site
 
