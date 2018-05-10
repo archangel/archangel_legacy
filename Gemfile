@@ -33,4 +33,5 @@ group :test do
   gem "shoulda-callback-matchers", "~> 1.1"
   gem "shoulda-matchers", "~> 3.1"
   gem "simplecov", "~> 0.14"
+  gem "timecop", "~> 0.9"
 end
