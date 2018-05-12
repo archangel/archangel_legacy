@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-Archangel::Engine.routes.draw do
+Archangel::Engine.routes.prepend do
   # Add your routes here
 end
