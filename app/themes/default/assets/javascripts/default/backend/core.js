@@ -15,19 +15,25 @@
     }
 
     // Add class .active to current link
-    $('nav > ul.nav').find('a').each(function(){
-      var currentUrl = String(window.location).split('?')[0];
+    $('nav > ul.nav').find('a').each(function() {
+      var currentUrl = String(window.location).split('?')[0],
+          rootUrl = Archangel.route.backend.rootUrl,
+          itemHref = $($(this))[0].href;
 
       if (currentUrl.substr(currentUrl.length - 1) === '#') {
         currentUrl = currentUrl.slice(0, -1);
       }
 
-      if ($($(this))[0].href === currentUrl) {
+      // Dashboard
+      if (itemHref === rootUrl && itemHref === currentUrl) {
         $(this).addClass('active');
 
-        $(this).parents('ul').add(this).each(function(){
-          $(this).parent().addClass('open');
-        });
+        return;
+      }
+
+      // All other items
+      if (itemHref !== rootUrl && currentUrl.lastIndexOf(itemHref, 0) === 0) {
+        $(this).addClass('active');
       }
     });
 

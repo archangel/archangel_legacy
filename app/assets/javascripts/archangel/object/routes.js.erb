@@ -75,6 +75,10 @@
     return '/' + finalPath;
   };
 
+  object.rootUrl = function() {
+    return window.location.origin + object.rootPath();
+  };
+
   object.route = {
     rootPath: object.rootPath()
   };

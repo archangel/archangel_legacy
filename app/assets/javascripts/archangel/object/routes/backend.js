@@ -5,15 +5,26 @@
     return object.pathBuilder([object.mountScope(), object.backendScope()]);
   };
 
+  object.backendUrl = function () {
+    return [object.rootUrl(), object.backendPath()].join('/');
+  };
+
   object.backendPathFor = function (path, args) {
     return object.pathFor([object.backendScope(), path], args);
   };
 
+  object.backendUrlFor = function (path, args) {
+    return object.backendUrl() + object.backendPathFor(path, args);
+  };
+
   object.route.backend = {
-    // Dashboard
+    // Dashboard (path)
     rootPath: object.backendPath(),
 
-    // Assets
+    // Dashboard (url)
+    rootUrl: object.backendUrl(),
+
+    // Assets (path)
     assetsPath: object.backendPathFor('assets'),
     newAssetPath: object.backendPathFor('assets/new'),
     assetPath: function (id) {
