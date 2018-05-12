@@ -28,6 +28,7 @@ module Archangel
     it { is_expected.to have_many(:users) }
     it { is_expected.to have_many(:widgets) }
     it { is_expected.to have_many(:entries).through(:collections) }
+    it { is_expected.to have_many(:fields).through(:collections) }
 
     context ".current" do
       it "returns an existing object" do

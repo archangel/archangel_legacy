@@ -28,6 +28,7 @@ module Archangel
 
     has_many :collections
     has_many :entries, through: :collections
+    has_many :fields, through: :collections
 
     ##
     # Current site
