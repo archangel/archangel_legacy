@@ -11,19 +11,30 @@ module Archangel
     end
 
     context "validations" do
-      it { expect(subject).to validate_presence_of(:content) }
-      it { expect(subject).to validate_presence_of(:name) }
-      it { expect(subject).to validate_presence_of(:slug) }
+      it { is_expected.to validate_presence_of(:content) }
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:slug) }
 
-      it { expect(subject).to have_db_index(:slug).unique(true) }
+      it { is_expected.to allow_value("{{ foo }}").for(:content) }
+      it { is_expected.to_not allow_value("{{ foo }").for(:content) }
 
-      it { expect(subject).to allow_value("{{ foo }}").for(:content) }
-      it { expect(subject).not_to allow_value("{{ foo }").for(:content) }
+      it "has a unique slug scoped to Site" do
+        resource = build(:widget)
+
+        expect(resource)
+          .to validate_uniqueness_of(:slug).scoped_to(:site_id).case_insensitive
+      end
     end
 
     context "associations" do
-      it { expect(subject).to belong_to(:site) }
-      it { expect(subject).to belong_to(:template) }
+      it { is_expected.to belong_to(:site) }
+
+      it "belongs to Template" do
+        expect(subject).to(
+          belong_to(:template).conditions(partial: true)
+                              .class_name("Archangel::Template")
+        )
+      end
     end
 
     context "#to_param" do

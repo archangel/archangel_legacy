@@ -18,17 +18,15 @@ module Archangel
       less_than_or_equal_to: Archangel.config.image_maximum_file_size
     }
     validates :name, presence: true
-    validates :theme, presence: true,
-                      inclusion: { in: Archangel.themes },
-                      allow_blank: true
+    validates :theme, inclusion: { in: Archangel.themes }, allow_blank: true
 
     has_many :assets
-    has_many :collections
     has_many :pages
     has_many :templates
     has_many :users
     has_many :widgets
 
+    has_many :collections
     has_many :entries, through: :collections
 
     ##

@@ -11,15 +11,22 @@ module Archangel
     end
 
     context "validations" do
-      it { expect(subject).to validate_presence_of(:name) }
-      it { expect(subject).to validate_presence_of(:slug) }
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:slug) }
 
-      it { expect(subject).to have_db_index(:slug).unique(true) }
+      it "has a unique slug scoped to Site" do
+        resource = build(:collection)
+
+        expect(resource)
+          .to validate_uniqueness_of(:slug).scoped_to(:site_id).case_insensitive
+      end
     end
 
     context "associations" do
-      it { expect(subject).to have_many(:entries) }
-      it { expect(subject).to have_many(:fields) }
+      it { is_expected.to belong_to(:site) }
+
+      it { is_expected.to have_many(:entries) }
+      it { is_expected.to have_many(:fields) }
     end
 
     context "#to_param" do

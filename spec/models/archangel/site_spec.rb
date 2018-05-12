@@ -5,8 +5,29 @@ require "rails_helper"
 module Archangel
   RSpec.describe Site, type: :model do
     context "validations" do
-      it { expect(subject).to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:locale) }
+      it { is_expected.to validate_presence_of(:name) }
+
+      it { is_expected.to allow_value("").for(:theme) }
+
+      it "allows certain languages" do
+        expect(subject)
+          .to validate_inclusion_of(:locale).in_array(Archangel::LANGUAGES)
+      end
+
+      it "allows certain languages" do
+        expect(subject)
+          .to validate_inclusion_of(:theme).in_array(Archangel.themes)
+      end
     end
+
+    it { is_expected.to have_many(:assets) }
+    it { is_expected.to have_many(:collections) }
+    it { is_expected.to have_many(:pages) }
+    it { is_expected.to have_many(:templates) }
+    it { is_expected.to have_many(:users) }
+    it { is_expected.to have_many(:widgets) }
+    it { is_expected.to have_many(:entries).through(:collections) }
 
     context ".current" do
       it "returns an existing object" do

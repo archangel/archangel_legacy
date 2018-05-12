@@ -12,6 +12,6 @@ class CreateArchangelCollections < ActiveRecord::Migration[5.1]
     add_index :archangel_collections, :deleted_at
     add_index :archangel_collections, :name
     add_index :archangel_collections, :site_id
-    add_index :archangel_collections, :slug, unique: true
+    add_index :archangel_collections, :slug
   end
 end

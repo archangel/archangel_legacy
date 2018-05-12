@@ -15,18 +15,25 @@ module Archangel
     end
 
     context "validations" do
-      it { expect(subject).to validate_presence_of(:email) }
-      it { expect(subject).to validate_presence_of(:name) }
-      it { expect(subject).to validate_presence_of(:password).on(:create) }
-      it { expect(subject).to validate_presence_of(:role) }
-      it { expect(subject).to validate_presence_of(:username) }
+      it { is_expected.to validate_presence_of(:email) }
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:password).on(:create) }
+      it { is_expected.to validate_presence_of(:role) }
+      it { is_expected.to validate_presence_of(:username) }
 
-      it { expect(subject).to validate_length_of(:password).is_at_least(8) }
+      it { is_expected.to validate_length_of(:password).is_at_least(8) }
 
-      it { expect(subject).to have_db_index(:email).unique(true) }
-      it { expect(subject).to have_db_index(:username).unique(true) }
+      it { is_expected.to validate_presence_of(:password).on(:update) }
 
-      it do
+      it "has a unique username scoped to Site" do
+        resource = build(:user)
+
+        expect(resource).to(
+          validate_uniqueness_of(:username).scoped_to(:site_id).case_insensitive
+        )
+      end
+
+      it "allows certain roles" do
         expect(subject)
           .to validate_inclusion_of(:role).in_array(Archangel::ROLES)
       end
@@ -59,7 +66,7 @@ module Archangel
     end
 
     context "associations" do
-      it { expect(subject).to belong_to(:site) }
+      it { is_expected.to belong_to(:site) }
     end
 
     context "#to_param" do

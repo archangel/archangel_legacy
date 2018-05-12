@@ -52,7 +52,7 @@ class CreateArchangelUsers < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    add_index :archangel_users, :email,                unique: true
+    add_index :archangel_users, :email
     add_index :archangel_users, :reset_password_token, unique: true
     add_index :archangel_users, :confirmation_token,   unique: true
     add_index :archangel_users, :unlock_token,         unique: true
@@ -60,7 +60,7 @@ class CreateArchangelUsers < ActiveRecord::Migration[5.1]
     add_index :archangel_users, :name
     add_index :archangel_users, :role
     add_index :archangel_users, :site_id
-    add_index :archangel_users, :username,             unique: true
+    add_index :archangel_users, :username
     add_index :archangel_users, :invitations_count
     add_index :archangel_users, :invitation_token,     unique: true
     add_index :archangel_users, :invited_by_id

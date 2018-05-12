@@ -15,28 +15,46 @@ module Archangel
     end
 
     context "validations" do
-      it { expect(subject).to validate_presence_of(:content) }
-      it { expect(subject).to validate_presence_of(:slug) }
-      it { expect(subject).to validate_presence_of(:title) }
+      it { is_expected.to validate_presence_of(:content) }
+      it { is_expected.to validate_presence_of(:slug) }
+      it { is_expected.to validate_presence_of(:title) }
 
-      it { expect(subject).to allow_value(true).for(:homepage) }
-      it { expect(subject).to allow_value(false).for(:homepage) }
-      it { expect(subject).not_to allow_value(nil).for(:homepage) }
+      it { is_expected.to allow_value("{{ foo }}").for(:content) }
 
-      it { expect(subject).to allow_value(nil).for(:published_at) }
-      it { expect(subject).to allow_value(Time.current).for(:published_at) }
-      it { expect(subject).not_to allow_value("invalid").for(:published_at) }
+      it { is_expected.to allow_value(true).for(:homepage) }
+      it { is_expected.to allow_value(1).for(:homepage) }
+      it { is_expected.to allow_value(false).for(:homepage) }
+      it { is_expected.to allow_value(0).for(:homepage) }
 
-      it { expect(subject).to have_db_index(:path).unique(true) }
+      it { is_expected.to_not allow_value(nil).for(:homepage) }
 
-      it { expect(subject).to allow_value("{{ foo }}").for(:content) }
-      it { expect(subject).not_to allow_value("{{ foo }").for(:content) }
+      it { is_expected.to allow_value(nil).for(:published_at) }
+      it { is_expected.to allow_value(Time.current).for(:published_at) }
+
+      it { is_expected.to_not allow_value("invalid").for(:published_at) }
+
+      it "has a unique path scoped to Site" do
+        resource = build(:page)
+
+        expect(resource).to validate_uniqueness_of(:path).scoped_to(:site_id)
+      end
+
+      it "has a unique slug scoped to Page" do
+        resource = build(:page, :with_parent)
+
+        expect(resource).to(
+          validate_uniqueness_of(:slug).scoped_to(:parent_id).case_insensitive
+        )
+      end
+
+      it { is_expected.to allow_value("{{ foo }}").for(:content) }
+      it { is_expected.to_not allow_value("{{ foo }").for(:content) }
     end
 
     context "associations" do
-      it { expect(subject).to belong_to(:parent) }
-      it { expect(subject).to belong_to(:site) }
-      it { expect(subject).to belong_to(:template) }
+      it { is_expected.to belong_to(:site) }
+      it { is_expected.to belong_to(:parent).class_name("Archangel::Page") }
+      it { is_expected.to belong_to(:template).conditions(partial: false) }
     end
 
     context "scopes" do
