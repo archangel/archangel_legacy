@@ -44,7 +44,5 @@
 //  Theme assets
 //= require default/common/cards
 //= require default/common/flash
-//= require default/common/navigation
-//= require default/common/sidebar
 //
 //= require default/backend/core

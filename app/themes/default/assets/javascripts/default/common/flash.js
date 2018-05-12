@@ -21,7 +21,7 @@
 
           clearInterval(fadeInternal);
 
-          if (typeof callback == 'function') callback(true);
+          if (typeof callback === 'function') { callback(true); }
         }
 
         else {

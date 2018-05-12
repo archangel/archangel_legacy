@@ -2,12 +2,12 @@
   "globals": {
     "$": true,
     "Archangel": true,
+    "Sortable": true,
+    "XMLHttpRequest": true,
     "document": true,
     "jQuery": true,
     "localStorage": true,
-    "Sortable": true,
-    "window": true,
-    "XMLHttpRequest": true
+    "window": true
   },
   "boss": true,
   "curly": true,
