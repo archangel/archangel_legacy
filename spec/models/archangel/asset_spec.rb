@@ -12,8 +12,11 @@ module Archangel
       it { is_expected.to validate_presence_of(:file) }
       it { is_expected.to validate_presence_of(:file_name) }
 
+      it { is_expected.to allow_value("success.js").for(:file_name) }
       it { is_expected.to allow_value("success.jpg").for(:file_name) }
+      it { is_expected.to allow_value("filename.extension").for(:file_name) }
 
+      it { is_expected.to_not allow_value("error.c").for(:file_name) }
       it { is_expected.to_not allow_value("without-extension").for(:file_name) }
       it { is_expected.to_not allow_value("with.dot.jpg").for(:file_name) }
       it { is_expected.to_not allow_value("with space.jpg").for(:file_name) }
