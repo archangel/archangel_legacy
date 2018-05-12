@@ -53,6 +53,10 @@ module Archangel
       end
     end
 
+    config.after_initialize do
+      Rails.application.routes_reloader.reload!
+    end
+
     config.action_controller.include_all_helpers = false
 
     config.generators do |gen|
