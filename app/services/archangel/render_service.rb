@@ -58,16 +58,10 @@ module Archangel
     #
     def call
       liquid = ::Liquid::Template.parse(template)
-      liquid.send(liquid_renderer,
-                  stringify_assigns,
-                  liquid_options).html_safe
+      liquid.send(:render, stringify_assigns, liquid_options).html_safe
     end
 
     protected
-
-    def liquid_renderer
-      %w[development test].include?(Rails.env) ? :render! : :render
-    end
 
     def stringify_assigns
       assigns.deep_stringify_keys

@@ -14,9 +14,7 @@ module Archangel
       template_content = build_template(template)
 
       liquid = ::Liquid::Template.parse(template_content)
-      liquid.send(liquid_renderer,
-                  stringify_assigns,
-                  liquid_options).html_safe
+      liquid.send(:render, stringify_assigns, liquid_options).html_safe
     end
 
     protected
