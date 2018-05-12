@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   RSpec.describe Asset, type: :model do
     context "callbacks" do
-      it { expect(subject).to callback(:save_asset_attributes).before(:save) }
+      it { is_expected.to callback(:save_asset_attributes).before(:save) }
     end
 
     context "validations" do

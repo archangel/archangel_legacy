@@ -5,9 +5,9 @@ require "rails_helper"
 module Archangel
   RSpec.describe Widget, type: :model do
     context "callbacks" do
-      it { expect(subject).to callback(:parameterize_slug).before(:validation) }
+      it { is_expected.to callback(:parameterize_slug).before(:validation) }
 
-      it { expect(subject).to callback(:column_reset).after(:destroy) }
+      it { is_expected.to callback(:column_reset).after(:destroy) }
     end
 
     context "validations" do

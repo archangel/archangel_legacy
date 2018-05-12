@@ -5,13 +5,13 @@ require "rails_helper"
 module Archangel
   RSpec.describe Page, type: :model do
     context "callbacks" do
-      it { expect(subject).to callback(:parameterize_slug).before(:validation) }
+      it { is_expected.to callback(:parameterize_slug).before(:validation) }
 
-      it { expect(subject).to callback(:build_page_path).before(:save) }
+      it { is_expected.to callback(:build_page_path).before(:save) }
 
-      it { expect(subject).to callback(:homepage_reset).after(:save) }
+      it { is_expected.to callback(:homepage_reset).after(:save) }
 
-      it { expect(subject).to callback(:column_reset).after(:destroy) }
+      it { is_expected.to callback(:column_reset).after(:destroy) }
     end
 
     context "validations" do

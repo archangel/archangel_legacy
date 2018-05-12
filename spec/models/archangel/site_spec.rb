@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Site, type: :model do
-    context "ActiveModel validations" do
+    context "validations" do
       it { expect(subject).to validate_presence_of(:name) }
     end
 

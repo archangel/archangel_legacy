@@ -7,12 +7,11 @@ module Archangel
     context "callbacks" do
       let(:resource) { create(:user) }
 
-      it do
-        expect(resource).to callback(:parameterize_username).before(:validation)
-      end
+      it { is_expected.to callback(:parameterize_username).before(:validation) }
 
-      it { expect(resource).to callback(:column_default).after(:initialize) }
-      it { expect(resource).to callback(:column_reset).after(:destroy) }
+      it { is_expected.to callback(:column_default).after(:initialize) }
+
+      it { is_expected.to callback(:column_reset).after(:destroy) }
     end
 
     context "validations" do
