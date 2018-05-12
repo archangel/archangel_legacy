@@ -6,17 +6,34 @@ module Archangel
   RSpec.describe EntryPolicy, type: :policy do
     subject { described_class.new(user, record) }
 
-    let(:user) { create(:user) }
     let(:record) { create(:entry) }
 
-    it { should permit(:index) }
-    it { should permit(:show) }
-    it { should permit(:create) }
-    it { should permit(:new) }
-    it { should permit(:update) }
-    it { should permit(:edit) }
-    it { should permit(:destroy) }
+    context "with `admin` role" do
+      let(:user) { create(:user, :admin) }
 
-    it { should permit(:sort) }
+      it { is_expected.to permit(:index) }
+      it { is_expected.to permit(:show) }
+      it { is_expected.to permit(:new) }
+      it { is_expected.to permit(:create) }
+      it { is_expected.to permit(:edit) }
+      it { is_expected.to permit(:update) }
+      it { is_expected.to permit(:destroy) }
+
+      it { is_expected.to permit(:sort) }
+    end
+
+    context "with `editor` role" do
+      let(:user) { create(:user, :editor) }
+
+      it { is_expected.to permit(:index) }
+      it { is_expected.to permit(:show) }
+      it { is_expected.to permit(:new) }
+      it { is_expected.to permit(:create) }
+      it { is_expected.to permit(:edit) }
+      it { is_expected.to permit(:update) }
+      it { is_expected.to permit(:destroy) }
+
+      it { is_expected.to permit(:sort) }
+    end
   end
 end
