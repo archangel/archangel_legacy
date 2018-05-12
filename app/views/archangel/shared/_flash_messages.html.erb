@@ -1,8 +1,8 @@
 <div id="alert-messages">
   <% unless flash.empty? %>
-    <% flash.delete(:timedout).each do |key, value| %>
-      <div class="alert alert-<%= flash_class_for(key) %> alert-link" role="alert">
-        <%= value %>
+    <% flash.delete(:timedout).each do |type, message| %>
+      <div class="alert alert-<%= flash_class_for(type) %> alert-link alert-dismissable" role="alert">
+        <%= message %>
       </div>
     <% end %>
   <% end %>

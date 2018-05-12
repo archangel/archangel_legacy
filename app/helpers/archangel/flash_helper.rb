@@ -16,7 +16,7 @@ module Archangel
 
       {
         success: "success", error: "danger", alert: "warning", notice: "info"
-      }[flash_type.to_sym] || flash_type
+      }.fetch(flash_type.to_sym, flash_type)
     end
   end
 end

@@ -28,7 +28,7 @@
     },
 
     flashMessage: function(type, message) {
-      if (message == '' || message == undefined) {
+      if (message === '' || message === undefined) {
         return false;
       }
 
@@ -37,7 +37,7 @@
       var messagesContainer = document.querySelector('#alert-messages'),
           msgContainer = document.createElement('div');
 
-      msgContainer.setAttribute('class', 'alert alert-' + type + ' alert-link');
+      msgContainer.setAttribute('class', 'alert alert-' + type + ' alert-link alert-dismissable fade-in');
       msgContainer.setAttribute('role', 'alert');
       msgContainer.innerHTML = message;
 
