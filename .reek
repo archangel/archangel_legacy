@@ -30,6 +30,15 @@ UtilityFunction:
     enabled: false
   UtilityFunction:
     enabled: false
+"app/inputs":
+  InstanceVariableAssumption:
+    enabled: false
 "app/mailers":
   InstanceVariableAssumption:
+    enabled: false
+"app/policies":
+  InstanceVariableAssumption:
+    enabled: false
+"app/uploaders":
+  UtilityFunction:
     enabled: false
