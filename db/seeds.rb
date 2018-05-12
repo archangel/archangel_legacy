@@ -29,20 +29,19 @@ def prompt_for_admin_password
 end
 
 # Site
-site = Archangel::Site.first_or_create do |item|
+curent_site = Archangel::Site.first_or_create! do |item|
   item.name = "Archangel"
   item.locale = "en"
 end
 
 # User
-unless Archangel::User.first
+unless curent_site.users.first
   email    = prompt_for_admin_email
   name     = prompt_for_admin_name
   username = prompt_for_admin_username
   password = prompt_for_admin_password
 
   attributes = {
-    site: site,
     email: email,
     username: username,
     name: name,
@@ -52,12 +51,11 @@ unless Archangel::User.first
     confirmed_at: Time.current
   }
 
-  Archangel::User.create(attributes)
+  curent_site.users.create!(attributes)
 end
 
 # Homepage
-Archangel::Page.published
-               .find_or_create_by(site: site, homepage: true) do |item|
+curent_site.pages.published.find_or_create_by(homepage: true) do |item|
   item.slug = "homepage-#{Time.now.to_i}"
   item.title = "Welcome to Archangel"
   item.content = %(
@@ -66,11 +64,9 @@ Archangel::Page.published
   item.published_at = Time.current
 end
 
-# Template
-page_template = Archangel::Template.find_or_create_by(
-  site: site,
-  partial: false
-) do |item|
+# Page Template
+page_template = curent_site.templates
+                           .find_or_create_by!(partial: false) do |item|
   item.name = "Example Page Template"
   item.content = %(
     <p>I think this is the beginning of a beautiful page template.</p>
@@ -80,12 +76,9 @@ page_template = Archangel::Template.find_or_create_by(
 end
 
 # Page
-Archangel::Page.find_or_create_by(
-  site: site,
-  slug: "example-page",
-  template: page_template,
-  homepage: false
-) do |item|
+curent_site.pages.find_or_create_by!(slug: "example-page",
+                                     template: page_template,
+                                     homepage: false) do |item|
   item.title = "Example Page"
   item.content = %(
     <p>I think this is the content of the page.</p>
@@ -94,10 +87,8 @@ Archangel::Page.find_or_create_by(
 end
 
 # Template
-widget_template = Archangel::Template.find_or_create_by(
-  site: site,
-  partial: true
-) do |item|
+widget_template = curent_site.templates
+                             .find_or_create_by!(partial: true) do |item|
   item.name = "Example Widget Template"
   item.content = %(
     <p>I think this is the beginning of a beautiful widget template.</p>
@@ -107,11 +98,8 @@ widget_template = Archangel::Template.find_or_create_by(
 end
 
 # Widget
-Archangel::Widget.find_or_create_by(
-  site: site,
-  slug: "example-widget",
-  template: widget_template
-) do |item|
+curent_site.widgets.find_or_create_by!(slug: "example-widget",
+                                       template: widget_template) do |item|
   item.name = "Example Widget"
   item.content = %(
     <p>I think this is the content of the widget.</p>
@@ -119,15 +107,14 @@ Archangel::Widget.find_or_create_by(
 end
 
 # Collection
-collection = Archangel::Collection.find_or_create_by(
-  site: site,
+collection = curent_site.collections.find_or_create_by!(
   slug: "example-collection"
 ) do |item|
   item.name = "Example Collection"
 end
 
 # Fields
-Archangel::Field.find_or_create_by(
+collection.fields.find_or_create_by!(
   collection: collection,
   slug: "field1",
   required: true
@@ -137,7 +124,7 @@ Archangel::Field.find_or_create_by(
 end
 
 # Entry
-Archangel::Entry.find_or_create_by(collection: collection) do |item|
-  item.value = %({"field1":"Value for field 1"})
+collection.entries.find_or_create_by(collection: collection) do |item|
+  item.value = { field1: "Value for field 1" }
   item.available_at = Time.now
 end
