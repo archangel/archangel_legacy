@@ -57,7 +57,6 @@ RSpec.feature "Auth log in", type: :feature do
       click_button "Log in"
 
       expect(current_path).to eq(archangel.new_user_session_path)
-      expect(page).not_to have_content "Signed in successfully"
       expect(page).to have_content(
         "You have to confirm your email address before continuing"
       )
@@ -66,7 +65,7 @@ RSpec.feature "Auth log in", type: :feature do
 
   describe "locked user" do
     it "cannot login" do
-      create(:user, :unconfirmed, email: "me@example.com", password: "password")
+      create(:user, :locked, email: "me@example.com", password: "password")
 
       visit archangel.new_user_session_path
 
@@ -75,10 +74,7 @@ RSpec.feature "Auth log in", type: :feature do
       click_button "Log in"
 
       expect(current_path).to eq(archangel.new_user_session_path)
-      expect(page).not_to have_content "Signed in successfully"
-      expect(page).to have_content(
-        "You have to confirm your email address before continuing"
-      )
+      expect(page).to have_content("Your account is locked")
     end
   end
 
