@@ -38,8 +38,8 @@ module Archangel
     end
 
     context "#column_reset" do
-      before { ::Timecop.freeze }
-      after { ::Timecop.return }
+      # before { ::Timecop.freeze }
+      # after { ::Timecop.return }
 
       it "resets `slug` to `slug` + current time" do
         resource = create(:collection)
