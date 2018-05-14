@@ -22,24 +22,23 @@ RSpec.feature "Auth log in", type: :feature do
 
       visit archangel.new_user_session_path
 
-      (1..2).each do |attempt_num|
+      attempts = 3
+      (1..attempts).each do |attempt|
         fill_in "Email", with: email
-        fill_in "Password", with: "wrong-password-#{attempt_num}"
+        fill_in "Password", with: "wrong-password-#{attempt}"
         click_button "Log in"
 
-        expect(page.body).to have_content "Invalid Email or password"
+        message = "Invalid Email or password"
+
+        if attempt == attempts
+          message = "You have one more attempt before your account is locked"
+        end
+
+        expect(page.body).to have_content message
       end
 
       fill_in "Email", with: email
-      fill_in "Password", with: "wrong-password-3"
-      click_button "Log in"
-
-      expect(page.body).to have_content(
-        "You have one more attempt before your account is locked"
-      )
-
-      fill_in "Email", with: email
-      fill_in "Password", with: "wrong-password-4"
+      fill_in "Password", with: "wrong-password-#{attempts + 1}"
       click_button "Log in"
 
       expect(page.body).to have_content "Your account is locked"
@@ -48,7 +47,10 @@ RSpec.feature "Auth log in", type: :feature do
 
   describe "unconfirmed user" do
     it "cannot login" do
-      create(:user, :unconfirmed, email: "me@example.com", password: "password")
+      Timecop.travel(1.week.ago) do
+        create(:user, :unconfirmed, email: "me@example.com",
+                                    password: "password")
+      end
 
       visit archangel.new_user_session_path
 
