@@ -13,7 +13,7 @@ RSpec.feature "Auth log in", type: :feature do
       fill_in "Password", with: "password"
       click_button "Log in"
 
-      expect(page.body).to have_content "Signed in successfully"
+      expect(page).to have_content I18n.t("devise.sessions.signed_in")
     end
 
     it "locks account after 4 failed attempts" do
@@ -28,20 +28,18 @@ RSpec.feature "Auth log in", type: :feature do
         fill_in "Password", with: "wrong-password-#{attempt}"
         click_button "Log in"
 
-        message = "Invalid Email or password"
+        message = I18n.t("devise.failure.not_found_in_database",
+                         authentication_keys: "Email")
+        message = I18n.t("devise.failure.last_attempt") if attempt == attempts
 
-        if attempt == attempts
-          message = "You have one more attempt before your account is locked"
-        end
-
-        expect(page.body).to have_content message
+        expect(page).to have_content message
       end
 
       fill_in "Email", with: email
       fill_in "Password", with: "wrong-password-#{attempts + 1}"
       click_button "Log in"
 
-      expect(page.body).to have_content "Your account is locked"
+      expect(page).to have_content(I18n.t("devise.failure.locked"))
     end
   end
 
@@ -59,9 +57,7 @@ RSpec.feature "Auth log in", type: :feature do
       click_button "Log in"
 
       expect(current_path).to eq(archangel.new_user_session_path)
-      expect(page).to have_content(
-        "You have to confirm your email address before continuing"
-      )
+      expect(page).to have_content I18n.t("devise.failure.unconfirmed")
     end
   end
 
@@ -76,11 +72,11 @@ RSpec.feature "Auth log in", type: :feature do
       click_button "Log in"
 
       expect(current_path).to eq(archangel.new_user_session_path)
-      expect(page).to have_content("Your account is locked")
+      expect(page).to have_content(I18n.t("devise.failure.locked"))
     end
   end
 
-  describe "with invalid or unknown user credentials" do
+  describe "unknown user credentials" do
     it "is not successful" do
       visit archangel.new_user_session_path
 
@@ -88,7 +84,44 @@ RSpec.feature "Auth log in", type: :feature do
       fill_in "Password", with: "password"
       click_button "Log in"
 
-      expect(page.body).to have_content "Invalid Email or password"
+      expect(page).to(
+        have_content(I18n.t("devise.failure.not_found_in_database",
+                            authentication_keys: "Email"))
+      )
+    end
+  end
+
+  describe "with invalid email" do
+    it "is not successful" do
+      create(:user, email: "me@example.com", password: "password")
+
+      visit archangel.new_user_session_path
+
+      fill_in "Email", with: "not_me@example.com"
+      fill_in "Password", with: "password"
+      click_button "Log in"
+
+      expect(page).to(
+        have_content(I18n.t("devise.failure.not_found_in_database",
+                            authentication_keys: "Email"))
+      )
+    end
+  end
+
+  describe "with invalid password" do
+    it "is not successful" do
+      create(:user, email: "me@example.com", password: "password")
+
+      visit archangel.new_user_session_path
+
+      fill_in "Email", with: "me@example.com"
+      fill_in "Password", with: "bad_password"
+      click_button "Log in"
+
+      expect(page).to(
+        have_content(I18n.t("devise.failure.invalid",
+                            authentication_keys: "Email"))
+      )
     end
   end
 end
