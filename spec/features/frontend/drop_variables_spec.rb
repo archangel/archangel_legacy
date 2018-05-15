@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.feature "Default variables", type: :feature do
-  describe "for current_page" do
+  describe "for $current_page" do
     let(:site) { create(:site) }
 
     it "knows the current page at root level" do
@@ -69,7 +69,7 @@ RSpec.feature "Default variables", type: :feature do
     end
   end
 
-  describe "for page" do
+  describe "for $page" do
     let(:site) { create(:site) }
 
     it "knows the page properties" do
@@ -120,6 +120,22 @@ RSpec.feature "Default variables", type: :feature do
         .to have_content("Site Meta Description: #{site.meta_description}")
       expect(page).to have_content("Site Favicon: #{site.favicon}")
       expect(page).to have_content("Site Logo: #{site.logo}")
+    end
+  end
+
+  describe "for unknown variable" do
+    let(:site) { create(:site) }
+
+    it "responds with blank value" do
+      content = <<-CONTENT
+        Unknown Variable: ~{{ unknown_variable }}~
+      CONTENT
+
+      post = create(:page, site: site, content: content)
+
+      visit archangel.frontend_page_path(post.path)
+
+      expect(page).to have_content("Unknown Variable: ~~")
     end
   end
 end
