@@ -45,10 +45,10 @@ RSpec.feature "Auth log in", type: :feature do
 
   describe "unconfirmed user" do
     it "cannot login" do
-      Timecop.travel(1.week.ago) do
-        create(:user, :unconfirmed, email: "me@example.com",
-                                    password: "password")
-      end
+      create(:user, :unconfirmed, email: "me@example.com",
+                                  password: "password")
+
+      Timecop.travel(1.week.from_now)
 
       visit archangel.new_user_session_path
 
