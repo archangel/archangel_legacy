@@ -11,7 +11,11 @@ FactoryBot.define do
     end
 
     trait :unavailable do
-      deleted_at nil
+      available_at nil
+    end
+
+    trait :future do
+      available_at { 1.week.from_now }
     end
   end
 end

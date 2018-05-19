@@ -18,5 +18,32 @@ module Archangel
     belongs_to :collection
 
     default_scope { order(position: :asc) }
+
+    ##
+    # Check if Entry is available. Available in the past, present and future.
+    # Future availability date is also considered available.
+    #
+    # @return [Boolean] if available
+    #
+    def available?
+      available_at.present?
+    end
+
+    ##
+    # Return string of availability status.
+    #
+    # @return [String] available status
+    #
+    def available_status
+      if available?
+        if available_at > Time.now
+          "future-available"
+        else
+          "available"
+        end
+      else
+        "unavailable"
+      end
+    end
   end
 end
