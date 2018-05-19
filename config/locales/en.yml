@@ -20,26 +20,40 @@ en:
     content_type: Content Type
     dashboard: Dashboard
     datetimepicker:
-      clear: Clear selection
-      close: Close the picker
+      apply: Apply
+      cancel: Cancel
+      custom_range: Custom
       date_format: "%Y-%m-%d"
       date_format_js: YYYY-MM-DD
-      format: "%Y-%m-%d %H:%M"
-      format_js: YYYY-MM-DD HH:mm
-      next_century: Next Century
-      next_decade: Next Decade
-      next_month: Next Month
-      next_year: Next Year
-      prev_century: Previous Century
-      prev_decade: Previous Decade
-      prev_month: Previous Month
-      prev_year: Previous Year
-      select_decade: Select Decade
-      select_month: Select Month
-      select_year: Select Year
+      datetime_format: "%Y-%m-%d %H:%M"
+      datetime_format_js: YYYY-MM-DD HH:MM
+      days:
+        sunday: Sun
+        monday: Mon
+        tuesday: Tue
+        wednesday: Wed
+        thursday: Thu
+        friday: Fri
+        saturday: Sat
+      from: From
+      months:
+        january: January
+        february: February
+        march: March
+        april: April
+        may: May
+        june: June
+        july: July
+        august: August
+        september: September
+        october: October
+        november: November
+        december: December
+      separator: " - "
       time_format: "%H:%M"
-      time_format_js: HH:mm
-      today: Go to today
+      time_format_js: HH:MM
+      to: To
+      week: W
     destroy: Destroy
     duplicate_slug: duplicate slug
     duplicate_field_slug: duplicate slug

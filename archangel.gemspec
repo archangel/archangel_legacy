@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_tree", "~> 2.7"
   s.add_dependency "anyway_config", "~> 1.2"
   s.add_dependency "bootstrap", "~> 4.1"
-  s.add_dependency "bootstrap3-datetimepicker-rails", "~> 4.17"
   s.add_dependency "carrierwave", "~> 1.2"
   s.add_dependency "cocoon", "~> 1.2"
   s.add_dependency "date_validator", "~> 0.9"
