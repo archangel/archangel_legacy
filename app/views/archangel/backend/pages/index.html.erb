@@ -30,7 +30,7 @@
 
                 <tbody>
                   <% @pages.each do |page| %>
-                    <tr>
+                    <tr class="<%= page.published_status %>">
                       <td>
                         <%= page.title %>
 

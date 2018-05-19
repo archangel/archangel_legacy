@@ -109,6 +109,26 @@ module Archangel
       end
     end
 
+    context "#published_status" do
+      it "returns `unpublished` for Pages not published" do
+        page = build(:page, :unpublished)
+
+        expect(page.published_status).to eq("unpublished")
+      end
+
+      it "returns `future-published` for Pages published in the future" do
+        page = build(:page, :future)
+
+        expect(page.published_status).to eq("future-published")
+      end
+
+      it "returns `published` for Pages published in the past" do
+        page = build(:page)
+
+        expect(page.published_status).to eq("published")
+      end
+    end
+
     context "#to_liquid" do
       it "returns a Liquid object" do
         resource = build(:page)

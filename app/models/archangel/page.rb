@@ -53,6 +53,23 @@ module Archangel
     end
 
     ##
+    # Return string of publication status.
+    #
+    # @return [String] publication status
+    #
+    def published_status
+      if published?
+        if published_at > Time.now
+          "future-published"
+        else
+          "published"
+        end
+      else
+        "unpublished"
+      end
+    end
+
+    ##
     # Liquid object for Page
     #
     # @return [Object] the Liquid object
