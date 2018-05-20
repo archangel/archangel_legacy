@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :site, class: "Archangel::Site" do
+    initialize_with { Archangel::Site.first_or_create }
+
     sequence(:name) { |n| "Site #{n} Name" }
     locale "en"
     meta_keywords "default,keywords,of,my,site"
