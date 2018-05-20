@@ -18,40 +18,6 @@ module Archangel
         include ::ActionView::Helpers::UrlHelper
 
         ##
-        # Regex for tag key
-        #
-        KEY_SYNTAX = /
-          #{::Liquid::QuotedString}
-          |
-          (
-            [\w-]+\.[\w]+
-            |
-            #{::Liquid::QuotedString}
-          )
-        /ox
-
-        ##
-        # Regex for tag syntax
-        #
-        SYNTAX = /
-          (?<key>#{KEY_SYNTAX})
-          \s*
-          (?<attributes>.*)
-          \s*
-        /omx
-
-        ##
-        # Regex for attributes
-        #
-        SYNTAX_ATTRIBUTES = /
-          (?<key>\w+)
-          \s*
-          \:
-          \s*
-          (?<value>#{::Liquid::QuotedFragment})
-        /ox
-
-        ##
         # Asset for Liquid
         #
         # @param tag_name [String] the Liquid tag name
@@ -61,13 +27,13 @@ module Archangel
         def initialize(tag_name, markup, options)
           super
 
-          match = SYNTAX.match(markup)
+          match = ASSET_ATTRIBUTES_SYNTAX.match(markup)
 
           if match.blank?
             raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.asset")
           end
 
-          @key = ::Liquid::Variable.new(match[:key], options).name
+          @key = ::Liquid::Variable.new(match[:asset], options).name
           @attributes = {}
 
           build_attributes(match[:attributes])
@@ -95,7 +61,7 @@ module Archangel
         attr_reader :attributes, :key, :size
 
         def build_attributes(attrs)
-          attrs.scan(SYNTAX_ATTRIBUTES) do |key, value|
+          attrs.scan(KEY_VALUE_ATTRIBUTES_SYNTAX) do |key, value|
             @attributes[key.to_sym] = ::Liquid::Expression.parse(value)
           end
 

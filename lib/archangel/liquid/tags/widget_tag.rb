@@ -13,11 +13,6 @@ module Archangel
       #
       class WidgetTag < ApplicationTag
         ##
-        # Regex for tag syntax
-        #
-        SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)\s*/o
-
-        ##
         # Widget for Liquid
         #
         # @param tag_name [String] the Liquid tag name
@@ -27,7 +22,7 @@ module Archangel
         def initialize(tag_name, markup, options)
           super
 
-          match = SYNTAX.match(markup)
+          match = SLUG_SYNTAX.match(markup)
 
           if match.blank?
             raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.widget")

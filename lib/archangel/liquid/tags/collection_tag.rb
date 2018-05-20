@@ -33,17 +33,6 @@ module Archangel
         /omx
 
         ##
-        # Regex for attributes
-        #
-        SYNTAX_ATTRIBUTES = /
-          (?<key>\w+)
-          \s*
-          \:
-          \s*
-          (?<value>#{::Liquid::QuotedFragment})
-        /ox
-
-        ##
         # Collection for Liquid
         #
         # @param tag_name [String] the Liquid tag name
@@ -63,7 +52,7 @@ module Archangel
           @value = ::Liquid::Variable.new(match[:value], options).name
           @attributes = {}
 
-          match[:attributes].scan(SYNTAX_ATTRIBUTES) do |key, value|
+          match[:attributes].scan(KEY_VALUE_ATTRIBUTES_SYNTAX) do |key, value|
             @attributes[key.to_sym] = ::Liquid::Expression.parse(value)
           end
         end
