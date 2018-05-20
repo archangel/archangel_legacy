@@ -29,7 +29,7 @@ module Archangel
     ##
     # Check if `#index` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true for all roles
     #
     def index?
       true
@@ -38,7 +38,7 @@ module Archangel
     ##
     # Check if `#show` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true if record exists
     #
     def show?
       scope.where(id: record.id).exists?
@@ -47,7 +47,7 @@ module Archangel
     ##
     # Check if `#create` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true for all roles
     #
     def create?
       true
@@ -56,7 +56,7 @@ module Archangel
     ##
     # Check if `#new` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true if also able to create record
     #
     def new?
       create?
@@ -65,7 +65,7 @@ module Archangel
     ##
     # Check if `#update` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true for all roles
     #
     def update?
       true
@@ -74,7 +74,7 @@ module Archangel
     ##
     # Check if `#edit` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true if also able to update record
     #
     def edit?
       update?
@@ -83,7 +83,7 @@ module Archangel
     ##
     # Check if `#destroy` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true for all roles
     #
     def destroy?
       true

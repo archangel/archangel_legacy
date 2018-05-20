@@ -8,7 +8,7 @@ module Archangel
     ##
     # Check if `#sort` action is authorized for current user
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true for all roles
     #
     def sort?
       true

@@ -8,7 +8,7 @@ module Archangel
     ##
     # Check if `#wysiwyg` action is authorized for current user.
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true for all roles
     #
     def wysiwyg?
       true

@@ -9,7 +9,7 @@ module Archangel
     # Check if `#update` action is authorized for current user. Based on if
     # current user has the "admin" role
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true when User is an "admin" role
     #
     def update?
       admin_user?
@@ -18,7 +18,7 @@ module Archangel
     ##
     # Check if `#sample` action is authorized for current user.
     #
-    # @return [Boolean] if action is authorized
+    # @return [Boolean] true for all roles
     #
     def sample?
       true
