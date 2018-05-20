@@ -4,6 +4,8 @@ Feeling bored? Looking for ideas?
 
 _ \* In no particular order_
 
+* GDPR
+  * https://github.com/prey/gdpr_rails
 * Preview
   * Page preview
 * Angular
