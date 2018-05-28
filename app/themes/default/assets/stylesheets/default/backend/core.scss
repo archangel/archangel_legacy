@@ -1,18 +1,10 @@
-// Bootstrap theme variables
+// Theme variables
 //
 @import '../common/variables';
 //
-// Bootstrap
-//
-@import 'bootstrap';
-//
-// Bootstrap theme
-//
-@import '../common/bootstrap';
-@import '../common/selectize';
-//
 // 3rd party (from gems)
 //
+@import 'bootstrap';
 @import 'font-awesome';
 //
 // 3rd party (from vendor)
@@ -20,3 +12,12 @@
 @import 'daterangepicker/daterangepicker';
 @import 'trumbowyg/trumbowyg';
 @import 'trumbowyg/plugins/colors/trumbowyg.colors';
+//
+// 3rd party overwrites
+//
+@import '../common/bootstrap';
+@import '../common/selectize';
+//
+// Theme styles
+//
+// none

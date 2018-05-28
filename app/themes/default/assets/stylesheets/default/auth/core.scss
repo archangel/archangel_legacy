@@ -1,15 +1,20 @@
-// Bootstrap theme variables
+// Theme variables
 //
 @import '../common/variables';
 //
-// Bootstrap
+// 3rd party (from gems)
 //
 @import 'bootstrap';
+@import 'font-awesome';
 //
-// Bootstrap theme
+// 3rd party (from vendor)
+//
+// none
+//
+// 3rd party overwrites
 //
 @import '../common/bootstrap';
 //
-// 3rd party
+// Theme styles
 //
-@import 'font-awesome';
+// none
