@@ -35,8 +35,9 @@ module Archangel
       # Rails flags available to be passed with generator
       #
       PASSTHROUGH_OPTIONS = %i[
-        skip_active_record skip_javascript database javascript quiet pretend
-        force skip
+        database javascript pretend quiet
+        skip_action_cable skip_active_record skip_active_storage skip_bootsnap
+        skip_javascript skip_turbolinks
       ].freeze
 
       ##
@@ -59,15 +60,9 @@ module Archangel
       # Generate new dummy directory
       #
       def generate_dummy
-        opts = {}.merge(options).slice(*PASSTHROUGH_OPTIONS)
-
-        opts[:database] = "sqlite3" if opts[:database].blank?
-        opts[:force] = true
-        opts[:skip_bundle] = true
-        opts[:skip_git] = true
-        opts[:old_style_hash] = false
-        opts[:skip_turbolinks] = true
-        opts[:skip_bootsnap] = true
+        opts = option_defaults.merge(options)
+                              .slice(*PASSTHROUGH_OPTIONS)
+                              .merge(option_constants)
 
         puts "Generating dummy Rails application..."
 
@@ -121,28 +116,55 @@ module Archangel
 
       protected
 
-      def remove_directory_if_exists(path)
-        remove_dir(path) if File.directory?(path)
-      end
+      no_tasks do
+        def remove_directory_if_exists(path)
+          remove_dir(path) if File.directory?(path)
+        end
 
-      def inject_require_for(requirement)
-        insert_into_file("config/application.rb",
-                         before: /require "#{@lib_name}"/,
-                         verbose: true) do
-          <<-APP_CONFIG.strip_heredoc.indent(2)
+        def inject_require_for(requirement)
+          insert_into_file("config/application.rb",
+                           before: /require "#{@lib_name}"/,
+                           verbose: true) do
+            <<-APP_CONFIG.strip_heredoc.indent(2)
 
-            begin
-              require "#{requirement}"
-            rescue LoadError
-              # #{requirement} is not available.
-            end
+              begin
+                require "#{requirement}"
+              rescue LoadError
+                # #{requirement} is not available.
+              end
 
-          APP_CONFIG
+            APP_CONFIG
+          end
+        end
+
+        def dummy_database
+          ENV["DB"] || "sqlite3"
+        end
+
+        def dummy_path
+          ENV["DUMMY_PATH"] || "spec/dummy"
         end
       end
 
-      def dummy_path
-        ENV["DUMMY_PATH"] || "spec/dummy"
+      no_tasks do
+        def option_defaults
+          {
+            database: dummy_database,
+            skip_turbolinks: true,
+            skip_bootsnap: true,
+            skip_action_cable: true,
+            skip_active_storage: true
+          }
+        end
+
+        def option_constants
+          {
+            force: true,
+            skip_bundle: true,
+            skip_git: true,
+            old_style_hash: false
+          }
+        end
       end
     end
   end

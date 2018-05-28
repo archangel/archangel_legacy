@@ -10,7 +10,7 @@ development:
 test:
   <<: *default
   database: archangel_<%= options[:lib_name] %>_test
-<%- when "postgres" -%>
+<%- when "postgresql" -%>
 default: &default
   adapter: postgresql
   username: postgres

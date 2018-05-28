@@ -18,6 +18,7 @@ end
 
 group :development, :test do
   gem "launchy", "~> 2.4"
+  gem "pg", "~> 1.0"
   gem "pry-byebug", "~> 3.5"
   gem "sqlite3", ">= 1.3", platforms: %i[ruby mswin mswin64 mingw x64_mingw]
 end
