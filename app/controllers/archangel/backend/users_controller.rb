@@ -309,6 +309,7 @@ module Archangel
       def set_resources
         @users = current_site.users
                              .where.not(id: current_user.id)
+                             .order(name: :asc)
                              .page(page_num).per(per_page)
 
         authorize @users
@@ -319,7 +320,6 @@ module Archangel
 
         @user = current_site.users
                             .where.not(id: current_user.id)
-                            .order(name: :asc)
                             .find_by!(username: resource_id)
 
         authorize @user
