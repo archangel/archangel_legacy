@@ -8,8 +8,7 @@ before_install:
   - gem --version
 install: ruby -S bundle install
 script:
-  - bundle exec rake dummy_app
-  - bundle exec rake spec
+  - bin/citest
 rvm:
   - 2.2.10
   - 2.3.7
