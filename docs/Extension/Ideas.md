@@ -128,6 +128,3 @@ _ \* In no particular order_
   * iCloud Calendar integration
 * Static
   * Generate static frontend site
-* Help
-  * Help and instructions for each section in Backend
-  * Monetize YouTube videos
