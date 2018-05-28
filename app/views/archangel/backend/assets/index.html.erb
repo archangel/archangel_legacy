@@ -30,9 +30,7 @@
                 </thead>
 
                 <tbody>
-                  <% @assets.each do |asset| %>
-                    <%= render partial: "asset", locals: { asset: asset } %>
-                  <% end %>
+                  <%= render partial: "asset", collection: @assets %>
                 </tbody>
               </table>
             </div>

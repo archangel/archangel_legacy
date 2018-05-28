@@ -33,9 +33,7 @@
                 </thead>
 
                 <tbody id="sortable">
-                  <% @entries.each do |entry| %>
-                    <%= render partial: "entry", locals: { fields: fields, entry: entry } %>
-                  <% end %>
+                  <%= render partial: "entry", collection: @entries, locals: { fields: fields } %>
                 </tbody>
               </table>
             </div>

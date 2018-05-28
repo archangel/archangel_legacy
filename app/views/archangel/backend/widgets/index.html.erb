@@ -28,9 +28,7 @@
                 </thead>
 
                 <tbody>
-                  <% @widgets.each do |widget| %>
-                    <%= render partial: "widget", locals: { widget: widget } %>
-                  <% end %>
+                  <%= render partial: "widget", collection: @widgets %>
                 </tbody>
               </table>
             </div>

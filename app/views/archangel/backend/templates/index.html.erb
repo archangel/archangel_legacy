@@ -28,9 +28,7 @@
                 </thead>
 
                 <tbody>
-                  <% @templates.each do |template| %>
-                    <%= render partial: "template", locals: { template: template } %>
-                  <% end %>
+                  <%= render partial: "template", collection: @templates %>
                 </tbody>
               </table>
             </div>

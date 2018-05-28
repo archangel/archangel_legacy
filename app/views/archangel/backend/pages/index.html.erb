@@ -29,9 +29,7 @@
                 </thead>
 
                 <tbody>
-                  <% @pages.each do |page| %>
-                    <%= render partial: "page", locals: { page: page } %>
-                  <% end %>
+                  <%= render partial: "page", collection: @pages %>
                 </tbody>
               </table>
             </div>
