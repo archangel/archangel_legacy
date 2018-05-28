@@ -31,18 +31,7 @@
 
                 <tbody>
                   <% @assets.each do |asset| %>
-                    <tr>
-                      <td><%= image_tag(asset.file.tiny.url, alt: asset.file_name) %></td>
-                      <td><%= asset.file_name %></td>
-                      <td><%= asset.content_type %></td>
-                      <td><%= number_to_human_size(asset.file_size) %></td>
-                      <td class="actions text-right">
-                        <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_asset_path(asset), class: "btn btn-info btn-sm") %>
-                        <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_asset_path(asset), class: "btn btn-warning btn-sm") %>
-                        <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_asset_path(asset), class: "btn btn-danger btn-sm",
-                                                            method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
-                      </td>
-                    </tr>
+                    <%= render partial: "asset", locals: { asset: asset } %>
                   <% end %>
                 </tbody>
               </table>

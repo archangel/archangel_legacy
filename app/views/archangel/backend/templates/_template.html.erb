@@ -1,0 +1,10 @@
+<tr>
+  <td><%= template.name %></td>
+  <td><%= template.partial? %></td>
+  <td class="actions text-right">
+    <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_template_path(template), class: "btn btn-info btn-sm") %>
+    <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_template_path(template), class: "btn btn-warning btn-sm") %>
+    <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_template_path(template), class: "btn btn-danger btn-sm",
+                                        method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+  </td>
+</tr>

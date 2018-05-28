@@ -1,0 +1,10 @@
+<tr>
+  <td><%= widget.name %></td>
+  <td><%= widget.slug %></td>
+  <td class="actions text-right">
+    <%= link_to(fa_icon("info-circle", text: Archangel.t(:show)), backend_widget_path(widget), class: "btn btn-info btn-sm") %>
+    <%= link_to(fa_icon("check-circle", text: Archangel.t(:edit)), edit_backend_widget_path(widget), class: "btn btn-warning btn-sm") %>
+    <%= link_to(fa_icon("times-circle", text: Archangel.t(:destroy)), backend_widget_path(widget), class: "btn btn-danger btn-sm",
+                                        method: :delete, data: { confirm: Archangel.t(:are_you_sure) }) %>
+  </td>
+</tr>
