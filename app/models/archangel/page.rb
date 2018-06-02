@@ -132,8 +132,8 @@ module Archangel
     end
 
     def reserved_paths
-      Archangel.config.to_h.select do |key, _val|
-        %i[auth_path backend_path frontend_path].include?(key)
+      Archangel.config.to_h.select do |key|
+        Archangel.reserved_page_keywords.include?(key)
       end.values
     end
   end

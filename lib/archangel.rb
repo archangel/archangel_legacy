@@ -88,5 +88,18 @@ module Archangel
     def themes
       [THEME_DEFAULT] + THEMES
     end
+
+    ##
+    # Reserved keywords for page slugs
+    #
+    # This is an array keywords that are not allowed to be used for Page slugs.
+    #
+    # Example
+    #     Archangel.reserved_page_keywords #=> ["auth", "backend", ""]
+    #
+    # @return [Array] reserved keywords for page slugs
+    def reserved_page_keywords
+      %i[auth_path backend_path frontend_path]
+    end
   end
 end
