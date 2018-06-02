@@ -52,7 +52,7 @@ Run the install generator with seed data
 $ bundle exec rails g archangel:install --seed
 ```
 
-Seed data can be created separately by running `rake db:seed`
+Seed data can be created separately by running `bundle exec rails db:seed`
 
 ## Updating
 
