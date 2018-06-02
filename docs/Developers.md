@@ -16,21 +16,12 @@ Generate a dummy application. You will be required to generate a dummy applicati
 $ bundle exec rake dummy_app
 ```
 
-Run tests
+Run tests with any of the following
 
 ```
 $ bundle exec rake
-```
-
-or
-
-```
 $ bundle exec rake spec
-```
-
-or
-
-```
+$ bundle exec rake test
 $ bundle exec rspec spec
 ```
 

@@ -17,13 +17,6 @@ RSpec::Core::RakeTask.new
 
 task default: :spec
 
-desc "Generates a dummy app for Archangel"
-task :dummy_app do
-  ENV["LIB_NAME"] = "archangel"
-
-  Rake::Task["dummy:generate"].invoke
-end
-
 desc "Remove any generated files and directories"
 task :clean do
   %w[
@@ -34,3 +27,13 @@ task :clean do
     .yardoc coverage doc pkg archangel_* node_modules pkg spec/dummy
   ].each { |directory| rm_rf directory }
 end
+
+desc "Generates a dummy app for Archangel"
+task :dummy_app do
+  ENV["LIB_NAME"] = "archangel"
+
+  Rake::Task["dummy:generate"].invoke
+end
+
+desc "Run RSpec tests"
+task test: :spec

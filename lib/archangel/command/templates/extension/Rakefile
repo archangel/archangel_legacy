@@ -24,3 +24,6 @@ task :dummy_app do
 
   Rake::Task["dummy:generate"].invoke
 end
+
+desc "Run RSpec tests"
+task test: :spec
