@@ -14,7 +14,13 @@
     * `1.3.0-beta`
     * `2.0.0-rc.1`
 
-2. Build the gem
+  a. If this is a major or minor version update, change the `README.md` file to reflect the version
+
+      ```
+      gem "archangel", "~> x.y"
+      ```
+
+3. Build the gem
 
    ```
    $ bundle exec rake build

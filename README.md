@@ -31,7 +31,7 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 Add to your application's Gemfile
 
 ```
-gem "archangel"
+gem "archangel", "< 1.0"
 ```
 
 Run the bundle command
