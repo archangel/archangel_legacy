@@ -132,9 +132,7 @@ module Archangel
     end
 
     def reserved_paths
-      Archangel.config.to_h.select do |key|
-        Archangel.reserved_page_keywords.include?(key)
-      end.values
+      Archangel.config.keys_in(Archangel.reserved_page_keywords).values
     end
   end
 end

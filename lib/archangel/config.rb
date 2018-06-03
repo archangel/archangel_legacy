@@ -17,5 +17,9 @@ module Archangel
                 frontend_path: "",
                 image_extension_whitelist: %i[gif jpeg jpg png],
                 image_maximum_file_size: 2.megabytes
+
+    def keys_in(keys)
+      to_h.select { |key| keys.include?(key) }
+    end
   end
 end
