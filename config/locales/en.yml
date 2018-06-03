@@ -24,9 +24,9 @@ en:
       cancel: Cancel
       custom_range: Custom
       date_format: "%Y-%m-%d"
-      date_format_js: YYYY-MM-DD
+      date_format_js: "YYYY-MM-DD"
       datetime_format: "%Y-%m-%d %H:%M"
-      datetime_format_js: YYYY-MM-DD HH:MM
+      datetime_format_js: "YYYY-MM-DD HH:MM"
       days:
         sunday: Sun
         monday: Mon
@@ -51,7 +51,7 @@ en:
         december: December
       separator: " - "
       time_format: "%H:%M"
-      time_format_js: HH:MM
+      time_format_js: "HH:MM"
       to: To
       week: W
     destroy: Destroy
