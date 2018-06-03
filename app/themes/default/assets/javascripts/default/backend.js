@@ -46,3 +46,4 @@
 //= require default/common/flash
 //
 //= require default/backend/core
+//= require default/backend/templates
