@@ -27,5 +27,19 @@ module Archangel
         )
       end
     end
+
+    context "#status" do
+      it "returns `partial` for partial Templates" do
+        page = build(:template, :partial)
+
+        expect(page.status).to eq("partial")
+      end
+
+      it "returns `full` for non-partial Templates" do
+        page = build(:template)
+
+        expect(page.status).to eq("full")
+      end
+    end
   end
 end

@@ -109,23 +109,23 @@ module Archangel
       end
     end
 
-    context "#published_status" do
+    context "#status" do
       it "returns `unpublished` for Pages not published" do
         page = build(:page, :unpublished)
 
-        expect(page.published_status).to eq("unpublished")
+        expect(page.status).to eq("unpublished")
       end
 
       it "returns `future-published` for Pages published in the future" do
         page = build(:page, :future)
 
-        expect(page.published_status).to eq("future-published")
+        expect(page.status).to eq("future-published")
       end
 
       it "returns `published` for Pages published in the past" do
         page = build(:page)
 
-        expect(page.published_status).to eq("published")
+        expect(page.status).to eq("published")
       end
     end
 

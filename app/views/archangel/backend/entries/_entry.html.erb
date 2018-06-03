@@ -1,4 +1,4 @@
-<tr class="<%= entry.available_status %>" data-id="<%= entry.id %>">
+<tr class="entry-<%= entry.status %>" data-id="<%= entry.id %>">
   <td class="text-center"><%= fa_icon("sort", title: Archangel.t(:sort)) %></td>
   <% fields.each do |field| %>
     <td><%= entry.value[field] %></td>

@@ -10,8 +10,8 @@ module Archangel
     #
     class Drop < ::Liquid::Drop
       class << self
-        attr_accessor :_attributes
         attr_accessor :_associations
+        attr_accessor :_attributes
       end
 
       def self.inherited(base)

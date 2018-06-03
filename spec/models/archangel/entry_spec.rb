@@ -39,23 +39,23 @@ module Archangel
       end
     end
 
-    context "#available_status" do
+    context "#status" do
       it "returns `unavailable` for Entries not available" do
         entry = build(:entry, :unavailable)
 
-        expect(entry.available_status).to eq("unavailable")
+        expect(entry.status).to eq("unavailable")
       end
 
       it "returns `future-available` for Entries available in the future" do
         entry = build(:entry, :future)
 
-        expect(entry.available_status).to eq("future-available")
+        expect(entry.status).to eq("future-available")
       end
 
       it "returns `available` for Entries available in the past" do
         entry = build(:entry)
 
-        expect(entry.available_status).to eq("available")
+        expect(entry.status).to eq("available")
       end
     end
   end
