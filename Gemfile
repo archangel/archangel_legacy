@@ -25,7 +25,6 @@ end
 
 group :test do
   gem "capybara", "~> 3.0"
-  gem "coveralls", "~> 0.8"
   gem "database_cleaner", "~> 1.6"
   gem "factory_bot_rails", "~> 4.8"
   gem "poltergeist", "~> 1.18"

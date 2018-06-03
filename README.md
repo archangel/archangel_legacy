@@ -3,7 +3,7 @@
 ** Archangel is currently under development. It is not ready for production use. **
 
 [![Travis CI](https://travis-ci.org/archangel/archangel.svg?branch=master)](https://travis-ci.org/archangel/archangel)
-[![Coverage Status](https://coveralls.io/repos/github/archangel/archangel/badge.svg?branch=master)](https://coveralls.io/github/archangel/archangel?branch=master)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ecd913526457e79b49bd/test_coverage)](https://codeclimate.com/github/archangel/archangel/test_coverage)
 [![Code Climate](https://codeclimate.com/github/archangel/archangel/badges/gpa.svg)](https://codeclimate.com/github/archangel/archangel)
 [![Inline docs](http://inch-ci.org/github/archangel/archangel.svg?branch=master)](http://inch-ci.org/github/archangel/archangel)
 
