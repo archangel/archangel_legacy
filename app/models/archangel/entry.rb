@@ -34,7 +34,7 @@ module Archangel
     #
     # @return [String] available status
     #
-    def available_status
+    def status
       if available?
         if available_at > Time.now
           "future-available"

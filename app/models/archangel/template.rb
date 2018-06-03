@@ -18,6 +18,15 @@ module Archangel
                optional: true
     belongs_to :site
 
+    ##
+    # Return string of partial status.
+    #
+    # @return [String] partial status
+    #
+    def status
+      partial? ? "partial" : "full"
+    end
+
     protected
 
     def valid_liquid_content

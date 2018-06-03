@@ -57,7 +57,7 @@ module Archangel
     #
     # @return [String] publication status
     #
-    def published_status
+    def status
       if published?
         if published_at > Time.now
           "future-published"
