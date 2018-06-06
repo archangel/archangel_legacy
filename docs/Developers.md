@@ -13,6 +13,10 @@ Documentation for theme developers [is available](https://github.com/archangel/a
 Generate a dummy application. You will be required to generate a dummy application before running tests.
 
 ```
+$ brew cask install chromedriver
+```
+
+```
 $ bundle exec rake dummy_app
 ```
 
