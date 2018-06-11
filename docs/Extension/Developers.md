@@ -2,7 +2,7 @@
 
 Extensions are meant to extend the functionality of Archangel. Documentation for theme development is [also available](https://github.com/archangel/archangel/blob/master/docs/Theme/Developers.md).
 
-Feeling bored? Looking for ideas? Take a look at possible [ideas for extensions](https://github.com/archangel/archangel/blob/master/docs/Extension/Ideas.md).
+Bored? Take a look at the [TODO list for Archangel](https://trello.com/b/iAeANJRl).
 
 ## Generate an extension
 
