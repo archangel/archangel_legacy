@@ -30,6 +30,7 @@ group :test do
   gem "poltergeist", "~> 1.18"
   gem "rails-controller-testing", "~> 1.0"
   gem "rspec-rails", "~> 3.7"
+  gem "selenium-webdriver", "~> 3.12"
   gem "shoulda-callback-matchers", "~> 1.1"
   gem "shoulda-matchers", "~> 3.1"
   gem "simplecov", "~> 0.14"
