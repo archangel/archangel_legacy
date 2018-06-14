@@ -10,6 +10,15 @@ Documentation for theme developers [is available](https://github.com/archangel/a
 
 [Travis CI](https://travis-ci.org/) is used for running tests. To get the best possible overview of issues with different Ruby versions, Archangel is tested with multiple various of Ruby. See [.travis.yml](https://github.com/archangel/archangel/blob/master/.travis.yml) for the versions of Ruby tested.
 
+### Requirements
+
+```
+$ brew install imagemagick
+$ brew install geckodriver
+```
+
+### Running Tests
+
 Generate a dummy application. You will be required to generate a dummy application before running tests.
 
 ```
