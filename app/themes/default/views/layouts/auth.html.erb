@@ -6,8 +6,6 @@
 
     <title><%= content_for?(:title) ? yield(:title) : Archangel.t(:archangel) %></title>
 
-    <link rel="shortcut icon" href="<%= current_site.favicon.url %>">
-
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "#{current_theme}/auth", media: "all" %>

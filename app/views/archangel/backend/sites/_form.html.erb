@@ -21,12 +21,6 @@
     <%= f.input :theme, as: :theme %>
     <%= f.input :locale, as: :language %>
 
-    <%= f.input :favicon, as: :file %>
-    <%= f.input :favicon_cache, as: :hidden %>
-    <%= f.input :remove_favicon, as: :boolean,
-                                 checked_value: true,
-                                 unchecked_value: false if f.object.favicon? %>
-
     <%= f.input :meta_keywords, as: :meta_keywords %>
     <%= f.input :meta_description %>
   </div>

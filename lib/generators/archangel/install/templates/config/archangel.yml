@@ -22,21 +22,6 @@ asset_extension_whitelist:
 #
 asset_maximum_file_size: 2.megabytes
 
-# File extension whitelist of favicon uploads.
-# Default is ['gif', 'ico', 'jpeg', 'jpg', 'png']
-#
-favicon_extension_whitelist:
-  - gif
-  - ico
-  - jpeg
-  - jpg
-  - png
-
-# Maximum file size of for favicon uploads.
-# Default is `2.megabytes`
-#
-favicon_maximum_file_size: 2.megabytes
-
 # File extension whitelist of general image uploads.
 # Default is ['gif', 'jpeg', 'jpg', 'png']
 #

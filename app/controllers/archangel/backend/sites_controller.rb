@@ -145,8 +145,7 @@ module Archangel
       protected
 
       def permitted_attributes
-        %w[favicon locale logo meta_description meta_keywords name
-           remove_favicon remove_logo theme]
+        %w[locale logo meta_description meta_keywords name remove_logo theme]
       end
 
       def set_resource

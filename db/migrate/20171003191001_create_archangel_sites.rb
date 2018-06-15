@@ -5,7 +5,6 @@ class CreateArchangelSites < ActiveRecord::Migration[5.1]
       t.string :theme
       t.string :locale, null: false, default: "en"
       t.string :logo
-      t.string :favicon
       t.string :meta_keywords
       t.string :meta_description
       t.datetime :deleted_at

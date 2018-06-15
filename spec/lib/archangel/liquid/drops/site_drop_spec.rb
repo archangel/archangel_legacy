@@ -27,11 +27,6 @@ module Archangel
             expect(resource_drop.name).to eq("Test Site")
           end
 
-          it "returns correct #favicon value" do
-            expect(resource_drop.favicon)
-              .to match(%r{/assets/archangel/fallback/favicon(.+).ico})
-          end
-
           it "returns correct #logo value" do
             expect(resource_drop.logo)
               .to match(%r{/assets/archangel/fallback/logo(.+).png})

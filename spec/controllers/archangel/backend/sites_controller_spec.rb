@@ -18,22 +18,6 @@ module Archangel
           expect(assigns(:site)).to eq(site)
         end
 
-        it "uses default favicon for site" do
-          get :show
-
-          expect(site.favicon.url).to(
-            include("/assets/archangel/fallback/favicon")
-          )
-        end
-
-        it "uses uploaded favicon for site" do
-          site = create(:site, :favicon)
-
-          get :show
-
-          expect(site.favicon.url).to include("/uploads/archangel/site/favicon")
-        end
-
         it "uses default logo for site" do
           get :show
 

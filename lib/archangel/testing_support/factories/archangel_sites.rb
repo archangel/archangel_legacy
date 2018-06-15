@@ -13,10 +13,6 @@ FactoryBot.define do
       logo { fixture_file_upload(uploader_test_image) }
     end
 
-    trait :favicon do
-      favicon { fixture_file_upload(uploader_test_favicon) }
-    end
-
     trait :deleted do
       deleted_at { Time.current }
     end
