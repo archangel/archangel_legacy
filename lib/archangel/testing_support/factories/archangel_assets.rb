@@ -8,11 +8,6 @@ FactoryBot.define do
     content_type "image/jpg"
     file_size 123
 
-    trait :stylesheet do
-      file { fixture_file_upload(uploader_test_stylesheet) }
-      content_type "text/css"
-    end
-
     trait :deleted do
       deleted_at { Time.current }
     end

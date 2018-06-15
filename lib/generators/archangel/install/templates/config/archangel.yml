@@ -9,14 +9,12 @@ auth_path: "account"
 backend_path: "backend"
 
 # File extension whitelist of asset uploads.
-# Default is ['css', 'gif', 'jpeg', 'jpg', 'js', 'png']
+# Default is ['gif', 'jpeg', 'jpg', 'png']
 #
 asset_extension_whitelist:
-  - css
   - gif
   - jpeg
   - jpg
-  - js
   - png
 
 # Maximum file size of for asset uploads.

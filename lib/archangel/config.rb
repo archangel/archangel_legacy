@@ -9,7 +9,7 @@ module Archangel
 
     attr_config allow_registration: false,
                 asset_maximum_file_size: 2.megabytes,
-                asset_extension_whitelist: %i[css gif jpeg jpg js png],
+                asset_extension_whitelist: %i[gif jpeg jpg png],
                 auth_path: "account",
                 backend_path: "backend",
                 favicon_extension_whitelist: %i[gif ico jpeg jpg png],
