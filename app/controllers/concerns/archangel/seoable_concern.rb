@@ -32,8 +32,7 @@ module Archangel
         canonical:   request.url,
         image_src:   current_site.logo.url,
         description: current_site.meta_description,
-        keywords:    current_site.meta_keywords.to_s.split(","),
-        icon:        current_site.favicon.url
+        keywords:    current_site.meta_keywords.to_s.split(",")
       }
     end
   end

@@ -12,8 +12,6 @@ module Archangel
                 asset_extension_whitelist: %i[gif jpeg jpg png],
                 auth_path: "account",
                 backend_path: "backend",
-                favicon_extension_whitelist: %i[gif ico jpeg jpg png],
-                favicon_maximum_file_size: 2.megabytes,
                 frontend_path: "",
                 image_extension_whitelist: %i[gif jpeg jpg png],
                 image_maximum_file_size: 2.megabytes

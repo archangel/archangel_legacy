@@ -105,7 +105,6 @@ RSpec.feature "Default variables", type: :feature do
         Site Locale: {{ site.locale }}
         Site Meta Keywords: {{ site.meta_keywords }}
         Site Meta Description: {{ site.meta_description }}
-        Site Favicon: {{ site.favicon }}
         Site Logo: {{ site.logo }}
       CONTENT
 
@@ -118,7 +117,6 @@ RSpec.feature "Default variables", type: :feature do
       expect(page).to have_content("Site Meta Keywords: #{site.meta_keywords}")
       expect(page)
         .to have_content("Site Meta Description: #{site.meta_description}")
-      expect(page).to have_content("Site Favicon: #{site.favicon}")
       expect(page).to have_content("Site Logo: #{site.logo}")
     end
   end

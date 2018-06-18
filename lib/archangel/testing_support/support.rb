@@ -4,10 +4,6 @@ def uploader_test_image
   Archangel::Engine.root + "lib/archangel/testing_support/fixtures/image.gif"
 end
 
-def uploader_test_favicon
-  Archangel::Engine.root + "lib/archangel/testing_support/fixtures/favicon.png"
-end
-
 def uploader_test_stylesheet
   Archangel::Engine.root +
     "lib/archangel/testing_support/fixtures/stylesheet.css"
