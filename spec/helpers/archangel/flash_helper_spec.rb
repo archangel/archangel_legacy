@@ -28,6 +28,20 @@ module Archangel
         expect(helper.flash_class_for("foo_bar")).to eq("foo_bar")
         expect(helper.flash_class_for("foo      bar")).to eq("foo-bar")
       end
+
+      it "returns class with known characters" do
+        resource = <<-CONTENT
+          abcdefghijklmnopqrstuvwxyz
+          tab	space ABCDEFGHIJKLMNOPQRSTUVWXYZ
+          `-=[]\;',./~!@#$%^&*()_+{}|:"<>?
+          ¡™£¢∞§¶•ªº–≠	œ∑´®†¥¨ˆøπ“‘«åß∂ƒ©˙∆˚¬…æΩ≈ç√∫˜µ≤≥÷
+          0123456789
+        CONTENT
+        expected = "abcdefghijklmnopqrstuvwxyz-tab-space-" \
+                   "abcdefghijklmnopqrstuvwxyz-_-oe-o-ass-ae-c-0123456789"
+
+        expect(helper.flash_class_for(resource)).to eq(expected)
+      end
     end
   end
 end
