@@ -7,8 +7,8 @@ module Archangel
     RSpec.describe UsersController, type: :controller do
       before { stub_authorization! user }
 
-      let!(:site) { create(:site) }
-      let!(:user) { create(:user, site: site) }
+      let(:site) { create(:site) }
+      let(:user) { create(:user, site: site) }
 
       describe "GET #index" do
         it "assigns all users as @users" do

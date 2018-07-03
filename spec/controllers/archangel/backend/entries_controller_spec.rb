@@ -50,7 +50,7 @@ module Archangel
       end
 
       describe "POST #create" do
-        let!(:collection) { create(:collection) }
+        let(:collection) { create(:collection) }
         let!(:field) do
           create(:field, collection: collection, slug: "slug", required: true)
         end
@@ -137,7 +137,7 @@ module Archangel
       end
 
       describe "PUT #update" do
-        let!(:collection) { create(:collection) }
+        let(:collection) { create(:collection) }
         let!(:field) do
           create(:field, collection: collection, slug: "slug", required: true)
         end
@@ -240,7 +240,7 @@ module Archangel
       end
 
       describe "POST #sort" do
-        let!(:collection) { create(:collection) }
+        let(:collection) { create(:collection) }
         let!(:field) do
           create(:field, collection: collection, slug: "slug", required: true)
         end

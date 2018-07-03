@@ -5,10 +5,10 @@ require "rails_helper"
 module Archangel
   module Frontend
     RSpec.describe PagesController, type: :controller do
+      let(:page) { create(:page) }
+
       describe "loads correct layout" do
         it "loads correct view" do
-          page = create(:page)
-
           get :show, params: { path: page.path }
 
           expect(response).to render_with_layout("frontend")
@@ -17,8 +17,6 @@ module Archangel
 
       describe "GET #show" do
         it "assigns the requested page as @page" do
-          page = create(:page)
-
           get :show, params: { path: page.path }
 
           expect(response.content_type).to eq "text/html"
@@ -26,8 +24,6 @@ module Archangel
         end
 
         it "assigns the requested page as @page for JSON request" do
-          page = create(:page)
-
           get :show, params: { path: page.path }, format: :json
 
           expect(response.content_type).to eq "application/json"

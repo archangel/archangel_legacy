@@ -7,10 +7,10 @@ module Archangel
     RSpec.describe SitesController, type: :controller do
       before { stub_authorization! profile }
 
-      let!(:site) { create(:site) }
+      let(:site) { create(:site) }
 
       describe "GET #show" do
-        let!(:profile) { create(:user, :editor, site: site) }
+        let(:profile) { create(:user, :editor, site: site) }
 
         it "assigns the requested site as @site" do
           get :show
@@ -37,7 +37,7 @@ module Archangel
 
       describe "GET #edit" do
         context "with permissions" do
-          let!(:profile) { create(:user, :admin, site: site) }
+          let(:profile) { create(:user, :admin, site: site) }
 
           it "assigns the requested site as @site" do
             get :edit
@@ -47,7 +47,7 @@ module Archangel
         end
 
         context "without permissions" do
-          let!(:profile) { create(:user, :editor, site: site) }
+          let(:profile) { create(:user, :editor, site: site) }
 
           it "redirects to site" do
             get :edit
@@ -60,7 +60,7 @@ module Archangel
 
       describe "PUT #update" do
         context "with permissions" do
-          let!(:profile) { create(:user, :admin, site: site) }
+          let(:profile) { create(:user, :admin, site: site) }
 
           context "with valid params" do
             let(:params) do
@@ -106,7 +106,7 @@ module Archangel
         end
 
         context "without permissions" do
-          let!(:profile) { create(:user, :editor, site: site) }
+          let(:profile) { create(:user, :editor, site: site) }
 
           it "redirects to site" do
             put :update, params: { site: {} }

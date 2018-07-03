@@ -7,7 +7,7 @@ module Archangel
     RSpec.describe ProfilesController, type: :controller do
       before { stub_authorization! profile }
 
-      let!(:profile) { create(:user) }
+      let(:profile) { create(:user) }
 
       describe "GET #show" do
         it "assigns the current user as @profile" do
