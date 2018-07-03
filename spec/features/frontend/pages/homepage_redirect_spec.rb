@@ -5,9 +5,9 @@ require "rails_helper"
 RSpec.feature "Home page", type: :feature do
   describe "when on home page path" do
     it "redirects to /" do
-      home = create(:page, :homepage)
+      resource = create(:page, :homepage)
 
-      visit archangel.frontend_page_path(home.path)
+      visit archangel.frontend_page_path(resource.path)
 
       expect(page.current_path).to eq archangel.frontend_root_path
     end

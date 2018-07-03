@@ -3,33 +3,29 @@
 require "rails_helper"
 
 RSpec.feature "Default variables", type: :feature do
-  describe "for $current_page" do
-    let(:site) { create(:site) }
+  let(:site) { create(:site) }
 
+  describe "for `current_page`" do
     it "knows the current page at root level" do
-      content = <<-CONTENT
-        Current Page: {{ current_page }}
-      CONTENT
+      content = "Current Page: {{ current_page }}"
 
-      post = create(:page, site: site, slug: "foo", content: content)
+      resource = create(:page, site: site, slug: "foo", content: content)
 
-      visit archangel.frontend_page_path(post.path)
+      visit archangel.frontend_page_path(resource.path)
 
       expect(page).to have_content("Current Page: /foo")
     end
 
     it "knows the current page at child level" do
-      content = <<-CONTENT
-        Current Page: {{ current_page }}
-      CONTENT
+      content = "Current Page: {{ current_page }}"
 
-      parent_post = create(:page, site: site, slug: "foo")
-      post = create(:page, site: site,
-                           parent: parent_post,
-                           slug: "bar",
-                           content: content)
+      parent_resource = create(:page, site: site, slug: "foo")
+      resource = create(:page, site: site,
+                               parent: parent_resource,
+                               slug: "bar",
+                               content: content)
 
-      visit CGI.unescape(archangel.frontend_page_path(post.path))
+      visit CGI.unescape(archangel.frontend_page_path(resource.path))
 
       expect(page).to have_content("Current Page: /foo/bar")
     end
@@ -37,9 +33,9 @@ RSpec.feature "Default variables", type: :feature do
     it "knows it is on the current page" do
       content = <<-CONTENT
         {% if current_page == page.path %}
-          Is Current Page?: Yup!
+          Current Page?: Yup!
         {% else %}
-          Is Current Page?: Nope!
+          Current Page?: Nope!
         {% endif %}
       CONTENT
 
@@ -47,16 +43,16 @@ RSpec.feature "Default variables", type: :feature do
 
       visit archangel.frontend_page_path(post.path)
 
-      expect(page).to have_content("Is Current Page?: Yup!")
-      expect(page).not_to have_content("Is Current Page?: Nope!")
+      expect(page).to have_content("Current Page?: Yup!")
+      expect(page).not_to have_content("Current Page?: Nope!")
     end
 
     it "knows it is not on the current page" do
       content = <<-CONTENT
         {% if current_page == '/some-other-page' %}
-          Is Current Page?: Yup!
+          Current Page?: Yup!
         {% else %}
-          Is Current Page?: Nope!
+          Current Page?: Nope!
         {% endif %}
       CONTENT
 
@@ -64,15 +60,24 @@ RSpec.feature "Default variables", type: :feature do
 
       visit archangel.frontend_page_path(post.path)
 
-      expect(page).not_to have_content("Is Current Page?: Yup!")
-      expect(page).to have_content("Is Current Page?: Nope!")
+      expect(page).not_to have_content("Current Page?: Yup!")
+      expect(page).to have_content("Current Page?: Nope!")
+    end
+
+    it "knows the current page with all known slug characters" do
+      slug = "abcdefghijklmnopqrstuvwxyz0123456789-_"
+      content = "Current Page: {{ current_page }}"
+
+      resource = create(:page, site: site, slug: slug, content: content)
+
+      visit archangel.frontend_page_path(resource.path)
+
+      expect(page).to have_content("Current Page: /#{slug}")
     end
   end
 
-  describe "for $page" do
-    let(:site) { create(:site) }
-
-    it "knows the page properties" do
+  describe "for `page`" do
+    it "knows the `page` properties" do
       content = <<-CONTENT
         Page ID: {{ page.id }}
         Page Title: {{ page.title }}
@@ -80,37 +85,40 @@ RSpec.feature "Default variables", type: :feature do
         Page Meta Keywords: {{ page.meta_keywords }}
         Page Meta Description: {{ page.meta_description }}
         Page Published At: {{ page.published_at }}
+        Page Unknown: ~{{ page.unknown_variable }}~
       CONTENT
 
-      post = create(:page, site: site, content: content)
+      resource = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(post.path)
+      visit archangel.frontend_page_path(resource.path)
 
-      expect(page).to have_content("Page ID: #{post.id}")
-      expect(page).to have_content("Page Title: #{post.title}")
-      expect(page).to have_content("Page Path: /#{post.path}")
-      expect(page).to have_content("Page Meta Keywords: #{post.meta_keywords}")
+      expect(page).to have_content("Page ID: #{resource.id}")
+      expect(page).to have_content("Page Title: #{resource.title}")
+      expect(page).to have_content("Page Path: /#{resource.path}")
       expect(page)
-        .to have_content("Page Meta Description: #{post.meta_description}")
-      expect(page).to have_content("Page Published At: #{post.published_at}")
+        .to have_content("Page Meta Keywords: #{resource.meta_keywords}")
+      expect(page)
+        .to have_content("Page Meta Description: #{resource.meta_description}")
+      expect(page)
+        .to have_content("Page Published At: #{resource.published_at}")
+      expect(page).to have_content("Page Unknown: ~~")
     end
   end
 
-  describe "for site" do
-    let(:site) { create(:site) }
-
-    it "knows the site properties" do
+  describe "for `site`" do
+    it "knows the `site` properties" do
       content = <<-CONTENT
         Site Name: {{ site.name }}
         Site Locale: {{ site.locale }}
         Site Meta Keywords: {{ site.meta_keywords }}
         Site Meta Description: {{ site.meta_description }}
         Site Logo: {{ site.logo }}
+        Site Unknown: ~{{ site.unknown_variable }}~
       CONTENT
 
-      post = create(:page, site: site, content: content)
+      resource = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(post.path)
+      visit archangel.frontend_page_path(resource.path)
 
       expect(page).to have_content("Site Name: #{site.name}")
       expect(page).to have_content("Site Locale: #{site.locale}")
@@ -118,20 +126,17 @@ RSpec.feature "Default variables", type: :feature do
       expect(page)
         .to have_content("Site Meta Description: #{site.meta_description}")
       expect(page).to have_content("Site Logo: #{site.logo}")
+      expect(page).to have_content("Site Unknown: ~~")
     end
   end
 
-  describe "for unknown variable" do
-    let(:site) { create(:site) }
-
+  describe "for general unknown variable" do
     it "responds with blank value" do
-      content = <<-CONTENT
-        Unknown Variable: ~{{ unknown_variable }}~
-      CONTENT
+      content = "Unknown Variable: ~{{ unknown_variable }}~"
 
-      post = create(:page, site: site, content: content)
+      resource = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(post.path)
+      visit archangel.frontend_page_path(resource.path)
 
       expect(page).to have_content("Unknown Variable: ~~")
     end
