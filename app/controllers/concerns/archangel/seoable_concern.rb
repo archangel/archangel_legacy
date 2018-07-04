@@ -16,13 +16,15 @@ module Archangel
     #
     # @param meta_tags [Hash] list of meta tags
     def apply_meta_tags(meta_tags = {})
-      set_meta_tags(meta_tags.reject { |_name, value| value.blank? })
+      meta = meta_tags.reject { |_name, value| value.blank? }
+
+      set_meta_tags(meta)
     end
 
     protected
 
     def apply_default_meta_tags
-      apply_meta_tags default_meta_tags
+      apply_meta_tags(default_meta_tags)
     end
 
     def default_meta_tags
