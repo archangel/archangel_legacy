@@ -39,11 +39,12 @@ module Archangel
         expect(resource).to validate_uniqueness_of(:path).scoped_to(:site_id)
       end
 
-      it "has a unique slug scoped to Page" do
+      it "has a unique slug scoped to Parent and Site" do
         resource = build(:page, :with_parent)
 
         expect(resource).to(
-          validate_uniqueness_of(:slug).scoped_to(:parent_id).case_insensitive
+          validate_uniqueness_of(:slug).scoped_to(%i[parent_id site_id])
+                                       .case_insensitive
         )
       end
 

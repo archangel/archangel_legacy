@@ -22,7 +22,8 @@ module Archangel
     validates :homepage, inclusion: { in: [true, false] }
     validates :path, uniqueness: { scope: :site_id }
     validates :published_at, allow_blank: true, date: true
-    validates :slug, presence: true, uniqueness: { scope: :parent_id }
+    validates :slug, presence: true,
+                     uniqueness: { scope: %i[parent_id site_id] }
     validates :title, presence: true
 
     validate :valid_liquid_content
