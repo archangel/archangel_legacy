@@ -3,12 +3,12 @@
     "$": true,
     "Archangel": true,
     "Event": true,
+    "Object": true,
     "Sortable": true,
     "XMLHttpRequest": true,
     "document": true,
     "jQuery": true,
     "localStorage": true,
-    "Object": true,
     "window": true
   },
   "boss": true,
