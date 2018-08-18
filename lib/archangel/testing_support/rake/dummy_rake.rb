@@ -25,7 +25,6 @@ namespace :dummy do
       "--auto-accept",
       "--migrate=false",
       "--seed=false",
-      "--sample=false",
       "--quiet"
     ]
 
@@ -48,7 +47,6 @@ namespace :dummy do
               "--auto-run-migrations",
               "--auto-accept",
               "--migrate",
-              "--skip-sample",
               "--skip-seed",
               "--skip-turbolinks",
               "--route-path=#{lib}",
