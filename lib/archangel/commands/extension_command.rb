@@ -6,11 +6,11 @@ module Archangel
   ##
   # Command line
   #
-  module Command
+  module Commands
     ##
     # Generate Archangel extension
     #
-    class Extension < Thor::Group
+    class ExtensionCommand < Thor::Group
       include Thor::Actions
 
       source_root File.expand_path("templates/extension", __dir__)
