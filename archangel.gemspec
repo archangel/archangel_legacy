@@ -14,6 +14,14 @@ Gem::Specification.new do |s|
   s.summary     = "Archangel CMS"
   s.description = "Archangel is a Rails CMS"
   s.license     = "MIT"
+  s.metadata    = {
+    "bug_tracker_uri"   => "https://github.com/archangel/archangel/issues",
+    "documentation_uri" =>
+      "https://www.rubydoc.info/github/archangel/archangel/master",
+    "homepage_uri"      => "https://github.com/archangel/archangel",
+    "source_code_uri"   => "https://github.com/archangel/archangel",
+    "wiki_uri"          => "https://github.com/archangel/archangel/wiki"
+  }
   s.files       = `git ls-files -z`.split("\x0")
   s.executables = ["archangel"]
 
