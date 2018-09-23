@@ -11,7 +11,7 @@ FactoryBot.define do
     end
 
     trait :unavailable do
-      available_at nil
+      available_at { nil }
     end
 
     trait :future do

@@ -3,13 +3,13 @@
 FactoryBot.define do
   factory :page, class: "Archangel::Page" do
     site
-    template nil
+    template { nil }
     sequence(:title) { |n| "Page #{n} Title" }
     sequence(:slug) { |n| "page-#{n}" }
-    content "<p>Content of the page</p>"
-    meta_keywords "default,keywords,of,my,page"
-    meta_description "Default description of my page"
-    homepage false
+    content { "<p>Content of the page</p>" }
+    meta_keywords { "default,keywords,of,my,page" }
+    meta_description { "Default description of my page" }
+    homepage { false }
     published_at { Time.current }
 
     trait :with_parent do
@@ -21,11 +21,11 @@ FactoryBot.define do
     end
 
     trait :homepage do
-      homepage true
+      homepage { true }
     end
 
     trait :unpublished do
-      published_at nil
+      published_at { nil }
     end
 
     trait :future do

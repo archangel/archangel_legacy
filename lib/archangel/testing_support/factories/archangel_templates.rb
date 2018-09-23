@@ -9,10 +9,10 @@ FactoryBot.define do
       <p>{{ content_for_layout }}<p>
       <p>AFTER TEMPLATE<p>
     CONTENT
-    partial false
+    partial { false }
 
     trait :partial do
-      partial true
+      partial { true }
     end
 
     trait :deleted do
