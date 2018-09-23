@@ -2,6 +2,8 @@
 
 require "thor"
 
+require "archangel/commands/base_command"
+
 module Archangel
   ##
   # Command line
@@ -10,9 +12,7 @@ module Archangel
     ##
     # Generate Archangel extension
     #
-    class ExtensionCommand < Thor::Group
-      include Thor::Actions
-
+    class ExtensionCommand < BaseCommand
       source_root File.expand_path("templates/extension", __dir__)
 
       desc "Build an Archangel extension"
@@ -59,10 +59,6 @@ module Archangel
       no_tasks do
         def class_name
           Thor::Util.camel_case extension_name
-        end
-
-        def archangel_version
-          Archangel.version[/(.*)\./, 1]
         end
       end
 

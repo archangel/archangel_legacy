@@ -2,6 +2,8 @@
 
 require "thor"
 
+require "archangel/commands/base_command"
+
 module Archangel
   ##
   # Command line
@@ -10,9 +12,7 @@ module Archangel
     ##
     # Generate Archangel theme
     #
-    class ThemeCommand < Thor::Group
-      include Thor::Actions
-
+    class ThemeCommand < BaseCommand
       source_root File.expand_path("templates/theme", __dir__)
 
       desc "Build an Archangel theme"
@@ -61,10 +61,6 @@ module Archangel
 
         def theme_base_name
           theme_name.sub(/^archangel_/, "").sub(/_theme$/, "")
-        end
-
-        def archangel_version
-          Archangel.version[/(.*)\./, 1]
         end
       end
 
