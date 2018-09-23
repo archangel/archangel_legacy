@@ -49,7 +49,7 @@ module Archangel
     Your extension has been generated with a gemspec dependency on
     Archangel v#{archangel_version}
 
-      You look lovely today by the way.
+      #{random_compliment}
 
   ******************************************************************
 
