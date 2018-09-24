@@ -54,11 +54,11 @@ module Archangel
 
           noembed_id = "noembed-#{Digest::MD5.hexdigest(url)}"
 
-          if %w[1 true yes y].include?(attributes[:remote].to_s)
-            content = build_js_request(noembed_id)
-          else
-            content = build_ruby_request
-          end
+          content = if %w[1 true yes y].include?(attributes[:remote].to_s)
+                      build_js_request(noembed_id)
+                    else
+                      build_ruby_request
+                    end
 
           content_tag(:div, raw(content), id: noembed_id, class: "noembed")
         end
