@@ -12,7 +12,7 @@ FactoryBot.define do
 
     trait :with_fields do
       transient do
-        fields_count 3
+        fields_count { 3 }
       end
 
       after(:create) do |collection, evaluator|

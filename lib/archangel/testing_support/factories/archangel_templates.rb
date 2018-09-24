@@ -4,15 +4,15 @@ FactoryBot.define do
   factory :template, class: "Archangel::Template" do
     site
     sequence(:name) { |n| "Template #{n} Name" }
-    content <<-CONTENT
-      <p>BEFORE TEMPLATE<p>
-      <p>{{ content_for_layout }}<p>
-      <p>AFTER TEMPLATE<p>
-    CONTENT
-    partial false
+    content do
+      "<p>BEFORE TEMPLATE<p>
+       <p>{{ content_for_layout }}<p>
+       <p>AFTER TEMPLATE<p>"
+    end
+    partial { false }
 
     trait :partial do
-      partial true
+      partial { true }
     end
 
     trait :deleted do

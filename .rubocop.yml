@@ -1,25 +1,14 @@
 inherit_from:
   - .rubocop_disabled.yml
   - .rubocop_enabled.yml
+  - .rubocop_exclude.yml
   - .rubocop_todo.yml
 
 AllCops:
-  Include:
-    - '**/Gemfile'
-    - '**/Rakefile'
   Exclude:
     - 'bin/**/*'
     - 'db/migrate/**/*'
     - 'spec/dummy/**/*'
-
-Metrics/BlockLength:
-  Exclude:
-    - '**/*.gemspec'
-    - '**/*.rake'
-    - 'config/initializers/simple_form_bootstrap.rb'
-    - 'config/routes.rb'
-    - 'lib/archangel/testing_support/**/*.rb'
-    - 'spec/**/*.rb'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
