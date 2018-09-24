@@ -23,5 +23,5 @@ The following are best practice guides for building and managing Archangel exten
 * [Models](https://github.com/archangel/archangel/blob/master/docs/Extension/Models.md)
 * [Policies](https://github.com/archangel/archangel/blob/master/docs/Extension/Policies.md)
 * [Routes](https://github.com/archangel/archangel/blob/master/docs/Extension/Routes.md)
-* [Views](https://github.com/archangel/archangel/blob/master/docs/Extension/Views.md)
 * [Uploaders](https://github.com/archangel/archangel/blob/master/docs/Extension/Uploaders.md)
+* [Views](https://github.com/archangel/archangel/blob/master/docs/Extension/Views.md)
