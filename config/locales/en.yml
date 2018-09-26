@@ -68,6 +68,8 @@ en:
         asset: "Syntax Error in 'asset' - Valid syntax: {% asset '[name]' %}"
         collection: "Syntax Error in 'collection' - Valid syntax: {% collection [key] = '[value]' %}"
         gist: "Syntax Error in 'gist' - Valid syntax: {% gist '[key]' %}"
+        noembed: "Syntax Error in 'noembed' - Valid syntax: {% noembed '[url]' %}"
+        noembed_server: Error connecting to noembed server
         vimeo: "Syntax Error in 'vimeo' - Valid syntax: {% vimeo '[key]' width:640 height:480 %}"
         widget: "Syntax Error in 'widget' - Valid syntax: {% widget '[slug]' %}"
         youtube: "Syntax Error in 'youtube' - Valid syntax: {% youtube '[key]' width:640 height:480 %}"

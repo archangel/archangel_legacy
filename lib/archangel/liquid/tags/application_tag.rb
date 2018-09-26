@@ -69,6 +69,19 @@ module Archangel
         #   {% tag_name "[slug]" %}
         #
         SLUG_SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)\s*/o
+
+        ##
+        # URL and attributes syntax
+        #
+        # Example
+        #   {% tag_name "[url]" [attributes] %}
+        #
+        URL_ATTRIBUTES_SYNTAX = /
+          (?<url>#{::Liquid::QuotedFragment}+)
+          \s*
+          (?<attributes>.*)
+          \s*
+        /omx
       end
     end
   end
