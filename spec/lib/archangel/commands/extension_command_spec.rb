@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "archangel/command/extension"
+require "archangel/commands/extension_command"
 
 module Archangel
-  module Command
-    RSpec.describe Extension do
+  module Commands
+    RSpec.describe ExtensionCommand do
       describe "#extension" do
         before { allow(STDOUT).to receive(:puts) }
 

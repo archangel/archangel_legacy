@@ -5,13 +5,15 @@ require "thor/group"
 
 require "archangel/version"
 
-case ARGV.first.downcase
-when "extension"
-  require "archangel/command/extension"
+command = ARGV.first.downcase
+
+case command
+when "extension", "theme"
+  require "archangel/commands/#{command}_command"
 
   ARGV.shift
 
-  Archangel::Command::Extension.start
+  Object.const_get("Archangel::Commands::#{command.capitalize}Command").start
 else
   puts "Unknown Archangel command."
 end

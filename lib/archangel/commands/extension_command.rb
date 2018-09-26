@@ -2,17 +2,17 @@
 
 require "thor"
 
+require "archangel/commands/base_command"
+
 module Archangel
   ##
   # Command line
   #
-  module Command
+  module Commands
     ##
     # Generate Archangel extension
     #
-    class Extension < Thor::Group
-      include Thor::Actions
-
+    class ExtensionCommand < BaseCommand
       source_root File.expand_path("templates/extension", __dir__)
 
       desc "Build an Archangel extension"
@@ -49,7 +49,7 @@ module Archangel
     Your extension has been generated with a gemspec dependency on
     Archangel v#{archangel_version}
 
-      You look lovely today by the way.
+      #{random_compliment}
 
   ******************************************************************
 
@@ -59,10 +59,6 @@ module Archangel
       no_tasks do
         def class_name
           Thor::Util.camel_case extension_name
-        end
-
-        def archangel_version
-          Archangel.version[/(.*)\./, 1]
         end
       end
 
