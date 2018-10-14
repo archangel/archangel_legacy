@@ -18,6 +18,7 @@ module Archangel
         # @param context [Object] the Liquid context
         # @return [String] the meta tags
         #
+        # :reek:UtilityFunction
         def render(context)
           context.registers[:view].display_meta_tags
         end

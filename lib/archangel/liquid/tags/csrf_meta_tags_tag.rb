@@ -16,6 +16,7 @@ module Archangel
         # @param context [Object] the Liquid context
         # @return [String] the CSRF meta tags
         #
+        # :reek:UtilityFunction
         def render(context)
           context.registers[:view].csrf_meta_tags
         end

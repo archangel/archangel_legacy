@@ -16,6 +16,7 @@ module Archangel
         # @param context [Object] the Liquid context
         # @return [String] the locale
         #
+        # :reek:UtilityFunction
         def render(context)
           context.registers[:view].locale
         end

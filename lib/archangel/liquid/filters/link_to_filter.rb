@@ -20,6 +20,7 @@ module Archangel
         # @param link_text [String] string to link
         # @return [String] the link
         #
+        # :reek:UtilityFunction
         def link_to(link_text, *args)
           link = args.first
 

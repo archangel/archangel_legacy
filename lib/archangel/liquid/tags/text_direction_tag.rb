@@ -16,6 +16,7 @@ module Archangel
         # @param context [Object] the Liquid context
         # @return [String] the text direction
         #
+        # :reek:UtilityFunction
         def render(context)
           context.registers[:view].text_direction
         end

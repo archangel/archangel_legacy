@@ -16,6 +16,7 @@ module Archangel
         # @param context [Object] the Liquid context
         # @return [String] the stylesheet for the theme
         #
+        # :reek:UtilityFunction
         def render(context)
           view = context.registers[:view]
 
