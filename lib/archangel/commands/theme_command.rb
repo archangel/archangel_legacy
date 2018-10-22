@@ -26,12 +26,43 @@ module Archangel
       #   bundle exec bin/archangel theme [THEME_NAME]
       #
       def generate
-        prefix_name
+        name_plugin
+      end
 
-        empty_directory theme_name
+      def create_plugin_directory
+        empty_directory(theme_name)
+      end
 
-        copy_directories
-        copy_files
+      def create_plugin_gemspec
+        template("theme.gemspec", "#{theme_name}/#{theme_name}.gemspec")
+      end
+
+      def copy_common_directories
+        %w[spec].each do |dir|
+          directory("../common/#{dir}", "#{theme_name}/#{dir}")
+        end
+      end
+
+      def copy_plugin_directories
+        %w[
+          app bin lib
+        ].each { |dir| directory(dir, "#{theme_name}/#{dir}") }
+
+        chmod("#{theme_name}/bin/rails", 0o755)
+      end
+
+      def copy_common_templates
+        %w[
+          .editorconfig .gitignore .rspec .rubocop.yml MIT-LICENSE
+        ].each do |tpl|
+          template("../common/#{tpl}", "#{theme_name}/#{tpl}")
+        end
+      end
+
+      def copy_plugin_templates
+        %w[
+          Gemfile Rakefile README.md
+        ].each { |tpl| template(tpl, "#{theme_name}/#{tpl}") }
       end
 
       ##
@@ -56,38 +87,19 @@ module Archangel
 
       no_tasks do
         def class_name
-          Thor::Util.camel_case theme_name
+          plugin_class_name(theme_name)
         end
 
-        def theme_base_name
-          theme_name.sub(/^archangel_/, "").sub(/_theme$/, "")
+        def name_plugin
+          @theme_name = corrected_plugin_name
         end
-      end
 
-      no_tasks do
-        def prefix_name
+        def corrected_plugin_name
           ext_name = theme_name.downcase
           ext_name = "archangel_#{ext_name}" unless ext_name =~ /^archangel_/
           ext_name = "#{ext_name}_theme" unless ext_name =~ /_theme$/
 
-          @theme_name = Thor::Util.snake_case(ext_name)
-        end
-
-        def copy_directories
-          %w[
-            app bin lib spec
-          ].each { |dir| directory(dir, "#{theme_name}/#{dir}") }
-
-          chmod("#{theme_name}/bin/rails", 0o755)
-        end
-
-        def copy_files
-          %w[
-            .editorconfig .gitignore .rspec .rubocop.yml Gemfile MIT-LICENSE
-            Rakefile README.md
-          ].each { |tpl| template(tpl, "#{theme_name}/#{tpl}") }
-
-          template("theme.gemspec", "#{theme_name}/#{theme_name}.gemspec")
+          Thor::Util.snake_case(ext_name)
         end
       end
     end
