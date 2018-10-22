@@ -94,6 +94,10 @@ module Archangel
           @theme_name = corrected_plugin_name
         end
 
+        def theme_base_name
+          theme_name.sub(/^archangel_/, "").sub(/_theme$/, "")
+        end
+
         def corrected_plugin_name
           ext_name = theme_name.downcase
           ext_name = "archangel_#{ext_name}" unless ext_name =~ /^archangel_/
