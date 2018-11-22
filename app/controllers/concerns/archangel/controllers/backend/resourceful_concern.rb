@@ -81,12 +81,20 @@ module Archangel
           action_name.to_sym == :create ? {} : nil
         end
 
+        def resource_controller
+          controller_name.to_sym
+        end
+
+        def resource_scope
+          resource_controller.to_s.singularize.to_sym
+        end
+
         def resource_namespace
-          controller_name.singularize.to_sym
+          :backend
         end
 
         def resource_params
-          params.require(resource_namespace).permit(permitted_attributes)
+          params.require(resource_scope).permit(permitted_attributes)
         end
 
         def resource_new_params
@@ -106,7 +114,12 @@ module Archangel
         end
 
         def location_after_save
-          raise "I'm new! I don't know what to do!"
+          resources_path
+        end
+
+        def resources_path(options = {})
+          archangel.polymorphic_path([resource_namespace, resource_controller],
+                                     options)
         end
       end
     end

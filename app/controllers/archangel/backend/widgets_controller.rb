@@ -38,10 +38,6 @@ module Archangel
 
         authorize @widget
       end
-
-      def location_after_save
-        backend_widgets_path
-      end
     end
   end
 end
