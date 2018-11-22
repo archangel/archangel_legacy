@@ -118,8 +118,9 @@ module Archangel
         end
 
         def resources_path(options = {})
-          archangel.polymorphic_path([resource_namespace, resource_controller],
-                                     options)
+          location_path = [resource_namespace, resource_controller]
+
+          archangel.polymorphic_path(location_path, options)
         end
       end
     end
