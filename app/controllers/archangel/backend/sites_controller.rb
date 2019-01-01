@@ -9,8 +9,6 @@ module Archangel
     # Backend sites controller
     #
     class SitesController < BackendController
-      before_action :set_resource
-
       ##
       # Backend site
       #
@@ -52,7 +50,9 @@ module Archangel
       #   }
       #
       def show
-        respond_with @site
+        site = resource_content
+
+        respond_with site
       end
 
       ##
@@ -93,7 +93,9 @@ module Archangel
       #   }
       #
       def edit
-        respond_with @site
+        site = resource_content
+
+        respond_with site
       end
 
       ##
@@ -137,9 +139,11 @@ module Archangel
       #   }
       #
       def update
-        @site.update(resource_params)
+        site = resource_content
 
-        respond_with @site, location: -> { location_after_update }
+        site.update(resource_params)
+
+        respond_with site, location: -> { location_after_update }
       end
 
       protected
@@ -148,7 +152,7 @@ module Archangel
         %w[locale logo meta_description meta_keywords name remove_logo theme]
       end
 
-      def set_resource
+      def resource_content
         @site = current_site
 
         authorize @site

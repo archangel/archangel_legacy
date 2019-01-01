@@ -11,8 +11,6 @@ module Archangel
     class ProfilesController < BackendController
       include Archangel::SkipAuthorizableConcern
 
-      before_action :set_resource
-
       ##
       # Backend profile
       #
@@ -60,7 +58,9 @@ module Archangel
       #   }
       #
       def show
-        respond_with @profile
+        profile = resource_content
+
+        respond_with profile
       end
 
       ##
@@ -110,7 +110,9 @@ module Archangel
       #   }
       #
       def edit
-        respond_with @profile
+        profile = resource_content
+
+        respond_with profile
       end
 
       ##
@@ -136,16 +138,18 @@ module Archangel
       def update
         empty_password_params if resource_params.fetch(:password, nil).blank?
 
+        profile = resource_content
+
         successfully_updated =
-          if needs_password?(@profile, resource_params)
-            @profile.update(resource_params)
+          if needs_password?(profile, resource_params)
+            profile.update(resource_params)
           else
-            @profile.update_without_password(resource_params)
+            profile.update_without_password(resource_params)
           end
 
         reauth_current_user if successfully_updated
 
-        respond_with @profile, location: -> { location_after_update }
+        respond_with profile, location: -> { location_after_update }
       end
 
       ##
@@ -159,9 +163,11 @@ module Archangel
       #   DELETE /backend/profile.json
       #
       def destroy
-        @profile.destroy
+        profile = resource_content
 
-        respond_with @profile, location: -> { location_after_destroy }
+        profile.destroy
+
+        respond_with profile, location: -> { location_after_destroy }
       end
 
       protected
@@ -170,7 +176,7 @@ module Archangel
         %w[avatar email name password remove_avatar username]
       end
 
-      def set_resource
+      def resource_content
         @profile = current_user
       end
 
