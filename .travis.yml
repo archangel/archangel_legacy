@@ -1,7 +1,6 @@
 sudo: false
 language: ruby
-cache:
-  bundler: true
+cache: bundler
 env:
   global:
     - CC_TEST_REPORTER_ID=10625f04e4c8c9fe7c22d49639163f1427fe16bc253aabcb316edbe43c41270b
