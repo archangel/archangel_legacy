@@ -29,9 +29,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "jquery-rails", "~> 4.1", ">= 4.1.0"
   s.add_dependency "rails", "~> 5.1", ">= 5.1.4"
-  s.add_dependency "sass-rails", "~> 5.0", ">= 5.0.0"
   s.add_dependency "thor", "~> 0.19", ">= 0.19.0"
-  s.add_dependency "uglifier", "~> 4.1", ">= 4.1.8"
 
   s.add_dependency "acts_as_list", "~> 0.9"
   s.add_dependency "acts_as_tree", "~> 2.8"
