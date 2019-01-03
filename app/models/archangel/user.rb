@@ -9,6 +9,11 @@ module Archangel
 
     mount_uploader :avatar, Archangel::AvatarUploader
 
+    typed_store :preferences, coder: JSON do |s|
+      s.boolean :newsletter, default: false
+      s.datetime :prefered_at, default: Time.now
+    end
+
     before_validation :parameterize_username
 
     after_initialize :column_default
@@ -30,6 +35,8 @@ module Archangel
     validates :password, allow_blank: true, length: { minimum: 8 }, on: :update
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
     validates :username, presence: true, uniqueness: { scope: :site_id }
+
+    validates :newsletter, inclusion: { in: [true, false] }
 
     belongs_to :site
 
