@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 5.1", ">= 5.1.4"
   s.add_dependency "thor", "~> 0.19", ">= 0.19.0"
 
+  s.add_dependency "activerecord-typedstore", "~> 1.2"
   s.add_dependency "acts_as_list", "~> 0.9"
   s.add_dependency "acts_as_tree", "~> 2.8"
   s.add_dependency "anyway_config", "~> 1.3"
