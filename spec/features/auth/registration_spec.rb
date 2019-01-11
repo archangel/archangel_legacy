@@ -29,9 +29,7 @@ RSpec.feature "Auth registration", type: :feature do
 
       create(:page, homepage: true, content: "Welcome to the homepage")
 
-      visit archangel.backend_root_path
-
-      click_link "Sign up"
+      visit archangel.new_user_registration_path
 
       fill_in "Name", with: "John Doe"
       fill_in "Username", with: "john_doe"
