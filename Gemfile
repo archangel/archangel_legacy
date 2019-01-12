@@ -6,7 +6,6 @@ gemspec
 
 group :development do
   gem "brakeman", "~> 4.3", require: false
-  gem "bundler-audit", "~> 0.6", require: false
   gem "inch", "~> 0.8", require: false
   gem "listen", "~> 3.1", require: false
   gem "mdl", "~> 0.5", require: false
