@@ -11,24 +11,102 @@ module Archangel
     module ResourcefulConcern
       extend ActiveSupport::Concern
 
+      ##
+      # Resources
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Request
+      #   GET /resources
+      #   GET /resources.json
+      #
+      # Response
+      #   [
+      #     {
+      #       "id": 123,
+      #       ...
+      #       "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #       "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+      #     },
+      #     ...
+      #   ]
+      #
       def index
         resources = resources_content
 
         respond_with resources
       end
 
+      ##
+      # Resource
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the resource ID
+      #
+      # Request
+      #   GET /resources/:id
+      #   GET /resources/:id.json
+      #
+      # Response
+      #   {
+      #     "id": 123,
+      #     ...
+      #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+      #   }
+      #
       def show
         resource = resource_content
 
         respond_with resource
       end
 
+      ##
+      # New resource
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Request
+      #   GET /resources/new
+      #   GET /resources/new.json
+      #
+      # Response
+      #   {
+      #     "id": null,
+      #     ...
+      #     "created_at": null,
+      #     "updated_at": null
+      #   }
+      #
       def new
         resource = resource_new_content
 
         respond_with resource
       end
 
+      ##
+      # Create resource
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Request
+      #   POST /resources
+      #   POST /resources.json
+      #
+      # Paramaters
+      #   {
+      #     "resource": {
+      #       "id": 123,
+      #       ...
+      #     }
+      #   }
+      #
       def create
         resource = resource_new_content
 
@@ -37,12 +115,56 @@ module Archangel
         respond_with resource, location: -> { location_after_create }
       end
 
+      ##
+      # Edit resource
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the resource ID
+      #
+      # Request
+      #   GET /resources/:id/edit
+      #   GET /resources/:id/edit.json
+      #
+      # Response
+      #   {
+      #     "id": 123,
+      #     ...
+      #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+      #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+      #   }
+      #
       def edit
         resource = resource_content
 
         respond_with resource
       end
 
+      ##
+      # Update resource
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the resource ID
+      #
+      # Request
+      #   PATCH /resources/:id
+      #   PATCH /resources/:id.json
+      #   PUT   /resources/:id
+      #   PUT   /resources/:id.json
+      #
+      # Paramaters
+      #   {
+      #     "resource": {
+      #       "id": 123,
+      #       ...
+      #     }
+      #   }
+      #
       def update
         resource = resource_content
 
@@ -51,6 +173,19 @@ module Archangel
         respond_with resource, location: -> { location_after_update }
       end
 
+      ##
+      # Destroy resource
+      #
+      # Formats
+      #   HTML, JSON
+      #
+      # Params
+      #   [Integer] id - the resource ID
+      #
+      # Request
+      #   DELETE /resources/:id
+      #   DELETE /resources/:id.json
+      #
       def destroy
         resource = resource_content
 

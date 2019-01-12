@@ -16,6 +16,15 @@ module Archangel
                 image_extension_whitelist: %i[gif jpeg jpg png],
                 image_maximum_file_size: 2.megabytes
 
+    ##
+    # Return a blog of key/values as a hash
+    #
+    # Example
+    #   Archangel.config.keys_in([:foo, :bat]) => { foo: "bar", bat: "baz" }
+    #
+    # @param keys [Array] array of keys to find key/values for
+    # @return [Hash] key/value hash
+    #
     def keys_in(keys)
       to_h.select { |key| keys.include?(key) }
     end

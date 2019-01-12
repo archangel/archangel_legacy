@@ -19,6 +19,9 @@ module Archangel
         base._associations = {}
       end
 
+      ##
+      # Build attributes
+      #
       def self.attributes(*attrs)
         @_attributes.concat attrs
 
@@ -31,10 +34,18 @@ module Archangel
         end
       end
 
+      ##
+      # Initialize
+      #
       def initialize(object, _options = {})
         @object = object
       end
 
+      ##
+      # Hash of attributes
+      #
+      # @return [Hash] the attributes
+      #
       def attributes
         @attributes ||=
           self.class._attributes.dup.each_with_object({}) do |name, hash|
@@ -42,14 +53,29 @@ module Archangel
           end
       end
 
+      ##
+      # Object as JSON
+      #
+      # @return [Object] the JSON object
+      #
       def as_json(options = {})
         attributes.as_json(options)
       end
 
+      ##
+      # Object to JSON
+      #
+      # @return [Object] the JSON object
+      #
       def to_json(options = {})
         as_json.to_json(options)
       end
 
+      ##
+      # Object inspect
+      #
+      # @return [String] object inspect
+      #
       def inspect
         "#<#{self.class.name} " \
           "@object: #{object.inspect} @attributes: #{attributes.inspect}>"

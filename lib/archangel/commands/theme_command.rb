@@ -29,20 +29,32 @@ module Archangel
         name_plugin
       end
 
+      ##
+      # Create theme directory
+      #
       def create_plugin_directory
         empty_directory(theme_name)
       end
 
+      ##
+      # Create theme .gemspec file
+      #
       def create_plugin_gemspec
         template("theme.gemspec", "#{theme_name}/#{theme_name}.gemspec")
       end
 
+      ##
+      # Copy common directories that are shared with extension generator
+      #
       def copy_common_directories
         %w[spec].each do |dir|
           directory("../common/#{dir}", "#{theme_name}/#{dir}")
         end
       end
 
+      ##
+      # Copy theme directories and chmod bin scripts
+      #
       def copy_plugin_directories
         %w[
           app bin lib
@@ -51,6 +63,9 @@ module Archangel
         chmod("#{theme_name}/bin/rails", 0o755)
       end
 
+      ##
+      # Copy common templates that are shared with extension generator
+      #
       def copy_common_templates
         %w[
           .editorconfig .gitignore .rspec .rubocop.yml MIT-LICENSE
@@ -59,6 +74,9 @@ module Archangel
         end
       end
 
+      ##
+      # Copy theme templates
+      #
       def copy_plugin_templates
         %w[
           Gemfile Rakefile README.md
