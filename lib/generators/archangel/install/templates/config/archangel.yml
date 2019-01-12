@@ -24,9 +24,9 @@ default: &default
     - png
 
   # Maximum file size of for asset uploads.
-  # Default is `2000000` (2 Mb)
+  # Default is `2097152` (2 Mb) (1024 b * 1024 Kb * 2 Mb)
   #
-  asset_maximum_file_size: 2000000
+  asset_maximum_file_size: <%= 1024 * 1024 * 2 %>
 
   # File extension whitelist of favicon uploads.
   # Default is ['gif', 'ico', 'jpeg', 'jpg', 'png']
@@ -39,9 +39,9 @@ default: &default
     - png
 
   # Maximum file size of for favicon uploads.
-  # Default is `2000000` (2 Mb)
+  # Default is `2097152` (2 Mb) (1024 b * 1024 Kb * 2 Mb)
   #
-  favicon_maximum_file_size: 2000000
+  favicon_maximum_file_size: <%= 1024 * 1024 * 2 %>
 
   # File extension whitelist of general image uploads.
   # Default is ['gif', 'jpeg', 'jpg', 'png']
@@ -53,9 +53,9 @@ default: &default
     - png
 
   # Maximum file size of for general image uploads.
-  # Default is `2000000` (2 Mb)
+  # # Default is `2097152` (2 Mb) (1024 b * 1024 Kb * 2 Mb)
   #
-  image_maximum_file_size: 2000000
+  image_maximum_file_size: <%= 1024 * 1024 * 2 %>
 
 development:
   <<: *default
