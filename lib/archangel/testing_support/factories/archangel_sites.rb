@@ -6,8 +6,6 @@ FactoryBot.define do
 
     sequence(:name) { |n| "Site #{n} Name" }
     locale { "en" }
-    meta_keywords { "default,keywords,of,my,site" }
-    meta_description { "Default description of my site" }
 
     trait :logo do
       logo { fixture_file_upload(uploader_test_image) }

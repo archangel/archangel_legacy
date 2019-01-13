@@ -15,6 +15,7 @@ module Archangel
     # Set meta tags
     #
     # @param meta_tags [Hash] list of meta tags
+    #
     def apply_meta_tags(meta_tags = {})
       meta = meta_tags.reject { |_name, value| value.blank? }
 
@@ -29,12 +30,10 @@ module Archangel
 
     def default_meta_tags
       {
-        reverse:     true,
-        site:        current_site.name,
-        canonical:   request.url,
-        image_src:   current_site.logo.url,
-        description: current_site.meta_description,
-        keywords:    current_site.meta_keywords.to_s.split(",")
+        reverse: true,
+        site: current_site.name,
+        canonical: request.url,
+        image_src: current_site.logo.url
       }
     end
   end

@@ -7,8 +7,6 @@ FactoryBot.define do
     sequence(:title) { |n| "Page #{n} Title" }
     sequence(:slug) { |n| "page-#{n}" }
     content { "<p>Content of the page</p>" }
-    meta_keywords { "default,keywords,of,my,page" }
-    meta_description { "Default description of my page" }
     homepage { false }
     published_at { Time.current }
 

@@ -82,8 +82,6 @@ RSpec.feature "Default variables", type: :feature do
         Page ID: {{ page.id }}
         Page Title: {{ page.title }}
         Page Path: {{ page.path }}
-        Page Meta Keywords: {{ page.meta_keywords }}
-        Page Meta Description: {{ page.meta_description }}
         Page Published At: {{ page.published_at }}
         Page Unknown: ~{{ page.unknown_variable }}~
       CONTENT
@@ -96,10 +94,6 @@ RSpec.feature "Default variables", type: :feature do
       expect(page).to have_content("Page Title: #{resource.title}")
       expect(page).to have_content("Page Path: /#{resource.path}")
       expect(page)
-        .to have_content("Page Meta Keywords: #{resource.meta_keywords}")
-      expect(page)
-        .to have_content("Page Meta Description: #{resource.meta_description}")
-      expect(page)
         .to have_content("Page Published At: #{resource.published_at}")
       expect(page).to have_content("Page Unknown: ~~")
     end
@@ -110,8 +104,6 @@ RSpec.feature "Default variables", type: :feature do
       content = <<-CONTENT
         Site Name: {{ site.name }}
         Site Locale: {{ site.locale }}
-        Site Meta Keywords: {{ site.meta_keywords }}
-        Site Meta Description: {{ site.meta_description }}
         Site Logo: {{ site.logo }}
         Site Unknown: ~{{ site.unknown_variable }}~
       CONTENT
@@ -122,9 +114,6 @@ RSpec.feature "Default variables", type: :feature do
 
       expect(page).to have_content("Site Name: #{site.name}")
       expect(page).to have_content("Site Locale: #{site.locale}")
-      expect(page).to have_content("Site Meta Keywords: #{site.meta_keywords}")
-      expect(page)
-        .to have_content("Site Meta Description: #{site.meta_description}")
       expect(page).to have_content("Site Logo: #{site.logo}")
       expect(page).to have_content("Site Unknown: ~~")
     end

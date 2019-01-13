@@ -33,8 +33,6 @@ module Archangel
       #     "path": "path/to/page",
       #     "content": "</p>Content of the page</p>",
       #     "homepage": false,
-      #     "meta_keywords": "keywords, for, the, page",
-      #     "meta_description": "Description of the page",
       #     "published_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
       #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
       #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
@@ -81,9 +79,7 @@ module Archangel
       #
       def page_meta_tags
         {
-          title: @page.title,
-          description: @page.meta_description,
-          keywords: @page.meta_keywords.to_s.split(",")
+          title: @page.title
         }
       end
 

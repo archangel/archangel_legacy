@@ -14,8 +14,7 @@ module Archangel
       protected
 
       def permitted_attributes
-        %w[content homepage meta_description meta_keywords parent_id path
-           published_at slug template_id title]
+        %w[content homepage parent_id path published_at slug template_id title]
       end
 
       def resources_content

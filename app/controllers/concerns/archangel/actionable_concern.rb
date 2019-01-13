@@ -23,6 +23,7 @@ module Archangel
     # Controller action name as a symbol
     #
     # @return [Symbol] the action name
+    #
     def action
       action_name.to_sym
     end
@@ -34,6 +35,7 @@ module Archangel
     # Collection actions can be modified by overwriting `#collection_actions`
     #
     # @return [Boolean] if action is a collection action
+    #
     def collection_action?
       collection_actions.include?(action)
     end
@@ -45,6 +47,7 @@ module Archangel
     # Edit actions can be modified by overwriting `#edit_actions`
     #
     # @return [Boolean] if action is an edit action
+    #
     def edit_action?
       edit_actions.include?(action)
     end
@@ -52,6 +55,7 @@ module Archangel
     # Test if action is the `index` action
     #
     # @return [Boolean] if action is the index action
+    #
     def index_action?
       action?(:index)
     end
@@ -63,6 +67,7 @@ module Archangel
     # Member actions can be modified by overwriting `#member_actions`
     #
     # @return [Boolean] if action is an edit action
+    #
     def member_action?
       member_actions.include?(action)
     end
@@ -74,6 +79,7 @@ module Archangel
     # New actions can be modified by overwriting `#new_actions`
     #
     # @return [Boolean] if action is an edit action
+    #
     def new_action?
       new_actions.include?(action)
     end
@@ -85,6 +91,7 @@ module Archangel
     # RESTful actions can be modified by overwriting `#restful_actions`
     #
     # @return [Boolean] if action is an edit action
+    #
     def restful_action?
       restful_actions.include?(action)
     end
@@ -96,6 +103,7 @@ module Archangel
     # Save actions can be modified by overwriting `#save_actions`
     #
     # @return [Boolean] if action is an edit action
+    #
     def save_action?
       save_actions.include?(action)
     end
@@ -107,6 +115,7 @@ module Archangel
     # Show actions can be modified by overwriting `#show_actions`
     #
     # @return [Boolean] if action is a show action
+    #
     def show_action?
       show_actions.include?(action)
     end

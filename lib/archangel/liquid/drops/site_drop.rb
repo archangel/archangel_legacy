@@ -7,7 +7,7 @@ module Archangel
       # Liquid drop for a Site
       #
       class SiteDrop < Archangel::Liquid::Drop
-        attributes :locale, :meta_description, :meta_keywords, :name
+        attributes :locale, :name
 
         # Original size Site logo URL
         #
