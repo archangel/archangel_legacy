@@ -78,9 +78,12 @@ module Archangel
       # @return [Object] the page meta tags
       #
       def page_meta_tags
-        {
-          title: @page.title
-        }
+        [
+          current_site.metatags,
+          @page.metatags
+        ].flatten.inject({}) do |tags, metatag|
+          tags.merge(metatag.name => metatag.content)
+        end.merge(title: @page.title)
       end
 
       ##

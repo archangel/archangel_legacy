@@ -143,7 +143,10 @@ module Archangel
       protected
 
       def permitted_attributes
-        %w[locale logo name remove_logo theme]
+        [
+          :locale, :logo, :name, :remove_logo, :theme,
+          metatags_attributes: %i[id _destroy name content]
+        ]
       end
 
       def resource_content

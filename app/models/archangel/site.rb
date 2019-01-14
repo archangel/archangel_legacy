@@ -17,14 +17,19 @@ module Archangel
     validates :theme, inclusion: { in: Archangel.themes }, allow_blank: true
 
     has_many :assets
+    has_many :collections
     has_many :pages
     has_many :templates
     has_many :users
     has_many :widgets
 
-    has_many :collections
     has_many :entries, through: :collections
     has_many :fields, through: :collections
+
+    has_many :metatags, as: :metatagable
+
+    accepts_nested_attributes_for :metatags, reject_if: :all_blank,
+                                             allow_destroy: true
 
     ##
     # Current site

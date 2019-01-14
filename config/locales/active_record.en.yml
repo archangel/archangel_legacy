@@ -42,11 +42,12 @@ en:
         required: Required
         slug: Slug
         value: Default Value
+      archangel/metatag:
+        content: Content
+        name: Name
       archangel/page:
         content: Content
         homepage: Homepage
-        meta_description: META Description
-        meta_keywords: META Keywords
         parent_id: Parent
         published_at: Published At
         slug: Slug
@@ -54,8 +55,6 @@ en:
         title: Title
       archangel/site:
         logo: Logo
-        meta_description: META Description
-        meta_keywords: META Keywords
         name: Name
         remove_logo: Remove Logo
         theme: Theme

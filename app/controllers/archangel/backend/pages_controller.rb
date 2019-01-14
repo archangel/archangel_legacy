@@ -14,7 +14,11 @@ module Archangel
       protected
 
       def permitted_attributes
-        %w[content homepage parent_id path published_at slug template_id title]
+        [
+          :content, :homepage, :parent_id, :path, :published_at, :slug,
+          :template_id, :title,
+          metatags_attributes: %i[id _destroy name content]
+        ]
       end
 
       def resources_content
@@ -35,6 +39,8 @@ module Archangel
 
       def resource_new_content
         @page = current_site.pages.new(resource_new_params)
+
+        @page.metatags.build unless @page.metatags.present?
 
         authorize @page
       end

@@ -45,7 +45,17 @@ module Archangel
             {
               title: "New Page Title",
               content: "<p>New page content</p>",
-              slug: "awesome-page"
+              slug: "awesome-page",
+              metatags_attributes: [
+                {
+                  name: "description",
+                  content: "Description for the Page"
+                },
+                {
+                  name: "keywords",
+                  content: "keywords,for,the,Page"
+                }
+              ]
             }
           end
 
@@ -53,6 +63,12 @@ module Archangel
             expect do
               post :create, params: { page: params }
             end.to change(Page, :count).by(1)
+          end
+
+          it "creates Metatag resources" do
+            expect do
+              post :create, params: { page: params }
+            end.to change(Metatag, :count).by(2)
           end
 
           it "assigns a newly created resource as @page" do

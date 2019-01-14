@@ -56,6 +56,8 @@ module Archangel
       it { is_expected.to belong_to(:site) }
       it { is_expected.to belong_to(:parent).class_name("Archangel::Page") }
       it { is_expected.to belong_to(:template).conditions(partial: false) }
+
+      it { is_expected.to have_many(:metatags) }
     end
 
     context "scopes" do

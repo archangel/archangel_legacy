@@ -3,6 +3,7 @@ en:
     actions: Actions
     add_entry: Add Entry
     add_field: Add Field
+    add_metatag: Add Meta Tag
     are_you_sure: Are you sure?
     archangel: Archangel
     assets: Assets
@@ -90,6 +91,7 @@ en:
     logout: Log Out
     meta_description: META Description
     meta_keywords: META Keywords
+    metatags: Meta Tags
     name: Name
     new: New
     new_resource: New %{resource}
@@ -103,6 +105,7 @@ en:
     published: Published
     remove_entry: Remove Entry
     remove_field: Remove Field
+    remove_metatag: Remove Meta Tag
     restricted_path: contains restricted path
     role:
       admin: Admin

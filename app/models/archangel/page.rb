@@ -33,6 +33,11 @@ module Archangel
     belongs_to :site
     belongs_to :template, -> { where(partial: false) }, optional: true
 
+    has_many :metatags, as: :metatagable
+
+    accepts_nested_attributes_for :metatags, reject_if: :all_blank,
+                                             allow_destroy: true
+
     scope :published, (lambda do
       where.not(published_at: nil).where("published_at <= ?", Time.now)
     end)
