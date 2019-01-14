@@ -5,7 +5,7 @@ require "rails_helper"
 module Archangel
   RSpec.describe Metatag, type: :model do
     context "validations" do
-      it "has a unique path scoped to Site" do
+      it "has a unique name scoped to metatagable_type and metatagable_id" do
         resource = build(:metatag)
 
         expect(resource).to(

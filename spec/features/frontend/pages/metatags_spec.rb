@@ -58,16 +58,16 @@ RSpec.feature "Meta tag", type: :feature do
       expect(page).to have_title("#{resource.title} | #{site.name}")
     end
 
-    it "always uses Page title (page.title) for HTML title" do
+    it "always uses page.title for title (doesn't allow metatag overwrite)" do
       resource = create(:page, site: site)
       create(:metatag, metatagable: resource,
                        name: "title",
-                       content: "Unused Page Title")
+                       content: "Metatag Page Title")
 
       visit archangel.frontend_page_path(resource.path)
 
       expect(page).to have_title("#{resource.title} | #{site.name}")
-      expect(page).to_not have_title("Unused Page Title | #{site.name}")
+      expect(page).to_not have_title("Metatag Page Title | #{site.name}")
     end
   end
 end
