@@ -1,37 +1,52 @@
-# Auth root path.
-# Default is "account"
-#
-auth_path: "account"
+default: &default
+  # Auth root path.
+  # Default is "account"
+  #
+  auth_path: "account"
 
-# Backend root path.
-# Default is "backend"
-#
-backend_path: "backend"
+  # Allow user registrations.
+  # Default is `false`
+  #
+  allow_registration: false
 
-# File extension whitelist of asset uploads.
-# Default is ['gif', 'jpeg', 'jpg', 'png']
-#
-asset_extension_whitelist:
-  - gif
-  - jpeg
-  - jpg
-  - png
+  # Backend root path.
+  # Default is "backend"
+  #
+  backend_path: "backend"
 
-# Maximum file size of for asset uploads.
-# Default is `2.megabytes`
-#
-asset_maximum_file_size: 2.megabytes
+  # File extension whitelist of asset uploads.
+  # Default is ['gif', 'jpeg', 'jpg', 'png']
+  #
+  asset_extension_whitelist:
+    - gif
+    - jpeg
+    - jpg
+    - png
 
-# File extension whitelist of general image uploads.
-# Default is ['gif', 'jpeg', 'jpg', 'png']
-#
-image_extension_whitelist:
-  - gif
-  - jpeg
-  - jpg
-  - png
+  # Maximum file size of for asset uploads.
+  # Default is `2097152` (2 Mb) (1024 b * 1024 Kb * 2 Mb)
+  #
+  asset_maximum_file_size: <%= 1024 * 1024 * 2 %>
 
-# Maximum file size of for general image uploads.
-# Default is `2.megabytes`
-#
-image_maximum_file_size: 2.megabytes
+  # File extension whitelist of general image uploads.
+  # Default is ['gif', 'jpeg', 'jpg', 'png']
+  #
+  image_extension_whitelist:
+    - gif
+    - jpeg
+    - jpg
+    - png
+
+  # Maximum file size of for general image uploads.
+  # # Default is `2097152` (2 Mb) (1024 b * 1024 Kb * 2 Mb)
+  #
+  image_maximum_file_size: <%= 1024 * 1024 * 2 %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

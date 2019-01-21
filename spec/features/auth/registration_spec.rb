@@ -23,5 +23,23 @@ RSpec.feature "Auth registration", type: :feature do
       expect(page).to have_selector("input[type=text][id='user_name']")
       expect(page).to have_selector("input[type=text][id='user_username']")
     end
+
+    it "allows successful registration" do
+      allow(Archangel.config).to receive(:allow_registration) { true }
+
+      create(:page, homepage: true, content: "Welcome to the homepage")
+
+      visit archangel.new_user_registration_path
+
+      fill_in "Name", with: "John Doe"
+      fill_in "Username", with: "john_doe"
+      fill_in "Email", with: "me@example.com"
+      fill_in "Password", with: "password"
+      fill_in "Confirm Password", with: "password"
+
+      click_button "Sign up"
+
+      expect(page).to have_content("Welcome to the homepage")
+    end
   end
 end

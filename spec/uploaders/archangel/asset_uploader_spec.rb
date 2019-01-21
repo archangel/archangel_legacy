@@ -12,7 +12,7 @@ module Archangel
     end
 
     it "allows certain extensions" do
-      expect(subject.extension_whitelist).to eq %i[gif jpeg jpg png]
+      expect(subject.extension_whitelist).to eq %w[gif jpeg jpg png]
     end
 
     context "with image file" do
