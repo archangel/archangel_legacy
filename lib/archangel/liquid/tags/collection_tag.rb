@@ -30,7 +30,7 @@ module Archangel
           \s*
           (?<attributes>.*)
           \s*
-        /omx
+        /omx.freeze
 
         ##
         # Collection for Liquid

@@ -9,11 +9,11 @@ module Archangel
 
     attr_config allow_registration: false,
                 asset_maximum_file_size: 2.megabytes,
-                asset_extension_whitelist: %i[gif jpeg jpg png],
+                asset_extension_whitelist: %w[gif jpeg jpg png],
                 auth_path: "account",
                 backend_path: "backend",
                 frontend_path: "",
-                image_extension_whitelist: %i[gif jpeg jpg png],
+                image_extension_whitelist: %w[gif jpeg jpg png],
                 image_maximum_file_size: 2.megabytes
 
     ##

@@ -16,25 +16,59 @@ module Archangel
           )
         end
 
-        it "returns YouTube video embed" do
-          content = <<-NOEMBED
-            {% noembed 'https://www.youtube.com/watch?v=-X2atEH7nCg' %}
-          NOEMBED
+        context "Ruby request" do
+          let(:content_url) { "https://www.youtube.com/watch?v=-X2atEH7nCg" }
+          let(:content) { "{% noembed '#{content_url}' %}" }
 
-          result = ::Liquid::Template.parse(content).render(context)
+          it "returns YouTube video embed" do
+            result = ::Liquid::Template.parse(content).render(context)
 
-          expect(result).to include(
-            "https://www.youtube.com/embed/-X2atEH7nCg?feature=oembed"
-          )
+            expect(result).to include(
+              "https://www.youtube.com/embed/-X2atEH7nCg?feature=oembed"
+            )
+          end
+
+          it "returns a connection error when the site is down" do
+            allow(Net::HTTP)
+              .to receive(:get_response).and_return(Net::HTTPError)
+
+            result = ::Liquid::Template.parse(content).render(context)
+
+            expect(result).to include("Error connecting to noembed server.")
+          end
+
+          it "returns specific error when an error occurres" do
+            response = Net::HTTPSuccess.new("1.1", 200, nil)
+            allow(response).to receive(:body)
+              .and_return({ error: "Error. Bad things happened." }.to_json)
+            allow(Net::HTTP).to receive(:get_response).and_return(response)
+
+            result = ::Liquid::Template.parse(content).render(context)
+
+            expect(result).to include("Error. Bad things happened.")
+          end
+
+          it "returns generic error when an error occurres" do
+            response = Net::HTTPSuccess.new("1.1", 200, nil)
+            allow(response).to receive(:body)
+              .and_return({ foo: "bar" }.to_json)
+            allow(Net::HTTP).to receive(:get_response).and_return(response)
+
+            result = ::Liquid::Template.parse(content).render(context)
+
+            expect(result).to include("Unknown error.")
+          end
         end
 
-        it "returns YouTube video embed with Javascript loading" do
-          video = "https://player.vimeo.com/video/183344978"
-          content = "{% noembed '#{video}' remote:true %}"
+        context "Javascript request" do
+          it "returns YouTube video embed" do
+            video = "https://player.vimeo.com/video/183344978"
+            content = "{% noembed '#{video}' remote:true %}"
 
-          result = ::Liquid::Template.parse(content).render(context)
+            result = ::Liquid::Template.parse(content).render(context)
 
-          expect(result).to include(CGI.escape(video))
+            expect(result).to include(CGI.escape(video))
+          end
         end
       end
     end

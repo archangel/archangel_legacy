@@ -23,7 +23,7 @@ module Archangel
             |
             #{::Liquid::QuotedString}
           )
-        /ox
+        /ox.freeze
 
         ##
         # Regex for tag syntax
@@ -33,7 +33,7 @@ module Archangel
           \s*
           (?<attributes>.*)
           \s*
-        /omx
+        /omx.freeze
 
         ##
         # Regex for "key: value" attributes
@@ -47,7 +47,7 @@ module Archangel
           \:
           \s*
           (?<value>#{::Liquid::QuotedFragment})
-        /ox
+        /ox.freeze
 
         ##
         # Slug and attributes syntax
@@ -60,7 +60,7 @@ module Archangel
           \s*
           (?<attributes>.*)
           \s*
-        /omx
+        /omx.freeze
 
         ##
         # Slug syntax
@@ -68,7 +68,7 @@ module Archangel
         # Example
         #   {% tag_name "[slug]" %}
         #
-        SLUG_SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)\s*/o
+        SLUG_SYNTAX = /(?<slug>#{::Liquid::QuotedFragment}+)\s*/o.freeze
 
         ##
         # URL and attributes syntax
@@ -81,7 +81,7 @@ module Archangel
           \s*
           (?<attributes>.*)
           \s*
-        /omx
+        /omx.freeze
       end
     end
   end
