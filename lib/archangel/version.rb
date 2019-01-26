@@ -4,7 +4,7 @@ module Archangel
   ##
   # Archangel gem version
   #
-  VERSION = "0.0.8".freeze
+  VERSION = "0.3.0".freeze
 
   ##
   # Archangel version
