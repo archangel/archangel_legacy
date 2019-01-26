@@ -14,6 +14,7 @@ module Archangel
     # Record limt count
     #
     # @return [Integer] the record count limit
+    #
     def per_page
       params.fetch(:per, per_page_default).to_i
     end
@@ -21,6 +22,7 @@ module Archangel
     # Current page number
     #
     # @return [Integer] the page number
+    #
     def page_num
       params.fetch(Kaminari.config.param_name, 1).to_i
     end

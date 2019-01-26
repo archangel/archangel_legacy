@@ -8,9 +8,19 @@
     <%= f.association :parent, prompt: :translate %>
     <%= f.association :template, prompt: :translate %>
     <%= f.input :content, as: :wysiwyg %>
-    <%= f.input :meta_keywords, as: :meta_keywords %>
-    <%= f.input :meta_description %>
     <%= f.input :published_at, as: :date_time_picker %>
+
+    <div class="form-group page_metatags">
+      <h3><%= Archangel.t(:metatags) %></h3>
+
+      <%= f.simple_fields_for :metatags do |metatag| %>
+        <%= render "metatag_fields", f: metatag %>
+      <% end %>
+
+      <div class="links">
+        <%= link_to_add_association Archangel.t(:add_metatag), f, :metatags %>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions text-right">

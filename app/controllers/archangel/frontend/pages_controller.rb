@@ -33,8 +33,6 @@ module Archangel
       #     "path": "path/to/page",
       #     "content": "</p>Content of the page</p>",
       #     "homepage": false,
-      #     "meta_keywords": "keywords, for, the, page",
-      #     "meta_description": "Description of the page",
       #     "published_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
       #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
       #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
@@ -80,11 +78,12 @@ module Archangel
       # @return [Object] the page meta tags
       #
       def page_meta_tags
-        {
-          title: @page.title,
-          description: @page.meta_description,
-          keywords: @page.meta_keywords.to_s.split(",")
-        }
+        [
+          current_site.metatags,
+          @page.metatags
+        ].flatten.inject({}) do |tags, metatag|
+          tags.merge(metatag.name => metatag.content)
+        end.merge(title: @page.title)
       end
 
       ##

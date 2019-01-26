@@ -7,23 +7,17 @@ module Archangel
     module Drops
       RSpec.describe SiteDrop, type: :liquid_drop do
         let(:resource) do
-          create(:site, name: "Test Site",
-                        locale: "en",
-                        meta_keywords: "keywords,for,site",
-                        meta_description: "Description of site")
+          create(:site, name: "Test Site", locale: "en")
         end
         let(:resource_drop) { described_class.new(resource) }
 
         context "attributes" do
           it "_attributes" do
-            expect(resource_drop.class._attributes)
-              .to eq(%i[locale meta_description meta_keywords name])
+            expect(resource_drop.class._attributes).to eq(%i[locale name])
           end
 
           it "returns correct attribute values" do
             expect(resource_drop.locale).to eq("en")
-            expect(resource_drop.meta_description).to eq("Description of site")
-            expect(resource_drop.meta_keywords).to eq("keywords,for,site")
             expect(resource_drop.name).to eq("Test Site")
           end
 
@@ -37,8 +31,6 @@ module Archangel
           it "returns hash of attributes" do
             json_object = {
               locale: "en",
-              meta_description: "Description of site",
-              meta_keywords: "keywords,for,site",
               name: "Test Site"
             }
 
@@ -50,8 +42,6 @@ module Archangel
           it "returns hash of attributes" do
             json_object = {
               locale: "en",
-              meta_description: "Description of site",
-              meta_keywords: "keywords,for,site",
               name: "Test Site"
             }
 

@@ -21,8 +21,17 @@
     <%= f.input :theme, as: :theme %>
     <%= f.input :locale, as: :language %>
 
-    <%= f.input :meta_keywords, as: :meta_keywords %>
-    <%= f.input :meta_description %>
+    <div class="form-group site_metatags">
+      <h3><%= Archangel.t(:metatags) %></h3>
+
+      <%= f.simple_fields_for :metatags do |metatag| %>
+        <%= render "metatag_fields", f: metatag %>
+      <% end %>
+
+      <div class="links">
+        <%= link_to_add_association Archangel.t(:add_metatag), f, :metatags %>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions text-right">

@@ -10,7 +10,7 @@ module Archangel
       # Liquid drop for a Page
       #
       class PageDrop < Archangel::Liquid::Drop
-        attributes :meta_description, :meta_keywords, :published_at, :title
+        attributes :published_at, :title
 
         # Page id as a string
         #

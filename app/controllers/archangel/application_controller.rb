@@ -54,8 +54,6 @@ module Archangel
     #     },
     #     "content": "</p>Content of the Widget</p>",
     #     "template_id": 123,
-    #     "meta_keywords": "keywords,for,the,site",
-    #     "meta_description": "Description of the site",
     #     "deleted_at": null,
     #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
     #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
