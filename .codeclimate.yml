@@ -4,6 +4,9 @@ plugins:
     enabled: true
   editorconfig:
     enabled: true
+  erblint:
+    enabled: true
+    config_file: .erb-lint.yml
   eslint:
     enabled: true
     channel: "eslint-4"

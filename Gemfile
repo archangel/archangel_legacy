@@ -6,6 +6,7 @@ gemspec
 
 group :development do
   gem "brakeman", "~> 4.3", require: false
+  gem "erb_lint", "~> 0.0.28", require: false
   gem "inch", "~> 0.8", require: false
   gem "listen", "~> 3.1", require: false
   gem "mdl", "~> 0.5", require: false
