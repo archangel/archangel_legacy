@@ -40,7 +40,7 @@ end
 
 When no file has been uploaded, fallback images for Carrierwave will need to be provided as well as default path to the fallback images.
 
-Assuming `original`, `large`, `medium`, `small` and `tiny` as the sizes specified, the following images will need to be created; 
+Assuming `original`, `large`, `medium`, `small` and `tiny` as the sizes specified, the following images will need to be created;
 
 * `archangel/fallback/amazing.jpg`
 * `archangel/fallback/large_amazing.jpg`
