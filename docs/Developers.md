@@ -35,15 +35,15 @@ $ bundle exec rspec spec --fail-fast
 
 Various tools are used to ensure code is linted and formatted correctly.
 
-### JSHint
+### ESLint
 
-[jshint](https://github.com/jshint/jshint) is a Javascript style analyzer.
+[eslint](https://eslint.org/) is a Javascript lint and style analyzer.
 
 ```
-$ jshint app/assets
+$ eslint .
 ```
 
-> NOTE: Integrations for multiple text editors and IDEs are [also available](http://jshint.com/install/).
+> NOTE: Integrations for multiple text editors and IDEs are [also available](https://eslint.org/docs/user-guide/integrations).
 
 ### Reek
 

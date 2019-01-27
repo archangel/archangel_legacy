@@ -4,12 +4,6 @@ eslint:
   config_file: .eslintrc.json
   ignore_file: .eslintignore
 
-# https://github.com/jshint/jshint
-jshint:
-  enabled: true
-  config_file: .jshintrc
-  ignore_file: .jshintignore
-
 # https://github.com/bbatsov/rubocop
 rubocop:
   enabled: true
