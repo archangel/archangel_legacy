@@ -2,6 +2,8 @@ version: "2"
 plugins:
   brakeman:
     enabled: true
+  editorconfig:
+    enabled: true
   eslint:
     enabled: true
     channel: "eslint-4"
@@ -13,5 +15,6 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
+    channel: rubocop-0-59
   scss-lint:
     enabled: true
