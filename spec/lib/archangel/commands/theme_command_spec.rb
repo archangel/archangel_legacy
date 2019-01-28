@@ -27,8 +27,8 @@ module Archangel
           end
 
           it "should write common files" do
-            %w[.editorconfig .gitignore .rspec .rubocop.yml Gemfile
-               MIT-LICENSE Rakefile README.md].each do |file|
+            %w[.gitignore .rspec .rubocop.yml Gemfile MIT-LICENSE Rakefile
+               README.md].each do |file|
               expect(glob_files_in(theme_path)).to include(file)
             end
 

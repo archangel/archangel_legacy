@@ -2,8 +2,6 @@ version: "2"
 plugins:
   brakeman:
     enabled: true
-  editorconfig:
-    enabled: true
   erblint:
     enabled: true
     config_file: .erb-lint.yml

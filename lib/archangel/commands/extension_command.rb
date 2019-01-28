@@ -71,7 +71,7 @@ module Archangel
       #
       def copy_common_templates
         %w[
-          .editorconfig .gitignore .rspec .rubocop.yml MIT-LICENSE
+          .gitignore .rspec .rubocop.yml MIT-LICENSE
         ].each do |tpl|
           template("../common/#{tpl}", "#{extension_name}/#{tpl}")
         end
