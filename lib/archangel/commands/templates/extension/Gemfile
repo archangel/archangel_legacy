@@ -10,7 +10,7 @@ end
 
 group :development, :test do
   gem "pry-byebug", "~> 3.6"
-  gem "sqlite3", ">= 1.3", platforms: %i[ruby mswin mswin64 mingw x64_mingw]
+  gem "sqlite3", "~> 1.3.6"
   gem "thor", "~> 0.20"
 end
 
