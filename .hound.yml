@@ -9,7 +9,7 @@ rubocop:
   enabled: true
   config_file: .rubocop.yml
 
-# https://github.com/brigade/scss-lint/
-scss:
+# https://github.com/sasstools/sass-lint
+sass-lint:
   enabled: true
-  config_file: .scss-lint.yml
+  config_file: .sass-lint.yml

@@ -1,0 +1,6 @@
+files:
+  include:
+    - 'app/assets/stylesheets/**/*.s+(a|c)ss'
+    - 'app/themes/**/*.s+(a|c)ss'
+  ignore:
+    - 'vendor/assets/**/*.*'

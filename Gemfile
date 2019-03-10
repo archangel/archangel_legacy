@@ -12,7 +12,6 @@ group :development do
   gem "mdl", "~> 0.5", require: false
   gem "reek", "~> 5.2", require: false
   gem "rubocop", "~> 0.59", require: false
-  gem "scss_lint", "~> 0.57", require: false
   gem "yard", "~> 0.9", require: false
 end
 

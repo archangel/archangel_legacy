@@ -63,13 +63,15 @@ $ reek
 $ rubocop
 ```
 
-### scss-lint
+### Sass Lint
 
-[scss-lint](https://github.com/brigade/scss-lint) is a SCSS style analyzer.
+[sass-lint](https://github.com/sasstools/sass-lint) is a Sass linter.
 
 ```
-$ scss-lint .
+$ sass-lint -v
 ```
+
+> NOTE: Integrations for multiple text editors and IDEs are [also available](https://github.com/sasstools/sass-lint#ide-integration).
 
 ## Security and Maintenance
 
