@@ -53,6 +53,8 @@ RSpec.configure do |config|
   config.include Archangel::TestingSupport::AuthorizationHelpers::Controller,
                  type: :controller
 
-  config.include Archangel::TestingSupport::AuthorizationHelpers::Feature,
-                 type: :feature
+  %i[feature request].each do |type|
+    config.include Archangel::TestingSupport::AuthorizationHelpers::Feature,
+                   type: type
+  end
 end
