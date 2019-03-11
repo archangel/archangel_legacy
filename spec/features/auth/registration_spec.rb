@@ -34,8 +34,8 @@ RSpec.feature "Auth registration", type: :feature do
       fill_in "Name", with: "John Doe"
       fill_in "Username", with: "john_doe"
       fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "password"
-      fill_in "Confirm Password", with: "password"
+      fill_in "Password", with: "password", match: :prefer_exact
+      fill_in "Confirm Password", with: "password", match: :prefer_exact
 
       click_button "Sign up"
 
