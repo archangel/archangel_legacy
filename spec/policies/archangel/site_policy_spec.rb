@@ -14,16 +14,12 @@ module Archangel
       it { is_expected.to permit(:show) }
       it { is_expected.to permit(:update) }
       it { is_expected.to permit(:edit) }
-
-      it { is_expected.to permit(:sample) }
     end
 
     context "with `editor` role" do
       let(:user) { create(:user, :editor) }
 
       it { is_expected.to permit(:show) }
-
-      it { is_expected.to permit(:sample) }
 
       it { is_expected.to_not permit(:update) }
       it { is_expected.to_not permit(:edit) }
