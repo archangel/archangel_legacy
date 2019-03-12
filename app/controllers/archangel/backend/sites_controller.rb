@@ -156,10 +156,10 @@ module Archangel
       end
 
       def resource_params
-        params.require(resource_namespace).permit(permitted_attributes)
+        params.require(resource_scope).permit(permitted_attributes)
       end
 
-      def resource_namespace
+      def resource_scope
         controller_name.singularize.to_sym
       end
 
