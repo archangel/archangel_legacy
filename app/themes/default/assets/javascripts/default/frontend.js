@@ -3,7 +3,6 @@
 //
 //  Third-party assets
 //= require jquery2
-//= require bootstrap
 //= require jquery_ujs
 //
 //  Archangel helper scripts
