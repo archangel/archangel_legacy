@@ -5,8 +5,6 @@ module Archangel
   # Application helpers
   #
   module ApplicationHelper
-    include FontAwesome::Rails::IconHelper
-
     ##
     # Frontend resource path.
     #

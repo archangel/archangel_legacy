@@ -41,7 +41,6 @@ Gem::Specification.new do |s|
   s.add_dependency "devise", "~> 4.6"
   s.add_dependency "devise_invitable", "~> 1.7"
   s.add_dependency "file_validators", "~> 2.3"
-  s.add_dependency "font-awesome-rails", "~> 4.7"
   s.add_dependency "highline", "~> 2.0"
   s.add_dependency "jbuilder", "~> 2.7"
   s.add_dependency "kaminari", "~> 1.1"

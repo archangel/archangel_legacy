@@ -2,35 +2,35 @@
   <nav class="sidebar-nav">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_root_path %>"><%= fa_icon("home") %> <%= Archangel.t(:dashboard) %></a>
+        <a class="nav-link" href="<%= backend_root_path %>"><%= Archangel.t(:dashboard) %></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_pages_path %>"><%= fa_icon("file") %> <%= Archangel.t(:pages) %></a>
+        <a class="nav-link" href="<%= backend_pages_path %>"><%= Archangel.t(:pages) %></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_collections_path %>"><%= fa_icon("folder-open") %> <%= Archangel.t(:collections) %></a>
+        <a class="nav-link" href="<%= backend_collections_path %>"><%= Archangel.t(:collections) %></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_widgets_path %>"><%= fa_icon("star") %> <%= Archangel.t(:widgets) %></a>
+        <a class="nav-link" href="<%= backend_widgets_path %>"><%= Archangel.t(:widgets) %></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_assets_path %>"><%= fa_icon("paperclip") %> <%= Archangel.t(:assets) %></a>
+        <a class="nav-link" href="<%= backend_assets_path %>"><%= Archangel.t(:assets) %></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_templates_path %>"><%= fa_icon("flag") %> <%= Archangel.t(:templates) %></a>
+        <a class="nav-link" href="<%= backend_templates_path %>"><%= Archangel.t(:templates) %></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_users_path %>"><%= fa_icon("user") %> <%= Archangel.t(:users) %></a>
+        <a class="nav-link" href="<%= backend_users_path %>"><%= Archangel.t(:users) %></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_site_path %>"><%= fa_icon("cog") %> <%= Archangel.t(:site) %></a>
+        <a class="nav-link" href="<%= backend_site_path %>"><%= Archangel.t(:site) %></a>
       </li>
 
       <% if current_site.collections.present? %>
@@ -43,7 +43,7 @@
             <% end %>
 
             <li class="nav-item">
-              <a class="nav-link" href="<%= backend_collection_entries_path(item) %>"><%= fa_icon("circle") %> <%= item.name %></a>
+              <a class="nav-link" href="<%= backend_collection_entries_path(item) %>"><%= item.name %></a>
             </li>
           <% end %>
         <% end %>
