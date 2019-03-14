@@ -5,7 +5,6 @@
 //= require jquery3
 //= require rails-ujs
 //= require popper
-//= require moment
 //= require cocoon
 //
 //  Third-party assets (from vendor)

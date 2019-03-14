@@ -47,7 +47,6 @@ Gem::Specification.new do |s|
   s.add_dependency "liquid", "~> 4.0"
   s.add_dependency "meta-tags", "~> 2.10"
   s.add_dependency "mini_magick", "~> 4.9"
-  s.add_dependency "momentjs-rails", "~> 2.20"
   s.add_dependency "paranoia", "~> 2.4"
   s.add_dependency "popper_js", "~> 1.14"
   s.add_dependency "pundit", "~> 2.0"
