@@ -7,13 +7,7 @@
 //= require cocoon
 //
 //  Third-party assets (from vendor)
-//= require trumbowyg/trumbowyg
-//= require trumbowyg/plugins/allowtagsfrompaste/trumbowyg.allowtagsfrompaste
-//= require trumbowyg/plugins/base64/trumbowyg.base64
-//= require trumbowyg/plugins/cleanpaste/trumbowyg.cleanpaste
-//= require trumbowyg/plugins/colors/trumbowyg.colors
-//= require trumbowyg/plugins/noembed/trumbowyg.noembed
-//= require trumbowyg/plugins/upload/trumbowyg.upload
+// none
 //
 //  Archangel helper scripts
 //= require "archangel/object"
@@ -32,8 +26,4 @@
 //= require archangel/backend
 //
 //  Theme assets
-//= require default/common/cards
 //= require default/common/flash
-//
-//= require default/backend/core
-//= require default/backend/templates
