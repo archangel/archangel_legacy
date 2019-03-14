@@ -115,8 +115,6 @@ en:
     site: Site
     slug: Slug
     sort: Sort
-    sortable:
-      success: Sort order has been updated
     subscribe_to_newsletter: Subscribe to newsletter
     templates: Templates
     theme: Theme

@@ -11,7 +11,6 @@
 //
 //  Third-party assets (from vendor)
 //= require daterangepicker/daterangepicker
-//= require sortable/sortable
 //= require trumbowyg/trumbowyg
 //= require trumbowyg/plugins/allowtagsfrompaste/trumbowyg.allowtagsfrompaste
 //= require trumbowyg/plugins/base64/trumbowyg.base64
@@ -27,7 +26,6 @@
 //= require "archangel/object/routes/backend"
 //= require "archangel/object/translate"
 //= require "archangel/object/translate/datetimepicker"
-//= require "archangel/object/translate/sortable"
 //= require "archangel/object/url"
 //= require "archangel/input/datetimepicker"
 //= require "archangel/input/meta_keywords"
@@ -35,7 +33,6 @@
 //= require "archangel/input/parent/collection"
 //= require "archangel/input/parent/field"
 //= require "archangel/input/parent/page"
-//= require "archangel/sortable"
 //
 //  Third-party Archangel assets (from the vendor directory)
 //= require archangel/backend
