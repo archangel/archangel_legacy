@@ -22,7 +22,6 @@ require "popper_js"
 require "pundit"
 require "responders"
 require "sass-rails"
-require "selectize-rails"
 require "simple_form"
 require "validates"
 

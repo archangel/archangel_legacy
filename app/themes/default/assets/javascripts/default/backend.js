@@ -6,7 +6,6 @@
 //= require rails-ujs
 //= require popper
 //= require moment
-//= require selectize
 //= require cocoon
 //
 //  Third-party assets (from vendor)
