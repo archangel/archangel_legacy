@@ -10,7 +10,6 @@
 //= require cocoon
 //
 //  Third-party assets (from vendor)
-//= require daterangepicker/daterangepicker
 //= require trumbowyg/trumbowyg
 //= require trumbowyg/plugins/allowtagsfrompaste/trumbowyg.allowtagsfrompaste
 //= require trumbowyg/plugins/base64/trumbowyg.base64

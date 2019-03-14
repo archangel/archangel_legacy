@@ -20,41 +20,6 @@ en:
     content: Content
     content_type: Content Type
     dashboard: Dashboard
-    datetimepicker:
-      apply: Apply
-      cancel: Cancel
-      custom_range: Custom
-      date_format: "%Y-%m-%d"
-      date_format_js: "YYYY-MM-DD"
-      datetime_format: "%Y-%m-%d %H:%M"
-      datetime_format_js: "YYYY-MM-DD HH:MM"
-      days:
-        sunday: Sun
-        monday: Mon
-        tuesday: Tue
-        wednesday: Wed
-        thursday: Thu
-        friday: Fri
-        saturday: Sat
-      from: From
-      months:
-        january: January
-        february: February
-        march: March
-        april: April
-        may: May
-        june: June
-        july: July
-        august: August
-        september: September
-        october: October
-        november: November
-        december: December
-      separator: " - "
-      time_format: "%H:%M"
-      time_format_js: "HH:MM"
-      to: To
-      week: W
     destroy: Destroy
     duplicate_slug: duplicate slug
     duplicate_field_slug: duplicate slug
