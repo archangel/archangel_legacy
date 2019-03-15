@@ -15,17 +15,14 @@
   <div class="btn-group ml-auto" role="toolbar" aria-label="Toolbar">
     <a class="nav-link" href="<%= root_path %>">
       <span class="d-md-down-none"><%= Archangel.t(:website) %></span>
-      <%= fa_icon("home") %>
     </a>
 
     <a class="nav-link" href="<%= backend_profile_path %>">
       <span class="d-md-down-none"><%= Archangel.t(:profile) %></span>
-      <%= fa_icon("user") %>
     </a>
 
     <a class="nav-link" data-method="delete" href="<%= destroy_user_session_path %>" rel="nofollow">
       <span class="d-md-down-none"><%= Archangel.t(:logout) %></span>
-      <%= fa_icon("power-off") %>
     </a>
   </div>
 </header>

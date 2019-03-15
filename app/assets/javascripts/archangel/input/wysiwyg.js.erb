@@ -1,46 +1,5 @@
 $.fn.inputTextareaWysiwyg = function () {
   'use strict';
-
-  this.trumbowyg({
-    svgPath: '<%= asset_path("trumbowyg/icons.svg") %>',
-    resetCss: true,
-    removeformatPasted: true,
-    autogrow: true,
-    btnsDef: {
-      align: {
-        dropdown: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-        ico: 'justifyLeft'
-      },
-      list: {
-        dropdown: ['unorderedList', 'orderedList'],
-        ico: 'unorderedList'
-      },
-      image: {
-        dropdown: ['insertImage', 'base64', 'upload'],
-        ico: 'insertImage'
-      }
-    },
-    btns: [
-      ['viewHTML'],
-      ['formatting'],
-      ['removeformat'],
-      ['strong', 'em','del'],
-      ['foreColor', 'backColor'],
-      ['link'],
-      ['image'],
-      ['noembed'],
-      ['align'],
-      ['list']
-    ],
-    plugins: {
-      upload: {
-        serverPath: '/backend/assets/wysiwyg',
-        fileFieldName: 'file',
-        urlPropertyName: 'url'
-      }
-    }
-  });
-
 };
 
 $(function() {
