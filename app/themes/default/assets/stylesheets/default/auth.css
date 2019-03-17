@@ -1,6 +1,5 @@
 /**
- *  Default Archangel auth theme
- *= require_self
+ **  Default Archangel auth theme
  *
  *  Third-party assets
  * none
@@ -9,5 +8,5 @@
  *= require archangel/auth
  *
  *  Theme assets
- *= require_tree ./auth
+ *= require default/auth/base
  */

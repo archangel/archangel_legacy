@@ -1,17 +1,12 @@
-//  Default Archangel frontend theme
-//= require_self
+//
+///  Default Archangel frontend theme
 //
 //  Third-party assets
-//= require jquery2
-//= require jquery_ujs
-//
-//  Archangel helper scripts
-//= require "archangel/object"
-//= require "archangel/object/routes"
-//= require "archangel/object/routes/frontend"
+//= require jquery3
+//= require rails-ujs
 //
 //  Third-party Archangel assets (from the vendor directory)
 //= require archangel/frontend
 //
 //  Theme assets
-//= require_tree ./frontend
+// none
