@@ -78,7 +78,7 @@ module Archangel
         end
 
         def asset_decider(asset)
-          if %r{image/[gif|jpeg|jpg|png]} =~ asset.content_type
+          if %r{image/[gif|jpeg|png]}.match?(asset.content_type)
             image_asset(asset)
           else
             linked_asset(asset)
