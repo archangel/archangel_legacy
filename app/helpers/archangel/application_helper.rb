@@ -6,7 +6,7 @@ module Archangel
   #
   module ApplicationHelper
     ##
-    # Frontend resource path.
+    # Frontend resource permalink.
     #
     # Same as `frontend_page_path` except it prints out nested resources in a
     # nice way.
@@ -15,17 +15,17 @@ module Archangel
     #   <%= frontend_resource_path('foo/bar') %> #=> /foo/bar
     #   <%= frontend_resource_path(@page) %> #=> /foo/bar
     #
-    # @return [String] frontend resource path
+    # @return [String] frontend resource permalink
     #
     def frontend_resource_path(resource)
-      permalink_path = proc do |path|
-        archangel.frontend_page_path(path).gsub("%2F", "/")
+      permalink_path = proc do |permalink|
+        archangel.frontend_page_path(permalink).gsub("%2F", "/")
       end
 
       return permalink_path.call(resource) unless resource.class == Page
       return archangel.frontend_root_path if resource.homepage?
 
-      permalink_path.call(resource.path)
+      permalink_path.call(resource.permalink)
     end
 
     ##

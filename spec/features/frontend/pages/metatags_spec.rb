@@ -18,9 +18,9 @@ RSpec.feature "Meta tag", type: :feature do
     it "contains default meta tags" do
       resource = create(:page, site: site)
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
-      canonical = "http://www.example.com/#{resource.path}"
+      canonical = "http://www.example.com/#{resource.permalink}"
 
       expect(page).to(
         have_css(
@@ -32,7 +32,7 @@ RSpec.feature "Meta tag", type: :feature do
     it "contains Site meta tags" do
       resource = create(:page, site: site)
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_meta(:description, "Site description")
       expect(page).to have_meta(:author, "Archangel")
@@ -49,7 +49,7 @@ RSpec.feature "Meta tag", type: :feature do
                        name: "keywords",
                        content: "useful,page,keywords")
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_meta(:description, "Page description")
       expect(page).to have_meta(:keywords, "useful,page,keywords")
@@ -64,7 +64,7 @@ RSpec.feature "Meta tag", type: :feature do
                        name: "title",
                        content: "Metatag Page Title")
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_title("#{resource.title} | #{site.name}")
       expect(page).to_not have_title("Metatag Page Title | #{site.name}")

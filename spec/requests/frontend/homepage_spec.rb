@@ -14,8 +14,8 @@ RSpec.describe "Frontend - Homepage", type: :request do
       expect(response).to be_successful
     end
 
-    it "redirects to frontend_root_path when homepage path requested" do
-      get "/#{homepage.path}"
+    it "redirects to frontend_root_path when homepage permalink requested" do
+      get "/#{homepage.permalink}"
 
       expect(response).to redirect_to("/")
     end

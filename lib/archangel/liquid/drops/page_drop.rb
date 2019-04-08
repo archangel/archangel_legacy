@@ -20,12 +20,12 @@ module Archangel
           object.id.to_s
         end
 
-        # Page path with leading slash
+        # Page permalink with leading slash
         #
-        # @return [String] the path
+        # @return [String] the permalink
         #
-        def path
-          "/#{object.path}"
+        def permalink
+          "/#{object.permalink}"
         end
       end
     end
