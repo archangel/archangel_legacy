@@ -28,6 +28,7 @@ module Archangel
     #
     # @param args [String,Array] translation paramaters
     # @return [String] the translated string
+    #
     def translate(*args)
       options = args.extract_options!
       options[:scope] = [*options[:scope]].unshift(:archangel)
