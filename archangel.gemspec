@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files -z`.split("\x0")
   s.executables = ["archangel"]
 
-  s.required_ruby_version = ">= 2.3.8"
+  s.required_ruby_version = ">= 2.4"
 
   s.add_dependency "jquery-rails", "~> 4.1", ">= 4.1.0"
   s.add_dependency "rails", "~> 5.1", ">= 5.1.4"
