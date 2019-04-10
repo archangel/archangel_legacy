@@ -9,7 +9,7 @@ module Archangel
     # Backend templates controller
     #
     class TemplatesController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       protected
 

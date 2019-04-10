@@ -221,7 +221,7 @@ module Archangel
       end
 
       def resource_namespace
-        nil
+        controller_path.split("/").second.to_sym
       end
 
       def resource_params

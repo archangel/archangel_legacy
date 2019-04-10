@@ -9,7 +9,7 @@ module Archangel
     # Backend pages controller
     #
     class PagesController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       protected
 

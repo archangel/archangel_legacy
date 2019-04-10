@@ -9,7 +9,7 @@ module Archangel
     # Backend users controller
     #
     class UsersController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       ##
       # Invite backend user

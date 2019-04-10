@@ -9,7 +9,7 @@ module Archangel
     # Backend profiles controller
     #
     class ProfilesController < BackendController
-      include Archangel::SkipAuthorizableConcern
+      include Archangel::Controllers::SkipAuthorizableConcern
 
       ##
       # Backend profile

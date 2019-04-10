@@ -9,7 +9,7 @@ module Archangel
     # Backend collections controller
     #
     class CollectionsController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       protected
 

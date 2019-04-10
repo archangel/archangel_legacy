@@ -114,7 +114,7 @@ Extending `BackendController` assumes your controller requires policy authorizat
 module Archangel
   module Backend
     class FoosController < BackendController
-      include Archangel::SkipAuthorizableConcern
+      include Archangel::Controllers::SkipAuthorizableConcern
 
       ...
     end

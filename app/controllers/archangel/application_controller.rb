@@ -9,9 +9,9 @@ module Archangel
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
-    include Archangel::ActionableConcern
-    include Archangel::PaginatableConcern
-    include Archangel::ThemableConcern
+    include Archangel::Controllers::ActionableConcern
+    include Archangel::Controllers::PaginatableConcern
+    include Archangel::Controllers::ThemableConcern
 
     before_action :set_locale
 

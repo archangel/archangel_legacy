@@ -9,7 +9,7 @@ module Archangel
     # Backend assets controller
     #
     class AssetsController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       ##
       # Create backend asset from WYSIWYG upload

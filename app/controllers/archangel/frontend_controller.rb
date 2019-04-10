@@ -5,6 +5,6 @@ module Archangel
   # Frontend base controller
   #
   class FrontendController < ApplicationController
-    include Archangel::SeoableConcern
+    include Archangel::Controllers::SeoableConcern
   end
 end
