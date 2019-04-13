@@ -21,7 +21,7 @@ module Archangel
       #   POST /backend/wysiwyg
       #   POST /backend/wysiwyg.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "file": "local/path/to/new_file.gif"
       #   }

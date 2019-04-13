@@ -24,7 +24,7 @@ module Archangel
       #   POST /backend/collections/:slug/entries/sort
       #   POST /backend/collections/:slug/entries/sort.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "collection_entry": {
       #       "sort": ["0" => "1234", "1" => "5678", "2" => "4321"]

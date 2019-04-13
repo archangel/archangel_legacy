@@ -26,7 +26,7 @@ module Archangel
     #     I18n.t(:hello, scope: :archangel) #=> "Hello"
     #     I18n.translate(:hello, scope: :archangel) #=> "Hello"
     #
-    # @param args [String,Array] translation paramaters
+    # @param args [String,Array] translation parameters
     # @return [String] the translated string
     #
     def translate(*args)
