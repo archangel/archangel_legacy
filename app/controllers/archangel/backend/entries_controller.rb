@@ -9,7 +9,7 @@ module Archangel
     # Backend collection entries controller
     #
     class EntriesController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       ##
       # Update collection entry sort order

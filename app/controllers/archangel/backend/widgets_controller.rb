@@ -9,7 +9,7 @@ module Archangel
     # Backend widgets controller
     #
     class WidgetsController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       protected
 

@@ -7,8 +7,8 @@ module Archangel
   class BackendController < ApplicationController
     include Pundit
 
-    include Archangel::AuthenticatableConcern
-    include Archangel::AuthorizableConcern
+    include Archangel::Controllers::AuthenticatableConcern
+    include Archangel::Controllers::AuthorizableConcern
 
     rescue_from Pundit::NotAuthorizedError, with: :render_401_error
 
