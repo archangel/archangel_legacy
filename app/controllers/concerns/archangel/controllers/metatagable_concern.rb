@@ -6,9 +6,9 @@ module Archangel
   #
   module Controllers
     ##
-    # Controller SEO concern
+    # Controller meta tag concern
     #
-    module SeoableConcern
+    module MetatagableConcern
       extend ActiveSupport::Concern
 
       included do
@@ -21,7 +21,7 @@ module Archangel
       #
       # @param meta_tags [Hash] list of meta tags
       #
-      def apply_meta_tags(meta_tags = {})
+      def assign_meta_tags(meta_tags = {})
         meta = meta_tags.reject { |_name, value| value.blank? }
 
         set_meta_tags(meta)
@@ -30,15 +30,14 @@ module Archangel
       protected
 
       def apply_default_meta_tags
-        apply_meta_tags(default_meta_tags)
+        assign_meta_tags(default_meta_tags)
       end
 
       def default_meta_tags
         {
           reverse: true,
           site: current_site.name,
-          canonical: request.url,
-          image_src: current_site.logo.url
+          canonical: request.url
         }
       end
     end
