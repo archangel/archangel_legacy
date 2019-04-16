@@ -158,11 +158,11 @@ Archangel::Engine.routes.draw do
   end
 
   namespace :frontend, path: Archangel.config.frontend_path do
-    # GET /[PATH]
-    get ":path", to: "pages#show", as: :page,
-                 constraints: {
-                   path: %r{[\w\-\/]+}
-                 }
+    # GET /[PERMALINK]
+    get ":permalink", to: "pages#show", as: :page,
+                      constraints: {
+                        permalink: %r{[\w\-\/]+}
+                      }
 
     # GET /
     root to: "pages#show"

@@ -15,7 +15,7 @@ module Archangel
 
       def permitted_attributes
         [
-          :content, :homepage, :parent_id, :path, :published_at, :slug,
+          :content, :homepage, :parent_id, :permalink, :published_at, :slug,
           :template_id, :title,
           metatags_attributes: %i[id _destroy name content]
         ]

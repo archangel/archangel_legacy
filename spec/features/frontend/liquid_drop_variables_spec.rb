@@ -11,7 +11,7 @@ RSpec.feature "Default variables", type: :feature do
 
       resource = create(:page, site: site, slug: "foo", content: content)
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_content("Current Page: /foo")
     end
@@ -25,14 +25,14 @@ RSpec.feature "Default variables", type: :feature do
                                slug: "bar",
                                content: content)
 
-      visit CGI.unescape(archangel.frontend_page_path(resource.path))
+      visit CGI.unescape(archangel.frontend_page_path(resource.permalink))
 
       expect(page).to have_content("Current Page: /foo/bar")
     end
 
     it "knows it is on the current page" do
       content = <<-CONTENT
-        {% if current_page == page.path %}
+        {% if current_page == page.permalink %}
           Current Page?: Yup!
         {% else %}
           Current Page?: Nope!
@@ -41,7 +41,7 @@ RSpec.feature "Default variables", type: :feature do
 
       post = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(post.path)
+      visit archangel.frontend_page_path(post.permalink)
 
       expect(page).to have_content("Current Page?: Yup!")
       expect(page).not_to have_content("Current Page?: Nope!")
@@ -58,7 +58,7 @@ RSpec.feature "Default variables", type: :feature do
 
       post = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(post.path)
+      visit archangel.frontend_page_path(post.permalink)
 
       expect(page).not_to have_content("Current Page?: Yup!")
       expect(page).to have_content("Current Page?: Nope!")
@@ -70,7 +70,7 @@ RSpec.feature "Default variables", type: :feature do
 
       resource = create(:page, site: site, slug: slug, content: content)
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_content("Current Page: /#{slug}")
     end
@@ -81,18 +81,18 @@ RSpec.feature "Default variables", type: :feature do
       content = <<-CONTENT
         Page ID: {{ page.id }}
         Page Title: {{ page.title }}
-        Page Path: {{ page.path }}
+        Page Permalink: {{ page.permalink }}
         Page Published At: {{ page.published_at }}
         Page Unknown: ~{{ page.unknown_variable }}~
       CONTENT
 
       resource = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_content("Page ID: #{resource.id}")
       expect(page).to have_content("Page Title: #{resource.title}")
-      expect(page).to have_content("Page Path: /#{resource.path}")
+      expect(page).to have_content("Page Permalink: /#{resource.permalink}")
       expect(page)
         .to have_content("Page Published At: #{resource.published_at}")
       expect(page).to have_content("Page Unknown: ~~")
@@ -110,7 +110,7 @@ RSpec.feature "Default variables", type: :feature do
 
       resource = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_content("Site Name: #{site.name}")
       expect(page).to have_content("Site Locale: #{site.locale}")
@@ -125,7 +125,7 @@ RSpec.feature "Default variables", type: :feature do
 
       resource = create(:page, site: site, content: content)
 
-      visit archangel.frontend_page_path(resource.path)
+      visit archangel.frontend_page_path(resource.permalink)
 
       expect(page).to have_content("Unknown Variable: ~~")
     end

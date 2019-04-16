@@ -20,17 +20,17 @@ module Archangel
       #   HTML, JSON
       #
       # Params
-      #   [String] path - the path to the page
+      #   [String] permalink - the permalink to the page
       #
       # Request
-      #   GET /:path
-      #   GET /:path.json
+      #   GET /:permalink
+      #   GET /:permalink.json
       #
       # Response
       #   {
       #     "id": 123,
       #     "title": "Page Title",
-      #     "path": "path/to/page",
+      #     "permalink": "path/to/page",
       #     "content": "</p>Content of the page</p>",
       #     "homepage": false,
       #     "published_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
@@ -60,9 +60,13 @@ module Archangel
       # Find and assign resource to the view
       #
       def set_resource
-        page_path = params.fetch(:path, nil)
+        page_permalink = params.fetch(:permalink, nil)
 
-        @page = page_path.blank? ? find_homepage : find_page(page_path)
+        @page = if page_permalink.blank?
+                  find_homepage
+                else
+                  find_page(page_permalink)
+                end
       end
 
       ##
@@ -87,18 +91,18 @@ module Archangel
       end
 
       ##
-      # Check to redirect to homepage root path
+      # Check to redirect to homepage root permalink
       #
       # @return [Boolean] redirect or not
       #
       def redirect_to_homepage?
         return false unless @page
 
-        (params.fetch(:path, nil) == @page.path) && @page.homepage?
+        (params.fetch(:permalink, nil) == @page.permalink) && @page.homepage?
       end
 
       ##
-      # Redirect to homepage root path is page is marked as the homepage
+      # Redirect to homepage root permalink is page is marked as the homepage
       #
       def redirect_to_homepage
         redirect_to root_path, status: :moved_permanently
@@ -118,8 +122,8 @@ module Archangel
       #
       # @return [Object] the page
       #
-      def find_page(path)
-        current_site.pages.published.find_by!(path: path)
+      def find_page(permalink)
+        current_site.pages.published.find_by!(permalink: permalink)
       end
 
       ##

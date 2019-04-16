@@ -7,7 +7,7 @@ module Archangel
     context "callbacks" do
       it { is_expected.to callback(:parameterize_slug).before(:validation) }
 
-      it { is_expected.to callback(:build_page_path).before(:save) }
+      it { is_expected.to callback(:build_page_permalink).before(:save) }
 
       it { is_expected.to callback(:homepage_reset).after(:save) }
 
@@ -33,10 +33,12 @@ module Archangel
 
       it { is_expected.to_not allow_value("invalid").for(:published_at) }
 
-      it "has a unique path scoped to Site" do
+      it "has a unique permalink scoped to Site" do
         resource = build(:page)
 
-        expect(resource).to validate_uniqueness_of(:path).scoped_to(:site_id)
+        expect(resource).to(
+          validate_uniqueness_of(:permalink).scoped_to(:site_id)
+        )
       end
 
       it "has a unique slug scoped to Parent and Site" do

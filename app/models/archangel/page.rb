@@ -12,7 +12,7 @@ module Archangel
 
     before_validation :parameterize_slug
 
-    before_save :build_page_path
+    before_save :build_page_permalink
 
     after_save :homepage_reset
 
@@ -20,7 +20,7 @@ module Archangel
 
     validates :content, presence: true
     validates :homepage, inclusion: { in: [true, false] }
-    validates :path, uniqueness: { scope: :site_id }
+    validates :permalink, uniqueness: { scope: :site_id }
     validates :published_at, allow_blank: true, date: true
     validates :slug, presence: true,
                      uniqueness: { scope: %i[parent_id site_id] }
@@ -102,10 +102,10 @@ module Archangel
       self.slug = slug.to_s.downcase.parameterize
     end
 
-    def build_page_path
-      parent_path = parent.blank? ? nil : parent.path
+    def build_page_permalink
+      parent_permalink = parent.blank? ? nil : parent.permalink
 
-      self.path = [parent_path, slug].compact.join("/")
+      self.permalink = [parent_permalink, slug].compact.join("/")
     end
 
     def homepage_reset
