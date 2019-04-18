@@ -18,8 +18,8 @@ module Archangel
 
     has_many :assets
     has_many :collections
+    has_many :designs
     has_many :pages
-    has_many :templates
     has_many :users
     has_many :widgets
 

@@ -3,10 +3,10 @@
 require "rails_helper"
 
 module Archangel
-  RSpec.describe TemplatePolicy, type: :policy do
+  RSpec.describe DesignPolicy, type: :policy do
     subject { described_class.new(user, record) }
 
-    let(:record) { create(:template) }
+    let(:record) { create(:design) }
 
     context "with `admin` role" do
       let(:user) { create(:user, :admin) }

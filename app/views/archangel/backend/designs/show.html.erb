@@ -1,6 +1,6 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:show_resource, resource: @template.model_name.human.titleize) %></h2>
+    <h2><%= Archangel.t(:show_resource, resource: @design.model_name.human.titleize) %></h2>
   </div>
 </div>
 
@@ -15,17 +15,17 @@
         <div class="card-body">
           <p>
             <strong><%= Archangel.t(:name) %>:</strong>
-            <%= @template.name %>
+            <%= @design.name %>
           </p>
 
           <p>
             <strong><%= Archangel.t(:content) %>:</strong>
-            <%= @template.content %>
+            <%= @design.content %>
           </p>
 
           <p>
             <strong><%= Archangel.t(:partial) %>:</strong>
-            <%= @template.partial? %>
+            <%= @design.partial? %>
           </p>
         </div>
       </div>

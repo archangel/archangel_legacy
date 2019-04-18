@@ -3,13 +3,13 @@
 require "rails_helper"
 
 module Archangel
-  RSpec.describe TemplateRenderService, type: :service do
+  RSpec.describe DesignRenderService, type: :service do
     context "#new" do
       it "builds the liquid content" do
-        template = create(:template)
+        design = create(:design)
         content = "<p>This is the content of the page</p>"
 
-        rendered = described_class.new(template,
+        rendered = described_class.new(design,
                                        content_for_layout: content).call
 
         expect(rendered).to include("<p>This is the content of the page</p>")
@@ -18,20 +18,20 @@ module Archangel
 
     context ".call" do
       it "builds the liquid content" do
-        template = create(:template)
+        design = create(:design)
         content = "<p>This is the content of the page</p>"
 
-        rendered = described_class.call(template,
+        rendered = described_class.call(design,
                                         content_for_layout: content)
 
         expect(rendered).to include("<p>This is the content of the page</p>")
       end
 
       it "builds the liquid content even without `{{ content_for_layout }}`" do
-        template = create(:template, content: "FULL TEMPLATE")
+        design = create(:design, content: "FULL DESIGN")
         content = "<p>Content of the page is still rendered</p>"
 
-        rendered = described_class.call(template,
+        rendered = described_class.call(design,
                                         content_for_layout: content)
 
         expect(rendered)

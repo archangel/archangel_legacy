@@ -20,6 +20,7 @@ en:
     content: Content
     content_type: Content Type
     dashboard: Dashboard
+    designs: Designs
     destroy: Destroy
     duplicate_slug: duplicate slug
     duplicate_field_slug: duplicate slug
@@ -81,7 +82,6 @@ en:
     slug: Slug
     sort: Sort
     subscribe_to_newsletter: Subscribe to newsletter
-    templates: Templates
     theme: Theme
     title: Title
     toggle_navigation: Toggle navigation

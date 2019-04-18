@@ -43,7 +43,7 @@ module Archangel
 
         respond_to do |format|
           format.html do
-            render inline: liquid_rendered_template_content,
+            render inline: liquid_rendered_design_content,
                    layout: layout_from_theme
           end
           format.json do
@@ -138,15 +138,15 @@ module Archangel
       end
 
       ##
-      # Render content with template
+      # Render content with design
       #
       # @return [String] the rendered Liquid template
       #
-      def liquid_rendered_template_content
+      def liquid_rendered_design_content
         content = liquid_rendered_content
         variables = default_liquid_assign.merge(content_for_layout: content)
 
-        Archangel::TemplateRenderService.call(@page.template, variables)
+        Archangel::DesignRenderService.call(@page.design, variables)
       end
 
       def default_liquid_assign

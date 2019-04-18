@@ -64,20 +64,20 @@ curent_site.pages.published.find_or_create_by(homepage: true) do |item|
   item.published_at = Time.current
 end
 
-# Page Template
-page_template = curent_site.templates
-                           .find_or_create_by!(partial: false) do |item|
-  item.name = "Example Page Template"
+# Page Design
+page_design = curent_site.designs
+                         .find_or_create_by!(partial: false) do |item|
+  item.name = "Example Page Design"
   item.content = %(
-    <p>I think this is the beginning of a beautiful page template.</p>
+    <p>I think this is the beginning of a beautiful page design.</p>
     {{ content_for_layout }}
-    <p>I think this is the end of a beautiful page template.</p>
+    <p>I think this is the end of a beautiful page design.</p>
   )
 end
 
 # Page
 curent_site.pages.find_or_create_by!(slug: "example-page",
-                                     template: page_template,
+                                     design: page_design,
                                      homepage: false) do |item|
   item.title = "Example Page"
   item.content = %(
@@ -86,20 +86,20 @@ curent_site.pages.find_or_create_by!(slug: "example-page",
   item.published_at = Time.now
 end
 
-# Template
-widget_template = curent_site.templates
-                             .find_or_create_by!(partial: true) do |item|
-  item.name = "Example Widget Template"
+# Design
+widget_design = curent_site.designs
+                           .find_or_create_by!(partial: true) do |item|
+  item.name = "Example Widget Design"
   item.content = %(
-    <p>I think this is the beginning of a beautiful widget template.</p>
+    <p>I think this is the beginning of a beautiful widget design.</p>
     {{ content_for_layout }}
-    <p>I think this is the end of a beautiful widget template.</p>
+    <p>I think this is the end of a beautiful widget design.</p>
   )
 end
 
 # Widget
 curent_site.widgets.find_or_create_by!(slug: "example-widget",
-                                       template: widget_template) do |item|
+                                       design: widget_design) do |item|
   item.name = "Example Widget"
   item.content = %(
     <p>I think this is the content of the widget.</p>

@@ -19,16 +19,16 @@ en:
     #     edit:
     #       email: 'E-mail.'
     hints:
-      template:
-        partial: Partial templates can only be used with Widgets
+      design:
+        partial: Partial design can only be used with Widgets
     # include_blanks:
     #   defaults:
     #     age: 'Rather not say'
     prompts:
       page:
+        design: Select design
         parent: Select parent page
-        template: Select template
-      template:
-        parent: Select parent template
+      design:
+        parent: Select parent design
       widget:
-        template: Select template
+        design: Select design

@@ -4,7 +4,7 @@ module Archangel
   ##
   # Template Liquid render service
   #
-  class TemplateRenderService < RenderService
+  class DesignRenderService < RenderService
     ##
     # Render the Liquid content for template
     #

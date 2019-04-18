@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :template, class: "Archangel::Template" do
+  factory :design, class: "Archangel::Design" do
     site
-    sequence(:name) { |n| "Template #{n} Name" }
+    sequence(:name) { |n| "Design #{n} Name" }
     content do
-      "<p>BEFORE TEMPLATE<p>
+      "<p>BEFORE DESIGN<p>
        <p>{{ content_for_layout }}<p>
-       <p>AFTER TEMPLATE<p>"
+       <p>AFTER DESIGN<p>"
     end
     partial { false }
 
