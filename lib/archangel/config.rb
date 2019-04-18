@@ -7,8 +7,7 @@ module Archangel
   class Config < Anyway::Config
     config_name :archangel
 
-    attr_config allow_registration: false,
-                asset_maximum_file_size: 2.megabytes,
+    attr_config asset_maximum_file_size: 2.megabytes,
                 asset_extension_whitelist: %w[gif jpeg jpg png],
                 auth_path: "account",
                 backend_path: "backend",

@@ -54,6 +54,7 @@ en:
         template_id: Template
         title: Title
       archangel/site:
+        allow_registration: Allow Registration
         logo: Logo
         name: Name
         remove_logo: Remove Logo
@@ -64,6 +65,7 @@ en:
         parent_id: Parent
         partial: Partial
       archangel/user:
+        newsletter: Subscribe to newsletter
         avatar: Avatar
         email: Email
         name: Name

@@ -20,7 +20,13 @@
 
     <%= f.input :theme, as: :theme %>
     <%= f.input :locale, as: :language %>
+  </div>
 
+  <div class="form-inputs">
+    <%= f.input :allow_registration, as: :boolean %>
+  </div>
+
+  <div class="form-inputs">
     <div class="form-group site_metatags">
       <h3><%= Archangel.t(:metatags) %></h3>
 
