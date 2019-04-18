@@ -27,7 +27,7 @@ RSpec.describe "Frontend - Page", type: :request do
     it "returns 404 when page is future published" do
       create(:page, :future, slug: "foo")
 
-      get "/"
+      get "/foo"
 
       expect(response).to be_not_found
     end
@@ -35,7 +35,7 @@ RSpec.describe "Frontend - Page", type: :request do
     it "returns 404 when page is deleted" do
       create(:page, :deleted, slug: "foo")
 
-      get "/"
+      get "/foo"
 
       expect(response).to be_not_found
     end
