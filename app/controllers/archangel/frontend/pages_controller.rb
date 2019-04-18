@@ -39,18 +39,15 @@ module Archangel
       #   }
       #
       def show
-        return redirect_to_homepage if @page.homepage?
+        return redirect_to_homepage if redirect_to_homepage?
+
+        @page.content = liquid_rendered_template_content
 
         respond_to do |format|
           format.html do
-            render inline: liquid_rendered_template_content,
-                   layout: layout_from_theme
+            render(inline: @page.content, layout: layout_from_theme)
           end
-          format.json do
-            @page.content = liquid_rendered_content
-
-            render json: @page, layout: false
-          end
+          format.json { render(action: :show, layout: false) }
         end
       end
 
@@ -87,10 +84,19 @@ module Archangel
       end
 
       ##
+      # Check to redirect to homepage root permalink
+      #
+      # @return [Boolean] redirect or not
+      #
+      def redirect_to_homepage?
+        @page.homepage?
+      end
+
+      ##
       # Redirect to homepage root permalink is page is marked as the homepage
       #
       def redirect_to_homepage
-        redirect_to root_path, status: :moved_permanently
+        redirect_to frontend_root_path, status: :moved_permanently
       end
 
       ##
