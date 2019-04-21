@@ -59,7 +59,7 @@ module Archangel
       def set_resource
         page_permalink = params.fetch(:permalink, nil)
 
-        @page = current_site.pages.published.find_by!(permalink: page_permalink)
+        @page = current_site.pages.available.find_by!(permalink: page_permalink)
       end
 
       ##

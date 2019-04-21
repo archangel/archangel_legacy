@@ -63,9 +63,29 @@ module Archangel
     end
 
     context "scopes" do
+      context ".available" do
+        it "returns all where published_at <= now" do
+          page = create(:page)
+
+          expect(described_class.available.first).to eq(page)
+        end
+
+        it "returns all where published_at <= now in the future" do
+          page = create(:page, :future)
+
+          expect(described_class.available.first).to_not eq(page)
+        end
+      end
+
       context ".published" do
         it "returns all where published_at <= now" do
           page = create(:page)
+
+          expect(described_class.published.first).to eq(page)
+        end
+
+        it "returns all where published_at <= now in the future" do
+          page = create(:page, :future)
 
           expect(described_class.published.first).to eq(page)
         end
