@@ -1,4 +1,4 @@
-<tr class="page-<%= page.status %>">
+<tr class="page-<%= page.published? ? "published" : "unpublished" %> page-<%= page.available? ? "available" : "unavailable" %>">
   <td>
     <%= page.title %>
 
