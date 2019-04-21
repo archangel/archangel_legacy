@@ -30,7 +30,7 @@ module Archangel
       #   {
       #     "id": 123,
       #     "title": "Page Title",
-      #     "permalink": "path/to/page",
+      #     "permalink": "/path/to/page",
       #     "content": "</p>Content of the page</p>",
       #     "homepage": false,
       #     "published_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
@@ -41,16 +41,13 @@ module Archangel
       def show
         return redirect_to_homepage if redirect_to_homepage?
 
+        @page.content = liquid_rendered_template_content
+
         respond_to do |format|
           format.html do
-            render inline: liquid_rendered_template_content,
-                   layout: layout_from_theme
+            render(inline: @page.content, layout: layout_from_theme)
           end
-          format.json do
-            @page.content = liquid_rendered_content
-
-            render json: @page, layout: false
-          end
+          format.json { render(action: :show, layout: false) }
         end
       end
 
@@ -62,11 +59,7 @@ module Archangel
       def set_resource
         page_permalink = params.fetch(:permalink, nil)
 
-        @page = if page_permalink.blank?
-                  find_homepage
-                else
-                  find_page(page_permalink)
-                end
+        @page = current_site.pages.published.find_by!(permalink: page_permalink)
       end
 
       ##
@@ -96,34 +89,14 @@ module Archangel
       # @return [Boolean] redirect or not
       #
       def redirect_to_homepage?
-        return false unless @page
-
-        (params.fetch(:permalink, nil) == @page.permalink) && @page.homepage?
+        @page.homepage?
       end
 
       ##
       # Redirect to homepage root permalink is page is marked as the homepage
       #
       def redirect_to_homepage
-        redirect_to root_path, status: :moved_permanently
-      end
-
-      ##
-      # Find the homepage
-      #
-      # @return [Object] the homepage
-      #
-      def find_homepage
-        current_site.pages.published.homepage.first!
-      end
-
-      ##
-      # Find the requested page
-      #
-      # @return [Object] the page
-      #
-      def find_page(permalink)
-        current_site.pages.published.find_by!(permalink: permalink)
+        redirect_to frontend_root_path, status: :moved_permanently
       end
 
       ##
