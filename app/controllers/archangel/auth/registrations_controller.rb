@@ -27,7 +27,7 @@ module Archangel
       end
 
       def allow_registration
-        return render_404_error unless Archangel.config.allow_registration
+        return render_404_error unless current_site.allow_registration?
       end
     end
   end

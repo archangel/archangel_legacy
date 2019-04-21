@@ -4,11 +4,6 @@ default: &default
   #
   auth_path: "account"
 
-  # Allow user registrations.
-  # Default is `false`
-  #
-  allow_registration: false
-
   # Backend root path.
   # Default is "backend"
   #

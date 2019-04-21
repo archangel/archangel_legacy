@@ -145,6 +145,7 @@ module Archangel
       def permitted_attributes
         [
           :locale, :logo, :name, :remove_logo, :theme,
+          :allow_registration,
           metatags_attributes: %i[id _destroy name content]
         ]
       end

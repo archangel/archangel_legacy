@@ -9,12 +9,19 @@ module Archangel
 
     mount_uploader :logo, Archangel::LogoUploader
 
+    typed_store :settings, coder: JSON do |s|
+      s.boolean :allow_registration, default: false
+      s.datetime :preferred_at, default: Time.now, accessor: false
+    end
+
     validates :locale, presence: true, inclusion: { in: Archangel::LANGUAGES }
     validates :logo, file_size: {
       less_than_or_equal_to: Archangel.config.image_maximum_file_size
     }
     validates :name, presence: true
     validates :theme, inclusion: { in: Archangel.themes }, allow_blank: true
+
+    validates :allow_registration, inclusion: { in: [true, false] }
 
     has_many :assets
     has_many :collections
