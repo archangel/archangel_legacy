@@ -114,23 +114,23 @@ module Archangel
       end
     end
 
-    context "#status" do
-      it "returns `unpublished` for Pages not published" do
+    context ".available?" do
+      it "is available when published in the past" do
+        page = build(:page, published_at: 1.week.ago)
+
+        expect(page.available?).to be_truthy
+      end
+
+      it "is unavailable when published in the future" do
+        page = build(:page, published_at: 1.week.from_now)
+
+        expect(page.available?).to be_falsey
+      end
+
+      it "is unavailable not published" do
         page = build(:page, :unpublished)
 
-        expect(page.status).to eq("unpublished")
-      end
-
-      it "returns `future-published` for Pages published in the future" do
-        page = build(:page, :future)
-
-        expect(page.status).to eq("future-published")
-      end
-
-      it "returns `published` for Pages published in the past" do
-        page = build(:page)
-
-        expect(page.status).to eq("published")
+        expect(page.available?).to be_falsey
       end
     end
 

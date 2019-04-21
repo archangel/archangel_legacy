@@ -10,8 +10,8 @@ module Archangel
     #
     class PagesController < FrontendController
       before_action :set_resource, only: %i[show]
-      before_action :assign_meta_tags, if: -> { request.get? },
-                                       unless: -> { request.xhr? }
+      before_action :assign_resource_meta_tags, if: -> { request.get? },
+                                                unless: -> { request.xhr? }
 
       ##
       # Frontend page
@@ -30,7 +30,7 @@ module Archangel
       #   {
       #     "id": 123,
       #     "title": "Page Title",
-      #     "permalink": "path/to/page",
+      #     "permalink": "/path/to/page",
       #     "content": "</p>Content of the page</p>",
       #     "homepage": false,
       #     "published_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
@@ -46,11 +46,9 @@ module Archangel
             render inline: liquid_rendered_design_content,
                    layout: layout_from_theme
           end
-          format.json do
-            @page.content = liquid_rendered_content
+          @page.content = liquid_rendered_content
 
-            render json: @page, layout: false
-          end
+          format.json { render(action: :show, layout: false) }
         end
       end
 
@@ -62,18 +60,14 @@ module Archangel
       def set_resource
         page_permalink = params.fetch(:permalink, nil)
 
-        @page = if page_permalink.blank?
-                  find_homepage
-                else
-                  find_page(page_permalink)
-                end
+        @page = current_site.pages.published.find_by!(permalink: page_permalink)
       end
 
       ##
       # Assign meta tags to view
       #
-      def assign_meta_tags
-        apply_meta_tags(page_meta_tags)
+      def assign_resource_meta_tags
+        assign_meta_tags(resource_meta_tags)
       end
 
       ##
@@ -81,13 +75,16 @@ module Archangel
       #
       # @return [Object] the page meta tags
       #
-      def page_meta_tags
-        [
+      def resource_meta_tags
+        meta_tags = [
           current_site.metatags,
           @page.metatags
         ].flatten.inject({}) do |tags, metatag|
           tags.merge(metatag.name => metatag.content)
-        end.merge(title: @page.title)
+        end
+
+        { image_src: current_site.logo.url }.merge(meta_tags)
+                                            .merge(title: @page.title)
       end
 
       ##
@@ -96,34 +93,14 @@ module Archangel
       # @return [Boolean] redirect or not
       #
       def redirect_to_homepage?
-        return false unless @page
-
-        (params.fetch(:permalink, nil) == @page.permalink) && @page.homepage?
+        @page.homepage?
       end
 
       ##
       # Redirect to homepage root permalink is page is marked as the homepage
       #
       def redirect_to_homepage
-        redirect_to root_path, status: :moved_permanently
-      end
-
-      ##
-      # Find the homepage
-      #
-      # @return [Object] the homepage
-      #
-      def find_homepage
-        current_site.pages.published.homepage.first!
-      end
-
-      ##
-      # Find the requested page
-      #
-      # @return [Object] the page
-      #
-      def find_page(permalink)
-        current_site.pages.published.find_by!(permalink: permalink)
+        redirect_to frontend_root_path, status: :moved_permanently
       end
 
       ##

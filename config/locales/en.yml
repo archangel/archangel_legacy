@@ -81,7 +81,7 @@ en:
     site: Site
     slug: Slug
     sort: Sort
-    subscribe_to_newsletter: Subscribe to newsletter
+    templates: Templates
     theme: Theme
     title: Title
     toggle_navigation: Toggle navigation

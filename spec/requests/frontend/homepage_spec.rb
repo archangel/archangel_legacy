@@ -4,20 +4,12 @@ require "rails_helper"
 
 RSpec.describe "Frontend - Homepage", type: :request do
   describe "with available homepage" do
-    let(:homepage) { create(:page, :homepage) }
-
-    before { homepage }
+    let!(:homepage) { create(:page, :homepage) }
 
     it "returns successfully" do
       get "/"
 
       expect(response).to be_successful
-    end
-
-    it "redirects to frontend_root_path when homepage permalink requested" do
-      get "/#{homepage.permalink}"
-
-      expect(response).to redirect_to("/")
     end
   end
 
@@ -48,13 +40,10 @@ RSpec.describe "Frontend - Homepage", type: :request do
   end
 
   describe "with multiple homepages" do
-    let(:first_homepage) { create(:page, :homepage, content: "First") }
-    let(:second_homepage) { create(:page, content: "Second") }
+    let!(:first_homepage) { create(:page, :homepage, content: "First") }
+    let!(:second_homepage) { create(:page, content: "Second") }
 
     before do
-      first_homepage
-      second_homepage
-
       second_homepage.update_column(:homepage, true)
     end
 

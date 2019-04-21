@@ -165,9 +165,9 @@ Archangel::Engine.routes.draw do
                       }
 
     # GET /
-    root to: "pages#show"
+    root to: "homepages#show"
   end
 
   # GET /
-  root to: "frontend/pages#show"
+  root to: "frontend/homepages#show"
 end
