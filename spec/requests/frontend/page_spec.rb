@@ -13,6 +13,16 @@ RSpec.describe "Frontend - Page", type: :request do
     end
   end
 
+  describe "with available page as JSON" do
+    let!(:resource) { create(:page, slug: "foo") }
+
+    it "returns successfully" do
+      get "/foo", headers: { accept: "application/json" }
+
+      expect(response).to match_response_schema("frontend/pages/show")
+    end
+  end
+
   describe "with homepage" do
     let!(:resource) { create(:page, :homepage, slug: "foo") }
 
@@ -54,6 +64,15 @@ RSpec.describe "Frontend - Page", type: :request do
       get "/broken"
 
       expect(response).to be_not_found
+    end
+  end
+
+  describe "with available page as JSON" do
+    it "returns successfully" do
+      get "/broken", headers: { accept: "application/json" }
+
+      expect(response).to be_not_found
+      expect(response).to match_response_schema("frontend/errors/not_found")
     end
   end
 end
