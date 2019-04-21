@@ -130,7 +130,7 @@ module Archangel
       ::Liquid::Template.parse(content)
 
       true
-    rescue ::Liquid::SyntaxError => _e
+    rescue ::Liquid::SyntaxError
       false
     end
 
