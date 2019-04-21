@@ -1,4 +1,5 @@
-<tr class="entry-<%= entry.status %>" data-id="<%= entry.id %>">
+<tr class="entry-<%= entry.available? ? "available" : "unavailable" %> entry-<%= entry.accessible? ? "accessible" : "inaccessible" %>"
+    data-id="<%= entry.id %>">
   <td class="text-center"><%= Archangel.t(:sort) %></td>
   <% fields.each do |field| %>
     <td><%= entry.value[field] %></td>

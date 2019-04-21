@@ -71,9 +71,9 @@ module Archangel
           limit = 12 if limit.blank?
 
           site.entries
+              .accessible
               .where(collection: collection)
-              .page(offset)
-              .per(limit)
+              .page(offset).per(limit)
               .map(&:attributes)
         rescue StandardError
           []

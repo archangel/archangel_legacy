@@ -19,6 +19,70 @@ module Archangel
       it { is_expected.to belong_to(:collection) }
     end
 
+    context ".accessible?" do
+      it "is accessible" do
+        entry = build(:entry)
+
+        expect(entry.accessible?).to be_truthy
+      end
+
+      it "is not accessible in the future" do
+        entry = build(:entry, available_at: 1.week.from_now)
+
+        expect(entry.accessible?).to be_falsey
+      end
+
+      it "is not accessible" do
+        entry = build(:entry, :unavailable)
+
+        expect(entry.accessible?).to be_falsey
+      end
+    end
+
+    context "scopes" do
+      context ".accessible" do
+        it "returns all where available_at <= now" do
+          entry = create(:entry)
+
+          expect(described_class.accessible.first).to eq(entry)
+        end
+
+        it "returns all where available_at <= now in the future" do
+          entry = create(:entry, :future)
+
+          expect(described_class.accessible.first).to_not eq(entry)
+        end
+      end
+
+      context ".available" do
+        it "returns all where available_at <= now" do
+          entry = create(:entry)
+
+          expect(described_class.available.first).to eq(entry)
+        end
+
+        it "returns all where available_at <= now in the future" do
+          entry = create(:entry, :future)
+
+          expect(described_class.available.first).to eq(entry)
+        end
+      end
+
+      context ".unavailable" do
+        it "returns all where available_at is nil" do
+          entry = create(:entry, :unavailable)
+
+          expect(described_class.unavailable.first).to eq(entry)
+        end
+
+        it "returns all where available_at is > now" do
+          entry = create(:entry, :future)
+
+          expect(described_class.unavailable.first).to eq(entry)
+        end
+      end
+    end
+
     context ".available?" do
       it "is available" do
         entry = build(:entry)
@@ -36,26 +100,6 @@ module Archangel
         entry = build(:entry, :unavailable)
 
         expect(entry.available?).to be_falsey
-      end
-    end
-
-    context "#status" do
-      it "returns `unavailable` for Entries not available" do
-        entry = build(:entry, :unavailable)
-
-        expect(entry.status).to eq("unavailable")
-      end
-
-      it "returns `future-available` for Entries available in the future" do
-        entry = build(:entry, :future)
-
-        expect(entry.status).to eq("future-available")
-      end
-
-      it "returns `available` for Entries available in the past" do
-        entry = build(:entry)
-
-        expect(entry.status).to eq("available")
       end
     end
   end

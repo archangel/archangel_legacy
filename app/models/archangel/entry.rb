@@ -17,33 +17,44 @@ module Archangel
 
     belongs_to :collection
 
+    scope :accessible, (lambda do
+      available.where("available_at <= ?", Time.now)
+    end)
+
+    scope :available, (lambda do
+      where.not(available_at: nil)
+    end)
+
+    scope :unavailable, (lambda do
+      where("available_at IS NULL OR available_at > ?", Time.now)
+    end)
+
     default_scope { order(position: :asc) }
 
     ##
-    # Check if Entry is available. Available in the past, present and future.
-    # Future availability date is also considered available.
+    # Check if Entry is currently accessible.
+    #
+    # This will return true if there is a published date and it is in the past.
+    # Future publication date will return false.
+    #
+    # @return [Boolean] if accessible
+    #
+    def accessible?
+      available? && available_at < Time.now
+    end
+
+    ##
+    # Check if Entry is available.
+    #
+    # Future publication date is also considered available. This will return
+    # true if there is any available date avaialable; past and future.
+    #
+    # @see Entry.accessible?
     #
     # @return [Boolean] if available
     #
     def available?
       available_at.present?
-    end
-
-    ##
-    # Return string of availability status.
-    #
-    # @return [String] available status
-    #
-    def status
-      if available?
-        if available_at > Time.now
-          "future-available"
-        else
-          "available"
-        end
-      else
-        "unavailable"
-      end
     end
   end
 end
