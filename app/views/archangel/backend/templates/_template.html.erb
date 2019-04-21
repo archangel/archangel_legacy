@@ -1,4 +1,4 @@
-<tr class="template-<%= template.status %>">
+<tr class="template-<%= template.partial? ? "partial" : "full" %>">
   <td><%= template.name %></td>
   <td><%= template.partial? %></td>
   <td class="actions text-right">
