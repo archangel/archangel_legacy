@@ -10,8 +10,8 @@ module Archangel
     #
     class PagesController < FrontendController
       before_action :set_resource, only: %i[show]
-      before_action :assign_meta_tags, if: -> { request.get? },
-                                       unless: -> { request.xhr? }
+      before_action :assign_resource_meta_tags, if: -> { request.get? },
+                                                unless: -> { request.xhr? }
 
       ##
       # Frontend page
@@ -65,8 +65,8 @@ module Archangel
       ##
       # Assign meta tags to view
       #
-      def assign_meta_tags
-        apply_meta_tags(page_meta_tags)
+      def assign_resource_meta_tags
+        assign_meta_tags(resource_meta_tags)
       end
 
       ##
@@ -74,13 +74,16 @@ module Archangel
       #
       # @return [Object] the page meta tags
       #
-      def page_meta_tags
-        [
+      def resource_meta_tags
+        meta_tags = [
           current_site.metatags,
           @page.metatags
         ].flatten.inject({}) do |tags, metatag|
           tags.merge(metatag.name => metatag.content)
-        end.merge(title: @page.title)
+        end
+
+        { image_src: current_site.logo.url }.merge(meta_tags)
+                                            .merge(title: @page.title)
       end
 
       ##
