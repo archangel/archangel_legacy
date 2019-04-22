@@ -61,7 +61,7 @@ module Archangel
               value: {
                 slug: "new-collection-entry"
               },
-              available_at: Time.current
+              published_at: Time.current
             }
           end
 

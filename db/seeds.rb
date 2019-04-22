@@ -126,5 +126,5 @@ end
 # Entry
 collection.entries.find_or_create_by(collection: collection) do |item|
   item.value = { field1: "Value for field 1" }
-  item.available_at = Time.now
+  item.published_at = Time.now
 end
