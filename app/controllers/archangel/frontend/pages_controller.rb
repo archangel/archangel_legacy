@@ -47,7 +47,9 @@ module Archangel
           format.html do
             render(inline: @page.content, layout: layout_from_theme)
           end
-          format.json { render(action: :show, layout: false) }
+          format.json do
+            render(template: "archangel/frontend/pages/show", layout: false)
+          end
         end
       end
 
