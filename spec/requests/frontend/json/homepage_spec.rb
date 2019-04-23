@@ -12,6 +12,14 @@ RSpec.describe "Frontend - Homepage (JSON)", type: :request do
       expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:ok)
     end
+
+    it "returns successfully with JSON schema" do
+      get "/", headers: { accept: "application/json" }
+
+      expect(response.content_type).to eq("application/json")
+      expect(response).to have_http_status(:ok)
+      expect(response).to match_response_schema("frontend/pages/show")
+    end
   end
 
   describe "with unavailable homepage" do
@@ -69,6 +77,14 @@ RSpec.describe "Frontend - Homepage (JSON)", type: :request do
 
       expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
+    end
+
+    it "returns 404 with JSON schema" do
+      get "/", headers: { accept: "application/json" }
+
+      expect(response.content_type).to eq("application/json")
+      expect(response).to have_http_status(:not_found)
+      expect(response).to match_response_schema("frontend/errors/not_found")
     end
   end
 end

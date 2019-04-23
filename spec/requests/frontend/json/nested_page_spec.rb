@@ -14,6 +14,17 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
       expect(response).to have_http_status(:ok)
     end
 
+    it "returns successfully with JSON schema" do
+      parent_a = create(:page, slug: "foo")
+      create(:page, parent: parent_a, slug: "bar")
+
+      get "/foo/bar", headers: { accept: "application/json" }
+
+      expect(response.content_type).to eq("application/json")
+      expect(response).to have_http_status(:ok)
+      expect(response).to match_response_schema("frontend/pages/show")
+    end
+
     it "returns successfully when parent is unavailable" do
       parent_a = create(:page, :unpublished, slug: "foo")
       create(:page, parent: parent_a, slug: "bar")
@@ -77,6 +88,14 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
+    end
+
+    it "returns 404 with JSON schema" do
+      get "/foo/broken", headers: { accept: "application/json" }
+
+      expect(response.content_type).to eq("application/json")
+      expect(response).to have_http_status(:not_found)
+      expect(response).to match_response_schema("frontend/errors/not_found")
     end
   end
 end
