@@ -17,7 +17,7 @@ module Archangel
       # Find and assign resource to the view
       #
       def set_resource
-        @page = current_site.pages.published.homepage.first!
+        @page = current_site.pages.available.homepage.first!
       end
 
       ##

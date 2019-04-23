@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "required": ["page"],
+  "properties": {
+    "page" : {
+      "type" : "object",
+      "required" : [
+        "id",
+        "title",
+        "homepage",
+        "content",
+        "permalink",
+        "published_at"
+      ],
+      "properties" : {
+        "id" : { "type" : "integer" },
+        "title" : { "type" : "string" },
+        "homepage" : { "type" : "boolean" },
+        "content" : { "type" : "string" },
+        "permalink" : { "type" : "string" },
+        "published_at" : { "type" : "string", "format": "date-time" }
+      }
+    }
+  }
+}

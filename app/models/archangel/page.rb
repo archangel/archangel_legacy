@@ -38,15 +38,19 @@ module Archangel
     accepts_nested_attributes_for :metatags, reject_if: :all_blank,
                                              allow_destroy: true
 
+    scope :available, (lambda do
+      published.where("published_at <= ?", Time.now)
+    end)
+
+    scope :homepage, (-> { where(homepage: true) })
+
     scope :published, (lambda do
-      where.not(published_at: nil).where("published_at <= ?", Time.now)
+      where.not(published_at: nil)
     end)
 
     scope :unpublished, (lambda do
       where("published_at IS NULL OR published_at > ?", Time.now)
     end)
-
-    scope :homepage, (-> { where(homepage: true) })
 
     ##
     # Check if Page is published.
@@ -126,7 +130,7 @@ module Archangel
       ::Liquid::Template.parse(content)
 
       true
-    rescue ::Liquid::SyntaxError => _e
+    rescue ::Liquid::SyntaxError
       false
     end
 

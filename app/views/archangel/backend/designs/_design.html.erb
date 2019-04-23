@@ -1,4 +1,4 @@
-<tr class="design-<%= design.status %>">
+<tr class="design-<%= design.partial? ? "partial" : "full" %>">
   <td><%= design.name %></td>
   <td><%= design.partial? %></td>
   <td class="actions text-right">

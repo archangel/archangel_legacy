@@ -46,9 +46,11 @@ module Archangel
             render inline: liquid_rendered_design_content,
                    layout: layout_from_theme
           end
-          @page.content = liquid_rendered_content
+          format.json do
+            @page.content = liquid_rendered_content
 
-          format.json { render(action: :show, layout: false) }
+            render(template: "archangel/frontend/pages/show", layout: false)
+          end
         end
       end
 
@@ -60,7 +62,7 @@ module Archangel
       def set_resource
         page_permalink = params.fetch(:permalink, nil)
 
-        @page = current_site.pages.published.find_by!(permalink: page_permalink)
+        @page = current_site.pages.available.find_by!(permalink: page_permalink)
       end
 
       ##
