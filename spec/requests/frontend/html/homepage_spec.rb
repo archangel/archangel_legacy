@@ -2,14 +2,15 @@
 
 require "rails_helper"
 
-RSpec.describe "Frontend - Homepage", type: :request do
+RSpec.describe "Frontend - Homepage (HTML)", type: :request do
   describe "with available homepage" do
     let!(:homepage) { create(:page, :homepage) }
 
     it "returns successfully" do
       get "/"
 
-      expect(response).to be_successful
+      expect(response.content_type).to eq("text/html")
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -29,7 +30,8 @@ RSpec.describe "Frontend - Homepage", type: :request do
 
       get "/"
 
-      expect(response).to be_not_found
+      expect(response.content_type).to eq("text/html")
+      expect(response).to have_http_status(:not_found)
     end
 
     it "returns 404 when homepage is future published" do
@@ -37,7 +39,8 @@ RSpec.describe "Frontend - Homepage", type: :request do
 
       get "/"
 
-      expect(response).to be_not_found
+      expect(response.content_type).to eq("text/html")
+      expect(response).to have_http_status(:not_found)
     end
 
     it "returns 404 when homepage is deleted" do
@@ -45,7 +48,8 @@ RSpec.describe "Frontend - Homepage", type: :request do
 
       get "/"
 
-      expect(response).to be_not_found
+      expect(response.content_type).to eq("text/html")
+      expect(response).to have_http_status(:not_found)
     end
   end
 
@@ -60,6 +64,9 @@ RSpec.describe "Frontend - Homepage", type: :request do
     it "returns the first available" do
       get "/"
 
+      expect(response.content_type).to eq("text/html")
+      expect(response).to have_http_status(:ok)
+
       expect(response.body).to include("First")
     end
   end
@@ -68,7 +75,8 @@ RSpec.describe "Frontend - Homepage", type: :request do
     it "returns 404" do
       get "/"
 
-      expect(response).to be_not_found
+      expect(response.content_type).to eq("text/html")
+      expect(response).to have_http_status(:not_found)
     end
   end
 
