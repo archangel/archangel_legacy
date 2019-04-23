@@ -40,8 +40,6 @@ module Archangel
       #         "url": "/uploads/tiny_file.png"
       #       }
       #     }
-      #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
-      #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
       #   }
       #
       def show
