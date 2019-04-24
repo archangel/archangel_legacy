@@ -70,7 +70,7 @@ module Archangel
           expect(described_class.available.first).to eq(page)
         end
 
-        it "returns all where published_at <= now in the future" do
+        it "returns all where published_at <= now not in the future" do
           page = create(:page, :future)
 
           expect(described_class.available.first).to_not eq(page)

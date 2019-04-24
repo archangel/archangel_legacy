@@ -41,6 +41,8 @@ en:
         name: Name
         parent_id: Parent
         partial: Partial
+      archangel/entry:
+        published_at: Published At
       archangel/field:
         classification: Classification
         label: Label

@@ -57,7 +57,7 @@ module Archangel
         fields = @collection.fields.map { |record| record[:slug].to_sym }
 
         [
-          :available_at,
+          :published_at,
           value: fields
         ]
       end
