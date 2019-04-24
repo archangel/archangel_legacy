@@ -40,7 +40,7 @@ module Archangel
     # @return [Boolean] if available
     #
     def available?
-      published? && published_at < Time.now
+      published? && published_at <= Time.now
     end
 
     ##
