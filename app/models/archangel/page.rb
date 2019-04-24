@@ -78,6 +78,16 @@ module Archangel
       published? && published_at <= Time.now
     end
 
+    def content_compiled
+      variables = {
+        current_page: "/#{permalink}",
+        page: to_liquid,
+        site: site.to_liquid
+      }
+
+      Archangel::RenderService.call(content, variables)
+    end
+
     ##
     # Liquid object for Page
     #
