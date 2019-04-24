@@ -36,6 +36,8 @@ en:
       archangel/collection:
         name: Name
         slug: Slug
+      archangel/entry:
+        published_at: Published At
       archangel/field:
         classification: Classification
         label: Label

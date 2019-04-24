@@ -96,6 +96,7 @@ module Archangel
           collection = site.collections.find_by!(slug: slug)
 
           site.entries
+              .available
               .where(collection: collection)
               .page(attributes.fetch(:offset, 1))
               .per(attributes.fetch(:limit, 12))
