@@ -11,6 +11,7 @@ module Archangel
 
     typed_store :settings, coder: JSON do |s|
       s.boolean :allow_registration, default: false
+      s.boolean :homepage_redirect, default: false
       s.datetime :preferred_at, default: Time.now, accessor: false
     end
 
@@ -22,6 +23,7 @@ module Archangel
     validates :theme, inclusion: { in: Archangel.themes }, allow_blank: true
 
     validates :allow_registration, inclusion: { in: [true, false] }
+    validates :homepage_redirect, inclusion: { in: [true, false] }
 
     has_many :assets
     has_many :collections
