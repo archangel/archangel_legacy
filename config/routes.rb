@@ -109,6 +109,17 @@ Archangel::Engine.routes.draw do
       end
     end
 
+    # GET    /backend/designs
+    # GET    /backend/designs/page/[PAGE]
+    # POST   /backend/designs
+    # GET    /backend/designs/new
+    # GET    /backend/designs/[ID]/edit
+    # GET    /backend/designs/[ID]
+    # PATCH  /backend/designs/[ID]
+    # PUT    /backend/designs/[ID]
+    # DELETE /backend/designs/[ID]
+    resources :designs, concerns: %i[paginatable]
+
     # GET    /backend/pages
     # GET    /backend/pages/page/[PAGE]
     # POST   /backend/pages
@@ -119,17 +130,6 @@ Archangel::Engine.routes.draw do
     # PUT    /backend/pages/[ID]
     # DELETE /backend/pages/[ID]
     resources :pages, concerns: %i[paginatable]
-
-    # GET    /backend/templates
-    # GET    /backend/templates/page/[PAGE]
-    # POST   /backend/templates
-    # GET    /backend/templates/new
-    # GET    /backend/templates/[ID]/edit
-    # GET    /backend/templates/[ID]
-    # PATCH  /backend/templates/[ID]
-    # PUT    /backend/templates/[ID]
-    # DELETE /backend/templates/[ID]
-    resources :templates, concerns: %i[paginatable]
 
     # GET    /backend/users
     # GET    /backend/users/page/[PAGE]

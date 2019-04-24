@@ -2,8 +2,8 @@
 
 module Archangel
   ##
-  # Template policy
+  # Design policy
   #
-  class TemplatePolicy < ApplicationPolicy
+  class DesignPolicy < ApplicationPolicy
   end
 end

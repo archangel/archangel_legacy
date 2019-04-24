@@ -65,7 +65,7 @@ module Archangel
 
     context ".available?" do
       it "is available" do
-        entry = build(:entry)
+        entry = build(:entry, published_at: 1.minute.ago)
 
         expect(entry.available?).to be_truthy
       end

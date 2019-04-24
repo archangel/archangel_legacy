@@ -1,6 +1,6 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:index_resource, resource: @templates.model_name.human.titleize) %></h2>
+    <h2><%= Archangel.t(:index_resource, resource: @designs.model_name.human.titleize) %></h2>
   </div>
 </div>
 
@@ -13,9 +13,9 @@
         </div>
 
         <div class="card-body">
-          <% if @templates.present? %>
+          <% if @designs.present? %>
 
-            <%= paginate @templates %>
+            <%= paginate @designs %>
 
             <div class="table-responsive">
               <table class="table table-hover table-bordered table-striped">
@@ -28,17 +28,17 @@
                 </thead>
 
                 <tbody>
-                  <%= render partial: "template", collection: @templates %>
+                  <%= render partial: "design", collection: @designs %>
                 </tbody>
               </table>
             </div>
 
-            <%= paginate @templates %>
+            <%= paginate @designs %>
 
           <% else %>
 
             <p class="no-resources">
-              <%= Archangel.t(:no_resources, resources: @templates.model_name.human.pluralize.downcase) %>
+              <%= Archangel.t(:no_resources, resources: @designs.model_name.human.pluralize.downcase) %>
             </p>
 
           <% end %>

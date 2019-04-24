@@ -17,8 +17,8 @@ module Archangel
 
     validate :valid_liquid_content
 
+    belongs_to :design, -> { where(partial: true) }, optional: true
     belongs_to :site
-    belongs_to :template, -> { where(partial: true) }, optional: true
 
     ##
     # Overwrite resource id to `slug`

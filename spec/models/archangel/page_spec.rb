@@ -55,9 +55,9 @@ module Archangel
     end
 
     context "associations" do
+      it { is_expected.to belong_to(:design).conditions(partial: false) }
       it { is_expected.to belong_to(:site) }
       it { is_expected.to belong_to(:parent).class_name("Archangel::Page") }
-      it { is_expected.to belong_to(:template).conditions(partial: false) }
 
       it { is_expected.to have_many(:metatags) }
     end
@@ -70,7 +70,7 @@ module Archangel
           expect(described_class.available.first).to eq(page)
         end
 
-        it "returns all where published_at <= now in the future" do
+        it "returns all where published_at <= now not in the future" do
           page = create(:page, :future)
 
           expect(described_class.available.first).to_not eq(page)

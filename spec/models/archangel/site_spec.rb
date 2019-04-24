@@ -23,9 +23,9 @@ module Archangel
 
     it { is_expected.to have_many(:assets) }
     it { is_expected.to have_many(:collections) }
+    it { is_expected.to have_many(:designs) }
     it { is_expected.to have_many(:metatags) }
     it { is_expected.to have_many(:pages) }
-    it { is_expected.to have_many(:templates) }
     it { is_expected.to have_many(:users) }
     it { is_expected.to have_many(:widgets) }
 

@@ -6,37 +6,37 @@ module Archangel
   #
   module Backend
     ##
-    # Backend widgets controller
+    # Backend designs controller
     #
-    class WidgetsController < BackendController
+    class DesignsController < BackendController
       include Archangel::Controllers::ResourcefulConcern
 
       protected
 
       def permitted_attributes
-        %w[content design_id name slug]
+        %w[content name parent_id partial]
       end
 
       def resources_content
-        @widgets = current_site.widgets
+        @designs = current_site.designs
                                .order(name: :asc)
                                .page(page_num).per(per_page)
 
-        authorize @widgets
+        authorize @designs
       end
 
       def resource_content
         resource_id = params.fetch(:id)
 
-        @widget = current_site.widgets.find_by!(slug: resource_id)
+        @design = current_site.designs.find_by!(id: resource_id)
 
-        authorize @widget
+        authorize @design
       end
 
       def resource_new_content
-        @widget = current_site.widgets.new(resource_new_params)
+        @design = current_site.designs.new(resource_new_params)
 
-        authorize @widget
+        authorize @design
       end
     end
   end

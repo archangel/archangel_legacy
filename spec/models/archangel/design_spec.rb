@@ -3,7 +3,7 @@
 require "rails_helper"
 
 module Archangel
-  RSpec.describe Template, type: :model do
+  RSpec.describe Design, type: :model do
     context "validations" do
       it { is_expected.to validate_presence_of(:content) }
       it { is_expected.to validate_presence_of(:name) }
@@ -20,10 +20,10 @@ module Archangel
     context "associations" do
       it { is_expected.to belong_to(:site) }
 
-      it "belongs to Template" do
+      it "belongs to Design" do
         expect(subject).to(
           belong_to(:parent).conditions(partial: false)
-                            .class_name("Archangel::Template")
+                            .class_name("Archangel::Design")
         )
       end
     end

@@ -61,6 +61,16 @@
       return object.backendPathFor('collections/' + slug + '/entries/sort');
     },
 
+    // Designs
+    designsPath: object.backendPathFor('designs'),
+    newDesignPath: object.backendPathFor('designs/new'),
+    designPath: function (id) {
+      return object.backendPathFor('designs/' + id);
+    },
+    editDesignPath: function (id) {
+      return object.backendPathFor('designs/' + id + '/edit');
+    },
+
     // Pages
     pagesPath: object.backendPathFor('pages'),
     newPagePath: object.backendPathFor('pages/new'),
@@ -78,16 +88,6 @@
     // Site
     sitePath: object.backendPathFor('site'),
     editSitePath: object.backendPathFor('site/edit'),
-
-    // Templates
-    templatesPath: object.backendPathFor('templates'),
-    newTemplatePath: object.backendPathFor('templates/new'),
-    templatePath: function (id) {
-      return object.backendPathFor('templates/' + id);
-    },
-    editTemplatePath: function (id) {
-      return object.backendPathFor('templates/' + id + '/edit');
-    },
 
     // Users
     usersPath: object.backendPathFor('users'),

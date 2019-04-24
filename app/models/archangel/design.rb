@@ -2,9 +2,9 @@
 
 module Archangel
   ##
-  # Template model
+  # Design model
   #
-  class Template < ApplicationRecord
+  class Design < ApplicationRecord
     acts_as_paranoid
 
     validates :content, presence: true
@@ -14,7 +14,7 @@ module Archangel
     validate :valid_liquid_content
 
     belongs_to :parent, -> { where(partial: false) },
-               class_name: "Archangel::Template",
+               class_name: "Archangel::Design",
                optional: true
     belongs_to :site
 

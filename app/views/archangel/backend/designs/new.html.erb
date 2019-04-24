@@ -1,6 +1,6 @@
 <div class="card card-default">
   <div class="card-body">
-    <h2><%= Archangel.t(:new_resource, resource: @template.model_name.human.titleize) %></h2>
+    <h2><%= Archangel.t(:new_resource, resource: @design.model_name.human.titleize) %></h2>
   </div>
 </div>
 
@@ -13,7 +13,7 @@
         </div>
 
         <div class="card-body">
-          <%= render "form", template: @template %>
+          <%= render "form", design: @design %>
         </div>
       </div>
     </div>
