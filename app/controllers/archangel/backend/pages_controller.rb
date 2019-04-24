@@ -9,14 +9,14 @@ module Archangel
     # Backend pages controller
     #
     class PagesController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       protected
 
       def permitted_attributes
         [
-          :content, :homepage, :parent_id, :path, :published_at, :slug,
-          :template_id, :title,
+          :content, :design_id, :homepage, :parent_id, :permalink,
+          :published_at, :slug, :title,
           metatags_attributes: %i[id _destroy name content]
         ]
       end

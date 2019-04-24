@@ -17,10 +17,8 @@ module Archangel
 
     validate :valid_liquid_content
 
+    belongs_to :design, -> { where(partial: true) }, optional: true
     belongs_to :site
-    belongs_to :template, -> { where(partial: true) },
-               class_name: "Archangel::Template",
-               optional: true
 
     ##
     # Overwrite resource id to `slug`
@@ -55,7 +53,7 @@ module Archangel
       ::Liquid::Template.parse(content)
 
       true
-    rescue ::Liquid::SyntaxError => _e
+    rescue ::Liquid::SyntaxError
       false
     end
   end

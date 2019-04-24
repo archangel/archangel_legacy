@@ -9,6 +9,7 @@ module Archangel
       class SiteDrop < Archangel::Liquid::Drop
         attributes :locale, :name
 
+        ##
         # Original size Site logo URL
         #
         # @return [String] the original Site logo URL

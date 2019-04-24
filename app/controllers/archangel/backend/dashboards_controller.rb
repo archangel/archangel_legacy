@@ -9,7 +9,7 @@ module Archangel
     # Backend dashboards controller
     #
     class DashboardsController < BackendController
-      include Archangel::SkipAuthorizableConcern
+      include Archangel::Controllers::SkipAuthorizableConcern
 
       ##
       # Backend dashboard

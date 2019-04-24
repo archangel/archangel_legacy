@@ -9,7 +9,7 @@ module Archangel
     # Backend users controller
     #
     class UsersController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       ##
       # Invite backend user
@@ -21,7 +21,7 @@ module Archangel
       #   POST /backend/users
       #   POST /backend/users.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "user": {
       #       "name": "First Last",
@@ -55,7 +55,7 @@ module Archangel
       #   PUT   /backend/users/:slug
       #   PUT   /backend/users/:slug.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "user": {
       #       "name": "First Last",

@@ -39,12 +39,7 @@ module Archangel
       #       "tiny": {
       #         "url": "/uploads/tiny_file.png"
       #       }
-      #     },
-      #     "content": "</p>Content of the Widget</p>",
-      #     "template_id": 123,
-      #     "deleted_at": null,
-      #     "created_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
-      #     "updated_at": "YYYY-MM-DDTHH:MM:SS.MSZ"
+      #     }
       #   }
       #
       def show
@@ -83,9 +78,7 @@ module Archangel
       #       "tiny": {
       #         "url": "/uploads/tiny_file.png"
       #       }
-      #     },
-      #     "content": "</p>Content of the Widget</p>",
-      #     "template_id": 123
+      #     }
       #   }
       #
       def edit
@@ -126,9 +119,7 @@ module Archangel
       #         "tiny": {
       #           "url": "/uploads/tiny_file.png"
       #         }
-      #       },
-      #       "content": "</p>Content of the Widget</p>",
-      #       "template_id": 123
+      #       }
       #     }
       #   }
       #
@@ -145,6 +136,7 @@ module Archangel
       def permitted_attributes
         [
           :locale, :logo, :name, :remove_logo, :theme,
+          :allow_registration,
           metatags_attributes: %i[id _destroy name content]
         ]
       end

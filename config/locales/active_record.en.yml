@@ -7,6 +7,9 @@ en:
       archangel/collection:
         one: Collection
         other: Collections
+      archangel/design:
+        one: Design
+        other: Designs
       archangel/entry:
         one: Entry
         other: Entries
@@ -19,9 +22,6 @@ en:
       archangel/site:
         one: Site
         other: Site
-      archangel/template:
-        one: Template
-        other: Templates
       archangel/user:
         one: User
         other: Users
@@ -36,6 +36,13 @@ en:
       archangel/collection:
         name: Name
         slug: Slug
+      archangel/design:
+        content: Content
+        name: Name
+        parent_id: Parent
+        partial: Partial
+      archangel/entry:
+        published_at: Published At
       archangel/field:
         classification: Classification
         label: Label
@@ -47,23 +54,20 @@ en:
         name: Name
       archangel/page:
         content: Content
+        design_id: Design
         homepage: Homepage
         parent_id: Parent
         published_at: Published At
         slug: Slug
-        template_id: Template
         title: Title
       archangel/site:
+        allow_registration: Allow Registration
         logo: Logo
         name: Name
         remove_logo: Remove Logo
         theme: Theme
-      archangel/template:
-        content: Content
-        name: Name
-        parent_id: Parent
-        partial: Partial
       archangel/user:
+        newsletter: Subscribe to newsletter
         avatar: Avatar
         email: Email
         name: Name
@@ -72,6 +76,6 @@ en:
         username: Username
       archangel/widget:
         content: Content
+        design_id: Design
         name: Name
         slug: Slug
-        template_id: Template

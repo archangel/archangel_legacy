@@ -9,7 +9,7 @@ module Archangel
     # Backend collection entries controller
     #
     class EntriesController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       ##
       # Update collection entry sort order
@@ -24,7 +24,7 @@ module Archangel
       #   POST /backend/collections/:slug/entries/sort
       #   POST /backend/collections/:slug/entries/sort.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "collection_entry": {
       #       "sort": ["0" => "1234", "1" => "5678", "2" => "4321"]
@@ -57,7 +57,7 @@ module Archangel
         fields = @collection.fields.map { |record| record[:slug].to_sym }
 
         [
-          :available_at,
+          :published_at,
           value: fields
         ]
       end

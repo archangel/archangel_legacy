@@ -28,8 +28,8 @@ module Archangel
             expect(resource_drop.id).to eq(resource.id.to_s)
           end
 
-          it "returns correct #path value" do
-            expect(resource_drop.path).to eq("/path-for-page")
+          it "returns correct #permalink value" do
+            expect(resource_drop.permalink).to eq("/path-for-page")
           end
         end
 

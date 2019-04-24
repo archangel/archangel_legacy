@@ -23,8 +23,10 @@
 
     <%= f.input :password, as: :password %>
     <%= f.input :password_confirmation, as: :password %>
+  </div>
 
-    <%= f.input :newsletter, as: :boolean, inline_label: Archangel.t(:subscribe_to_newsletter) %>
+  <div class="form-inputs">
+    <%= f.input :newsletter, as: :boolean %>
   </div>
 
   <div class="form-actions text-right">

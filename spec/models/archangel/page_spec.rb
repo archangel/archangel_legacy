@@ -7,7 +7,7 @@ module Archangel
     context "callbacks" do
       it { is_expected.to callback(:parameterize_slug).before(:validation) }
 
-      it { is_expected.to callback(:build_page_path).before(:save) }
+      it { is_expected.to callback(:build_page_permalink).before(:save) }
 
       it { is_expected.to callback(:homepage_reset).after(:save) }
 
@@ -33,10 +33,12 @@ module Archangel
 
       it { is_expected.to_not allow_value("invalid").for(:published_at) }
 
-      it "has a unique path scoped to Site" do
+      it "has a unique permalink scoped to Site" do
         resource = build(:page)
 
-        expect(resource).to validate_uniqueness_of(:path).scoped_to(:site_id)
+        expect(resource).to(
+          validate_uniqueness_of(:permalink).scoped_to(:site_id)
+        )
       end
 
       it "has a unique slug scoped to Parent and Site" do
@@ -53,17 +55,37 @@ module Archangel
     end
 
     context "associations" do
+      it { is_expected.to belong_to(:design).conditions(partial: false) }
       it { is_expected.to belong_to(:site) }
       it { is_expected.to belong_to(:parent).class_name("Archangel::Page") }
-      it { is_expected.to belong_to(:template).conditions(partial: false) }
 
       it { is_expected.to have_many(:metatags) }
     end
 
     context "scopes" do
+      context ".available" do
+        it "returns all where published_at <= now" do
+          page = create(:page)
+
+          expect(described_class.available.first).to eq(page)
+        end
+
+        it "returns all where published_at <= now not in the future" do
+          page = create(:page, :future)
+
+          expect(described_class.available.first).to_not eq(page)
+        end
+      end
+
       context ".published" do
         it "returns all where published_at <= now" do
           page = create(:page)
+
+          expect(described_class.published.first).to eq(page)
+        end
+
+        it "returns all where published_at <= now in the future" do
+          page = create(:page, :future)
 
           expect(described_class.published.first).to eq(page)
         end
@@ -112,23 +134,23 @@ module Archangel
       end
     end
 
-    context "#status" do
-      it "returns `unpublished` for Pages not published" do
+    context ".available?" do
+      it "is available when published in the past" do
+        page = build(:page, published_at: 1.week.ago)
+
+        expect(page.available?).to be_truthy
+      end
+
+      it "is unavailable when published in the future" do
+        page = build(:page, published_at: 1.week.from_now)
+
+        expect(page.available?).to be_falsey
+      end
+
+      it "is unavailable not published" do
         page = build(:page, :unpublished)
 
-        expect(page.status).to eq("unpublished")
-      end
-
-      it "returns `future-published` for Pages published in the future" do
-        page = build(:page, :future)
-
-        expect(page.status).to eq("future-published")
-      end
-
-      it "returns `published` for Pages published in the past" do
-        page = build(:page)
-
-        expect(page.status).to eq("published")
+        expect(page.available?).to be_falsey
       end
     end
 

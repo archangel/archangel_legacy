@@ -29,10 +29,10 @@ module Archangel
     context "associations" do
       it { is_expected.to belong_to(:site) }
 
-      it "belongs to Template" do
+      it "belongs to Design" do
         expect(subject).to(
-          belong_to(:template).conditions(partial: true)
-                              .class_name("Archangel::Template")
+          belong_to(:design).conditions(partial: true)
+                            .class_name("Archangel::Design")
         )
       end
     end

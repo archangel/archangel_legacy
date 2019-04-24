@@ -49,10 +49,9 @@ module Archangel
 
           rendered_widget = render_widget(widget.content, environments)
 
-          template = widget.template
-
-          if template.present?
-            rendered_widget = render_templated_widget(template, rendered_widget)
+          if widget.design.present?
+            rendered_widget = render_designed_widget(widget.design,
+                                                     rendered_widget)
           end
 
           rendered_widget
@@ -72,9 +71,9 @@ module Archangel
           Archangel::RenderService.call(content, assigns)
         end
 
-        def render_templated_widget(template_content, widget_content)
-          Archangel::TemplateRenderService.call(
-            template_content,
+        def render_designed_widget(design_content, widget_content)
+          Archangel::DesignRenderService.call(
+            design_content,
             content_for_layout: widget_content
           )
         end

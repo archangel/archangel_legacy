@@ -22,6 +22,10 @@ group :development, :test do
 end
 
 group :test do
+  gem "json-schema", "~> 2.8", require: false
+  gem "simplecov", "~> 0.16", require: false
+  gem "timecop", "~> 0.9", require: false
+
   gem "capybara", "~> 3.8"
   gem "database_cleaner", "~> 1.7"
   gem "factory_bot_rails", "~> 4.11"
@@ -30,5 +34,4 @@ group :test do
   gem "rspec-rails", "~> 3.8"
   gem "shoulda-callback-matchers", "~> 1.1"
   gem "shoulda-matchers", "~> 3.1"
-  gem "simplecov", "~> 0.16"
 end

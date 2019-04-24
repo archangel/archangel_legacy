@@ -37,9 +37,9 @@ module Archangel
           expect(result).to include("<p>Content of the widget</p>")
         end
 
-        it "returns widget content with template" do
-          template = create(:template, :partial, site: site)
-          widget = create(:widget, site: site, template: template)
+        it "returns widget content with design" do
+          design = create(:design, :partial, site: site)
+          widget = create(:widget, site: site, design: design)
 
           result = ::Liquid::Template.parse("{% widget '#{widget.slug}' %}")
                                      .render(context)

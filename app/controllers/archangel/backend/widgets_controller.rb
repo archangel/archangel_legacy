@@ -9,12 +9,12 @@ module Archangel
     # Backend widgets controller
     #
     class WidgetsController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       protected
 
       def permitted_attributes
-        %w[content name slug template_id]
+        %w[content design_id name slug]
       end
 
       def resources_content

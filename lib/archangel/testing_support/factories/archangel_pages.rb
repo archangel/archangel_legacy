@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :page, class: "Archangel::Page" do
     site
-    template { nil }
+    design { nil }
     sequence(:title) { |n| "Page #{n} Title" }
     sequence(:slug) { |n| "page-#{n}" }
     content { "<p>Content of the page</p>" }
@@ -14,8 +14,8 @@ FactoryBot.define do
       association :parent, factory: :page
     end
 
-    trait :with_template do
-      association :template, factory: :template, partial: false
+    trait :with_design do
+      association :design, factory: :design, partial: false
     end
 
     trait :homepage do

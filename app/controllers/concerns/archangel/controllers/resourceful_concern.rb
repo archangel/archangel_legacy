@@ -99,7 +99,7 @@ module Archangel
       #   POST /resources
       #   POST /resources.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "resource": {
       #       "id": 123,
@@ -157,7 +157,7 @@ module Archangel
       #   PUT   /resources/:id
       #   PUT   /resources/:id.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "resource": {
       #       "id": 123,
@@ -221,7 +221,7 @@ module Archangel
       end
 
       def resource_namespace
-        nil
+        controller_path.split("/").second.to_sym
       end
 
       def resource_params

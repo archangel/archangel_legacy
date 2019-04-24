@@ -4,6 +4,8 @@ require "rails_helper"
 
 RSpec.feature "Auth registration", type: :feature do
   describe "when registration is disabled" do
+    let!(:site) { create(:site, allow_registration: false) }
+
     it "returns a 404" do
       visit archangel.new_user_registration_path
 
@@ -12,9 +14,12 @@ RSpec.feature "Auth registration", type: :feature do
   end
 
   describe "when registration is enabled" do
-    it "has additional form fields" do
-      allow(Archangel.config).to receive(:allow_registration) { true }
+    let!(:site) { create(:site, allow_registration: true) }
+    let!(:homepage) do
+      create(:page, :homepage, content: "Welcome to the homepage")
+    end
 
+    it "has additional form fields" do
       visit archangel.new_user_registration_path
 
       expect(page).to have_text "Name"
@@ -25,10 +30,6 @@ RSpec.feature "Auth registration", type: :feature do
     end
 
     it "allows successful registration" do
-      allow(Archangel.config).to receive(:allow_registration) { true }
-
-      create(:page, homepage: true, content: "Welcome to the homepage")
-
       visit archangel.new_user_registration_path
 
       fill_in "Name", with: "John Doe"

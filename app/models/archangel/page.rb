@@ -12,7 +12,7 @@ module Archangel
 
     before_validation :parameterize_slug
 
-    before_save :build_page_path
+    before_save :build_page_permalink
 
     after_save :homepage_reset
 
@@ -20,7 +20,7 @@ module Archangel
 
     validates :content, presence: true
     validates :homepage, inclusion: { in: [true, false] }
-    validates :path, uniqueness: { scope: :site_id }
+    validates :permalink, uniqueness: { scope: :site_id }
     validates :published_at, allow_blank: true, date: true
     validates :slug, presence: true,
                      uniqueness: { scope: %i[parent_id site_id] }
@@ -29,28 +29,36 @@ module Archangel
     validate :valid_liquid_content
     validate :within_valid_path
 
+    belongs_to :design, -> { where(partial: false) }, optional: true
     belongs_to :parent, class_name: "Archangel::Page", optional: true
     belongs_to :site
-    belongs_to :template, -> { where(partial: false) }, optional: true
 
     has_many :metatags, as: :metatagable
 
     accepts_nested_attributes_for :metatags, reject_if: :all_blank,
                                              allow_destroy: true
 
+    scope :available, (lambda do
+      published.where("published_at <= ?", Time.now)
+    end)
+
+    scope :homepage, (-> { where(homepage: true) })
+
     scope :published, (lambda do
-      where.not(published_at: nil).where("published_at <= ?", Time.now)
+      where.not(published_at: nil)
     end)
 
     scope :unpublished, (lambda do
       where("published_at IS NULL OR published_at > ?", Time.now)
     end)
 
-    scope :homepage, (-> { where(homepage: true) })
-
     ##
-    # Check if Page is published. Published in the past, present and future.
-    # Future publication date is also considered published.
+    # Check if Page is published.
+    #
+    # Future publication date is also considered published. This will return
+    # true if there is any published date avaialable; past and future.
+    #
+    # @see Page.available?
     #
     # @return [Boolean] if published
     #
@@ -59,20 +67,15 @@ module Archangel
     end
 
     ##
-    # Return string of publication status.
+    # Check if Page is currently available.
     #
-    # @return [String] publication status
+    # This will return true if there is a published date and it is in the past.
+    # Future publication date will return false.
     #
-    def status
-      if published?
-        if published_at > Time.now
-          "future-published"
-        else
-          "published"
-        end
-      else
-        "unpublished"
-      end
+    # @return [Boolean] if available
+    #
+    def available?
+      published? && published_at <= Time.now
     end
 
     ##
@@ -102,10 +105,10 @@ module Archangel
       self.slug = slug.to_s.downcase.parameterize
     end
 
-    def build_page_path
-      parent_path = parent.blank? ? nil : parent.path
+    def build_page_permalink
+      parent_permalink = parent.blank? ? nil : parent.permalink
 
-      self.path = [parent_path, slug].compact.join("/")
+      self.permalink = [parent_permalink, slug].compact.join("/")
     end
 
     def homepage_reset
@@ -127,7 +130,7 @@ module Archangel
       ::Liquid::Template.parse(content)
 
       true
-    rescue ::Liquid::SyntaxError => _e
+    rescue ::Liquid::SyntaxError
       false
     end
 

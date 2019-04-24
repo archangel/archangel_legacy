@@ -9,7 +9,7 @@ module Archangel
     # Backend assets controller
     #
     class AssetsController < BackendController
-      include Archangel::Controllers::Backend::ResourcefulConcern
+      include Archangel::Controllers::ResourcefulConcern
 
       ##
       # Create backend asset from WYSIWYG upload
@@ -21,7 +21,7 @@ module Archangel
       #   POST /backend/wysiwyg
       #   POST /backend/wysiwyg.json
       #
-      # Paramaters
+      # Parameters
       #   {
       #     "file": "local/path/to/new_file.gif"
       #   }

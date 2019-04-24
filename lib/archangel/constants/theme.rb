@@ -14,5 +14,5 @@ module Archangel
   ##
   # Default theme constant
   #
-  THEME_DEFAULT = "default".freeze
+  THEME_DEFAULT = "default"
 end

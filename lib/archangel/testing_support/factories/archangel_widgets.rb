@@ -3,13 +3,13 @@
 FactoryBot.define do
   factory :widget, class: "Archangel::Widget" do
     site
-    template { nil }
+    design { nil }
     sequence(:name) { |n| "Widget #{n}" }
     sequence(:slug) { |n| "widget-#{n}" }
     content { "<p>Content of the widget</p>" }
 
-    trait :with_template do
-      association :template, factory: :template, partial: true
+    trait :with_design do
+      association :design, factory: :design, partial: true
     end
 
     trait :deleted do

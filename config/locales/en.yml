@@ -7,7 +7,6 @@ en:
     are_you_sure: Are you sure?
     archangel: Archangel
     assets: Assets
-    available_at: Available At
     avatar: Avatar
     back: Back
     classification:
@@ -20,6 +19,7 @@ en:
     content: Content
     content_type: Content Type
     dashboard: Dashboard
+    designs: Designs
     destroy: Destroy
     duplicate_slug: duplicate slug
     duplicate_field_slug: duplicate slug
@@ -80,8 +80,6 @@ en:
     site: Site
     slug: Slug
     sort: Sort
-    subscribe_to_newsletter: Subscribe to newsletter
-    templates: Templates
     theme: Theme
     title: Title
     toggle_navigation: Toggle navigation
