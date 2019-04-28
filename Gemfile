@@ -23,6 +23,7 @@ end
 
 group :test do
   gem "json-schema", "~> 2.8", require: false
+  gem "launchy", "~> 2.4", require: false
   gem "simplecov", "~> 0.16", require: false
   gem "timecop", "~> 0.9", require: false
 

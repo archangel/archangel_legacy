@@ -37,14 +37,26 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
   end
 
   describe "with homepage" do
-    it "redirects to root path" do
-      parent_a = create(:page, slug: "foo")
-      create(:page, :homepage, parent: parent_a, slug: "bar")
+    it "redirects to root path when Site homepage_redirect is true" do
+      site = create(:site, homepage_redirect: true)
+      parent_a = create(:page, site: site, slug: "foo")
+      create(:page, :homepage, site: site, parent: parent_a, slug: "bar")
 
       get "/foo/bar", headers: { accept: "application/json" }
 
       expect(response).to redirect_to("/")
       expect(response).to have_http_status(:moved_permanently)
+    end
+
+    it "throws 404 when Site homepage_redirect is false" do
+      site = create(:site, homepage_redirect: false)
+      parent_a = create(:page, site: site, slug: "foo")
+      create(:page, :homepage, site: site, parent: parent_a, slug: "bar")
+
+      get "/foo/bar", headers: { accept: "application/json" }
+
+      expect(response.content_type).to eq("application/json")
+      expect(response).to have_http_status(:not_found)
     end
   end
 

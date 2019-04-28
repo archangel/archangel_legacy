@@ -5,12 +5,15 @@ module Archangel
   # Site model
   #
   class Site < ApplicationRecord
+    include Archangel::Models::MetatagableConcern
+
     acts_as_paranoid
 
     mount_uploader :logo, Archangel::LogoUploader
 
     typed_store :settings, coder: JSON do |s|
       s.boolean :allow_registration, default: false
+      s.boolean :homepage_redirect, default: false
       s.datetime :preferred_at, default: Time.now, accessor: false
     end
 
@@ -22,6 +25,7 @@ module Archangel
     validates :theme, inclusion: { in: Archangel.themes }, allow_blank: true
 
     validates :allow_registration, inclusion: { in: [true, false] }
+    validates :homepage_redirect, inclusion: { in: [true, false] }
 
     has_many :assets
     has_many :collections
@@ -32,11 +36,6 @@ module Archangel
 
     has_many :entries, through: :collections
     has_many :fields, through: :collections
-
-    has_many :metatags, as: :metatagable
-
-    accepts_nested_attributes_for :metatags, reject_if: :all_blank,
-                                             allow_destroy: true
 
     ##
     # Current site

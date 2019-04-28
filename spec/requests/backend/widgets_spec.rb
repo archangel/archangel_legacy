@@ -5,17 +5,6 @@ require "rails_helper"
 RSpec.describe "Backend - Widgets", type: :request do
   before { stub_authorization!(create(:user)) }
 
-  describe "GET /backend/widgets (#index)" do
-    it "returns all Widgets" do
-      create(:widget)
-      create(:widget, :deleted)
-
-      get "/backend/widgets"
-
-      expect(assigns(:widgets).size).to eq(1)
-    end
-  end
-
   describe "GET /backend/widgets/:slug (#show)" do
     let(:record) { create(:widget, slug: "foo") }
 
@@ -40,14 +29,6 @@ RSpec.describe "Backend - Widgets", type: :request do
     end
   end
 
-  describe "GET /backend/widgets/new (#new)" do
-    it "assigns a new resource as Widget" do
-      get "/backend/widgets/new"
-
-      expect(assigns(:widget)).to be_a_new(Archangel::Widget)
-    end
-  end
-
   describe "POST /backend/widgets (#create)" do
     let(:valid_attributes) do
       {
@@ -62,42 +43,6 @@ RSpec.describe "Backend - Widgets", type: :request do
         post "/backend/widgets", params: { widget: valid_attributes }
 
         expect(response).to redirect_to(archangel.backend_widgets_path)
-      end
-    end
-
-    describe "with invalid attributes" do
-      it "fails without name" do
-        invalid_attributes = valid_attributes.merge(name: "")
-
-        post "/backend/widgets", params: { widget: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
-      end
-
-      it "fails without content" do
-        invalid_attributes = valid_attributes.merge(content: "")
-
-        post "/backend/widgets", params: { widget: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
-      end
-
-      it "fails without slug" do
-        invalid_attributes = valid_attributes.merge(slug: "")
-
-        post "/backend/widgets", params: { widget: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
-      end
-
-      it "fails with duplicate slug" do
-        create(:widget, slug: "foo")
-
-        invalid_attributes = valid_attributes.merge(slug: "foo")
-
-        post "/backend/widgets", params: { widget: invalid_attributes }
-
-        expect(response.body).to include("has already been taken")
       end
     end
   end
