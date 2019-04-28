@@ -5,6 +5,7 @@ module Archangel
   # Page model
   #
   class Page < ApplicationRecord
+    include Archangel::Models::MetatagableConcern
     include Archangel::Models::PublishableConcern
 
     extend ActsAsTree::TreeView
@@ -33,11 +34,6 @@ module Archangel
     belongs_to :design, -> { where(partial: false) }, optional: true
     belongs_to :parent, class_name: "Archangel::Page", optional: true
     belongs_to :site
-
-    has_many :metatags, as: :metatagable
-
-    accepts_nested_attributes_for :metatags, reject_if: :all_blank,
-                                             allow_destroy: true
 
     scope :homepage, (-> { where(homepage: true) })
 

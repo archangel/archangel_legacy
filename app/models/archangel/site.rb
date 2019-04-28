@@ -5,6 +5,8 @@ module Archangel
   # Site model
   #
   class Site < ApplicationRecord
+    include Archangel::Models::MetatagableConcern
+
     acts_as_paranoid
 
     mount_uploader :logo, Archangel::LogoUploader
@@ -34,11 +36,6 @@ module Archangel
 
     has_many :entries, through: :collections
     has_many :fields, through: :collections
-
-    has_many :metatags, as: :metatagable
-
-    accepts_nested_attributes_for :metatags, reject_if: :all_blank,
-                                             allow_destroy: true
 
     ##
     # Current site
