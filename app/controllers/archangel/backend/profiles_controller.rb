@@ -173,7 +173,8 @@ module Archangel
       protected
 
       def permitted_attributes
-        %w[avatar email name password remove_avatar username
+        %w[avatar email name password password_confirmation remove_avatar
+           username
            newsletter]
       end
 

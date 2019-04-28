@@ -31,8 +31,15 @@ module Archangel
                       email: true,
                       uniqueness: { scope: :site_id }
     validates :name, presence: true
-    validates :password, presence: true, length: { minimum: 8 }, on: :create
-    validates :password, allow_blank: true, length: { minimum: 8 }, on: :update
+    validates :password, presence: true,
+                         confirmation: { case_sensitive: true },
+                         length: { minimum: 8 },
+                         on: :create
+    validates :password, presence: true,
+                         allow_blank: true,
+                         confirmation: { case_sensitive: true },
+                         length: { minimum: 8 },
+                         on: :update
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
     validates :username, presence: true, uniqueness: { scope: :site_id }
 

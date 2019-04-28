@@ -13,8 +13,6 @@ RSpec.feature "Backend - Site (HTML)", type: :feature do
         visit "/backend/site/edit"
 
         fill_in "Name", with: "Amazing Site"
-        uncheck "Allow Registration"
-        uncheck "Homepage redirect"
 
         click_button "Update Site"
 
