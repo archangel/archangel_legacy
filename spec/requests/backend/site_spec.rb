@@ -36,18 +36,6 @@ RSpec.describe "Backend - Site", type: :request do
       end
     end
 
-    describe "GET /backend/site/edit (#edit)" do
-      let(:record) { create(:site) }
-
-      before { record }
-
-      it "assigns a resource as @site" do
-        get "/backend/site/edit"
-
-        expect(assigns(:site)).to eq(record)
-      end
-    end
-
     describe "PATCH /backend/site (#update)" do
       let(:record) { create(:site) }
 
@@ -66,38 +54,9 @@ RSpec.describe "Backend - Site", type: :request do
 
           expect(response).to redirect_to(archangel.backend_site_path)
         end
-
-        it "manages Metatag resources" do
-          metatags_attributes = [
-            {
-              name: "description",
-              content: "Description for the Site"
-            },
-            {
-              name: "keywords",
-              content: "keywords,for,the,site"
-            }
-          ]
-
-          valid_metatag_attributes = valid_attributes.merge(
-            metatags_attributes: metatags_attributes
-          )
-
-          expect do
-            patch "/backend/site", params: { site: valid_metatag_attributes }
-          end.to change(Archangel::Metatag, :count).by(2)
-        end
       end
 
       describe "with invalid attributes" do
-        it "fails without title" do
-          invalid_attributes = valid_attributes.merge(name: "")
-
-          patch "/backend/site", params: { site: invalid_attributes }
-
-          expect(response.body).to include("can&#39;t be blank")
-        end
-
         it "fails with unrecognized locale" do
           invalid_attributes = valid_attributes.merge(locale: "foo")
 
