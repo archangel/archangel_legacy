@@ -5,18 +5,6 @@ require "rails_helper"
 RSpec.describe "Backend - Pages", type: :request do
   before { stub_authorization!(create(:user)) }
 
-  describe "GET /backend/pages (#index)" do
-    it "returns all Pages" do
-      create(:page)
-      create(:page, :unpublished)
-      create(:page, :future)
-
-      get "/backend/pages"
-
-      expect(assigns(:pages).size).to eq(3)
-    end
-  end
-
   describe "GET /backend/pages/:id (#show)" do
     let(:record) { create(:page) }
 
@@ -39,14 +27,6 @@ RSpec.describe "Backend - Pages", type: :request do
     end
   end
 
-  describe "GET /backend/pages/new (#new)" do
-    it "assigns a new resource as Page" do
-      get "/backend/pages/new"
-
-      expect(assigns(:page)).to be_a_new(Archangel::Page)
-    end
-  end
-
   describe "POST /backend/pages (#create)" do
     let(:valid_attributes) do
       {
@@ -61,73 +41,6 @@ RSpec.describe "Backend - Pages", type: :request do
         post "/backend/pages", params: { page: valid_attributes }
 
         expect(response).to redirect_to(archangel.backend_pages_path)
-      end
-
-      it "creates Metatag resources" do
-        metatags_attributes = [
-          {
-            name: "description",
-            content: "Description for the Page"
-          },
-          {
-            name: "keywords",
-            content: "keywords,for,the,page"
-          }
-        ]
-
-        valid_metatag_attributes = valid_attributes.merge(
-          metatags_attributes: metatags_attributes
-        )
-
-        expect do
-          post "/backend/pages", params: { page: valid_metatag_attributes }
-        end.to change(Archangel::Metatag, :count).by(2)
-      end
-    end
-
-    describe "with invalid attributes" do
-      it "fails without title" do
-        invalid_attributes = valid_attributes.merge(title: "")
-
-        post "/backend/pages", params: { page: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
-      end
-
-      it "fails without content" do
-        invalid_attributes = valid_attributes.merge(content: "")
-
-        post "/backend/pages", params: { page: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
-      end
-
-      it "fails without slug" do
-        invalid_attributes = valid_attributes.merge(slug: "")
-
-        post "/backend/pages", params: { page: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
-      end
-
-      it "fails with duplicate slug" do
-        create(:page, slug: "foo")
-
-        invalid_attributes = valid_attributes.merge(slug: "foo")
-
-        post "/backend/pages", params: { page: invalid_attributes }
-
-        expect(response.body).to include("has already been taken")
-      end
-
-      %w[account backend].each do |reserved_path|
-        it "fails with reserved path" do
-          invalid_attributes = valid_attributes.merge(slug: reserved_path)
-
-          post "/backend/pages", params: { page: invalid_attributes }
-
-          expect(response.body).to include("contains restricted path")
-        end
       end
     end
   end
@@ -172,20 +85,6 @@ RSpec.describe "Backend - Pages", type: :request do
         }
 
         expect(response.body).to include("can&#39;t be blank")
-      end
-    end
-
-    describe "with invalid Liquid format" do
-      it "fails with goofy Widget tag" do
-        invalid_attributes = valid_attributes.merge(
-          content: "{% widget %}"
-        )
-
-        patch "/backend/pages/#{record.id}", params: {
-          page: invalid_attributes
-        }
-
-        expect(response.body).to include("contains invalid Liquid formatting")
       end
     end
   end
