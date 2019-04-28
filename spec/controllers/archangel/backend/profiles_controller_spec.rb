@@ -25,14 +25,6 @@ module Archangel
         end
       end
 
-      describe "GET #edit" do
-        it "assigns the current user as @profile" do
-          get :edit
-
-          expect(assigns(:profile)).to eq(profile)
-        end
-      end
-
       describe "PUT #update" do
         context "with avatar upload" do
           let(:attributes) do
@@ -47,54 +39,6 @@ module Archangel
             expect(profile.avatar.url).to(
               include("/uploads/archangel/user/avatar")
             )
-          end
-        end
-
-        context "with valid params, with password" do
-          let(:attributes) do
-            {
-              name: "Fancy Name",
-              password: "new password"
-            }
-          end
-
-          it "assigns the current user as @profile" do
-            put :update, params: { profile: attributes }
-
-            expect(assigns(:profile)).to eq(profile)
-          end
-        end
-
-        context "with valid params, without password" do
-          let(:attributes) do
-            { name: "Fancy Name" }
-          end
-
-          it "assigns the current user as @profile" do
-            put :update, params: { profile: attributes }
-
-            expect(assigns(:profile)).to eq(profile)
-          end
-        end
-
-        context "with invalid params" do
-          let(:attributes) do
-            {
-              name: "Fancy Name",
-              password: "no"
-            }
-          end
-
-          it "assigns the current_user as @profile" do
-            put :update, params: { profile: attributes }
-
-            expect(assigns(:profile)).to eq(profile)
-          end
-
-          it "re-renders the 'edit' template" do
-            put :update, params: { profile: attributes }
-
-            expect(response).to render_template(:edit)
           end
         end
       end
