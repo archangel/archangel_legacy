@@ -7,22 +7,6 @@ module Archangel
     RSpec.describe CollectionsController, type: :controller do
       before { stub_authorization! }
 
-      describe "GET #index" do
-        it "assigns all resources as @collections" do
-          site = create(:site)
-
-          collection_a = create(:collection, site: site, name: "First")
-          collection_b = create(:collection, site: site, name: "Second")
-          collection_c = create(:collection, site: site, name: "Third")
-
-          get :index
-
-          expect(assigns(:collections)).to eq(
-            [collection_a, collection_b, collection_c]
-          )
-        end
-      end
-
       describe "GET #show" do
         it "assigns the requested resource as @collection" do
           collection = create(:collection)
@@ -30,14 +14,6 @@ module Archangel
           get :show, params: { id: collection }
 
           expect(assigns(:collection)).to eq(collection)
-        end
-      end
-
-      describe "GET #new" do
-        it "assigns a new resource as Collection" do
-          get :new
-
-          expect(assigns(:collection)).to be_a_new(Collection)
         end
       end
 
@@ -56,29 +32,10 @@ module Archangel
             }
           end
 
-          it "creates a new resource" do
-            expect do
-              post :create, params: { collection: params }
-            end.to change(Collection, :count).by(1)
-          end
-
-          it "assigns a newly created resource as @collection" do
-            post :create, params: { collection: params }
-
-            expect(assigns(:collection)).to be_a(Collection)
-            expect(assigns(:collection)).to be_persisted
-          end
-
           it "redirects after creating resource" do
             post :create, params: { collection: params }
 
             expect(response).to redirect_to(backend_collections_path)
-          end
-
-          it "creates fields with resource" do
-            expect do
-              post :create, params: { collection: params }
-            end.to change(Field, :count).by(1)
           end
         end
 
@@ -94,12 +51,6 @@ module Archangel
                 required: 2
               }]
             }
-          end
-
-          it "assigns a newly created but unsaved resource as @collection" do
-            post :create, params: { collection: params }
-
-            expect(assigns(:collection)).to be_a_new(Collection)
           end
 
           it "re-renders the `new` view" do
@@ -127,24 +78,6 @@ module Archangel
               name: "Updated Collection Name",
               slug: "updated-collection"
             }
-          end
-
-          it "updates the requested resource" do
-            collection = create(:collection, :with_fields, fields_count: 1)
-
-            put :update, params: { id: collection, collection: params }
-
-            collection.reload
-
-            expect(assigns(:collection)).to eq(collection)
-          end
-
-          it "assigns the requested resource as @collection" do
-            collection = create(:collection, :with_fields, fields_count: 1)
-
-            put :update, params: { id: collection, collection: params }
-
-            expect(assigns(:collection)).to eq(collection)
           end
 
           it "redirects after updating resource" do
@@ -216,12 +149,6 @@ module Archangel
             }
           end
 
-          it "assigns the resource as @collection" do
-            put :update, params: { id: collection, collection: params }
-
-            expect(assigns(:collection)).to eq(collection)
-          end
-
           it "re-renders the `edit` view" do
             put :update, params: { id: collection, collection: params }
 
@@ -231,14 +158,6 @@ module Archangel
       end
 
       describe "DELETE #destroy" do
-        it "destroys the requested resource" do
-          collection = create(:collection)
-
-          expect do
-            delete :destroy, params: { id: collection }
-          end.to change(Collection, :count).by(-1)
-        end
-
         it "redirects to the listing" do
           collection = create(:collection)
 
