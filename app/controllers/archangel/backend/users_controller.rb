@@ -35,8 +35,6 @@ module Archangel
       def create
         user = resource_new_content
 
-        user.invite! user
-
         respond_with user, location: -> { location_after_create }
       end
 
@@ -100,13 +98,10 @@ module Archangel
       end
 
       def resource_new_content
-        users = current_site.users
-        @user = users.new
+        @user = current_site.users.new
 
         if action_name.to_sym == :create
-          @user = users.invite!(resource_params) do |user|
-            user.skip_invitation = true
-          end
+          @user = current_site.users.invite!(resource_new_params, current_user)
         end
 
         authorize @user

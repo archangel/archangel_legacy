@@ -17,13 +17,8 @@ module Archangel
     context "validations" do
       it { is_expected.to validate_presence_of(:email) }
       it { is_expected.to validate_presence_of(:name) }
-      it { is_expected.to validate_presence_of(:password).on(:create) }
       it { is_expected.to validate_presence_of(:role) }
       it { is_expected.to validate_presence_of(:username) }
-
-      it { is_expected.to validate_length_of(:password).is_at_least(8) }
-
-      it { is_expected.to validate_presence_of(:password).on(:update) }
 
       it "has a unique username scoped to Site" do
         resource = build(:user)

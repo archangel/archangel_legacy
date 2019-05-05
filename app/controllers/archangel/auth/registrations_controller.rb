@@ -11,6 +11,7 @@ module Archangel
     class RegistrationsController < Devise::RegistrationsController
       before_action :allow_registration,
                     only: %i[cancel create destroy edit new update]
+      before_action :configure_permitted_parameters, if: :devise_controller?
 
       protected
 
@@ -28,6 +29,10 @@ module Archangel
 
       def allow_registration
         return render_404_error unless current_site.allow_registration?
+      end
+
+      def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_up, keys: %i[name username])
       end
     end
   end

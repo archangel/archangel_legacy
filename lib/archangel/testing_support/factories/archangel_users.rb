@@ -11,6 +11,12 @@ FactoryBot.define do
     confirmed_at { Time.current }
     confirmation_sent_at { Time.current }
 
+    trait :invited do
+      sequence(:invitation_token) { |n| "invitation_token-#{n}" }
+      invitation_created_at { Time.current }
+      invitation_accepted_at { Time.current }
+    end
+
     trait :avatar do
       avatar { fixture_file_upload(uploader_test_image) }
     end
