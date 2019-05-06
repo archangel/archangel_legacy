@@ -19,6 +19,20 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page).to have_content("User was successfully updated.")
       end
 
+      scenario "with valid data for profile with avatar" do
+        visit "/backend/profile/edit"
+
+        fill_in "Username", with: "glory"
+        attach_file "Avatar", uploader_test_image
+
+        click_button "Update User"
+
+        expect(page).to have_content("User was successfully updated.")
+
+        expect(page).to have_css("img[src^='/uploads/archangel/user/avatar']")
+        expect(page).to have_css("img[alt='glory']")
+      end
+
       scenario "with valid data for profile with password change" do
         visit "/backend/profile/edit"
 
@@ -53,6 +67,21 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
 
         expect(page.find(".input.profile_name"))
           .to have_content("can't be blank")
+
+        expect(page).to_not have_content("User was successfully updated.")
+      end
+
+      scenario "with non-image" do
+        visit "/backend/profile/edit"
+
+        attach_file "Avatar", uploader_test_stylesheet
+
+        click_button "Update User"
+
+        message = "You are not allowed to upload \"css\" files, allowed " \
+                  "types: gif, jpeg, jpg, png"
+
+        expect(page.find(".input.profile_avatar")).to have_content(message)
 
         expect(page).to_not have_content("User was successfully updated.")
       end
