@@ -156,16 +156,6 @@ module Archangel
           end
         end
       end
-
-      describe "DELETE #destroy" do
-        it "redirects to the listing" do
-          collection = create(:collection)
-
-          delete :destroy, params: { id: collection }
-
-          expect(response).to redirect_to(backend_collections_path)
-        end
-      end
     end
   end
 end
