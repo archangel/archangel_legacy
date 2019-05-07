@@ -32,6 +32,7 @@ Archangel::Engine.routes.draw do
              module: :devise,
              class_name: "Archangel::User",
              controllers: {
+               invitations: "archangel/auth/invitations",
                registrations: "archangel/auth/registrations"
              },
              path: "",
