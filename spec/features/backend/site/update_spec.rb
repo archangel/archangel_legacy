@@ -18,6 +18,18 @@ RSpec.feature "Backend - Site (HTML)", type: :feature do
 
         expect(page).to have_content("Site was successfully updated.")
       end
+
+      scenario "with valid data for site with Logo" do
+        visit "/backend/site/edit"
+
+        attach_file "Logo", uploader_test_image
+
+        click_button "Update Site"
+
+        expect(page).to have_content("Site was successfully updated.")
+
+        expect(page).to have_css("img[src^='/uploads/archangel/site/logo']")
+      end
     end
 
     describe "unsuccessful" do
