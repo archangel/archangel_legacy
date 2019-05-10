@@ -75,7 +75,7 @@ Archangel::Engine.routes.draw do
     # DELETE /backend/assets/[ID]
     resources :assets do
       # POST  /backend/assets/wysiwyg
-      post "wysiwyg", on: :collection
+      post "wysiwyg", on: :collection, defaults: { format: :json }
     end
 
     # GET    /backend/collections
