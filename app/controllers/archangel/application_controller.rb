@@ -9,7 +9,6 @@ module Archangel
   class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
-    include Archangel::Controllers::ActionableConcern
     include Archangel::Controllers::PaginatableConcern
     include Archangel::Controllers::ThemableConcern
 

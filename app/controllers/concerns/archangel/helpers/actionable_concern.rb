@@ -2,11 +2,11 @@
 
 module Archangel
   ##
-  # Controller concerns
+  # Helper concerns
   #
-  module Controllers
+  module Helpers
     ##
-    # Controller action concern
+    # Helper action concern
     #
     module ActionableConcern
       extend ActiveSupport::Concern
@@ -14,17 +14,14 @@ module Archangel
       included do
         helper_method :action,
                       :collection_action?,
-                      :create_action?,
-                      :destroy_action?,
                       :edit_action?,
                       :index_action?,
                       :member_action?,
                       :new_action?,
-                      :show_action?,
-                      :update_action?
+                      :show_action?
       end
 
-      %w[create destroy edit index new show update].each do |rest_action|
+      %w[edit index new show].each do |rest_action|
         define_method("#{rest_action}_action?".to_sym) do
           action?(rest_action)
         end
@@ -53,7 +50,7 @@ module Archangel
       ##
       # Test if action is a member action
       #
-      # Actions include [:show, :edit, :update, :destroy]
+      # Actions include [:show, :edit, :update]
       #
       # @return [Boolean] if action is a member action
       #
@@ -72,7 +69,7 @@ module Archangel
       end
 
       def member_actions
-        %i[destroy edit show update]
+        %i[edit show update]
       end
     end
   end

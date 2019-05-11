@@ -10,6 +10,7 @@ module Archangel
     include Archangel::Controllers::AuthenticatableConcern
     include Archangel::Controllers::AuthorizableConcern
     include Archangel::Controllers::MetatagableConcern
+    include Archangel::Helpers::ActionableConcern
 
     rescue_from Pundit::NotAuthorizedError, with: :render_401_error
 
