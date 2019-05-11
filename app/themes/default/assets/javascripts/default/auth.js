@@ -1,17 +1,12 @@
-//  Default Archangel auth theme
-//= require_self
+//
+///  Default Archangel auth theme
 //
 //  Third-party assets
-//= require jquery2
-//= require jquery_ujs
-//
-//  Archangel helper scripts
-//= require "archangel/object"
-//= require "archangel/object/routes"
-//= require "archangel/object/routes/auth"
+//= require jquery3
+//= require rails-ujs
 //
 //  Third-party Archangel assets (from the vendor directory)
 //= require archangel/auth
 //
 //  Theme assets
-//= require_tree ./auth
+// none

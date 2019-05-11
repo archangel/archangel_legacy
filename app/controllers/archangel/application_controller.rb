@@ -147,10 +147,17 @@ module Archangel
       new_user_session_path
     end
 
+    ##
+    # Theme switcher
+    #
+    # Theme to use to retrieve Javascripts and styles from. Auth and Backend
+    # will always use the "default" theme. Frontend will override this to return
+    # selected theme for Site.
+    #
+    # @return [String] default
+    #
     def theme_resolver
-      theme = current_site.theme
-
-      Archangel::THEMES.include?(theme) ? theme : Archangel::THEME_DEFAULT
+      "default"
     end
 
     def layout_from_theme
