@@ -5,6 +5,9 @@ module Archangel
   # Page model
   #
   class Page < ApplicationRecord
+    include Archangel::Models::MetatagableConcern
+    include Archangel::Models::PublishableConcern
+
     extend ActsAsTree::TreeView
 
     acts_as_tree order: :title
@@ -21,7 +24,6 @@ module Archangel
     validates :content, presence: true
     validates :homepage, inclusion: { in: [true, false] }
     validates :permalink, uniqueness: { scope: :site_id }
-    validates :published_at, allow_blank: true, date: true
     validates :slug, presence: true,
                      uniqueness: { scope: %i[parent_id site_id] }
     validates :title, presence: true
@@ -33,50 +35,7 @@ module Archangel
     belongs_to :parent, class_name: "Archangel::Page", optional: true
     belongs_to :site
 
-    has_many :metatags, as: :metatagable
-
-    accepts_nested_attributes_for :metatags, reject_if: :all_blank,
-                                             allow_destroy: true
-
-    scope :available, (lambda do
-      published.where("published_at <= ?", Time.now)
-    end)
-
     scope :homepage, (-> { where(homepage: true) })
-
-    scope :published, (lambda do
-      where.not(published_at: nil)
-    end)
-
-    scope :unpublished, (lambda do
-      where("published_at IS NULL OR published_at > ?", Time.now)
-    end)
-
-    ##
-    # Check if Page is published.
-    #
-    # Future publication date is also considered published. This will return
-    # true if there is any published date avaialable; past and future.
-    #
-    # @see Page.available?
-    #
-    # @return [Boolean] if published
-    #
-    def published?
-      published_at.present?
-    end
-
-    ##
-    # Check if Page is currently available.
-    #
-    # This will return true if there is a published date and it is in the past.
-    # Future publication date will return false.
-    #
-    # @return [Boolean] if available
-    #
-    def available?
-      published? && published_at <= Time.now
-    end
 
     ##
     # Liquid object for Page

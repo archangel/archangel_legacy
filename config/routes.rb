@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 Archangel::Engine.routes.draw do
-  # Pagination
-  concern :paginatable do
-    get "(page/:page)", action: :index, on: :collection, as: ""
-  end
-
   # GET    /account/login
   # POST   /account/login
   # DELETE /account/logout
@@ -37,6 +32,7 @@ Archangel::Engine.routes.draw do
              module: :devise,
              class_name: "Archangel::User",
              controllers: {
+               invitations: "archangel/auth/invitations",
                registrations: "archangel/auth/registrations"
              },
              path: "",
@@ -70,7 +66,6 @@ Archangel::Engine.routes.draw do
     resource :site, only: %i[edit show update]
 
     # GET    /backend/assets
-    # GET    /backend/assets/page/[PAGE]
     # POST   /backend/assets
     # GET    /backend/assets/new
     # GET    /backend/assets/[ID]/edit
@@ -78,13 +73,12 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/assets/[ID]
     # PUT    /backend/assets/[ID]
     # DELETE /backend/assets/[ID]
-    resources :assets, concerns: %i[paginatable] do
+    resources :assets do
       # POST  /backend/assets/wysiwyg
-      post "wysiwyg", on: :collection
+      post "wysiwyg", on: :collection, defaults: { format: :json }
     end
 
     # GET    /backend/collections
-    # GET    /backend/collections/page/[PAGE]
     # POST   /backend/collections
     # GET    /backend/collections/new
     # GET    /backend/collections/[SLUG]/edit
@@ -92,9 +86,8 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/collections/[SLUG]
     # PUT    /backend/collections/[SLUG]
     # DELETE /backend/collections/[SLUG]
-    resources :collections, concerns: %i[paginatable] do
+    resources :collections do
       # GET    /backend/collections/[COLLECTION_SLUG]/entries
-      # GET    /backend/collections/[COLLECTION_SLUG]/entries/page/[PAGE]
       # POST   /backend/collections/[COLLECTION_SLUG]/entries
       # GET    /backend/collections/[COLLECTION_SLUG]/entries/new
       # GET    /backend/collections/[COLLECTION_SLUG]/entries/[ID]/edit
@@ -102,7 +95,7 @@ Archangel::Engine.routes.draw do
       # PATCH  /backend/collections/[COLLECTION_SLUG]/entries/[ID]
       # PUT    /backend/collections/[COLLECTION_SLUG]/entries/[ID]
       # DELETE /backend/collections/[COLLECTION_SLUG]/entries/[ID]
-      resources :entries, concerns: %i[paginatable] do
+      resources :entries do
         # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort
         # POST  /backend/collections/[COLLECTION_SLUG]/entries/sort.json
         post "sort", on: :collection, defaults: { format: :json }
@@ -110,7 +103,6 @@ Archangel::Engine.routes.draw do
     end
 
     # GET    /backend/designs
-    # GET    /backend/designs/page/[PAGE]
     # POST   /backend/designs
     # GET    /backend/designs/new
     # GET    /backend/designs/[ID]/edit
@@ -118,10 +110,9 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/designs/[ID]
     # PUT    /backend/designs/[ID]
     # DELETE /backend/designs/[ID]
-    resources :designs, concerns: %i[paginatable]
+    resources :designs
 
     # GET    /backend/pages
-    # GET    /backend/pages/page/[PAGE]
     # POST   /backend/pages
     # GET    /backend/pages/new
     # GET    /backend/pages/[ID]/edit
@@ -129,10 +120,9 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/pages/[ID]
     # PUT    /backend/pages/[ID]
     # DELETE /backend/pages/[ID]
-    resources :pages, concerns: %i[paginatable]
+    resources :pages
 
     # GET    /backend/users
-    # GET    /backend/users/page/[PAGE]
     # POST   /backend/users
     # GET    /backend/users/new
     # GET    /backend/users/[USERNAME]/edit
@@ -140,10 +130,9 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/users/[USERNAME]
     # PUT    /backend/users/[USERNAME]
     # DELETE /backend/users/[USERNAME]
-    resources :users, concerns: %i[paginatable]
+    resources :users
 
     # GET    /backend/widgets
-    # GET    /backend/widgets/page/[PAGE]
     # POST   /backend/widgets
     # GET    /backend/widgets/new
     # GET    /backend/widgets/[SLUG]/edit
@@ -151,7 +140,7 @@ Archangel::Engine.routes.draw do
     # PATCH  /backend/widgets/[SLUG]
     # PUT    /backend/widgets/[SLUG]
     # DELETE /backend/widgets/[SLUG]
-    resources :widgets, concerns: %i[paginatable]
+    resources :widgets
 
     # GET /backend
     root to: "dashboards#show"

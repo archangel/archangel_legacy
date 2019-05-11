@@ -113,7 +113,7 @@ module Archangel
     # @param _exception [Object] error object
     # @return [String] response
     #
-    def render_error(path, status, _exception)
+    def render_error(path, status, _exception = nil)
       respond_to do |format|
         format.html { render(template: path, status: status) }
         format.json { render(template: path, status: status, layout: false) }

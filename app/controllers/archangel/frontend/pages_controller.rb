@@ -39,7 +39,7 @@ module Archangel
       #   }
       #
       def show
-        return redirect_to_homepage if redirect_to_homepage?
+        return render_or_redirect_to_homepage if redirect_to_homepage?
 
         respond_to do |format|
           format.html do
@@ -87,6 +87,12 @@ module Archangel
 
         { image_src: current_site.logo.url }.merge(meta_tags)
                                             .merge(title: @page.title)
+      end
+
+      def render_or_redirect_to_homepage
+        return redirect_to_homepage if current_site.homepage_redirect?
+
+        render_error("archangel/errors/error_404", :not_found)
       end
 
       ##

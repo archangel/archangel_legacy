@@ -10,19 +10,25 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_collections_path %>"><%= Archangel.t(:collections) %></a>
+        <a class="nav-link" href="<%= backend_designs_path %>"><%= Archangel.t(:designs) %></a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="<%= backend_widgets_path %>"><%= Archangel.t(:widgets) %></a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_assets_path %>"><%= Archangel.t(:assets) %></a>
-      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="<%= backend_collections_path %>" role="button" aria-haspopup="true" aria-expanded="false"><%= Archangel.t(:collections) %></a>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_designs_path %>"><%= Archangel.t(:designs) %></a>
+        <% if current_site.collections.present? %>
+          <ul class="dropdown-menu">
+            <% current_site.collections.each_with_index do |item, index| %>
+              <% next unless item.persisted? %>
+
+              <li class="dropdown-item"><a href="<%= backend_collection_entries_path(item) %>"><%= item.name %></a></li>
+            <% end %>
+          </ul>
+        <% end %>
       </li>
 
       <li class="nav-item">
@@ -30,24 +36,12 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= backend_site_path %>"><%= Archangel.t(:site) %></a>
+        <a class="nav-link" href="<%= backend_assets_path %>"><%= Archangel.t(:assets) %></a>
       </li>
 
-      <% if current_site.collections.present? %>
-        <% current_site.collections.each_with_index do |item, index| %>
-          <% if item.persisted? %>
-            <% if index.zero? %>
-              <li class="nav-title">
-                <%= Archangel.t(:collections) %>
-              </li>
-            <% end %>
-
-            <li class="nav-item">
-              <a class="nav-link" href="<%= backend_collection_entries_path(item) %>"><%= item.name %></a>
-            </li>
-          <% end %>
-        <% end %>
-      <% end %>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= backend_site_path %>"><%= Archangel.t(:site) %></a>
+      </li>
     </ul>
   </nav>
 

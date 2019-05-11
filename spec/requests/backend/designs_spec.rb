@@ -5,18 +5,6 @@ require "rails_helper"
 RSpec.describe "Backend - Designs", type: :request do
   before { stub_authorization!(create(:user)) }
 
-  describe "GET /backend/designs (#index)" do
-    it "returns all Designs" do
-      create(:design)
-      create(:design, :partial)
-      create(:design, :deleted)
-
-      get "/backend/designs"
-
-      expect(assigns(:designs).size).to eq(2)
-    end
-  end
-
   describe "GET /backend/designs/:id (#show)" do
     let(:record) { create(:design) }
 
@@ -39,14 +27,6 @@ RSpec.describe "Backend - Designs", type: :request do
     end
   end
 
-  describe "GET /backend/designs/new (#new)" do
-    it "assigns a new resource as Design" do
-      get "/backend/designs/new"
-
-      expect(assigns(:design)).to be_a_new(Archangel::Design)
-    end
-  end
-
   describe "POST /backend/designs (#create)" do
     let(:valid_attributes) do
       {
@@ -65,24 +45,6 @@ RSpec.describe "Backend - Designs", type: :request do
         post "/backend/designs", params: { design: valid_attributes }
 
         expect(response).to redirect_to(archangel.backend_designs_path)
-      end
-    end
-
-    describe "with invalid attributes" do
-      it "fails without name" do
-        invalid_attributes = valid_attributes.merge(name: "")
-
-        post "/backend/designs", params: { design: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
-      end
-
-      it "fails without content" do
-        invalid_attributes = valid_attributes.merge(content: "")
-
-        post "/backend/designs", params: { design: invalid_attributes }
-
-        expect(response.body).to include("can&#39;t be blank")
       end
     end
   end

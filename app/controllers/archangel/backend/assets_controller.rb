@@ -35,16 +35,14 @@ module Archangel
       def wysiwyg
         asset = resource_wysiwyg_content
 
-        asset.save
-
-        asset_response = {
-          success: true,
-          url: asset.file.url
+        resource = {
+          success: asset.valid?,
+          error: asset.errors.full_messages.first
         }
 
-        respond_to do |format|
-          format.json { render json: asset_response }
-        end
+        resource = resource.merge(url: asset.file.url) if asset.save
+
+        render json: resource.reject { |k, v| k == :error && v.blank? }
       end
 
       protected

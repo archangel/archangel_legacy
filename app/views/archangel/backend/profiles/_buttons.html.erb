@@ -6,4 +6,8 @@
   <% if show_action? %>
     <%= link_to(Archangel.t(:edit), edit_backend_profile_path, class: "btn btn-link") %>
   <% end %>
+
+  <%= link_to(Archangel.t(:destroy), backend_profile_path, class: "btn btn-link",
+                                                           method: :delete,
+                                                           data: { confirm: Archangel.t(:are_you_sure) }) %>
 </div>

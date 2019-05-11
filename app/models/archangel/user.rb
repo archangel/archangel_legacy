@@ -5,6 +5,8 @@ module Archangel
   # User model
   #
   class User < ApplicationRecord
+    include DeviseInvitable::Inviter
+
     acts_as_paranoid
 
     mount_uploader :avatar, Archangel::AvatarUploader
@@ -31,14 +33,19 @@ module Archangel
                       email: true,
                       uniqueness: { scope: :site_id }
     validates :name, presence: true
-    validates :password, presence: true, length: { minimum: 8 }, on: :create
-    validates :password, allow_blank: true, length: { minimum: 8 }, on: :update
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
     validates :username, presence: true, uniqueness: { scope: :site_id }
 
     validates :newsletter, inclusion: { in: [true, false] }
 
     belongs_to :site
+
+    ##
+    # Only send the password reset email if the invitation has been accepted
+    #
+    def send_reset_password_instructions
+      super if invitation_token.nil?
+    end
 
     ##
     # Overwrite resource id to `username`
