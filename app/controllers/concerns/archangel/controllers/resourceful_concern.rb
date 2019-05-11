@@ -8,6 +8,41 @@ module Archangel
     ##
     # Resourceful concern
     #
+    # Usage
+    #   module Archangel
+    #     module Backend
+    #       class ExamplesController < BackendController
+    #         include Archangel::Controllers::ResourcefulConcern
+    #
+    #         protected
+    #
+    #         def permitted_attributes
+    #           %w[bar bat baz]
+    #         end
+    #
+    #         def resources_content
+    #           @examples = current_site.examples.all
+    #
+    #           authorize @examples
+    #         end
+    #
+    #         def resource_content
+    #           resource_id = params.fetch(:id)
+    #
+    #           @example = current_site.examples.find_by!(id: resource_id)
+    #
+    #           authorize @example
+    #         end
+    #
+    #         def resource_new_content
+    #           @example = current_site.examples.new(resource_new_params)
+    #
+    #           authorize @example
+    #         end
+    #       end
+    #     end
+    #   end
+    #
     module ResourcefulConcern
       extend ActiveSupport::Concern
 
@@ -33,7 +68,7 @@ module Archangel
       #   ]
       #
       def index
-        resources = resources_content
+        resources = resources_content || []
 
         respond_with resources
       end
@@ -60,7 +95,7 @@ module Archangel
       #   }
       #
       def show
-        resource = resource_content
+        resource = resource_content || {}
 
         respond_with resource
       end
@@ -84,7 +119,7 @@ module Archangel
       #   }
       #
       def new
-        resource = resource_new_content
+        resource = resource_new_content || nil
 
         respond_with resource
       end
@@ -108,7 +143,7 @@ module Archangel
       #   }
       #
       def create
-        resource = resource_new_content
+        resource = resource_new_content || {}
 
         resource.save unless resource.blank?
 
@@ -137,7 +172,7 @@ module Archangel
       #   }
       #
       def edit
-        resource = resource_content
+        resource = resource_content || {}
 
         respond_with resource
       end
@@ -166,7 +201,7 @@ module Archangel
       #   }
       #
       def update
-        resource = resource_content
+        resource = resource_content || {}
 
         resource.update(resource_params)
 
@@ -187,7 +222,7 @@ module Archangel
       #   DELETE /resources/:id.json
       #
       def destroy
-        resource = resource_content
+        resource = resource_content || nil
 
         resource.destroy unless resource.blank?
 
@@ -195,22 +230,6 @@ module Archangel
       end
 
       protected
-
-      def permitted_attributes
-        %w[]
-      end
-
-      def resources_content
-        []
-      end
-
-      def resource_content
-        {}
-      end
-
-      def resource_new_content
-        action_name.to_sym == :create ? {} : nil
-      end
 
       def resource_controller
         controller_name.to_sym
@@ -225,7 +244,9 @@ module Archangel
       end
 
       def resource_params
-        params.require(resource_scope).permit(permitted_attributes)
+        permitted = permitted_attributes || %w[]
+
+        params.require(resource_scope).permit(permitted)
       end
 
       def resource_new_params
