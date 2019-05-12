@@ -11,7 +11,7 @@ group :development do
   gem "listen", "~> 3.1", require: false
   gem "mdl", "~> 0.5", require: false
   gem "reek", "~> 5.2", require: false
-  gem "rubocop", "~> 0.59", require: false
+  gem "rubocop", "~> 0.67", require: false
   gem "yard", "~> 0.9", require: false
 end
 
