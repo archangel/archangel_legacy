@@ -29,10 +29,7 @@ def prompt_for_admin_password
 end
 
 # Site
-curent_site = Archangel::Site.first_or_create! do |item|
-  item.name = "Archangel"
-  item.locale = "en"
-end
+curent_site = Archangel::Site.current
 
 # User
 unless curent_site.users.first
@@ -51,74 +48,72 @@ unless curent_site.users.first
     confirmed_at: Time.current
   }
 
-  curent_site.users.create!(attributes)
+  curent_site.users.create(attributes)
 end
 
 # Homepage
 curent_site.pages.published.find_or_create_by(homepage: true) do |item|
   item.slug = "homepage-#{Time.now.to_i}"
   item.title = "Welcome to Archangel"
-  item.content = %(
-    <p>Welcome to your new site.</p>
-  )
+  item.content = "<p>Welcome to the site.</p>"
   item.published_at = Time.current
 end
 
 # Page Design
 page_design = curent_site.designs
-                         .find_or_create_by!(partial: false) do |item|
+                         .find_or_create_by(partial: false) do |item|
   item.name = "Example Page Design"
-  item.content = %(
-    <p>I think this is the beginning of a beautiful page design.</p>
-    {{ content_for_layout }}
-    <p>I think this is the end of a beautiful page design.</p>
-  )
+  item.content = <<-DESIGN_CONTENT.strip_heredoc
+    <header>Header of the page</header>
+    <main>
+      {{ content_for_layout }}
+    </main>
+    <footer>Footer of the page</footer>
+  DESIGN_CONTENT
 end
 
 # Page
-curent_site.pages.find_or_create_by!(slug: "example-page",
-                                     design: page_design,
-                                     homepage: false) do |item|
+curent_site.pages.find_or_create_by(slug: "example-page",
+                                    design: page_design,
+                                    homepage: false) do |item|
   item.title = "Example Page"
-  item.content = %(
-    <p>I think this is the content of the page.</p>
-  )
+  item.content = "<p>This is an example page.</p>"
   item.published_at = Time.now
 end
 
 # Design
 widget_design = curent_site.designs
-                           .find_or_create_by!(partial: true) do |item|
+                           .find_or_create_by(partial: true) do |item|
   item.name = "Example Widget Design"
-  item.content = %(
-    <p>I think this is the beginning of a beautiful widget design.</p>
-    {{ content_for_layout }}
-    <p>I think this is the end of a beautiful widget design.</p>
-  )
+  item.content = <<-DESIGN_CONTENT.strip_heredoc
+    <aside>
+      <header>Header of the widget</header>
+      <main>
+        {{ content_for_layout }}
+      </main>
+      <footer>Footer of the widget</footer>
+    </aside>
+  DESIGN_CONTENT
 end
 
 # Widget
-curent_site.widgets.find_or_create_by!(slug: "example-widget",
-                                       design: widget_design) do |item|
+curent_site.widgets.find_or_create_by(slug: "example-widget",
+                                      design: widget_design) do |item|
   item.name = "Example Widget"
-  item.content = %(
-    <p>I think this is the content of the widget.</p>
-  )
+  item.content = "<p>This is an example widget.</p>"
 end
 
 # Collection
-collection = curent_site.collections.find_or_create_by!(
+collection = curent_site.collections.find_or_create_by(
   slug: "example-collection"
 ) do |item|
   item.name = "Example Collection"
 end
 
 # Fields
-collection.fields.find_or_create_by!(
-  collection: collection,
-  slug: "field1",
-  required: true
-) do |item|
+collection.fields.find_or_create_by(collection: collection,
+                                    slug: "field1",
+                                    required: false) do |item|
   item.label = "Field 1"
   item.classification = "string"
 end
