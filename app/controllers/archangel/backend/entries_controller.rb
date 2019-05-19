@@ -69,14 +69,12 @@ module Archangel
       end
 
       def resource_params
-        params.require(resource_namespace)
-              .permit(permitted_attributes)
-              .merge(collection_id: @collection.id)
+        super.merge(collection_id: @collection.id)
       end
 
       def sort_resource_params
         params.clone
-              .require(resource_namespace)
+              .require(resource_scope)
               .permit(permitted_sort_attributes)
       end
 
@@ -118,7 +116,7 @@ module Archangel
         authorize @entry
       end
 
-      def resource_namespace
+      def resource_scope
         :collection_entry
       end
 
