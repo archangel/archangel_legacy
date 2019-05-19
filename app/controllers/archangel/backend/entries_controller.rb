@@ -11,6 +11,8 @@ module Archangel
     class EntriesController < BackendController
       include Archangel::Controllers::ResourcefulConcern
 
+      before_action :parent_resource_content
+
       ##
       # Update collection entry sort order
       #
@@ -32,12 +34,8 @@ module Archangel
       #   }
       #
       def sort
-        parent_resource_content
-
-        sort_order = sort_resource_params.fetch(:sort)
-
         ApplicationRecord.transaction do
-          sort_order.each do |index, entry_id|
+          sort_resource_params.fetch(:sort, []).each do |index, entry_id|
             entry = current_site.entries
                                 .where(collection: @collection)
                                 .find_by(id: entry_id.to_i)
@@ -86,8 +84,6 @@ module Archangel
       end
 
       def resources_content
-        parent_resource_content
-
         @entries = current_site.entries
                                .where(collection: @collection)
                                .page(page_num)
@@ -97,8 +93,6 @@ module Archangel
       end
 
       def resource_content
-        parent_resource_content
-
         resource_id = params.fetch(:id)
 
         @entry = current_site.entries
@@ -109,8 +103,6 @@ module Archangel
       end
 
       def resource_new_content
-        parent_resource_content
-
         @entry = current_site.entries.new(resource_new_params)
 
         authorize @entry
