@@ -4,6 +4,10 @@ inherit_from:
   - .rubocop_exclude.yml
   - .rubocop_todo.yml
 
+require:
+  - rubocop-performance
+  - rubocop-rails
+
 AllCops:
   TargetRubyVersion: 2.5
   Exclude:
