@@ -31,8 +31,7 @@ module Archangel
 
       it "belongs to Design" do
         expect(subject).to(
-          belong_to(:design).conditions(partial: true)
-                            .class_name("Archangel::Design")
+          belong_to(:design).conditions(partial: true).optional
         )
       end
     end

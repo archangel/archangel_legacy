@@ -34,5 +34,5 @@ group :test do
   gem "rails-controller-testing", "~> 1.0"
   gem "rspec-rails", "~> 3.8"
   gem "shoulda-callback-matchers", "~> 1.1"
-  gem "shoulda-matchers", "~> 3.1"
+  gem "shoulda-matchers", "~> 4.0"
 end

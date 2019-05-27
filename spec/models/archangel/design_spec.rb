@@ -24,6 +24,7 @@ module Archangel
         expect(subject).to(
           belong_to(:parent).conditions(partial: false)
                             .class_name("Archangel::Design")
+                            .optional
         )
       end
     end
