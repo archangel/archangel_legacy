@@ -62,7 +62,6 @@ en:
     new: New
     new_entry_resource: New %{resource} Entry
     new_resource: New %{resource}
-    no_entry_resources: No %{resources} entries found.
     no_resources: No %{resources} found.
     not_found: Not Found
     partial: Partial

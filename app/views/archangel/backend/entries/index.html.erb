@@ -43,7 +43,7 @@
           <% else %>
 
             <p class="no-resources">
-              <%= Archangel.t(:no_entry_resources, resources: @collection.model_name.human.downcase) %>
+              <%= Archangel.t(:no_resources, resources: @entries.model_name.human.pluralize.downcase) %>
             </p>
 
           <% end %>
