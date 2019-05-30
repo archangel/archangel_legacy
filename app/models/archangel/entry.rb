@@ -27,6 +27,8 @@ module Archangel
     protected
 
     def required_fields_present
+      return [] if try(:collection).try(:fields).blank?
+
       collection.fields.each do |field|
         next unless field.required? && send(field.slug).blank?
 
@@ -43,6 +45,8 @@ module Archangel
     end
 
     def resource_value_fields
+      return [] if try(:collection).try(:fields).blank?
+
       collection.fields.map(&:slug).map(&:to_sym)
     end
   end

@@ -24,6 +24,7 @@ en:
     duplicate_slug: duplicate slug
     duplicate_field_slug: duplicate slug
     edit: Edit
+    edit_entry_resource: Edit %{resource} Entry
     edit_resource: Edit %{resource}
     email: Email
     entries: Entries
@@ -59,7 +60,9 @@ en:
     metatags: Meta Tags
     name: Name
     new: New
+    new_entry_resource: New %{resource} Entry
     new_resource: New %{resource}
+    no_entry_resources: No %{resources} entries found.
     no_resources: No %{resources} found.
     not_found: Not Found
     partial: Partial
@@ -68,6 +71,7 @@ en:
     powered_by: Powered by
     profile: Profile
     published: Published
+    published_at: Published At
     remove_entry: Remove Entry
     remove_field: Remove Field
     remove_metatag: Remove Meta Tag

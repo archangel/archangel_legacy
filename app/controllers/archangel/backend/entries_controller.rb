@@ -98,9 +98,7 @@ module Archangel
 
         if action_name.to_sym == :create
           @collection.fields.map(&:slug).each do |field|
-            @entry.assign_attributes(
-              field => resource_params.fetch(field, nil)
-            )
+            @entry.assign_attributes(field => resource_params.fetch(field, nil))
           end
         end
 
