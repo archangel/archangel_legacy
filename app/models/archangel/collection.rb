@@ -19,9 +19,6 @@ module Archangel
     has_many :entries
     has_many :fields
 
-    has_many :entries, inverse_of: :collection
-    has_many :fields, inverse_of: :collection
-
     accepts_nested_attributes_for :fields, reject_if: :all_blank,
                                            allow_destroy: true
 
