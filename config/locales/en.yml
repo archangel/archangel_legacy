@@ -25,6 +25,7 @@ en:
     duplicate_field_slug: duplicate slug
     edit: Edit
     edit_resource: Edit %{resource}
+    edit_entry_resource: Edit %{resource} Entry
     email: Email
     entries: Entries
     error_401: Access is denied due to invalid credentials
@@ -59,6 +60,7 @@ en:
     metatags: Meta Tags
     name: Name
     new: New
+    new_entry_resource: New %{resource} Entry
     new_resource: New %{resource}
     no_resources: No %{resources} found.
     not_found: Not Found
@@ -68,6 +70,7 @@ en:
     powered_by: Powered by
     profile: Profile
     published: Published
+    published_at: Published At
     remove_entry: Remove Entry
     remove_field: Remove Field
     remove_metatag: Remove Meta Tag
