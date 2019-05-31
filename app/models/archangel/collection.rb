@@ -14,16 +14,13 @@ module Archangel
     validates :name, presence: true
     validates :slug, presence: true, uniqueness: { scope: :site_id }
 
-    has_many :entries, inverse_of: :collection
-    has_many :fields, inverse_of: :collection
-
-    accepts_nested_attributes_for :fields, reject_if: :all_blank,
-                                           allow_destroy: true
-
     belongs_to :site
 
     has_many :entries
     has_many :fields
+
+    accepts_nested_attributes_for :fields, reject_if: :all_blank,
+                                           allow_destroy: true
 
     ##
     # Overwrite resource id to `slug`

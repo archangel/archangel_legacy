@@ -46,13 +46,13 @@ module Archangel
           end
         end
 
-        render json: { success: true }, status: :accepted
+        render json: { status: :accepted, success: true }, status: :accepted
       end
 
       protected
 
       def permitted_attributes
-        fields = @collection.fields.map { |record| record[:slug].to_sym }
+        fields = @collection.fields.map(&:slug).map(&:to_sym)
 
         [
           :published_at,
@@ -66,14 +66,8 @@ module Archangel
         ]
       end
 
-      def resource_params
-        super.merge(collection_id: @collection.id)
-      end
-
       def sort_resource_params
-        params.clone
-              .require(resource_scope)
-              .permit(permitted_sort_attributes)
+        params.clone.require(resource_scope).permit(permitted_sort_attributes)
       end
 
       def parent_resource_content
@@ -103,7 +97,9 @@ module Archangel
       end
 
       def resource_new_content
-        @entry = current_site.entries.new(resource_new_params)
+        @entry = current_site.entries
+                             .where(collection: @collection)
+                             .new(resource_new_params)
 
         authorize @entry
       end
