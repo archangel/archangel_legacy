@@ -72,6 +72,12 @@ RSpec.feature "Backend - Collection Entries (HTML)", type: :feature do
                        label: "Email Field",
                        slug: "email_field")
       end
+      let!(:field_integer) do
+        create(:field, collection: collection,
+                       classification: "integer",
+                       label: "Integer Field",
+                       slug: "integer_field")
+      end
       let!(:field_string) do
         create(:field, collection: collection,
                        classification: "string",
@@ -110,6 +116,20 @@ RSpec.feature "Backend - Collection Entries (HTML)", type: :feature do
 
         expect(page.find(".input.collection_entry_email_field"))
           .to have_content("not a valid email address")
+      end
+
+      scenario "without valid integer for integer field" do
+        visit "/backend/collections/amazing/entries/new"
+
+        fill_in "Required Field", with: "Amazing Required Value"
+        fill_in "Integer Field", with: "not an integer"
+
+        click_button "Create Entry"
+
+        expect(page).to_not have_content("Entry was successfully created.")
+
+        expect(page.find(".input.collection_entry_integer_field"))
+          .to have_content("not a valid integer")
       end
 
       scenario "without valid URL for URL field" do

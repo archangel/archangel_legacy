@@ -8,7 +8,7 @@ module Archangel
     ##
     # Available field types constant
     #
-    CLASSIFICATIONS = %w[boolean email string url].freeze
+    CLASSIFICATIONS = %w[boolean email integer string url].freeze
 
     acts_as_paranoid
 

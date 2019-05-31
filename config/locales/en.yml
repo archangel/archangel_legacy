@@ -12,6 +12,7 @@ en:
     classification:
       boolean: Boolean
       email: Email
+      integer: Integer
       string: String
       url: URL
     close: Close
