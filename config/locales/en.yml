@@ -28,7 +28,6 @@ en:
     edit: Edit
     edit_entry_resource: Edit %{resource} Entry
     edit_resource: Edit %{resource}
-    edit_entry_resource: Edit %{resource} Entry
     email: Email
     entries: Entries
     error_401: Access is denied due to invalid credentials
