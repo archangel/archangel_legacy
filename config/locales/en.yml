@@ -11,8 +11,9 @@ en:
     back: Back
     classification:
       boolean: Boolean
+      email: Email
       string: String
-      text: Text
+      url: URL
     close: Close
     collection: Collection
     collections: Collections

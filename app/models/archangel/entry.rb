@@ -16,8 +16,6 @@ module Archangel
     validates :collection_id, presence: true
     validates :value, presence: true
 
-    validate :required_fields_present
-
     belongs_to :collection
 
     default_scope { order(position: :asc) }
@@ -26,20 +24,25 @@ module Archangel
 
     protected
 
-    def required_fields_present
-      return [] if try(:collection).try(:fields).blank?
-
-      collection.fields.each do |field|
-        next unless field.required? && send(field.slug).blank?
-
-        errors.add(field.slug.to_sym, "can't be blank")
-      end
-    end
-
     def add_accessors_for_entry_value
       resource_value_fields.each do |field|
         singleton_class.class_eval do
-          store_accessor :value, field
+          field_sym = field.slug.to_sym
+
+          store_accessor :value, field_sym
+
+          validates field_sym, presence: true if field.required?
+          if field.classification == "email"
+            validates field_sym, allow_blank: !field.required?,
+                                 email: { message: "not a valid email address" }
+          end
+          if field.classification == "url"
+            validates field_sym, allow_blank: !field.required?,
+                                 url: { message: "not a valid URL" }
+          end
+          if field.classification == "boolean"
+            validates field_sym, inclusion: { in: %w[0 1] }
+          end
         end
       end
     end
@@ -47,7 +50,7 @@ module Archangel
     def resource_value_fields
       return [] if try(:collection).try(:fields).blank?
 
-      collection.fields.map(&:slug).map(&:to_sym)
+      collection.fields
     end
   end
 end
