@@ -16,8 +16,9 @@ module Archangel
 
         validates :value, presence: true
 
-        after_initialize :add_accessors_for_entry_value
-        after_initialize :add_validators_for_entry_fields
+        after_initialize :add_accessors_for_entry_fields
+        after_initialize :add_presence_validator_for_entry_fields
+        after_initialize :add_classification_validator_for_entry_fields
 
         def self.add_boolean_validator(field, _allow_blank)
           validates field, inclusion: { in: %w[0 1] }
@@ -42,26 +43,28 @@ module Archangel
         end
       end
 
-      def add_accessors_for_entry_value
+      def add_accessors_for_entry_fields
         (resource_value_fields || []).each do |field|
           singleton_class.class_eval do
-            field_sym = field.slug.to_sym
-
-            store_accessor :value, field_sym
+            store_accessor :value, field.slug.to_sym
           end
         end
       end
 
-      def add_validators_for_entry_fields
+      def add_presence_validator_for_entry_fields
         (resource_value_fields || []).each do |field|
           singleton_class.class_eval do
-            field_sym = field.slug.to_sym
+            validates field.slug.to_sym, presence: true if field.required?
+          end
+        end
+      end
 
-            validates field_sym, presence: true if field.required?
-
+      def add_classification_validator_for_entry_fields
+        (resource_value_fields || []).each do |field|
+          singleton_class.class_eval do
             if %w[boolean email integer url].include?(field.classification)
               send("add_#{field.classification}_validator".to_sym,
-                   field_sym, !field.required?)
+                   field.slug.to_sym, !field.required?)
             end
           end
         end
