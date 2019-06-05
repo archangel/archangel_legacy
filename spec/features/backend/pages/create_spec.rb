@@ -96,7 +96,7 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
 
         expect(page.find(".input.page_title")).to have_content("can't be blank")
 
-        expect(page).to_not have_content("Page was successfully created.")
+        expect(page).not_to have_content("Page was successfully created.")
       end
 
       scenario "without slug" do
@@ -113,7 +113,7 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
 
         expect(page.find(".input.page_slug")).to have_content("can't be blank")
 
-        expect(page).to_not have_content("Page was successfully created.")
+        expect(page).not_to have_content("Page was successfully created.")
       end
 
       scenario "with used slug as same level" do
@@ -134,7 +134,7 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
           expect(page).to have_content("has already been taken")
         end
 
-        expect(page).to_not have_content("Page was successfully created.")
+        expect(page).not_to have_content("Page was successfully created.")
       end
 
       %w[account backend].each do |reserved_path|
@@ -154,7 +154,7 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
             expect(page).to have_content("contains restricted path")
           end
 
-          expect(page).to_not have_content("Page was successfully created.")
+          expect(page).not_to have_content("Page was successfully created.")
         end
       end
 
@@ -173,7 +173,7 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
         expect(page.find(".input.page_content"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Page was successfully created.")
+        expect(page).not_to have_content("Page was successfully created.")
       end
 
       scenario "with invalid Liquid data in Content" do
@@ -191,7 +191,7 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
         expect(page.find(".input.page_content"))
           .to have_content("contains invalid Liquid formatting")
 
-        expect(page).to_not have_content("Page was successfully created.")
+        expect(page).not_to have_content("Page was successfully created.")
       end
     end
   end

@@ -31,8 +31,8 @@ RSpec.feature "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections?page=2"
 
         within("tbody") do
-          expect(page).to_not have_content("Collection A Name")
-          expect(page).to_not have_content("Collection X Name")
+          expect(page).not_to have_content("Collection A Name")
+          expect(page).not_to have_content("Collection X Name")
 
           expect(page).to have_content("Collection Y Name")
           expect(page).to have_content("Collection Z Name")
@@ -43,14 +43,14 @@ RSpec.feature "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections?page=2&per=3"
 
         within("tbody") do
-          expect(page).to_not have_content("Collection A Name")
-          expect(page).to_not have_content("Collection C Name")
+          expect(page).not_to have_content("Collection A Name")
+          expect(page).not_to have_content("Collection C Name")
 
           expect(page).to have_content("Collection D Name")
           expect(page).to have_content("Collection F Name")
 
-          expect(page).to_not have_content("Collection G Name")
-          expect(page).to_not have_content("Collection Z Name")
+          expect(page).not_to have_content("Collection G Name")
+          expect(page).not_to have_content("Collection Z Name")
         end
       end
 
@@ -68,7 +68,7 @@ RSpec.feature "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections"
 
         within("tbody") do
-          expect(page).to_not have_content("Deleted Collection Name")
+          expect(page).not_to have_content("Deleted Collection Name")
         end
       end
     end

@@ -36,7 +36,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
         expect(page.find(".input.user_email"))
           .to have_content("has already been taken")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "with used username" do
@@ -52,7 +52,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
         expect(page.find(".input.user_username"))
           .to have_content("has already been taken")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
     end
   end

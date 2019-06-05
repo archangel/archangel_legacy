@@ -12,7 +12,7 @@ module Archangel
       it { is_expected.to allow_value("").for(:published_at) }
       it { is_expected.to allow_value(Time.current).for(:published_at) }
 
-      it { is_expected.to_not allow_value("invalid").for(:published_at) }
+      it { is_expected.not_to allow_value("invalid").for(:published_at) }
     end
 
     context "associations" do
@@ -30,7 +30,7 @@ module Archangel
         it "returns all where published_at <= now in the future" do
           entry = create(:entry, :future)
 
-          expect(described_class.available.first).to_not eq(entry)
+          expect(described_class.available.first).not_to eq(entry)
         end
       end
 
@@ -44,7 +44,7 @@ module Archangel
         it "returns all where published_at <= now not in the future" do
           entry = create(:entry, :future)
 
-          expect(described_class.available.first).to_not eq(entry)
+          expect(described_class.available.first).not_to eq(entry)
         end
       end
 

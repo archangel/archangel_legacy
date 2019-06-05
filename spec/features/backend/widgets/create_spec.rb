@@ -54,7 +54,7 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
         expect(page.find(".input.widget_name"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Widget was successfully created.")
+        expect(page).not_to have_content("Widget was successfully created.")
       end
 
       scenario "without slug" do
@@ -69,7 +69,7 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
         expect(page.find(".input.widget_slug"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Widget was successfully created.")
+        expect(page).not_to have_content("Widget was successfully created.")
       end
 
       scenario "with used slug" do
@@ -87,7 +87,7 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
           expect(page).to have_content("has already been taken")
         end
 
-        expect(page).to_not have_content("Widget was successfully created.")
+        expect(page).not_to have_content("Widget was successfully created.")
       end
 
       scenario "without content" do
@@ -102,7 +102,7 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
         expect(page.find(".input.widget_content"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Widget was successfully created.")
+        expect(page).not_to have_content("Widget was successfully created.")
       end
 
       scenario "with invalid Liquid data in Content" do
@@ -117,7 +117,7 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
         expect(page.find(".input.widget_content"))
           .to have_content("contains invalid Liquid formatting")
 
-        expect(page).to_not have_content("Widget was successfully created.")
+        expect(page).not_to have_content("Widget was successfully created.")
       end
     end
   end

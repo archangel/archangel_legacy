@@ -33,7 +33,7 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
         expect(page.find(".input.asset_file_name"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Asset was successfully created.")
+        expect(page).not_to have_content("Asset was successfully created.")
       end
 
       scenario "without file" do
@@ -46,7 +46,7 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
         expect(page.find(".input.asset_file"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Asset was successfully created.")
+        expect(page).not_to have_content("Asset was successfully created.")
       end
 
       scenario "with invalid file name" do
@@ -60,7 +60,7 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
         expect(page.find(".input.asset_file_name"))
           .to have_content("must be valid file name")
 
-        expect(page).to_not have_content("Asset was successfully created.")
+        expect(page).not_to have_content("Asset was successfully created.")
       end
 
       scenario "with invalid file type" do
@@ -76,7 +76,7 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
           "gif, jpeg, jpg, png"
         )
 
-        expect(page).to_not have_content("Asset was successfully created.")
+        expect(page).not_to have_content("Asset was successfully created.")
       end
     end
   end

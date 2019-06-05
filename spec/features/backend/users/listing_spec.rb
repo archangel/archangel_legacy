@@ -28,8 +28,8 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
       scenario "finds the second page of Users" do
         visit "/backend/users?page=2"
 
-        expect(page).to_not have_content("User A Name")
-        expect(page).to_not have_content("User X Name")
+        expect(page).not_to have_content("User A Name")
+        expect(page).not_to have_content("User X Name")
 
         expect(page).to have_content("User Y Name")
         expect(page).to have_content("User Z Name")
@@ -38,14 +38,14 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
       scenario "finds the second page of Users with `per` count" do
         visit "/backend/users?page=2&per=3"
 
-        expect(page).to_not have_content("User A Name")
-        expect(page).to_not have_content("User C Name")
+        expect(page).not_to have_content("User A Name")
+        expect(page).not_to have_content("User C Name")
 
         expect(page).to have_content("User D Name")
         expect(page).to have_content("User F Name")
 
-        expect(page).to_not have_content("User G Name")
-        expect(page).to_not have_content("User Z Name")
+        expect(page).not_to have_content("User G Name")
+        expect(page).not_to have_content("User Z Name")
       end
 
       scenario "finds nothing outside the count" do
@@ -53,8 +53,8 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
 
         expect(page).to have_content("No users found.")
 
-        expect(page).to_not have_content("User A Name")
-        expect(page).to_not have_content("User Z Name")
+        expect(page).not_to have_content("User A Name")
+        expect(page).not_to have_content("User Z Name")
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
 
         visit "/backend/users"
 
-        expect(page).to_not have_content("Deleted User Name")
+        expect(page).not_to have_content("Deleted User Name")
       end
     end
   end

@@ -38,8 +38,8 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
       scenario "finds the second page of Assets" do
         visit "/backend/assets?page=2"
 
-        expect(page).to_not have_content("asset-A.jpg")
-        expect(page).to_not have_content("asset-X.jpg")
+        expect(page).not_to have_content("asset-A.jpg")
+        expect(page).not_to have_content("asset-X.jpg")
 
         expect(page).to have_content("asset-Y.jpg")
         expect(page).to have_content("asset-Z.jpg")
@@ -48,14 +48,14 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
       scenario "finds the second page of Assets with `per` count" do
         visit "/backend/assets?page=2&per=3"
 
-        expect(page).to_not have_content("asset-A.jpg")
-        expect(page).to_not have_content("asset-C.jpg")
+        expect(page).not_to have_content("asset-A.jpg")
+        expect(page).not_to have_content("asset-C.jpg")
 
         expect(page).to have_content("asset-D.jpg")
         expect(page).to have_content("asset-F.jpg")
 
-        expect(page).to_not have_content("asset-G.jpg")
-        expect(page).to_not have_content("asset-Z.jpg")
+        expect(page).not_to have_content("asset-G.jpg")
+        expect(page).not_to have_content("asset-Z.jpg")
       end
 
       scenario "finds nothing outside the count" do
@@ -63,8 +63,8 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
 
         expect(page).to have_content("No assets found.")
 
-        expect(page).to_not have_content("asset-A.jpg")
-        expect(page).to_not have_content("asset-Z.jpg")
+        expect(page).not_to have_content("asset-A.jpg")
+        expect(page).not_to have_content("asset-Z.jpg")
       end
     end
 
@@ -74,7 +74,7 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
 
         visit "/backend/assets"
 
-        expect(page).to_not have_content("deleted.jpg")
+        expect(page).not_to have_content("deleted.jpg")
       end
     end
   end

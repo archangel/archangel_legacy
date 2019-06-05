@@ -34,7 +34,7 @@ RSpec.feature "Liquid custom filters", type: :feature do
       visit "/foo"
 
       expect(page).to have_text("Hello world")
-      expect(page).to_not have_link("Hello world", href: "https://github.com")
+      expect(page).not_to have_link("Hello world", href: "https://github.com")
     end
 
     it "builds text with null link value" do
@@ -45,7 +45,7 @@ RSpec.feature "Liquid custom filters", type: :feature do
       visit "/foo"
 
       expect(page).to have_text("Hello world")
-      expect(page).to_not have_link("Hello world", href: "https://github.com")
+      expect(page).not_to have_link("Hello world", href: "https://github.com")
     end
   end
 end

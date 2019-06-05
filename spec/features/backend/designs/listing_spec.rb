@@ -30,8 +30,8 @@ RSpec.feature "Backend - Designs (HTML)", type: :feature do
       scenario "finds the second page of Designs" do
         visit "/backend/designs?page=2"
 
-        expect(page).to_not have_content("Design A Name")
-        expect(page).to_not have_content("Design X Name")
+        expect(page).not_to have_content("Design A Name")
+        expect(page).not_to have_content("Design X Name")
 
         expect(page).to have_content("Design Y Name")
         expect(page).to have_content("Design Z Name")
@@ -40,14 +40,14 @@ RSpec.feature "Backend - Designs (HTML)", type: :feature do
       scenario "finds the second page of Designs with `per` count" do
         visit "/backend/designs?page=2&per=3"
 
-        expect(page).to_not have_content("Design A Name")
-        expect(page).to_not have_content("Design C Name")
+        expect(page).not_to have_content("Design A Name")
+        expect(page).not_to have_content("Design C Name")
 
         expect(page).to have_content("Design D Name")
         expect(page).to have_content("Design F Name")
 
-        expect(page).to_not have_content("Design G Name")
-        expect(page).to_not have_content("Design Z Name")
+        expect(page).not_to have_content("Design G Name")
+        expect(page).not_to have_content("Design Z Name")
       end
 
       scenario "finds nothing outside the count" do
@@ -55,8 +55,8 @@ RSpec.feature "Backend - Designs (HTML)", type: :feature do
 
         expect(page).to have_content("No designs found.")
 
-        expect(page).to_not have_content("Design A Name")
-        expect(page).to_not have_content("Design Z Name")
+        expect(page).not_to have_content("Design A Name")
+        expect(page).not_to have_content("Design Z Name")
       end
     end
 
@@ -66,7 +66,7 @@ RSpec.feature "Backend - Designs (HTML)", type: :feature do
 
         visit "/backend/designs"
 
-        expect(page).to_not have_content("Deleted Design Name")
+        expect(page).not_to have_content("Deleted Design Name")
       end
     end
   end

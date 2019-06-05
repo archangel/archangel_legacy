@@ -21,7 +21,7 @@ RSpec.feature "Backend - Collections (HTML)", type: :feature do
       expect(page).to have_content("Collection was successfully destroyed.")
 
       within("tbody tr:eq(1)") do
-        expect(page).to_not have_content("Delete Me")
+        expect(page).not_to have_content("Delete Me")
         expect(page).to have_content("Do No Delete")
       end
     end

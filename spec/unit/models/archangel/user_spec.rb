@@ -55,7 +55,7 @@ module Archangel
           "@example.com",
           "foo bar@example.com"
         ].each do |email|
-          expect(subject).to_not allow_value(email).for(:email)
+          expect(subject).not_to allow_value(email).for(:email)
         end
       end
     end

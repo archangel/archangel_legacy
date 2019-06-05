@@ -11,10 +11,10 @@ module Archangel
       it { is_expected.to allow_value(true).for(:partial) }
       it { is_expected.to allow_value(false).for(:partial) }
 
-      it { is_expected.to_not allow_value(nil).for(:partial) }
+      it { is_expected.not_to allow_value(nil).for(:partial) }
 
       it { is_expected.to allow_value("{{ foo }}").for(:content) }
-      it { is_expected.to_not allow_value("{{ foo }").for(:content) }
+      it { is_expected.not_to allow_value("{{ foo }").for(:content) }
     end
 
     context "associations" do

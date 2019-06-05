@@ -48,7 +48,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
 
         expect(page.find(".input.user_name")).to have_content("can't be blank")
 
-        expect(page).to_not have_content("User was successfully created.")
+        expect(page).not_to have_content("User was successfully created.")
       end
 
       scenario "without username" do
@@ -63,7 +63,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
         expect(page.find(".input.user_username"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("User was successfully created.")
+        expect(page).not_to have_content("User was successfully created.")
       end
 
       scenario "without email" do
@@ -77,7 +77,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
 
         expect(page.find(".input.user_email")).to have_content("can't be blank")
 
-        expect(page).to_not have_content("User was successfully created.")
+        expect(page).not_to have_content("User was successfully created.")
       end
 
       scenario "with used username" do
@@ -94,7 +94,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
         expect(page.find(".input.user_username"))
           .to have_content("has already been taken")
 
-        expect(page).to_not have_content("User was successfully created.")
+        expect(page).not_to have_content("User was successfully created.")
       end
     end
   end

@@ -68,7 +68,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page.find(".input.profile_name"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "with non-image" do
@@ -83,7 +83,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
 
         expect(page.find(".input.profile_avatar")).to have_content(message)
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "without username" do
@@ -96,7 +96,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page.find(".input.profile_username"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "with already used username" do
@@ -111,7 +111,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page.find(".input.profile_username"))
           .to have_content("has already been taken")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "with password and password confirmation mismatch" do
@@ -126,7 +126,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page.find(".input.profile_password_confirmation"))
           .to have_content("doesn't match Password")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "without email" do
@@ -139,7 +139,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page.find(".input.profile_email"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "with already used email" do
@@ -154,7 +154,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page.find(".input.profile_email"))
           .to have_content("has already been taken")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
 
       scenario "when email isn't an email" do
@@ -167,7 +167,7 @@ RSpec.feature "Backend - Profile (HTML)", type: :feature do
         expect(page.find(".input.profile_email"))
           .to have_content("is invalid")
 
-        expect(page).to_not have_content("User was successfully updated.")
+        expect(page).not_to have_content("User was successfully updated.")
       end
     end
   end

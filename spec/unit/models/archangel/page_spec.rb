@@ -26,12 +26,12 @@ module Archangel
       it { is_expected.to allow_value(false).for(:homepage) }
       it { is_expected.to allow_value(0).for(:homepage) }
 
-      it { is_expected.to_not allow_value(nil).for(:homepage) }
+      it { is_expected.not_to allow_value(nil).for(:homepage) }
 
       it { is_expected.to allow_value(nil).for(:published_at) }
       it { is_expected.to allow_value(Time.current).for(:published_at) }
 
-      it { is_expected.to_not allow_value("invalid").for(:published_at) }
+      it { is_expected.not_to allow_value("invalid").for(:published_at) }
 
       it "has a unique permalink scoped to Site" do
         resource = build(:page)
@@ -51,7 +51,7 @@ module Archangel
       end
 
       it { is_expected.to allow_value("{{ foo }}").for(:content) }
-      it { is_expected.to_not allow_value("{{ foo }").for(:content) }
+      it { is_expected.not_to allow_value("{{ foo }").for(:content) }
     end
 
     context "associations" do
@@ -77,7 +77,7 @@ module Archangel
         it "returns all where published_at <= now not in the future" do
           page = create(:page, :future)
 
-          expect(described_class.available.first).to_not eq(page)
+          expect(described_class.available.first).not_to eq(page)
         end
       end
 

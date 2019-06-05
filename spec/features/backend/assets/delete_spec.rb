@@ -21,7 +21,7 @@ RSpec.feature "Backend - Assets (HTML)", type: :feature do
       expect(page).to have_content("Asset was successfully destroyed.")
 
       within("tbody tr:eq(1)") do
-        expect(page).to_not have_content("delete-me.jpg")
+        expect(page).not_to have_content("delete-me.jpg")
         expect(page).to have_content("keep-me.jpg")
       end
     end

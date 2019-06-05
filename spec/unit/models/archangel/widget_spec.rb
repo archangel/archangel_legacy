@@ -16,7 +16,7 @@ module Archangel
       it { is_expected.to validate_presence_of(:slug) }
 
       it { is_expected.to allow_value("{{ foo }}").for(:content) }
-      it { is_expected.to_not allow_value("{{ foo }").for(:content) }
+      it { is_expected.not_to allow_value("{{ foo }").for(:content) }
 
       it "has a unique slug scoped to Site" do
         resource = build(:widget)

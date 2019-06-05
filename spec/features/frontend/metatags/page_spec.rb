@@ -33,7 +33,7 @@ RSpec.feature "Meta tag", type: :feature do
 
       expect(page).to have_title("Page A | Site A")
 
-      expect(page).to_not have_meta(:description, "Site description")
+      expect(page).not_to have_meta(:description, "Site description")
     end
   end
 end

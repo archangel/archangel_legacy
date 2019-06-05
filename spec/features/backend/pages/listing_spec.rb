@@ -28,8 +28,8 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
       scenario "finds the second page of Pages" do
         visit "/backend/pages?page=2"
 
-        expect(page).to_not have_content("Page A Title")
-        expect(page).to_not have_content("Page X Title")
+        expect(page).not_to have_content("Page A Title")
+        expect(page).not_to have_content("Page X Title")
 
         expect(page).to have_content("Page Y Title")
         expect(page).to have_content("Page Z Title")
@@ -38,14 +38,14 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
       scenario "finds the second page of Pages with `per` count" do
         visit "/backend/pages?page=2&per=3"
 
-        expect(page).to_not have_content("Page A Title")
-        expect(page).to_not have_content("Page C Title")
+        expect(page).not_to have_content("Page A Title")
+        expect(page).not_to have_content("Page C Title")
 
         expect(page).to have_content("Page D Title")
         expect(page).to have_content("Page F Title")
 
-        expect(page).to_not have_content("Page G Title")
-        expect(page).to_not have_content("Page Z Title")
+        expect(page).not_to have_content("Page G Title")
+        expect(page).not_to have_content("Page Z Title")
       end
 
       scenario "finds nothing outside the count" do
@@ -53,8 +53,8 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
 
         expect(page).to have_content("No pages found.")
 
-        expect(page).to_not have_content("Page A Title")
-        expect(page).to_not have_content("Page Z Title")
+        expect(page).not_to have_content("Page A Title")
+        expect(page).not_to have_content("Page Z Title")
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.feature "Backend - Pages (HTML)", type: :feature do
 
         visit "/backend/pages"
 
-        expect(page).to_not have_content("Deleted Page Title")
+        expect(page).not_to have_content("Deleted Page Title")
       end
     end
   end

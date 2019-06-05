@@ -30,8 +30,8 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
       scenario "finds the second page of Widgets" do
         visit "/backend/widgets?page=2"
 
-        expect(page).to_not have_content("Widget A Name")
-        expect(page).to_not have_content("Widget X Name")
+        expect(page).not_to have_content("Widget A Name")
+        expect(page).not_to have_content("Widget X Name")
 
         expect(page).to have_content("Widget Y Name")
         expect(page).to have_content("Widget Z Name")
@@ -40,14 +40,14 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
       scenario "finds the second page of Widgets with `per` count" do
         visit "/backend/widgets?page=2&per=3"
 
-        expect(page).to_not have_content("Widget A Name")
-        expect(page).to_not have_content("Widget C Name")
+        expect(page).not_to have_content("Widget A Name")
+        expect(page).not_to have_content("Widget C Name")
 
         expect(page).to have_content("Widget D Name")
         expect(page).to have_content("Widget F Name")
 
-        expect(page).to_not have_content("Widget G Name")
-        expect(page).to_not have_content("Widget Z Name")
+        expect(page).not_to have_content("Widget G Name")
+        expect(page).not_to have_content("Widget Z Name")
       end
 
       scenario "finds nothing outside the count" do
@@ -55,8 +55,8 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
 
         expect(page).to have_content("No widgets found.")
 
-        expect(page).to_not have_content("Widget A Name")
-        expect(page).to_not have_content("Widget Z Name")
+        expect(page).not_to have_content("Widget A Name")
+        expect(page).not_to have_content("Widget Z Name")
       end
     end
 
@@ -66,7 +66,7 @@ RSpec.feature "Backend - Widgets (HTML)", type: :feature do
 
         visit "/backend/widgets"
 
-        expect(page).to_not have_content("Deleted Widget Name")
+        expect(page).not_to have_content("Deleted Widget Name")
       end
     end
   end

@@ -43,7 +43,7 @@ RSpec.feature "Backend - Site (HTML)", type: :feature do
         expect(page.find(".input.site_name"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Site was successfully created.")
+        expect(page).not_to have_content("Site was successfully created.")
       end
     end
   end

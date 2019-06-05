@@ -21,8 +21,8 @@ module Archangel
 
       it { is_expected.to permit(:show) }
 
-      it { is_expected.to_not permit(:update) }
-      it { is_expected.to_not permit(:edit) }
+      it { is_expected.not_to permit(:update) }
+      it { is_expected.not_to permit(:edit) }
     end
   end
 end

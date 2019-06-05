@@ -15,7 +15,7 @@ module Archangel
       it { is_expected.to allow_value(false).for(:required) }
       it { is_expected.to allow_value(0).for(:required) }
 
-      it { is_expected.to_not allow_value(nil).for(:required) }
+      it { is_expected.not_to allow_value(nil).for(:required) }
 
       it "allows certain classifications" do
         expect(subject).to(

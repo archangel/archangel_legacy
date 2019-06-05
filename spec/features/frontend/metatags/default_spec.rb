@@ -38,7 +38,7 @@ RSpec.feature "Meta tag", type: :feature do
       visit "/foo"
 
       expect(page).to have_title("Page A | Site A")
-      expect(page).to_not have_title("Attempted Page Title | Site A")
+      expect(page).not_to have_title("Attempted Page Title | Site A")
     end
   end
 end

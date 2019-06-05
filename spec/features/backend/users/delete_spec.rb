@@ -21,7 +21,7 @@ RSpec.feature "Backend - Users (HTML)", type: :feature do
       expect(page).to have_content("User was successfully destroyed.")
 
       within("tbody tr:eq(1)") do
-        expect(page).to_not have_content("Delete Me")
+        expect(page).not_to have_content("Delete Me")
         expect(page).to have_content("Keep Me")
       end
     end

@@ -19,12 +19,12 @@ module Archangel
       it { is_expected.to allow_value("foo_bar.jpg").for(:file_name) }
       it { is_expected.to allow_value("18.jpg").for(:file_name) }
 
-      it { is_expected.to_not allow_value("error").for(:file_name) }
-      it { is_expected.to_not allow_value("error.j").for(:file_name) }
-      it { is_expected.to_not allow_value("with.dot.jpg").for(:file_name) }
-      it { is_expected.to_not allow_value("with space.jpg").for(:file_name) }
-      it { is_expected.to_not allow_value("with/slash.jpg").for(:file_name) }
-      it { is_expected.to_not allow_value("with/numbers.18").for(:file_name) }
+      it { is_expected.not_to allow_value("error").for(:file_name) }
+      it { is_expected.not_to allow_value("error.j").for(:file_name) }
+      it { is_expected.not_to allow_value("with.dot.jpg").for(:file_name) }
+      it { is_expected.not_to allow_value("with space.jpg").for(:file_name) }
+      it { is_expected.not_to allow_value("with/slash.jpg").for(:file_name) }
+      it { is_expected.not_to allow_value("with/numbers.18").for(:file_name) }
     end
 
     context "associations" do

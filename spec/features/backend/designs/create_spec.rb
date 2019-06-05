@@ -52,7 +52,7 @@ RSpec.feature "Backend - Designs (HTML)", type: :feature do
         expect(page.find(".input.design_name"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Design was successfully created.")
+        expect(page).not_to have_content("Design was successfully created.")
       end
 
       scenario "without content" do
@@ -66,7 +66,7 @@ RSpec.feature "Backend - Designs (HTML)", type: :feature do
         expect(page.find(".input.design_content"))
           .to have_content("can't be blank")
 
-        expect(page).to_not have_content("Design was successfully created.")
+        expect(page).not_to have_content("Design was successfully created.")
       end
 
       scenario "with invalid Liquid data in Content" do
@@ -83,7 +83,7 @@ RSpec.feature "Backend - Designs (HTML)", type: :feature do
         expect(page.find(".input.design_content"))
           .to have_content("contains invalid Liquid formatting")
 
-        expect(page).to_not have_content("Design was successfully created.")
+        expect(page).not_to have_content("Design was successfully created.")
       end
     end
   end
