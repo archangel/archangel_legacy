@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Auth log in", type: :feature do
+RSpec.describe "Auth log in", type: :feature do
   describe "with valid credentials" do
     it "is successful" do
       create(:user, email: "me@example.com", password: "password")

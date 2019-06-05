@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Auth invitation", type: :feature do
+RSpec.describe "Auth invitation", type: :feature do
   let!(:site) { create(:site) }
 
   describe "without invitation token" do

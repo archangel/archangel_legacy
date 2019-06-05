@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Auth registration", type: :feature do
+RSpec.describe "Auth registration", type: :feature do
   describe "when registration is disabled" do
     let!(:site) { create(:site, allow_registration: false) }
 

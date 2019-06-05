@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Backend - Dashboard (HTML)", type: :feature do
+RSpec.describe "Backend - Dashboard (HTML)", type: :feature do
   describe "showing" do
     before { stub_authorization!(profile) }
 

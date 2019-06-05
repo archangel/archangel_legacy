@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Backend - Users (HTML)", type: :feature do
+RSpec.describe "Backend - Users (HTML)", type: :feature do
   describe "deletion" do
     before { stub_authorization!(profile) }
 

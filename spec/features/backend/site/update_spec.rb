@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Backend - Site (HTML)", type: :feature do
+RSpec.describe "Backend - Site (HTML)", type: :feature do
   describe "updating" do
     before { stub_authorization!(profile) }
 

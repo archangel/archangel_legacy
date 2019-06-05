@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Liquid custom filters", type: :feature do
+RSpec.describe "Liquid custom filters", type: :feature do
   let!(:site) { create(:site) }
 
   describe "for `link_to` filter" do

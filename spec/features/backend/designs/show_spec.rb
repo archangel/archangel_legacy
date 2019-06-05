@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Backend - Design (HTML)", type: :feature do
+RSpec.describe "Backend - Design (HTML)", type: :feature do
   describe "show" do
     before { stub_authorization!(profile) }
 

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Auth password reset", type: :feature do
+RSpec.describe "Auth password reset", type: :feature do
   describe "unaccepted invitation" do
     it "does not actually send password reset instructions" do
       create(:user, :invited, email: "amazing@email.com")

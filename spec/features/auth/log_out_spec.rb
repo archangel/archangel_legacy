@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Auth log out", type: :feature do
+RSpec.describe "Auth log out", type: :feature do
   describe "while logged in" do
     before { stub_authorization! }
 

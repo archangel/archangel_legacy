@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Meta tag", type: :feature do
+RSpec.describe "Meta tag", type: :feature do
   describe "default metatags" do
     let!(:site) { create(:site, name: "Site A") }
 

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Liquid custom variables", type: :feature do
+RSpec.describe "Liquid custom variables", type: :feature do
   let!(:site) { create(:site) }
 
   describe "for `page` variable object" do
