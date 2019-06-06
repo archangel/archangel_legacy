@@ -6,23 +6,26 @@ RSpec.describe "Backend - Widgets", type: :request do
   before { stub_authorization!(create(:user)) }
 
   describe "GET /backend/widgets/:slug (#show)" do
-    let(:record) { create(:widget, slug: "foo") }
-
-    before { record }
+    before { create(:widget, slug: "foo") }
 
     describe "with a valid Widget slug" do
-      it "assigns the requested resource as @widget" do
+      it "returns a 200 status" do
         get "/backend/widgets/foo"
 
-        expect(assigns(:widget)).to eq(record)
+        expect(response).to have_http_status(:ok)
       end
     end
 
     describe "with an invalid Widget slug" do
-      it "shows the error page" do
+      it "returns a 404 status" do
         get "/backend/widgets/unknown"
 
         expect(response).to have_http_status(:not_found)
+      end
+
+      it "returns a not found message" do
+        get "/backend/widgets/unknown"
+
         expect(response.body)
           .to include("Page not found. Could not find what was requested")
       end
@@ -42,26 +45,22 @@ RSpec.describe "Backend - Widgets", type: :request do
       it "redirects to the listing" do
         post "/backend/widgets", params: { widget: valid_attributes }
 
-        expect(response).to redirect_to(archangel.backend_widgets_path)
+        expect(response).to redirect_to("/backend/widgets")
       end
     end
   end
 
   describe "GET /backend/widgets/:slug/edit (#edit)" do
-    let(:record) { create(:widget, slug: "foo") }
+    before { create(:widget, slug: "foo") }
 
-    before { record }
-
-    it "assigns a resource as Widget" do
+    it "returns a 200 status" do
       get "/backend/widgets/foo/edit"
 
-      expect(assigns(:widget)).to eq(record)
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe "PATCH /backend/widgets/:slug (#update)" do
-    let(:record) { create(:widget, slug: "foo") }
-
     let(:valid_attributes) do
       {
         name: "Updated Widget Name",
@@ -70,13 +69,13 @@ RSpec.describe "Backend - Widgets", type: :request do
       }
     end
 
-    before { record }
+    before { create(:widget, slug: "foo") }
 
     describe "with valid attributes" do
       it "redirects after updating resource" do
         patch "/backend/widgets/foo", params: { widget: valid_attributes }
 
-        expect(response).to redirect_to(archangel.backend_widgets_path)
+        expect(response).to redirect_to("/backend/widgets")
       end
     end
 
@@ -92,14 +91,12 @@ RSpec.describe "Backend - Widgets", type: :request do
   end
 
   describe "DELETE /backend/widgets/:slug (#destroy)" do
-    let(:record) { create(:widget, slug: "foo") }
-
-    before { record }
+    before { create(:widget, slug: "foo") }
 
     it "redirects to the listing" do
       delete "/backend/widgets/foo"
 
-      expect(response).to redirect_to(archangel.backend_widgets_path)
+      expect(response).to redirect_to("/backend/widgets")
     end
 
     it "ensures the Widget no longer accessable" do

@@ -7,7 +7,7 @@ RSpec.describe "Auth registration", type: :feature do
     let!(:site) { create(:site, allow_registration: false) }
 
     it "returns a 404" do
-      visit archangel.new_user_registration_path
+      visit "/account/register"
 
       expect(page.status_code).to eq 404
     end
@@ -20,7 +20,7 @@ RSpec.describe "Auth registration", type: :feature do
     end
 
     it "has additional form fields" do
-      visit archangel.new_user_registration_path
+      visit "/account/register"
 
       expect(page).to have_text "Name"
       expect(page).to have_text "Username"
@@ -30,7 +30,7 @@ RSpec.describe "Auth registration", type: :feature do
     end
 
     it "allows successful registration" do
-      visit archangel.new_user_registration_path
+      visit "/account/register"
 
       fill_in "Name", with: "John Doe"
       fill_in "Username", with: "john_doe"

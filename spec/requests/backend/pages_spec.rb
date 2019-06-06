@@ -40,7 +40,7 @@ RSpec.describe "Backend - Pages", type: :request do
       it "redirects to the listing" do
         post "/backend/pages", params: { page: valid_attributes }
 
-        expect(response).to redirect_to(archangel.backend_pages_path)
+        expect(response).to redirect_to("/backend/pages")
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.describe "Backend - Pages", type: :request do
           page: valid_attributes
         }
 
-        expect(response).to redirect_to(archangel.backend_pages_path)
+        expect(response).to redirect_to("/backend/pages")
       end
     end
 
@@ -95,7 +95,7 @@ RSpec.describe "Backend - Pages", type: :request do
     it "redirects to the listing" do
       delete "/backend/pages/#{record.id}"
 
-      expect(response).to redirect_to(archangel.backend_pages_path)
+      expect(response).to redirect_to("/backend/pages")
     end
 
     it "ensures the Page no longer accessable" do

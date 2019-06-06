@@ -7,12 +7,12 @@ RSpec.describe "Auth log out", type: :feature do
     before { stub_authorization! }
 
     it "has additional form fields" do
-      visit archangel.backend_root_path
+      visit "/backend"
 
       click_link "Log Out"
 
       expect(page).to have_content "Signed out successfully"
-      expect(current_path).to eq(archangel.new_user_session_path)
+      expect(current_path).to eq("/account/login")
     end
   end
 end

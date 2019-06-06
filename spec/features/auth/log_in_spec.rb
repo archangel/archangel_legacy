@@ -7,7 +7,7 @@ RSpec.describe "Auth log in", type: :feature do
     it "is successful" do
       create(:user, email: "me@example.com", password: "password")
 
-      visit archangel.new_user_session_path
+      visit "/account/login"
 
       fill_in "Email", with: "me@example.com"
       fill_in "Password", with: "password"
@@ -20,7 +20,7 @@ RSpec.describe "Auth log in", type: :feature do
       email = "me@example.com"
       create(:user, email: email)
 
-      visit archangel.new_user_session_path
+      visit "/account/login"
 
       attempts = 3
       (1..attempts).each do |attempt|
@@ -49,13 +49,13 @@ RSpec.describe "Auth log in", type: :feature do
                                   password: "password",
                                   created_at: 1.week.ago)
 
-      visit archangel.new_user_session_path
+      visit "/account/login"
 
       fill_in "Email", with: "me@example.com"
       fill_in "Password", with: "password"
       click_button "Log in"
 
-      expect(current_path).to eq(archangel.new_user_session_path)
+      expect(current_path).to eq("/account/login")
       expect(page).to have_content I18n.t("devise.failure.unconfirmed")
     end
   end
@@ -64,20 +64,20 @@ RSpec.describe "Auth log in", type: :feature do
     it "cannot login" do
       create(:user, :locked, email: "me@example.com", password: "password")
 
-      visit archangel.new_user_session_path
+      visit "/account/login"
 
       fill_in "Email", with: "me@example.com"
       fill_in "Password", with: "password"
       click_button "Log in"
 
-      expect(current_path).to eq(archangel.new_user_session_path)
+      expect(current_path).to eq("/account/login")
       expect(page).to have_content(I18n.t("devise.failure.locked"))
     end
   end
 
   describe "unknown user credentials" do
     it "is not successful" do
-      visit archangel.new_user_session_path
+      visit "/account/login"
 
       fill_in "Email", with: "me@example.com"
       fill_in "Password", with: "password"
@@ -94,7 +94,7 @@ RSpec.describe "Auth log in", type: :feature do
     it "is not successful" do
       create(:user, email: "me@example.com", password: "password")
 
-      visit archangel.new_user_session_path
+      visit "/account/login"
 
       fill_in "Email", with: "not_me@example.com"
       fill_in "Password", with: "password"
@@ -111,7 +111,7 @@ RSpec.describe "Auth log in", type: :feature do
     it "is not successful" do
       create(:user, email: "me@example.com", password: "password")
 
-      visit archangel.new_user_session_path
+      visit "/account/login"
 
       fill_in "Email", with: "me@example.com"
       fill_in "Password", with: "bad_password"

@@ -52,7 +52,7 @@ RSpec.describe "Backend - Site", type: :request do
         it "redirects after updating resource" do
           patch "/backend/site", params: { site: valid_attributes }
 
-          expect(response).to redirect_to(archangel.backend_site_path)
+          expect(response).to redirect_to("/backend/site")
         end
       end
 

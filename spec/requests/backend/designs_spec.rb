@@ -44,7 +44,7 @@ RSpec.describe "Backend - Designs", type: :request do
       it "redirects to the listing" do
         post "/backend/designs", params: { design: valid_attributes }
 
-        expect(response).to redirect_to(archangel.backend_designs_path)
+        expect(response).to redirect_to("/backend/designs")
       end
     end
   end
@@ -80,7 +80,7 @@ RSpec.describe "Backend - Designs", type: :request do
           design: valid_attributes
         }
 
-        expect(response).to redirect_to(archangel.backend_designs_path)
+        expect(response).to redirect_to("/backend/designs")
       end
     end
 
@@ -103,7 +103,7 @@ RSpec.describe "Backend - Designs", type: :request do
     it "redirects to the listing" do
       delete "/backend/designs/#{record.id}"
 
-      expect(response).to redirect_to(archangel.backend_designs_path)
+      expect(response).to redirect_to("/backend/designs")
     end
 
     it "ensures the Design no longer accessable" do
