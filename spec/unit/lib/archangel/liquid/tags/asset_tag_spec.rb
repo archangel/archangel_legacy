@@ -21,7 +21,7 @@ module Archangel
 
         it "returns link for non-image asset" do
           asset = create(:asset)
-          asset.update_attributes(content_type: "text/css")
+          asset.update(content_type: "text/css")
 
           result = ::Liquid::Template.parse("{% asset '#{asset.file_name}' %}")
                                      .render(context)
