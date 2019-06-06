@@ -9,7 +9,6 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
 
       get "/foo", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:ok)
     end
 
@@ -18,8 +17,6 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
 
       get "/foo", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
-      expect(response).to have_http_status(:ok)
       expect(response).to match_response_schema("frontend/pages/show")
     end
 
@@ -28,7 +25,6 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
 
       get "/foo", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -41,6 +37,14 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
       get "/foo", headers: { accept: "application/json" }
 
       expect(response).to redirect_to("/")
+    end
+
+    it "returns 301 status when Site homepage_redirect is true" do
+      site = create(:site, homepage_redirect: true)
+      create(:page, :homepage, site: site, slug: "foo")
+
+      get "/foo", headers: { accept: "application/json" }
+
       expect(response).to have_http_status(:moved_permanently)
     end
 
@@ -50,7 +54,6 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
 
       get "/foo", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -61,7 +64,6 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
 
       get "/foo", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
 
@@ -70,7 +72,6 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
 
       get "/foo", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
 
@@ -79,7 +80,6 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
 
       get "/foo", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -88,15 +88,12 @@ RSpec.describe "Frontend - Root Page (JSON)", type: :request do
     it "returns 404" do
       get "/broken", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
 
     it "returns 404 with JSON schema" do
       get "/broken", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
-      expect(response).to have_http_status(:not_found)
       expect(response).to match_response_schema("frontend/errors/not_found")
     end
   end

@@ -10,7 +10,6 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       get "/foo/bar", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:ok)
     end
 
@@ -20,8 +19,6 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       get "/foo/bar", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
-      expect(response).to have_http_status(:ok)
       expect(response).to match_response_schema("frontend/pages/show")
     end
 
@@ -31,7 +28,6 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       get "/foo/bar", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:ok)
     end
   end
@@ -45,6 +41,15 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
       get "/foo/bar", headers: { accept: "application/json" }
 
       expect(response).to redirect_to("/")
+    end
+
+    it "returns 301 status when Site homepage_redirect is true" do
+      site = create(:site, homepage_redirect: true)
+      parent_a = create(:page, site: site, slug: "foo")
+      create(:page, :homepage, site: site, parent: parent_a, slug: "bar")
+
+      get "/foo/bar", headers: { accept: "application/json" }
+
       expect(response).to have_http_status(:moved_permanently)
     end
 
@@ -55,7 +60,6 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       get "/foo/bar", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -67,7 +71,6 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       get "/foo/bar", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
 
@@ -77,7 +80,6 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       get "/foo/bar", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
 
@@ -87,26 +89,22 @@ RSpec.describe "Frontend - Nested Page (JSON)", type: :request do
 
       get "/foo/bar", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
   end
 
   describe "when page is not found" do
-    it "returns 404" do
+    it "returns 404 status" do
       create(:page, slug: "foo")
 
       get "/foo/broken", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
       expect(response).to have_http_status(:not_found)
     end
 
     it "returns 404 with JSON schema" do
       get "/foo/broken", headers: { accept: "application/json" }
 
-      expect(response.content_type).to eq("application/json")
-      expect(response).to have_http_status(:not_found)
       expect(response).to match_response_schema("frontend/errors/not_found")
     end
   end

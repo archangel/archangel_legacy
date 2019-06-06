@@ -9,7 +9,6 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
 
       get "/foo"
 
-      expect(response.content_type).to eq("text/html")
       expect(response).to have_http_status(:ok)
     end
 
@@ -18,7 +17,6 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
 
       get "/foo"
 
-      expect(response.content_type).to eq("text/html")
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -31,6 +29,14 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
       get "/foo"
 
       expect(response).to redirect_to("/")
+    end
+
+    it "returns 301 status when Site homepage_redirect is true" do
+      site = create(:site, homepage_redirect: true)
+      create(:page, :homepage, site: site, slug: "foo")
+
+      get "/foo"
+
       expect(response).to have_http_status(:moved_permanently)
     end
 
@@ -40,7 +46,6 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
 
       get "/foo"
 
-      expect(response.content_type).to eq("text/html")
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -51,7 +56,6 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
 
       get "/foo"
 
-      expect(response.content_type).to eq("text/html")
       expect(response).to have_http_status(:not_found)
     end
 
@@ -60,7 +64,6 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
 
       get "/foo"
 
-      expect(response.content_type).to eq("text/html")
       expect(response).to have_http_status(:not_found)
     end
 
@@ -69,7 +72,6 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
 
       get "/foo"
 
-      expect(response.content_type).to eq("text/html")
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -78,7 +80,6 @@ RSpec.describe "Frontend - Root Page (HTML)", type: :request do
     it "returns 404" do
       get "/broken"
 
-      expect(response.content_type).to eq("text/html")
       expect(response).to have_http_status(:not_found)
     end
   end
