@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :entry, class: "Archangel::Entry" do
     collection
-    value { ActiveSupport::JSON.encode(title: "Title", content: "Content") }
+    value { { foo: "bar" } }
     published_at { Time.current }
 
     trait :deleted do

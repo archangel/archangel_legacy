@@ -54,10 +54,7 @@ module Archangel
       def permitted_attributes
         fields = @collection.fields.map(&:slug).map(&:to_sym)
 
-        [
-          :published_at,
-          value: fields
-        ]
+        fields + %i[published_at]
       end
 
       def permitted_sort_attributes
@@ -97,9 +94,13 @@ module Archangel
       end
 
       def resource_new_content
-        @entry = current_site.entries
-                             .where(collection: @collection)
-                             .new(resource_new_params)
+        @entry = current_site.entries.where(collection: @collection).new(nil)
+
+        if action_name.to_sym == :create
+          @collection.fields.map(&:slug).each do |field|
+            @entry.assign_attributes(field => resource_params.fetch(field, nil))
+          end
+        end
 
         authorize @entry
       end

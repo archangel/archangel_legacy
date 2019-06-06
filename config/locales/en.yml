@@ -11,8 +11,10 @@ en:
     back: Back
     classification:
       boolean: Boolean
+      email: Email
+      integer: Integer
       string: String
-      text: Text
+      url: URL
     close: Close
     collection: Collection
     collections: Collections
@@ -24,8 +26,8 @@ en:
     duplicate_slug: duplicate slug
     duplicate_field_slug: duplicate slug
     edit: Edit
-    edit_resource: Edit %{resource}
     edit_entry_resource: Edit %{resource} Entry
+    edit_resource: Edit %{resource}
     email: Email
     entries: Entries
     error_401: Access is denied due to invalid credentials

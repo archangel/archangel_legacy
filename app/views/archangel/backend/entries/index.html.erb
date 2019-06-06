@@ -31,7 +31,8 @@
                 </thead>
 
                 <tbody id="sortable">
-                  <%= render partial: "entry", collection: @entries, locals: { fields: @collection.fields.map(&:slug) } %>
+                  <%= render partial: "entry", collection: @entries,
+                                               locals: { fields: @collection.fields.map(&:slug) } %>
                 </tbody>
               </table>
             </div>

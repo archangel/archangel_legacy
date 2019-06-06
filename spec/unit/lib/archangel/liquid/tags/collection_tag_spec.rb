@@ -31,7 +31,9 @@ module Archangel
 
         it "returns collection content" do
           collection = create(:collection, site: site, slug: "my-collection")
-          create(:field, :required, collection: collection, slug: "name")
+
+          create(:field, collection: collection, slug: "name")
+
           create(:entry, collection: collection, value: { name: "First" })
           create(:entry, collection: collection, value: { name: "Second" })
 
@@ -50,7 +52,9 @@ module Archangel
 
         it "returns collection content with limit and offset" do
           collection = create(:collection, site: site, slug: "my-collection")
-          create(:field, :required, collection: collection, slug: "name")
+
+          create(:field, collection: collection, slug: "name")
+
           create(:entry, collection: collection, value: { name: "First" })
           create(:entry, collection: collection, value: { name: "Second" })
           create(:entry, collection: collection, value: { name: "Third" })
@@ -72,6 +76,7 @@ module Archangel
 
         it "returns nothing for empty collection" do
           collection = create(:collection, site: site, slug: "my-collection")
+
           create(:field, :required, collection: collection, slug: "name")
 
           content = <<-LIQUID
