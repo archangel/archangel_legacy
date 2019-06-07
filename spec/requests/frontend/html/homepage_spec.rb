@@ -41,21 +41,31 @@ RSpec.describe "Frontend - Homepage (HTML)", type: :request do
 
   describe "with multiple homepages" do
     before do
-      create(:page, :homepage, content: "First")
+      create(:page, :homepage, content: "Amazing")
 
-      second_homepage = create(:page, content: "Second")
+      second_homepage = create(:page, content: "Grace")
       second_homepage.update_column(:homepage, true)
     end
 
     it "returns the first available" do
       get "/"
 
-      expect(response.body).to include("First")
+      json_response = JSON.parse(response.body)
+
+      expect(json_response["page"]["content"]).to eq("Amazing")
+    end
+
+    it "does not return the second available" do
+      get "/"
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response["page"]["content"]).not_to eq("Grace")
     end
   end
 
   describe "without a homepage" do
-    it "returns 404" do
+    it "returns 404 status" do
       get "/"
 
       expect(response).to have_http_status(:not_found)

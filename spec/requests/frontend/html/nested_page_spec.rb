@@ -4,70 +4,72 @@ require "rails_helper"
 
 RSpec.describe "Frontend - Nested Page (HTML)", type: :request do
   describe "with available page" do
-    it "returns successfully" do
-      parent_a = create(:page, slug: "foo")
-      create(:page, parent: parent_a, slug: "bar")
+    let(:parent_page) { create(:page, slug: "amazing") }
 
-      get "/foo/bar"
+    it "returns successfully" do
+      create(:page, parent: parent_page, slug: "grace")
+
+      get "/amazing/grace"
 
       expect(response).to have_http_status(:ok)
     end
 
-    it "returns successfully when parent is unavailable" do
-      parent_a = create(:page, :unpublished, slug: "foo")
-      create(:page, parent: parent_a, slug: "bar")
+    it "returns successfully when parent is unavailable?" do
+      parent_page = create(:page, :deleted, slug: "amazing")
 
-      get "/foo/bar"
+      create(:page, parent: parent_page, slug: "grace")
+
+      get "/amazing/grace"
 
       expect(response).to have_http_status(:ok)
     end
   end
 
-  describe "with homepage" do
-    it "redirects to root path when Site homepage_redirect is true" do
-      site = create(:site, homepage_redirect: true)
-      parent_a = create(:page, site: site, slug: "foo")
-      create(:page, :homepage, site: site, parent: parent_a, slug: "bar")
+  describe "with homepage?" do
+    let(:site) { create(:site, homepage_redirect: true) }
 
-      get "/foo/bar"
+    it "redirects to root path when Site homepage_redirect is true" do
+      parent_page = create(:page, site: site, slug: "amazing")
+      create(:page, :homepage, site: site, parent: parent_page, slug: "grace")
+
+      get "/amazing/grace"
 
       expect(response).to redirect_to("/")
     end
 
     it "returns 301 status when Site homepage_redirect is true" do
-      site = create(:site, homepage_redirect: true)
-      parent_a = create(:page, site: site, slug: "foo")
-      create(:page, :homepage, site: site, parent: parent_a, slug: "bar")
+      parent_page = create(:page, site: site, slug: "amazing")
+      create(:page, :homepage, site: site, parent: parent_page, slug: "grace")
 
-      get "/foo/bar"
+      get "/amazing/grace"
 
       expect(response).to have_http_status(:moved_permanently)
     end
 
     it "throws 404 when Site homepage_redirect is false" do
       site = create(:site, homepage_redirect: false)
-      parent_a = create(:page, site: site, slug: "foo")
-      create(:page, :homepage, site: site, parent: parent_a, slug: "bar")
+      parent_page = create(:page, site: site, slug: "amazing")
+      create(:page, :homepage, site: site, parent: parent_page, slug: "grace")
 
-      get "/foo/bar"
+      get "/amazing/grace"
 
       expect(response).to have_http_status(:not_found)
     end
   end
 
   describe "with unavailable page" do
-    it "returns 404 when page is unpublished" do
-      parent_a = create(:page, slug: "foo")
-      create(:page, :unpublished, parent: parent_a, slug: "bar")
+    let(:parent_page) { create(:page, slug: "amazing") }
 
-      get "/foo/bar"
+    it "returns 404 when page is unpublished" do
+      create(:page, :unpublished, parent: parent_page, slug: "grace")
+
+      get "/amazing/grace"
 
       expect(response).to have_http_status(:not_found)
     end
 
     it "returns 404 when page is future published" do
-      parent_a = create(:page, slug: "foo")
-      create(:page, :future, parent: parent_a, slug: "bar")
+      create(:page, :future, parent: parent_page, slug: "grace")
 
       get "/foo/bar"
 
@@ -75,8 +77,7 @@ RSpec.describe "Frontend - Nested Page (HTML)", type: :request do
     end
 
     it "returns 404 when page is deleted" do
-      parent_a = create(:page, slug: "foo")
-      create(:page, :deleted, parent: parent_a, slug: "bar")
+      create(:page, :deleted, parent: parent_page, slug: "grace")
 
       get "/foo/bar"
 
@@ -85,10 +86,10 @@ RSpec.describe "Frontend - Nested Page (HTML)", type: :request do
   end
 
   describe "when page is not found" do
-    it "returns 404" do
-      create(:page, slug: "foo")
+    it "returns 404 status" do
+      create(:page, slug: "amazing")
 
-      get "/foo/broken"
+      get "/amazing/grace"
 
       expect(response).to have_http_status(:not_found)
     end

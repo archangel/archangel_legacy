@@ -13,9 +13,7 @@ module Archangel
 
       describe "POST #sort" do
         let(:collection) { create(:collection) }
-        let!(:field) do
-          create(:field, collection: collection, slug: "slug")
-        end
+        let!(:field) { create(:field, collection: collection, slug: "slug") }
 
         it "assigns all resources as @entries" do
           entry_a = create(:entry,

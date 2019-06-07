@@ -49,9 +49,9 @@ RSpec.describe "Frontend - Homepage (JSON)", type: :request do
 
   describe "with multiple homepages" do
     before do
-      create(:page, :homepage, content: "First")
+      create(:page, :homepage, content: "Amazing")
 
-      second_homepage = create(:page, content: "Second")
+      second_homepage = create(:page, content: "Grace")
       second_homepage.update_column(:homepage, true)
     end
 
@@ -60,7 +60,7 @@ RSpec.describe "Frontend - Homepage (JSON)", type: :request do
 
       json_response = JSON.parse(response.body)
 
-      expect(json_response["page"]["content"]).to eq("First")
+      expect(json_response["page"]["content"]).to eq("Amazing")
     end
   end
 
