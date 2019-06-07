@@ -50,13 +50,13 @@ RSpec.describe "Frontend - Homepage (HTML)", type: :request do
     it "returns the first available" do
       get "/"
 
-      expect(response).to include("Amazing")
+      expect(response.body).to include("Amazing")
     end
 
     it "does not return the second available" do
       get "/"
 
-      expect(response).not_to eq("Grace")
+      expect(response.body).not_to include("Grace")
     end
   end
 
