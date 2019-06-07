@@ -50,17 +50,13 @@ RSpec.describe "Frontend - Homepage (HTML)", type: :request do
     it "returns the first available" do
       get "/"
 
-      json_response = JSON.parse(response.body)
-
-      expect(json_response["page"]["content"]).to eq("Amazing")
+      expect(response).to include("Amazing")
     end
 
     it "does not return the second available" do
       get "/"
 
-      json_response = JSON.parse(response.body)
-
-      expect(json_response["page"]["content"]).not_to eq("Grace")
+      expect(response).not_to eq("Grace")
     end
   end
 
