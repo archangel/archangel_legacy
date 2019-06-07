@@ -9,8 +9,7 @@ RSpec.describe "Auth log in", type: :feature do
 
       visit "/account/login"
 
-      fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "password"
+      fill_in_login_form_with("me@example.com", "password")
       click_button "Log in"
 
       expect(page).to have_content I18n.t("devise.sessions.signed_in")
@@ -24,8 +23,7 @@ RSpec.describe "Auth log in", type: :feature do
 
       attempts = 3
       (1..attempts).each do |attempt|
-        fill_in "Email", with: email
-        fill_in "Password", with: "wrong-password-#{attempt}"
+        fill_in_login_form_with(email, "wrong-password-#{attempt}")
         click_button "Log in"
 
         message = I18n.t("devise.failure.not_found_in_database",
@@ -35,52 +33,18 @@ RSpec.describe "Auth log in", type: :feature do
         expect(page).to have_content message
       end
 
-      fill_in "Email", with: email
-      fill_in "Password", with: "wrong-password-#{attempts + 1}"
+      fill_in_login_form_with(email, "wrong-password-#{attempts + 1}")
       click_button "Log in"
 
       expect(page).to have_content(I18n.t("devise.failure.locked"))
     end
   end
 
-  describe "unconfirmed user" do
-    it "cannot login" do
-      create(:user, :unconfirmed, email: "me@example.com",
-                                  password: "password",
-                                  created_at: 1.week.ago)
-
+  describe "with invalid credentials" do
+    it "fails with unknown user credentials" do
       visit "/account/login"
 
-      fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "password"
-      click_button "Log in"
-
-      expect(current_path).to eq("/account/login")
-      expect(page).to have_content I18n.t("devise.failure.unconfirmed")
-    end
-  end
-
-  describe "locked user" do
-    it "cannot login" do
-      create(:user, :locked, email: "me@example.com", password: "password")
-
-      visit "/account/login"
-
-      fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "password"
-      click_button "Log in"
-
-      expect(current_path).to eq("/account/login")
-      expect(page).to have_content(I18n.t("devise.failure.locked"))
-    end
-  end
-
-  describe "unknown user credentials" do
-    it "is not successful" do
-      visit "/account/login"
-
-      fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "password"
+      fill_in_login_form_with("me@example.com", "password")
       click_button "Log in"
 
       expect(page).to(
@@ -88,16 +52,13 @@ RSpec.describe "Auth log in", type: :feature do
                             authentication_keys: "Email"))
       )
     end
-  end
 
-  describe "with invalid email" do
-    it "is not successful" do
+    it "fails with invalid email" do
       create(:user, email: "me@example.com", password: "password")
 
       visit "/account/login"
 
-      fill_in "Email", with: "not_me@example.com"
-      fill_in "Password", with: "password"
+      fill_in_login_form_with("not_me@example.com", "password")
       click_button "Log in"
 
       expect(page).to(
@@ -105,16 +66,13 @@ RSpec.describe "Auth log in", type: :feature do
                             authentication_keys: "Email"))
       )
     end
-  end
 
-  describe "with invalid password" do
-    it "is not successful" do
+    it "fails with invalid password" do
       create(:user, email: "me@example.com", password: "password")
 
       visit "/account/login"
 
-      fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "bad_password"
+      fill_in_login_form_with("me@example.com", "bad_password")
       click_button "Log in"
 
       expect(page).to(
@@ -122,5 +80,29 @@ RSpec.describe "Auth log in", type: :feature do
                             authentication_keys: "Email"))
       )
     end
+
+    it "fails to log in with unconfirmed user" do
+      create(:user, :unconfirmed, email: "me@example.com",
+                                  password: "password",
+                                  created_at: 1.day.ago)
+
+      visit "/account/login"
+
+      fill_in_login_form_with("me@example.com", "password")
+      click_button "Log in"
+
+      expect(page).to have_content I18n.t("devise.failure.unconfirmed")
+    end
+  end
+
+  it "fails to log in with locked user" do
+    create(:user, :locked, email: "me@example.com", password: "password")
+
+    visit "/account/login"
+
+    fill_in_login_form_with("me@example.com", "password")
+    click_button "Log in"
+
+    expect(page).to have_content(I18n.t("devise.failure.locked"))
   end
 end

@@ -6,13 +6,20 @@ RSpec.describe "Auth log out", type: :feature do
   describe "while logged in" do
     before { stub_authorization! }
 
-    it "has additional form fields" do
+    it "signs out successfully" do
       visit "/backend"
 
       click_link "Log Out"
 
       expect(page).to have_content "Signed out successfully"
-      expect(current_path).to eq("/account/login")
+    end
+
+    it "signs out and redirects to login page" do
+      visit "/backend"
+
+      click_link "Log Out"
+
+      expect(page).to have_current_path("/account/login")
     end
   end
 end
