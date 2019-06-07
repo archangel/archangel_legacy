@@ -30,6 +30,10 @@ module Archangel
         fill_in "Password", with: password, match: :prefer_exact
         fill_in "Confirm Password", with: confirm_password, match: :prefer_exact
       end
+
+      def fill_in_profile_password_with(password = "", confirm_password = "")
+        fill_in_invitation_form_with(password, confirm_password)
+      end
     end
   end
 end
