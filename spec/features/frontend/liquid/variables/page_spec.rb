@@ -3,30 +3,47 @@
 require "rails_helper"
 
 RSpec.describe "Liquid custom variables", type: :feature do
-  let!(:site) { create(:site) }
+  let(:site) { create(:site) }
+
+  let(:resource_content) do
+    %(
+      Page Title: {{ page.title }}
+      Page Permalink: {{ page.permalink }}
+      Page Published At: {{ page.published_at }}
+      Page Unknown: >{{ page.unknown_variable }}<
+    )
+  end
+
+  before do
+    create(:page, site: site,
+                  slug: "amazing",
+                  title: "Amazing Page Title",
+                  content: resource_content,
+                  published_at: "2019-04-22 03:09:40 UTC")
+  end
 
   describe "for `page` variable object" do
-    it "knows the `page` properties" do
-      content = <<-CONTENT
-        Page ID: {{ page.id }}
-        Page Title: {{ page.title }}
-        Page Permalink: {{ page.permalink }}
-        Page Published At: {{ page.published_at }}
-        Page Unknown: >{{ page.unknown_variable }}<
-      CONTENT
+    it "knows the `page` title property" do
+      visit "/amazing"
 
-      resource = create(:page, site: site,
-                               slug: "foo",
-                               title: "Foo Page Title",
-                               content: content,
-                               published_at: "2019-04-22 03:09:40 UTC")
+      expect(page).to have_content("Page Title: Amazing Page Title")
+    end
 
-      visit "/foo"
+    it "knows the `page` permalink property" do
+      visit "/amazing"
 
-      expect(page).to have_content("Page ID: #{resource.id}")
-      expect(page).to have_content("Page Title: Foo Page Title")
-      expect(page).to have_content("Page Permalink: /foo")
+      expect(page).to have_content("Page Permalink: /amazing")
+    end
+
+    it "knows the `page` published_at property" do
+      visit "/amazing"
+
       expect(page).to have_content("Page Published At: 2019-04-22 03:09:40 UTC")
+    end
+
+    it "returns blank value for unknown `page` properties" do
+      visit "/amazing"
+
       expect(page).to have_content("Page Unknown: ><")
     end
   end
