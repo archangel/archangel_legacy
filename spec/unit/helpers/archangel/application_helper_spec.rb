@@ -11,7 +11,7 @@ module Archangel
 
     let(:site) { create(:site) }
 
-    context "#frontend_resource_path" do
+    context "with #frontend_resource_path" do
       it "returns the permalink with a string" do
         expect(helper.frontend_resource_path("foo/bar")).to eq("/foo/bar")
       end
@@ -24,13 +24,13 @@ module Archangel
       end
     end
 
-    context "#locale" do
+    context "with #locale" do
       it "returns default application locale" do
         expect(helper.locale).to eq("en")
       end
     end
 
-    context "#text_direction" do
+    context "with #text_direction" do
       it "returns default `ltr` text direction" do
         expect(helper.text_direction).to eq("ltr")
       end

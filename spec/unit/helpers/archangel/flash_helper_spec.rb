@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe FlashHelper, type: :helper do
-    context "#flash_class_for(obj)" do
+    context "with #flash_class_for(obj)" do
       it "returns success class" do
         expect(helper.flash_class_for("success")).to eq("success")
       end
@@ -21,26 +21,20 @@ module Archangel
         expect(helper.flash_class_for("notice")).to eq("info")
       end
 
-      it "returns unknown class" do
-        expect(helper.flash_class_for("unknown")).to eq("unknown")
-        expect(helper.flash_class_for("foo bar")).to eq("foo-bar")
-        expect(helper.flash_class_for("foo-bar")).to eq("foo-bar")
-        expect(helper.flash_class_for("foo_bar")).to eq("foo_bar")
-        expect(helper.flash_class_for("foo      bar")).to eq("foo-bar")
+      it "returns downcased for unknown class" do
+        expect(helper.flash_class_for("Unknown")).to eq("unknown")
       end
 
-      it "returns class with known characters" do
-        resource = <<-CONTENT
-          abcdefghijklmnopqrstuvwxyz
-          tab	space ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          `-=[]\;',./~!@#$%^&*()_+{}|:"<>?
-          ¡™£¢∞§¶•ªº–≠	œ∑´®†¥¨ˆøπ“‘«åß∂ƒ©˙∆˚¬…æΩ≈ç√∫˜µ≤≥÷
-          0123456789
-        CONTENT
-        expected = "abcdefghijklmnopqrstuvwxyz-tab-space-" \
-                   "abcdefghijklmnopqrstuvwxyz-_-oe-o-ass-ae-c-0123456789"
+      it "returns with dashes in place of spaces for class" do
+        expect(helper.flash_class_for("foo  bar")).to eq("foo-bar")
+      end
 
-        expect(helper.flash_class_for(resource)).to eq(expected)
+      it "returns with dashes in class" do
+        expect(helper.flash_class_for("foo--bar")).to eq("foo-bar")
+      end
+
+      it "returns with underscores in class" do
+        expect(helper.flash_class_for("foo_bar")).to eq("foo_bar")
       end
     end
   end
