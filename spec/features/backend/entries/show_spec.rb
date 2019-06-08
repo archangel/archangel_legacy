@@ -2,49 +2,56 @@
 
 require "rails_helper"
 
-RSpec.feature "Backend - Collection Entry (HTML)", type: :feature do
+RSpec.describe "Backend - Collection Entry (HTML)", type: :feature do
   describe "show" do
-    before { stub_authorization!(profile) }
+    before { stub_authorization! }
 
-    let(:profile) { create(:user) }
-
-    let!(:collection) { create(:collection, slug: "amazing") }
+    let(:collection) { create(:collection, slug: "amazing") }
 
     describe "is available" do
-      scenario "finds the Entry" do
+      before do
         create(:field, collection: collection,
                        label: "Field Name",
                        slug: "name")
         create(:field, collection: collection,
                        label: "Field Slug",
                        slug: "slug")
+      end
 
-        resource = create(:entry, collection: collection,
-                                  value: {
-                                    name: "Available Entry",
-                                    slug: "available"
-                                  })
+      let(:resource) do
+        create(:entry, collection: collection,
+                       value: {
+                         name: "Entry Name",
+                         slug: "entry-slug"
+                       })
+      end
 
+      it "finds the Entry name" do
         visit "/backend/collections/amazing/entries/#{resource.id}"
 
-        expect(page).to have_content("name: Available Entry")
-        expect(page).to have_content("slug: available")
+        expect(page).to have_content("name: Entry Name")
+      end
+
+      it "finds the Entry slug" do
+        visit "/backend/collections/amazing/entries/#{resource.id}"
+
+        expect(page).to have_content("slug: entry-slug")
       end
     end
 
     describe "is not available" do
-      scenario "when it does not exist" do
+      it "returns 404 status when it does not exist" do
         visit "/backend/collections/amazing/entries/0"
 
         expect(page)
           .to have_content("Page not found. Could not find what was requested")
       end
 
-      scenario "when deleted" do
+      it "return erro message when deleted" do
         resource = create(:entry, :deleted, collection: collection,
                                             value: {
-                                              name: "Available Entry",
-                                              slug: "available"
+                                              name: "Entry Name",
+                                              slug: "entry-slug"
                                             })
 
         visit "/backend/collections/amazing/entries/#{resource.id}"

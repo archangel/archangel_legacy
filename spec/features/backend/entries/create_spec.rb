@@ -2,49 +2,36 @@
 
 require "rails_helper"
 
-RSpec.feature "Backend - Collection Entries (HTML)", type: :feature do
+RSpec.describe "Backend - Collection Entries (HTML)", type: :feature do
   describe "creation" do
-    before { stub_authorization!(profile) }
+    before { stub_authorization! }
 
-    let(:profile) { create(:user) }
+    let(:collection) { create(:collection, slug: "amazing") }
 
     describe "successful" do
-      let!(:collection) { create(:collection, slug: "amazing") }
-
-      let!(:field_name) do
+      before do
         create(:field, collection: collection, label: "Name", slug: "name")
-      end
-      let!(:field_slug) do
-        create(:field, collection: collection,
-                       label: "Slug",
-                       slug: "slug",
+        create(:field, collection: collection, label: "Slug", slug: "slug",
                        required: true)
       end
-      let!(:field_email) do
-        create(:field, collection: collection,
-                       classification: "email",
-                       label: "Email",
-                       slug: "email")
-      end
 
-      scenario "with valid data for a full collection" do
+      it "returns success message with valid data" do
         visit "/backend/collections/amazing/entries/new"
 
-        fill_in "Name", with: "Really Good Entry Item"
-        fill_in "Slug", with: "really-good-entry-item"
-        fill_in "Email", with: "foo@example.com"
-        fill_in "Published At", with: "2019-01-01 00:00:00"
-
+        fill_in "Name", with: "Archgabriel"
+        fill_in "Slug", with: "gabriel"
+        fill_in "Published At", with: "2019-11-24 03:41:18 UTC"
         click_button "Create Entry"
 
         expect(page).to have_content("Entry was successfully created.")
       end
 
-      scenario "when non-required field is empty" do
+      it "returns success message when non-required field is empty" do
         visit "/backend/collections/amazing/entries/new"
 
-        fill_in "Slug", with: "really-good-entry-item"
-
+        fill_in "Name", with: ""
+        fill_in "Slug", with: "gabriel"
+        fill_in "Published At", with: ""
         click_button "Create Entry"
 
         expect(page).to have_content("Entry was successfully created.")
@@ -52,95 +39,56 @@ RSpec.feature "Backend - Collection Entries (HTML)", type: :feature do
     end
 
     describe "unsuccessful" do
-      let!(:collection) { create(:collection, slug: "amazing") }
+      before do
+        create(:field, collection: collection, required: true,
+                       label: "Required Field", slug: "required_field")
 
-      let!(:field_required) do
-        create(:field, collection: collection,
-                       label: "Required Field",
-                       slug: "required_field",
-                       required: true)
-      end
-      let!(:field_boolean) do
-        create(:field, collection: collection,
-                       classification: "boolean",
-                       label: "Boolean Field",
-                       slug: "boolean_field")
-      end
-      let!(:field_email) do
-        create(:field, collection: collection,
-                       classification: "email",
-                       label: "Email Field",
-                       slug: "email_field")
-      end
-      let!(:field_integer) do
-        create(:field, collection: collection,
-                       classification: "integer",
-                       label: "Integer Field",
-                       slug: "integer_field")
-      end
-      let!(:field_string) do
-        create(:field, collection: collection,
-                       classification: "string",
-                       label: "String Field",
-                       slug: "string_field")
-      end
-      let!(:field_url) do
-        create(:field, collection: collection,
-                       classification: "url",
-                       label: "URL Field",
-                       slug: "url_field")
+        %w[boolean email integer string url].each do |field_classification|
+          create(:field, collection: collection,
+                         classification: field_classification,
+                         label: "#{field_classification.titleize} Field",
+                         slug: "#{field_classification}_field")
+        end
       end
 
-      scenario "without value for required field" do
+      it "fails without value for required field" do
         visit "/backend/collections/amazing/entries/new"
 
         fill_in "Required Field", with: ""
-
         click_button "Create Entry"
-
-        expect(page).to_not have_content("Entry was successfully created.")
 
         expect(page.find(".input.collection_entry_required_field"))
           .to have_content("can't be blank")
       end
 
-      scenario "without valid email for email field" do
+      it "fails without valid email for email field" do
         visit "/backend/collections/amazing/entries/new"
 
         fill_in "Required Field", with: "Amazing Required Value"
-        fill_in "Email Field", with: "not an email address"
-
+        fill_in "Email Field", with: "me_at_email_dot_com"
         click_button "Create Entry"
-
-        expect(page).to_not have_content("Entry was successfully created.")
 
         expect(page.find(".input.collection_entry_email_field"))
           .to have_content("not a valid email address")
       end
 
-      scenario "without valid integer for integer field" do
+      it "fails without valid integer for integer field" do
         visit "/backend/collections/amazing/entries/new"
 
         fill_in "Required Field", with: "Amazing Required Value"
-        fill_in "Integer Field", with: "not an integer"
-
+        fill_in "Integer Field", with: "One"
         click_button "Create Entry"
-
-        expect(page).to_not have_content("Entry was successfully created.")
 
         expect(page.find(".input.collection_entry_integer_field"))
           .to have_content("not a valid integer")
       end
 
-      scenario "without valid URL for URL field" do
+      it "fails without valid URL for url field" do
         visit "/backend/collections/amazing/entries/new"
 
         fill_in "Required Field", with: "Amazing Required Value"
-        fill_in "URL Field", with: "not a valid URL"
-
+        fill_in "Url Field", with: "not a valid URL"
         click_button "Create Entry"
-
-        expect(page).to_not have_content("Entry was successfully created.")
 
         expect(page.find(".input.collection_entry_url_field"))
           .to have_content("not a valid URL")
