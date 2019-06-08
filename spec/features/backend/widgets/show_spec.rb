@@ -4,33 +4,43 @@ require "rails_helper"
 
 RSpec.describe "Backend - Widget (HTML)", type: :feature do
   describe "show" do
-    before { stub_authorization!(profile) }
+    before { stub_authorization! }
 
-    let(:profile) { create(:user) }
-
-    describe "is available" do
-      scenario "finds the Widget" do
+    context "when available" do
+      before do
         create(:widget, name: "Amazing Widget",
                         slug: "amazing",
                         content: "Content of the Widget")
+      end
 
+      it "has the correct Name" do
         visit "/backend/widgets/amazing"
 
         expect(page).to have_content("Name: Amazing Widget")
+      end
+
+      it "has the correct Slug" do
+        visit "/backend/widgets/amazing"
+
         expect(page).to have_content("Slug: amazing")
+      end
+
+      it "has the correct Content" do
+        visit "/backend/widgets/amazing"
+
         expect(page).to have_content("Content: Content of the Widget")
       end
     end
 
-    describe "is not available" do
-      scenario "when it does not exist" do
+    context "when not available" do
+      it "fails when it does not exist" do
         visit "/backend/widgets/unknown"
 
         expect(page)
           .to have_content("Page not found. Could not find what was requested")
       end
 
-      scenario "when deleted" do
+      it "fails when deleted" do
         create(:widget, :deleted, slug: "deleted-widget")
 
         visit "/backend/widgets/deleted-widget"
