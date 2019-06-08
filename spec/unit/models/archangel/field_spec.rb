@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Field, type: :model do
-    context "validations" do
+    context "with validations" do
       it { is_expected.to validate_presence_of(:classification) }
       it { is_expected.to validate_presence_of(:collection_id).on(:update) }
       it { is_expected.to validate_presence_of(:label) }
@@ -33,7 +33,7 @@ module Archangel
       end
     end
 
-    context "associations" do
+    context "with associations" do
       it { is_expected.to belong_to(:collection) }
     end
   end

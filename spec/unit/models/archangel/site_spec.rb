@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Site, type: :model do
-    context "validations" do
+    context "with validations" do
       it { is_expected.to validate_presence_of(:locale) }
       it { is_expected.to validate_presence_of(:name) }
 
@@ -32,7 +32,7 @@ module Archangel
     it { is_expected.to have_many(:entries).through(:collections) }
     it { is_expected.to have_many(:fields).through(:collections) }
 
-    context ".current" do
+    context "with .current" do
       it "returns an existing object" do
         resource = create(:site, name: "My Awesome New Site")
 
@@ -45,7 +45,7 @@ module Archangel
       end
     end
 
-    context "#to_liquid" do
+    context "with #to_liquid" do
       it "returns a Liquid object" do
         resource = build(:site)
 

@@ -4,13 +4,13 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Collection, type: :model do
-    context "callbacks" do
+    context "with callbacks" do
       it { is_expected.to callback(:parameterize_slug).before(:validation) }
 
       it { is_expected.to callback(:column_reset).after(:destroy) }
     end
 
-    context "validations" do
+    context "with validations" do
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:slug) }
 
@@ -22,14 +22,14 @@ module Archangel
       end
     end
 
-    context "associations" do
+    context "with associations" do
       it { is_expected.to belong_to(:site) }
 
       it { is_expected.to have_many(:entries) }
       it { is_expected.to have_many(:fields) }
     end
 
-    context "#to_param" do
+    context "with #to_param" do
       it "uses `slug` as the identifier for routes" do
         resource = build(:collection, slug: "foo")
 
@@ -37,7 +37,7 @@ module Archangel
       end
     end
 
-    context "#column_reset" do
+    context "with #column_reset" do
       it "resets `slug` to `slug` + current time" do
         resource = create(:collection)
 

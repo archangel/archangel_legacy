@@ -11,13 +11,16 @@ module Archangel
         end
         let(:resource_drop) { described_class.new(resource) }
 
-        context "attributes" do
+        context "with attributes" do
           it "_attributes" do
             expect(resource_drop.class._attributes).to eq(%i[locale name])
           end
 
-          it "returns correct attribute values" do
+          it "returns correct attribute value for locale" do
             expect(resource_drop.locale).to eq("en")
+          end
+
+          it "returns correct attribute value for name" do
             expect(resource_drop.name).to eq("Test Site")
           end
 
@@ -27,7 +30,7 @@ module Archangel
           end
         end
 
-        context "#as_json" do
+        context "with #as_json" do
           it "returns hash of attributes" do
             json_object = {
               locale: "en",
@@ -38,7 +41,7 @@ module Archangel
           end
         end
 
-        context "#to_json" do
+        context "with #to_json" do
           it "returns hash of attributes" do
             json_object = {
               locale: "en",
@@ -49,7 +52,7 @@ module Archangel
           end
         end
 
-        context "#inspect" do
+        context "with #inspect" do
           it "returns inspect string" do
             expect(resource_drop.inspect)
               .to include("#<Archangel::Liquid::Drops::SiteDrop")

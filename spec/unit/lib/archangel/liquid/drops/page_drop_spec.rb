@@ -13,14 +13,17 @@ module Archangel
         end
         let(:resource_drop) { described_class.new(resource) }
 
-        context "attributes" do
+        context "when attributes" do
           it "_attributes" do
             expect(resource_drop.class._attributes)
               .to eq(%i[published_at title])
           end
 
-          it "returns correct attribute values" do
+          it "returns correct attribute value for published_at" do
             expect(resource_drop.published_at).to eq("2018-04-20 14:20:18")
+          end
+
+          it "returns correct attribute value for title" do
             expect(resource_drop.title).to eq("Test Page")
           end
 
@@ -33,7 +36,7 @@ module Archangel
           end
         end
 
-        context "#as_json" do
+        context "when #as_json" do
           it "returns hash of attributes" do
             json_object = {
               published_at: "2018-04-20T14:20:18.000Z",
@@ -44,7 +47,7 @@ module Archangel
           end
         end
 
-        context "#to_json" do
+        context "when #to_json" do
           it "returns hash of attributes" do
             json_object = {
               published_at: "2018-04-20T14:20:18.000Z",
@@ -55,7 +58,7 @@ module Archangel
           end
         end
 
-        context "#inspect" do
+        context "when #inspect" do
           it "returns inspect string" do
             expect(resource_drop.inspect)
               .to include("#<Archangel::Liquid::Drops::PageDrop")

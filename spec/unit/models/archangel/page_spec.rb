@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Page, type: :model do
-    context "callbacks" do
+    context "with callbacks" do
       it { is_expected.to callback(:parameterize_slug).before(:validation) }
 
       it { is_expected.to callback(:build_page_permalink).before(:save) }
@@ -14,7 +14,7 @@ module Archangel
       it { is_expected.to callback(:column_reset).after(:destroy) }
     end
 
-    context "validations" do
+    context "with validations" do
       it { is_expected.to validate_presence_of(:content) }
       it { is_expected.to validate_presence_of(:slug) }
       it { is_expected.to validate_presence_of(:title) }
@@ -54,7 +54,7 @@ module Archangel
       it { is_expected.not_to allow_value("{{ foo }").for(:content) }
     end
 
-    context "associations" do
+    context "with associations" do
       it do
         is_expected.to belong_to(:design).conditions(partial: false).optional
       end
@@ -66,8 +66,8 @@ module Archangel
       it { is_expected.to have_many(:metatags) }
     end
 
-    context "scopes" do
-      context ".available" do
+    context "with scopes" do
+      context "with .available" do
         it "returns all where published_at <= now" do
           page = create(:page)
 
@@ -81,7 +81,7 @@ module Archangel
         end
       end
 
-      context ".published" do
+      context "with .published" do
         it "returns all where published_at <= now" do
           page = create(:page)
 
@@ -95,7 +95,7 @@ module Archangel
         end
       end
 
-      context ".unpublished" do
+      context "with .unpublished" do
         it "returns all where published_at is nil" do
           page = create(:page, :unpublished)
 
@@ -109,7 +109,7 @@ module Archangel
         end
       end
 
-      context ".homepage" do
+      context "with .homepage" do
         it "returns all where homepage is true" do
           page = create(:page, :homepage)
 
@@ -118,7 +118,7 @@ module Archangel
       end
     end
 
-    context ".published?" do
+    context "with .published?" do
       it "is published" do
         page = build(:page)
 
@@ -138,7 +138,7 @@ module Archangel
       end
     end
 
-    context ".available?" do
+    context "with .available?" do
       it "is available when published in the past" do
         page = build(:page, published_at: 1.week.ago)
 
@@ -158,7 +158,7 @@ module Archangel
       end
     end
 
-    context "#to_liquid" do
+    context "with #to_liquid" do
       it "returns a Liquid object" do
         resource = build(:page)
 
@@ -166,7 +166,7 @@ module Archangel
       end
     end
 
-    context "#column_reset" do
+    context "with #column_reset" do
       it "resets `slug` to `slug` + current time" do
         resource = create(:page)
 

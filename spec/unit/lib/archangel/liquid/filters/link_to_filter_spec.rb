@@ -11,7 +11,7 @@ module Archangel
           ::Liquid::Context.new({ "site" => site }, {}, view: view)
         end
 
-        context "#link_to" do
+        context "with #link_to" do
           let(:link_text) { "Hello world!" }
 
           it "returns the link with no text provided" do

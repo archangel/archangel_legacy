@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Entry, type: :model do
-    context "validations" do
+    context "with validations" do
       it { is_expected.to validate_presence_of(:collection_id) }
       it { is_expected.to validate_presence_of(:value) }
 
@@ -15,12 +15,12 @@ module Archangel
       it { is_expected.not_to allow_value("invalid").for(:published_at) }
     end
 
-    context "associations" do
+    context "with associations" do
       it { is_expected.to belong_to(:collection) }
     end
 
-    context "scopes" do
-      context ".available" do
+    context "with scopes" do
+      context "with .available" do
         it "returns all where published_at <= now" do
           entry = create(:entry)
 
@@ -34,7 +34,7 @@ module Archangel
         end
       end
 
-      context ".available" do
+      context "with .available" do
         it "returns all where published_at <= now" do
           entry = create(:entry)
 
@@ -48,7 +48,7 @@ module Archangel
         end
       end
 
-      context ".unpublished" do
+      context "with .unpublished" do
         it "returns all where available_at is nil" do
           entry = create(:entry, :unpublished)
 
@@ -63,7 +63,7 @@ module Archangel
       end
     end
 
-    context ".available?" do
+    context "with .available?" do
       it "is available" do
         entry = build(:entry, published_at: 1.minute.ago)
 
@@ -83,7 +83,7 @@ module Archangel
       end
     end
 
-    context ".published?" do
+    context "with .published?" do
       it "is published" do
         entry = build(:entry)
 
