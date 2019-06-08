@@ -3,6 +3,12 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Users (HTML)", type: :feature do
+  def fill_in_user_form_with(name = "", username = "", email = "")
+    fill_in "Name", with: name
+    fill_in "Username", with: username
+    fill_in "Email", with: email
+  end
+
   describe "creation" do
     before { stub_authorization!(profile) }
 

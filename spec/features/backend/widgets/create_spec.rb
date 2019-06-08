@@ -3,6 +3,12 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Widgets (HTML)", type: :feature do
+  def fill_in_widget_form_with(name = "", slug = "", content = "")
+    fill_in "Name", with: name
+    fill_in "Slug", with: slug
+    fill_in "Content", with: content
+  end
+
   describe "creation" do
     before { stub_authorization! }
 
