@@ -3,25 +3,31 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Pages (HTML)", type: :feature do
-  describe "creation" do
-    before { stub_authorization!(profile) }
+  def fill_in_page_form_with(title = "", slug = "", content = "",
+                             published_at = "")
+    fill_in "Title", with: title
+    fill_in "Slug", with: slug
+    page.find("textarea#page_content").set(content)
+    fill_in "Published At", with: (published_at || Time.now)
+  end
 
-    let(:profile) { create(:user) }
+  def fill_in_metatag_form_with(name = "", content = "")
+    fill_in "Name", with: name
+    fill_in "Content", with: content
+  end
+
+  describe "creation" do
+    before { stub_authorization! }
 
     describe "successful" do
-      scenario "with valid data including meta tags" do
+      it "displays success message even with meta tag data" do
         visit "/backend/pages/new"
 
-        fill_in "Title", with: "Amazing Page"
-        fill_in "Slug", with: "amazing"
-
-        page.find("textarea#page_content").set("<p>Content of the page</p>")
-
-        fill_in "Published At", with: Time.now
+        fill_in_page_form_with("Amazing Page", "amazing",
+                               "<p>Content of the page</p>", Time.now)
 
         within ".form-group.page_metatags" do
-          fill_in "Name", with: "description"
-          fill_in "Content", with: "Description of the Page"
+          fill_in_metatag_form_with("description", "Description of the Page")
         end
 
         click_button "Create Page"
