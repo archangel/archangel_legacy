@@ -6,30 +6,23 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
   describe "creation" do
     before { stub_authorization!(profile) }
 
-    let(:profile) { create(:user) }
+    let(:profile) { create(:user, username: "gabriel", email: "g@email.com") }
 
     describe "successful" do
-      scenario "with valid data" do
+      it "displays success message" do
         visit "/backend/users/new"
 
-        fill_in "Name", with: "Amazing User"
-        fill_in "Username", with: "amazing"
-        fill_in "Email", with: "me@example.com"
-
+        fill_in_user_form_with("Amazing User", "amazing", "me@example.com")
         click_button "Create User"
 
         expect(page).to have_content("User was successfully created.")
       end
 
-      scenario "with valid data with Role" do
+      it "with Role it displays success message" do
         visit "/backend/users/new"
 
-        fill_in "Name", with: "Amazing User"
-        fill_in "Username", with: "amazing"
-        fill_in "Email", with: "me@example.com"
-
+        fill_in_user_form_with("Amazing User", "amazing", "me@example.com")
         select "Admin", from: "Role"
-
         click_button "Create User"
 
         expect(page).to have_content("User was successfully created.")
@@ -37,64 +30,52 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
     end
 
     describe "unsuccessful" do
-      scenario "without name" do
+      it "fails without name" do
         visit "/backend/users/new"
 
-        fill_in "Name", with: ""
-        fill_in "Username", with: "amazing"
-        fill_in "Email", with: "me@example.com"
-
+        fill_in_user_form_with("", "amazing", "me@example.com")
         click_button "Create User"
 
         expect(page.find(".input.user_name")).to have_content("can't be blank")
-
-        expect(page).not_to have_content("User was successfully created.")
       end
 
-      scenario "without username" do
+      it "fails without username" do
         visit "/backend/users/new"
 
-        fill_in "Name", with: "Amazing User"
-        fill_in "Username", with: ""
-        fill_in "Email", with: "me@example.com"
-
+        fill_in_user_form_with("Amazing User", "", "me@example.com")
         click_button "Create User"
 
         expect(page.find(".input.user_username"))
           .to have_content("can't be blank")
-
-        expect(page).not_to have_content("User was successfully created.")
       end
 
-      scenario "without email" do
+      it "fails with used username" do
         visit "/backend/users/new"
 
-        fill_in "Name", with: "Amazing User"
-        fill_in "Username", with: "amazing"
-        fill_in "Email", with: ""
-
-        click_button "Create User"
-
-        expect(page.find(".input.user_email")).to have_content("can't be blank")
-
-        expect(page).not_to have_content("User was successfully created.")
-      end
-
-      scenario "with used username" do
-        create(:user, username: "amazing")
-
-        visit "/backend/users/new"
-
-        fill_in "Name", with: "Amazing User"
-        fill_in "Username", with: "amazing"
-        fill_in "Email", with: "me@example.com"
-
+        fill_in_user_form_with("Amazing User", "gabriel", "me@example.com")
         click_button "Create User"
 
         expect(page.find(".input.user_username"))
           .to have_content("has already been taken")
+      end
 
-        expect(page).not_to have_content("User was successfully created.")
+      it "fails without email" do
+        visit "/backend/users/new"
+
+        fill_in_user_form_with("Amazing User", "amazing", "")
+        click_button "Create User"
+
+        expect(page.find(".input.user_email")).to have_content("can't be blank")
+      end
+
+      it "fails with used emaill" do
+        visit "/backend/users/new"
+
+        fill_in_user_form_with("Amazing User", "amazing", "g@email.com")
+        click_button "Create User"
+
+        expect(page.find(".input.user_email"))
+          .to have_content("has already been taken")
       end
     end
   end

@@ -18,6 +18,12 @@ module Archangel
         fill_in "Slug", with: slug
         fill_in "Content", with: content
       end
+
+      def fill_in_user_form_with(name = "", username = "", email = "")
+        fill_in "Name", with: name
+        fill_in "Username", with: username
+        fill_in "Email", with: email
+      end
     end
   end
 end
