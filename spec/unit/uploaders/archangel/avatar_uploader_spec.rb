@@ -4,6 +4,8 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe AvatarUploader, type: :uploader do
+    subject(:resource) { described_class.new }
+
     let(:user) { create(:user) }
     let(:uploader) { described_class.new(user, :avatar) }
 
@@ -20,7 +22,8 @@ module Archangel
     end
 
     it "uses default image" do
-      expect(subject.default_url).to include("assets/archangel/fallback/avatar")
+      expect(resource.default_url)
+        .to include("assets/archangel/fallback/avatar")
     end
 
     it "scales an original image to be no larger than 512 by 512 pixels" do

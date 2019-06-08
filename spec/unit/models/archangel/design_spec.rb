@@ -4,6 +4,8 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Design, type: :model do
+    subject(:resource) { described_class.new }
+
     context "with validations" do
       it { is_expected.to validate_presence_of(:content) }
       it { is_expected.to validate_presence_of(:name) }
@@ -21,7 +23,7 @@ module Archangel
       it { is_expected.to belong_to(:site) }
 
       it "belongs to Design" do
-        expect(subject).to(
+        expect(resource).to(
           belong_to(:parent).conditions(partial: false)
                             .class_name("Archangel::Design")
                             .optional

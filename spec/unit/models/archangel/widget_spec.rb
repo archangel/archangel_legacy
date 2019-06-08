@@ -4,6 +4,8 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Widget, type: :model do
+    subject(:resource) { described_class.new }
+
     context "with callbacks" do
       it { is_expected.to callback(:parameterize_slug).before(:validation) }
 
@@ -30,7 +32,7 @@ module Archangel
       it { is_expected.to belong_to(:site) }
 
       it "belongs to Design" do
-        expect(subject).to(
+        expect(resource).to(
           belong_to(:design).conditions(partial: true).optional
         )
       end

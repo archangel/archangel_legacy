@@ -4,6 +4,8 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Site, type: :model do
+    subject(:resource) { described_class.new }
+
     context "with validations" do
       it { is_expected.to validate_presence_of(:locale) }
       it { is_expected.to validate_presence_of(:name) }
@@ -11,12 +13,12 @@ module Archangel
       it { is_expected.to allow_value("").for(:theme) }
 
       it "allows certain languages" do
-        expect(subject)
+        expect(resource)
           .to validate_inclusion_of(:locale).in_array(Archangel::LANGUAGES)
       end
 
-      it "allows certain languages" do
-        expect(subject)
+      it "allows certain themes" do
+        expect(resource)
           .to validate_inclusion_of(:theme).in_array(Archangel.themes)
       end
     end

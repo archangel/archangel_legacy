@@ -19,8 +19,6 @@ module Archangel
       it { is_expected.to validate_presence_of(:slug) }
       it { is_expected.to validate_presence_of(:title) }
 
-      it { is_expected.to allow_value("{{ foo }}").for(:content) }
-
       it { is_expected.to allow_value(true).for(:homepage) }
       it { is_expected.to allow_value(1).for(:homepage) }
       it { is_expected.to allow_value(false).for(:homepage) }

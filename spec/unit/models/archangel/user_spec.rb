@@ -4,6 +4,8 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe User, type: :model do
+    subject(:resource) { described_class.new }
+
     context "with callbacks" do
       let(:resource) { create(:user) }
 
@@ -29,7 +31,7 @@ module Archangel
       end
 
       it "allows certain roles" do
-        expect(subject)
+        expect(resource)
           .to validate_inclusion_of(:role).in_array(Archangel::ROLES)
       end
 
@@ -41,7 +43,7 @@ module Archangel
           "foo+bar@example.com",
           "~!\#$%^&*_+{}|\?`-='@example.com"
         ].each do |email|
-          expect(subject).to allow_value(email).for(:email)
+          expect(resource).to allow_value(email).for(:email)
         end
       end
 
@@ -55,7 +57,7 @@ module Archangel
           "@example.com",
           "foo bar@example.com"
         ].each do |email|
-          expect(subject).not_to allow_value(email).for(:email)
+          expect(resource).not_to allow_value(email).for(:email)
         end
       end
     end
