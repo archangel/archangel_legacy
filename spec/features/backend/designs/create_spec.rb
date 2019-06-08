@@ -3,87 +3,73 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Designs (HTML)", type: :feature do
+  def fill_in_design_form_with(name = "", content = "")
+    fill_in "Name", with: name
+    fill_in "Content", with: content
+  end
+
   describe "creation" do
-    before { stub_authorization!(profile) }
+    before { stub_authorization! }
 
-    let(:profile) { create(:user) }
+    let(:design_content) do
+      %(
+        <header>HEADER</header>
+        <main>{{ content_for_layout }}</main>
+        <footer>HEADER</footer>
+      )
+    end
 
-    describe "successful" do
-      scenario "with valid data for a full design" do
+    describe "with valid data" do
+      it "is successful not as a Partial" do
         visit "/backend/designs/new"
 
-        fill_in "Name", with: "Amazing Design"
-        fill_in "Content", with: "<header>HEADER</header>
-                                    <main>{{ content_for_layout }}</main>
-                                  <footer>HEADER</footer>"
+        fill_in_design_form_with("Amazing Design", design_content)
         uncheck "Partial"
-
         click_button "Create Design"
 
         expect(page).to have_content("Design was successfully created.")
       end
 
-      scenario "with valid data for a partial design" do
+      it "is successful as a Partial" do
         visit "/backend/designs/new"
 
-        fill_in "Name", with: "Amazing Design"
-        fill_in "Content", with: "<header>HEADER</header>
-                                    <main>{{ content_for_layout }}</main>
-                                  <footer>HEADER</footer>"
+        fill_in_design_form_with("Amazing Design", design_content)
         check "Partial"
-
         click_button "Create Design"
 
         expect(page).to have_content("Design was successfully created.")
       end
     end
 
-    describe "unsuccessful" do
-      scenario "without name" do
+    describe "with invalid data" do
+      it "fails without name" do
         visit "/backend/designs/new"
 
-        fill_in "Name", with: ""
-        fill_in "Content", with: "<header>HEADER</header>
-                                    <main>{{ content_for_layout }}</main>
-                                  <footer>HEADER</footer>"
-
+        fill_in_design_form_with("", design_content)
         click_button "Create Design"
 
         expect(page.find(".input.design_name"))
           .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Design was successfully created.")
       end
 
-      scenario "without content" do
+      it "fails without content" do
         visit "/backend/designs/new"
 
-        fill_in "Name", with: "Amazing Design"
-        fill_in "Content", with: ""
-
+        fill_in_design_form_with("Amazing Design", "")
         click_button "Create Design"
 
         expect(page.find(".input.design_content"))
           .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Design was successfully created.")
       end
 
-      scenario "with invalid Liquid data in Content" do
+      it "fails with invalid Liquid data in Content" do
         visit "/backend/designs/new"
 
-        fill_in "Name", with: "Amazing Design"
-        fill_in "Content", with: "<header>HEADER</header>
-                                    <main>{{ content_for_layout }}</main>
-                                    <aside>{% widget %}</aside>
-                                  <footer>HEADER</footer>"
-
+        fill_in_design_form_with("Amazing Design", "<div>{% widget %}</div>")
         click_button "Create Design"
 
         expect(page.find(".input.design_content"))
           .to have_content("contains invalid Liquid formatting")
-
-        expect(page).not_to have_content("Design was successfully created.")
       end
     end
   end
