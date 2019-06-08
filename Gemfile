@@ -14,6 +14,7 @@ group :development do
   gem "rubocop", "~> 0.70", require: false
   gem "rubocop-performance", "~> 1.3", require: false
   gem "rubocop-rails", "~> 2.0", require: false
+  gem "rubocop-rspec", "~> 1.33", require: false
   gem "yard", "~> 0.9", require: false
 end
 
