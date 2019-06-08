@@ -25,8 +25,7 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
       it "succeeds with password change" do
         visit "/backend/profile/edit"
 
-        page.find("input#profile_password").set("new password")
-        page.find("input#profile_password_confirmation").set("new password")
+        fill_in_password_with("new password", "new password")
         click_button "Update User"
 
         expect(page).to have_content("User was successfully updated.")
@@ -35,8 +34,7 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
       it "succeeds with password confirmation but without password" do
         visit "/backend/profile/edit"
 
-        page.find("input#profile_password").set("")
-        page.find("input#profile_password_confirmation").set("new password")
+        fill_in_password_with("", "new password")
         click_button "Update User"
 
         expect(page).to have_content("User was successfully updated.")
@@ -107,7 +105,7 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
       it "fails with password and password confirmation mismatch" do
         visit "/backend/profile/edit"
 
-        fill_in_profile_password_with("correct password", "incorrect password")
+        fill_in_password_with("correct password", "incorrect password")
         click_button "Update User"
 
         expect(page.find(".input.profile_password_confirmation"))
