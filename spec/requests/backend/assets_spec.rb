@@ -72,8 +72,7 @@ RSpec.describe "Backend - Pages", type: :request do
              headers: { accept: "application/json" },
              params: { file: fixture_file_upload(uploader_test_stylesheet) }
 
-        expected_error = "You are not allowed to upload \"css\" files, " \
-                         "allowed types: gif, jpeg, jpg, png"
+        expected_error = "You are not allowed to upload \"css\" files"
 
         expect(json_response[:error]).to include(expected_error)
       end
