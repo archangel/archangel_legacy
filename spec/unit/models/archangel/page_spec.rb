@@ -53,13 +53,17 @@ module Archangel
     end
 
     context "with associations" do
-      it do
-        is_expected.to belong_to(:design).conditions(partial: false).optional
+      it "optionally belongs to non-partial Design" do
+        expect(described_class.new)
+          .to belong_to(:design).conditions(partial: false).optional
       end
+
+      it "optionally belongs to parent Page" do
+        expect(described_class.new)
+          .to belong_to(:parent).class_name("Archangel::Page").optional
+      end
+
       it { is_expected.to belong_to(:site) }
-      it do
-        is_expected.to belong_to(:parent).class_name("Archangel::Page").optional
-      end
 
       it { is_expected.to have_many(:metatags) }
     end

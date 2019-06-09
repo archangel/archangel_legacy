@@ -36,9 +36,14 @@ module Archangel
 
     context "with .current" do
       it "returns an existing object" do
-        resource = create(:site, name: "My Awesome New Site")
+        resource = create(:site)
 
         expect(described_class.current).to eq(resource)
+      end
+
+      it "returns an object value" do
+        create(:site, name: "My Awesome New Site")
+
         expect(described_class.current.name).to eq("My Awesome New Site")
       end
 

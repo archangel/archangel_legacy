@@ -17,6 +17,27 @@ module Archangel
     end
 
     context "with validations" do
+      let(:allowed_emails) do
+        [
+          "foo@example.com",
+          "foo.bar@example.com",
+          "foo_bar@example.com",
+          "foo+bar@example.com",
+          "~!\#$%^&*_+{}|\?`-='@example.com"
+        ]
+      end
+      let(:not_allowed_emails) do
+        [
+          nil,
+          "",
+          "@",
+          "foo@",
+          "@example",
+          "@example.com",
+          "foo bar@example.com"
+        ]
+      end
+
       it { is_expected.to validate_presence_of(:email) }
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:role) }
@@ -36,27 +57,13 @@ module Archangel
       end
 
       it "allows values for email" do
-        [
-          "foo@example.com",
-          "foo.bar@example.com",
-          "foo_bar@example.com",
-          "foo+bar@example.com",
-          "~!\#$%^&*_+{}|\?`-='@example.com"
-        ].each do |email|
+        allowed_emails.each do |email|
           expect(resource).to allow_value(email).for(:email)
         end
       end
 
       it "does not allows values for email" do
-        [
-          nil,
-          "",
-          "@",
-          "foo@",
-          "@example",
-          "@example.com",
-          "foo bar@example.com"
-        ].each do |email|
+        not_allowed_emails.each do |email|
           expect(resource).not_to allow_value(email).for(:email)
         end
       end
