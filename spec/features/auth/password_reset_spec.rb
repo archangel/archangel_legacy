@@ -12,10 +12,8 @@ RSpec.describe "Auth password reset", type: :feature do
       fill_in_password_reset_form_with("amazing@email.com")
       click_button "Send me reset password instructions"
 
-      message = "You will receive an email with instructions on how to reset " \
-                "your password in a few minutes."
-
-      expect(page).to have_content(message)
+      expect(page)
+        .to have_content("You will receive an email with instructions")
     end
 
     it "redirects back to the login form" do
