@@ -1,0 +1,20 @@
+<!doctype html>
+<html dir="<%= text_direction %>" lang="<%= locale %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <%= display_meta_tags %>
+
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag "#{current_theme}/frontend", media: "all" %>
+    <%= yield(:stylesheet) if content_for?(:stylesheet) %>
+  </head>
+  <body>
+    <%= yield %>
+
+    <%= javascript_include_tag "#{current_theme}/frontend" %>
+    <%= yield(:javascript) if content_for?(:javascript) %>
+  </body>
+</html>
