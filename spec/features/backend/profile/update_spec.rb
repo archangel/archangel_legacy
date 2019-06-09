@@ -76,10 +76,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         attach_file "Avatar", uploader_test_stylesheet
         click_button "Update User"
 
-        message = "You are not allowed to upload \"css\" files, allowed " \
-                  "types: gif, jpeg, jpg, png"
-
-        expect(page.find(".input.profile_avatar")).to have_content(message)
+        expect(page.find(".input.profile_avatar"))
+          .to have_content("You are not allowed to upload \"css\" files")
       end
 
       it "fails without username" do

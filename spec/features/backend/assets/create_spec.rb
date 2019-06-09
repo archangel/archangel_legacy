@@ -59,10 +59,8 @@ RSpec.describe "Backend - Assets (HTML)", type: :feature do
         fill_in_asset_form_with("amazing.jpg", uploader_test_stylesheet)
         click_button "Create Asset"
 
-        expect(page.find(".input.asset_file")).to have_content(
-          "You are not allowed to upload \"css\" files, allowed types: " \
-          "gif, jpeg, jpg, png"
-        )
+        expect(page.find(".input.asset_file"))
+          .to have_content("You are not allowed to upload \"css\" files")
       end
     end
   end

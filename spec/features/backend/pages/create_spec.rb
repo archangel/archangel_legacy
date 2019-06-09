@@ -108,8 +108,7 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
         it "fails with reserved slug of `#{reserved_path}`" do
           visit "/backend/pages/new"
 
-          fill_in_page_form_with("Amazing", reserved_path,
-                                 "<p>Amazing content</p>")
+          fill_in_page_form_with("Amazing", reserved_path, "<p>Content</p>")
           click_button "Create Page"
 
           expect(page.find(".input.page_slug"))

@@ -44,23 +44,21 @@ RSpec.describe "Backend - Widgets (HTML)", type: :feature do
     end
 
     describe "with valid data" do
+      before { create(:design, :partial, name: "My Partial Design") }
+
       it "is successful" do
         visit "/backend/widgets/new"
 
-        fill_in_widget_form_with("Amazing Widget", "amazing",
-                                 "<p>Content of the widget</p>")
+        fill_in_widget_form_with("Great Title", "amazing", "<p>Content</p>")
         click_button "Create Widget"
 
         expect(page).to have_content("Widget was successfully created.")
       end
 
       it "with valid data with Design" do
-        create(:design, :partial, name: "My Partial Design")
-
         visit "/backend/widgets/new"
 
-        fill_in_widget_form_with("Amazing Widget", "amazing",
-                                 "<p>Content of the widget</p>")
+        fill_in_widget_form_with("Amazing Title", "amazing", "<p>Content</p>")
         select "My Partial Design", from: "Design"
         click_button "Create Widget"
 
@@ -94,8 +92,7 @@ RSpec.describe "Backend - Widgets (HTML)", type: :feature do
 
         visit "/backend/widgets/new"
 
-        fill_in_widget_form_with("Amazing", "amazing",
-                                 "<p>Content of the widget</p>")
+        fill_in_widget_form_with("Amazing Title", "amazing", "<p>Content</p>")
         click_button "Create Widget"
 
         expect(page.find(".input.widget_slug"))

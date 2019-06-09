@@ -47,12 +47,10 @@ RSpec.describe "Backend - Collection Entry (HTML)", type: :feature do
           .to have_content("Page not found. Could not find what was requested")
       end
 
-      it "return erro message when deleted" do
-        resource = create(:entry, :deleted, collection: collection,
-                                            value: {
-                                              name: "Entry Name",
-                                              slug: "entry-slug"
-                                            })
+      it "return error message when deleted" do
+        resource = create(:entry, :deleted,
+                          collection: collection,
+                          value: { name: "Entry Name", slug: "entry-slug" })
 
         visit "/backend/collections/amazing/entries/#{resource.id}"
 

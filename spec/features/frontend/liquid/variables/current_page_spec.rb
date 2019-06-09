@@ -5,6 +5,25 @@ require "rails_helper"
 RSpec.describe "Liquid custom variable", type: :feature do
   let(:site) { create(:site) }
 
+  let(:inline_current_page) do
+    %(
+      {% if current_page == page.permalink %}
+        Current Page?: Yup!
+      {% else %}
+        Current Page?: Nope!
+      {% endif %}
+    )
+  end
+  let(:inline_other_page) do
+    %(
+      {% if current_page == '/some-other-page' %}
+        Current Page?: Yup!
+      {% else %}
+        Current Page?: Nope!
+      {% endif %}
+    )
+  end
+
   describe "for `current_page` variable" do
     it "knows the current page at root level" do
       create(:page, site: site,
@@ -27,15 +46,7 @@ RSpec.describe "Liquid custom variable", type: :feature do
     end
 
     it "knows it is on the current page" do
-      content = %(
-        {% if current_page == page.permalink %}
-          Current Page?: Yup!
-        {% else %}
-          Current Page?: Nope!
-        {% endif %}
-      )
-
-      create(:page, site: site, slug: "amazing", content: content)
+      create(:page, site: site, slug: "amazing", content: inline_current_page)
 
       visit "/amazing"
 
@@ -43,15 +54,7 @@ RSpec.describe "Liquid custom variable", type: :feature do
     end
 
     it "knows it is not on the current page" do
-      content = %(
-        {% if current_page == '/some-other-page' %}
-          Current Page?: Yup!
-        {% else %}
-          Current Page?: Nope!
-        {% endif %}
-      )
-
-      create(:page, site: site, slug: "amazing", content: content)
+      create(:page, site: site, slug: "amazing", content: inline_other_page)
 
       visit "/amazing"
 

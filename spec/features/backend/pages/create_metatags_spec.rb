@@ -12,8 +12,10 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
   end
 
   def fill_in_metatag_form_with(name = "", content = "")
-    fill_in "Name", with: name
-    fill_in "Content", with: content
+    within ".form-group.page_metatags" do
+      fill_in "Name", with: name
+      fill_in "Content", with: content
+    end
   end
 
   describe "creation" do
@@ -24,11 +26,7 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
         visit "/backend/pages/new"
 
         fill_in_page_form_with("Amazing", "amazing", "<p>Amazing content</p>")
-
-        within ".form-group.page_metatags" do
-          fill_in_metatag_form_with("description", "Description of the Page")
-        end
-
+        fill_in_metatag_form_with("description", "Description of the Page")
         click_button "Create Page"
 
         expect(page).to have_content("Page was successfully created.")

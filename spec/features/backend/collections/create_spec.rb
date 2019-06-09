@@ -9,9 +9,11 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
   end
 
   def fill_in_field_form_with(label = "", slug = "", classification = "String")
-    select classification, from: "Classification"
-    fill_in "Label", with: label
-    fill_in "Slug", with: slug
+    within ".form-group.collection_fields" do
+      select classification, from: "Classification"
+      fill_in "Label", with: label
+      fill_in "Slug", with: slug
+    end
   end
 
   describe "creation" do
@@ -22,11 +24,7 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections/new"
 
         fill_in_collection_form_with("Amazing Collection", "amazing")
-
-        within ".form-group.collection_fields" do
-          fill_in_field_form_with("Name", "name", "String")
-        end
-
+        fill_in_field_form_with("Name", "name", "String")
         click_button "Create Collection"
 
         expect(page).to have_content("Collection was successfully created.")
@@ -38,11 +36,7 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections/new"
 
         fill_in_collection_form_with("", "amazing")
-
-        within ".form-group.collection_fields" do
-          fill_in_field_form_with("Name", "name", "String")
-        end
-
+        fill_in_field_form_with("Name", "name", "String")
         click_button "Create Collection"
 
         expect(page.find(".input.collection_name"))
@@ -53,11 +47,7 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections/new"
 
         fill_in_collection_form_with("Amazing Collection", "")
-
-        within ".form-group.collection_fields" do
-          fill_in_field_form_with("Name", "name", "String")
-        end
-
+        fill_in_field_form_with("Name", "name", "String")
         click_button "Create Collection"
 
         expect(page.find(".input.collection_slug"))
@@ -70,11 +60,7 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections/new"
 
         fill_in_collection_form_with("Amazing Collection", "amazing")
-
-        within ".form-group.collection_fields" do
-          fill_in_field_form_with("Name", "name", "String")
-        end
-
+        fill_in_field_form_with("Name", "name", "String")
         click_button "Create Collection"
 
         expect(page.find(".input.collection_slug"))
@@ -85,11 +71,7 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections/new"
 
         fill_in_collection_form_with("Amazing Collection", "amazing")
-
-        within ".form-group.collection_fields" do
-          fill_in_field_form_with("", "name", "String")
-        end
-
+        fill_in_field_form_with("", "name", "String")
         click_button "Create Collection"
 
         within ".form-group.collection_fields" do
@@ -102,11 +84,7 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         visit "/backend/collections/new"
 
         fill_in_collection_form_with("Amazing Collection", "amazing")
-
-        within ".form-group.collection_fields" do
-          fill_in_field_form_with("Name", "", "String")
-        end
-
+        fill_in_field_form_with("Name", "", "String")
         click_button "Create Collection"
 
         within ".form-group.collection_fields" do
