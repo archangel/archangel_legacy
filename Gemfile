@@ -27,13 +27,14 @@ end
 group :test do
   gem "json-schema", "~> 2.8", require: false
   gem "launchy", "~> 2.4", require: false
+  gem "poltergeist", "~> 1.18", require: false
   gem "simplecov", "~> 0.16", require: false
   gem "timecop", "~> 0.9", require: false
 
+  # Shared, general purpose gems
   gem "capybara", "~> 3.21"
   gem "database_cleaner", "~> 1.7"
   gem "factory_bot_rails", "~> 5.0"
-  gem "poltergeist", "~> 1.18"
   gem "rspec-rails", "~> 3.8"
   gem "shoulda-callback-matchers", "~> 1.1"
   gem "shoulda-matchers", "~> 4.0"
