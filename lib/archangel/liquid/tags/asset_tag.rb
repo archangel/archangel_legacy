@@ -8,9 +8,9 @@ module Archangel
       #
       # Example
       #   {% asset 'my-asset.png' %} #=>
-      #     <img src="path/to/my-asset.png" alt:"my-asset.png">
+      #     <img src="path/to/my-asset.png" alt="my-asset.png">
       #   {% asset 'my-asset.png' size:'medium' %} #=>
-      #     <img src="path/to/medium_my-asset.png" alt:"my-asset.png">
+      #     <img src="path/to/medium_my-asset.png" alt="my-asset.png">
       #   {% asset 'my-asset.png' alt:'My image' class:'center' %} #=>
       #     <img src="path/to/my-asset.png" alt="My image" class="center">
       #
