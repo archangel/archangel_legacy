@@ -59,11 +59,13 @@ module Archangel
         end
 
         context "when #inspect" do
-          it "returns inspect string" do
+          it "returns PageDrop in inspect string" do
             expect(resource_drop.inspect)
               .to include("#<Archangel::Liquid::Drops::PageDrop")
-            expect(resource_drop.inspect)
-              .to include("#<Archangel::Page")
+          end
+
+          it "returns Archangel::Page in inspect string" do
+            expect(resource_drop.inspect).to include("#<Archangel::Page")
           end
         end
       end

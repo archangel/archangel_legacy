@@ -6,9 +6,7 @@ module Archangel
   module Liquid
     module Drops
       RSpec.describe SiteDrop, type: :liquid_drop do
-        let(:resource) do
-          create(:site, name: "Test Site", locale: "en")
-        end
+        let(:resource) { create(:site, name: "Test Site", locale: "en") }
         let(:resource_drop) { described_class.new(resource) }
 
         context "with attributes" do
@@ -53,11 +51,13 @@ module Archangel
         end
 
         context "with #inspect" do
-          it "returns inspect string" do
+          it "returns SiteDrop in inspect string" do
             expect(resource_drop.inspect)
               .to include("#<Archangel::Liquid::Drops::SiteDrop")
-            expect(resource_drop.inspect)
-              .to include("#<Archangel::Site")
+          end
+
+          it "returns Archangel::Site in inspect string" do
+            expect(resource_drop.inspect).to include("#<Archangel::Site")
           end
         end
       end
