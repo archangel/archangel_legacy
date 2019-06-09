@@ -67,19 +67,19 @@ module Archangel
       it "is available" do
         entry = build(:entry, published_at: 1.minute.ago)
 
-        expect(entry.available?).to be_truthy
+        expect(entry).to be_available
       end
 
       it "is not available in the future" do
         entry = build(:entry, published_at: 1.week.from_now)
 
-        expect(entry.available?).to be_falsey
+        expect(entry).not_to be_available
       end
 
       it "is not available" do
         entry = build(:entry, :unpublished)
 
-        expect(entry.available?).to be_falsey
+        expect(entry).not_to be_available
       end
     end
 
@@ -87,19 +87,19 @@ module Archangel
       it "is published" do
         entry = build(:entry)
 
-        expect(entry.published?).to be_truthy
+        expect(entry).to be_published
       end
 
       it "is published in the future" do
         entry = build(:entry, published_at: 1.week.from_now)
 
-        expect(entry.published?).to be_truthy
+        expect(entry).to be_published
       end
 
       it "is not published" do
         entry = build(:entry, :unpublished)
 
-        expect(entry.published?).to be_falsey
+        expect(entry).not_to be_published
       end
     end
   end

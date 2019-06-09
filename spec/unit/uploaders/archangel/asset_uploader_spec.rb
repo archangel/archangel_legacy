@@ -31,7 +31,7 @@ module Archangel
       end
 
       it "is an image file" do
-        expect(uploader.image?).to be_truthy
+        expect(uploader).to be_image
       end
 
       it "scales a small image to be no larger than 64 by 64 pixels" do

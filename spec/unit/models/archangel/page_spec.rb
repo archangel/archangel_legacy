@@ -120,19 +120,19 @@ module Archangel
       it "is published" do
         page = build(:page)
 
-        expect(page.published?).to be_truthy
+        expect(page).to be_published
       end
 
       it "is published for the future" do
         page = build(:page, published_at: 1.week.from_now)
 
-        expect(page.published?).to be_truthy
+        expect(page).to be_published
       end
 
       it "is not published" do
         page = build(:page, :unpublished)
 
-        expect(page.published?).to be_falsey
+        expect(page).not_to be_published
       end
     end
 
@@ -140,19 +140,19 @@ module Archangel
       it "is available when published in the past" do
         page = build(:page, published_at: 1.week.ago)
 
-        expect(page.available?).to be_truthy
+        expect(page).to be_available
       end
 
       it "is unavailable when published in the future" do
         page = build(:page, published_at: 1.week.from_now)
 
-        expect(page.available?).to be_falsey
+        expect(page).not_to be_available
       end
 
       it "is unavailable not published" do
         page = build(:page, :unpublished)
 
-        expect(page.available?).to be_falsey
+        expect(page).not_to be_available
       end
     end
 
