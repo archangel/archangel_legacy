@@ -6,30 +6,41 @@ RSpec.describe "Backend - Site (HTML)", type: :feature do
   describe "show" do
     before { stub_authorization!(profile) }
 
-    let!(:site) { create(:site, name: "Amazing Site", theme: "default") }
-
     let(:profile) do
       create(:user, :admin, email: "amazing@example.com",
                             name: "Amazing User",
                             username: "amazing")
     end
 
-    describe "successful" do
-      scenario "finds the Site" do
-        visit "/backend/site"
+    it "returns the correct Site name" do
+      create(:site, name: "Amazing Site")
 
-        expect(page).to have_content("Name: Amazing Site")
-        expect(page).to have_content("Theme: default")
-        expect(page).to have_content("Locale: en")
-      end
+      visit "/backend/site"
 
-      scenario "has default Logo for the Site" do
-        visit "/backend/site"
+      expect(page).to have_content("Name: Amazing Site")
+    end
 
-        expect(page)
-          .to have_css("img[src^='/assets/archangel/fallback/small_logo']")
-        expect(page).to have_css("img[alt='Amazing Site']")
-      end
+    it "returns the correct Site theme" do
+      create(:site, name: "Amazing Site", theme: "default")
+
+      visit "/backend/site"
+
+      expect(page).to have_content("Theme: default")
+    end
+
+    it "returns the correct Site locale" do
+      create(:site, name: "Amazing Site", locale: "en")
+
+      visit "/backend/site"
+
+      expect(page).to have_content("Locale: en")
+    end
+
+    it "returns default Logo image src for the Site" do
+      visit "/backend/site"
+
+      expect(page)
+        .to have_css("img[src^='/assets/archangel/fallback/small_logo']")
     end
   end
 end

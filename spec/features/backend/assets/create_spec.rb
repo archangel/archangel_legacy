@@ -3,18 +3,19 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Assets (HTML)", type: :feature do
-  describe "creation" do
-    before { stub_authorization!(profile) }
+  def fill_in_asset_form_with(file_name = "", file = "")
+    fill_in "File Name", with: file_name
+    attach_file "File", file unless file.blank?
+  end
 
-    let(:profile) { create(:user) }
+  describe "creation" do
+    before { stub_authorization! }
 
     describe "successful" do
-      scenario "with valid data for a full asset" do
+      it "returns success message with valid data" do
         visit "/backend/assets/new"
 
-        fill_in "File Name", with: "amazing.jpg"
-        attach_file "File", uploader_test_image
-
+        fill_in_asset_form_with("amazing.jpg", uploader_test_image)
         click_button "Create Asset"
 
         expect(page).to have_content("Asset was successfully created.")
@@ -22,61 +23,44 @@ RSpec.describe "Backend - Assets (HTML)", type: :feature do
     end
 
     describe "unsuccessful" do
-      scenario "without file name" do
+      it "fails without file_name" do
         visit "/backend/assets/new"
 
-        fill_in "File Name", with: ""
-        attach_file "File", uploader_test_image
-
+        fill_in_asset_form_with("", uploader_test_image)
         click_button "Create Asset"
 
         expect(page.find(".input.asset_file_name"))
           .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Asset was successfully created.")
       end
 
-      scenario "without file" do
+      it "fails without file" do
         visit "/backend/assets/new"
 
-        fill_in "File Name", with: "amazing.jpg"
-
+        fill_in_asset_form_with("amazing.jpg", "")
         click_button "Create Asset"
 
-        expect(page.find(".input.asset_file"))
-          .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Asset was successfully created.")
+        expect(page.find(".input.asset_file")).to have_content("can't be blank")
       end
 
-      scenario "with invalid file name" do
+      it "fails with invalid file_name" do
         visit "/backend/assets/new"
 
-        fill_in "File Name", with: "foo"
-        attach_file "File", uploader_test_image
+        fill_in_asset_form_with("amazing", uploader_test_image)
 
         click_button "Create Asset"
 
         expect(page.find(".input.asset_file_name"))
           .to have_content("must be valid file name")
-
-        expect(page).not_to have_content("Asset was successfully created.")
       end
 
-      scenario "with invalid file type" do
+      it "fails with invalid file type" do
         visit "/backend/assets/new"
 
-        fill_in "File Name", with: "foo"
-        attach_file "File", uploader_test_stylesheet
-
+        fill_in_asset_form_with("amazing.jpg", uploader_test_stylesheet)
         click_button "Create Asset"
 
-        expect(page.find(".input.asset_file")).to have_content(
-          "You are not allowed to upload \"css\" files, allowed types: " \
-          "gif, jpeg, jpg, png"
-        )
-
-        expect(page).not_to have_content("Asset was successfully created.")
+        expect(page.find(".input.asset_file"))
+          .to have_content("You are not allowed to upload \"css\" files")
       end
     end
   end

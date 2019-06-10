@@ -4,40 +4,51 @@ require "rails_helper"
 
 RSpec.describe "Auth registration", type: :feature do
   describe "when registration is disabled" do
-    let!(:site) { create(:site, allow_registration: false) }
+    before { create(:site, allow_registration: false) }
 
     it "returns a 404" do
-      visit archangel.new_user_registration_path
+      visit "/account/register"
 
       expect(page.status_code).to eq 404
     end
   end
 
   describe "when registration is enabled" do
-    let!(:site) { create(:site, allow_registration: true) }
-    let!(:homepage) do
+    before do
+      create(:site, allow_registration: true)
+
       create(:page, :homepage, content: "Welcome to the homepage")
     end
 
-    it "has additional form fields" do
-      visit archangel.new_user_registration_path
+    it "has additional Name form field label" do
+      visit "/account/register"
 
       expect(page).to have_text "Name"
+    end
+
+    it "has additional Username form field label" do
+      visit "/account/register"
+
       expect(page).to have_text "Username"
+    end
+
+    it "has additional `name` form field" do
+      visit "/account/register"
 
       expect(page).to have_selector("input[type=text][id='user_name']")
+    end
+
+    it "has additional `username` form field" do
+      visit "/account/register"
+
       expect(page).to have_selector("input[type=text][id='user_username']")
     end
 
     it "allows successful registration" do
-      visit archangel.new_user_registration_path
+      visit "/account/register"
 
-      fill_in "Name", with: "John Doe"
-      fill_in "Username", with: "john_doe"
-      fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "password", match: :prefer_exact
-      fill_in "Confirm Password", with: "password", match: :prefer_exact
-
+      fill_in_registration_form_with("John Doe", "john_doe", "me@example.com",
+                                     "password", "password")
       click_button "Sign up"
 
       expect(page).to have_content("Welcome to the homepage")

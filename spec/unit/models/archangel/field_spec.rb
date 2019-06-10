@@ -4,7 +4,9 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Field, type: :model do
-    context "validations" do
+    subject(:resource) { described_class.new }
+
+    context "with validations" do
       it { is_expected.to validate_presence_of(:classification) }
       it { is_expected.to validate_presence_of(:collection_id).on(:update) }
       it { is_expected.to validate_presence_of(:label) }
@@ -18,7 +20,7 @@ module Archangel
       it { is_expected.not_to allow_value(nil).for(:required) }
 
       it "allows certain classifications" do
-        expect(subject).to(
+        expect(resource).to(
           validate_inclusion_of(:classification)
             .in_array(Archangel::Field::CLASSIFICATIONS)
         )
@@ -33,7 +35,7 @@ module Archangel
       end
     end
 
-    context "associations" do
+    context "with associations" do
       it { is_expected.to belong_to(:collection) }
     end
   end

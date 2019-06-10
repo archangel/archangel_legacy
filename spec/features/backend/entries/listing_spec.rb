@@ -2,18 +2,13 @@
 
 require "rails_helper"
 
-RSpec.feature "Backend - Collection Entries (HTML)", type: :feature do
+RSpec.describe "Backend - Collection Entries (HTML)", type: :feature do
   describe "listing" do
-    before { stub_authorization!(profile) }
-
-    let(:profile) { create(:user) }
-
-    let!(:collection) { create(:collection, slug: "amazing") }
-    let!(:field_name) do
-      create(:field, collection: collection, label: "Name", slug: "name")
-    end
-
     before do
+      stub_authorization!
+
+      create(:field, collection: collection, label: "Name", slug: "name")
+
       ("A".."Z").each do |letter|
         create(:entry, collection: collection,
                        value: {
@@ -22,47 +17,68 @@ RSpec.feature "Backend - Collection Entries (HTML)", type: :feature do
       end
     end
 
-    describe "sorted" do
-      scenario "ascending from position" do
+    let(:collection) { create(:collection, slug: "amazing") }
+
+    describe "sorted descending (Z-A) from position" do
+      it "finds the first (Z) resource" do
         visit "/backend/collections/amazing/entries"
 
         within("tbody") do
           expect(page.find("tr:eq(1)")).to have_content("Entry Z Name")
+        end
+      end
+
+      it "finds the second (Y) resource" do
+        visit "/backend/collections/amazing/entries"
+
+        within("tbody") do
           expect(page.find("tr:eq(2)")).to have_content("Entry Y Name")
+        end
+      end
+
+      it "finds the third (X) resource" do
+        visit "/backend/collections/amazing/entries"
+
+        within("tbody") do
           expect(page.find("tr:eq(3)")).to have_content("Entry X Name")
         end
       end
     end
 
     describe "paginated" do
-      scenario "finds the second page of Collections" do
+      it "does not find the first page of Entries" do
         visit "/backend/collections/amazing/entries?page=2"
 
         within("tbody") do
-          expect(page).to_not have_content("Entry Z Name")
-          expect(page).to_not have_content("Entry C Name")
-
-          expect(page).to have_content("Entry B Name")
-          expect(page).to have_content("Entry A Name")
+          expect(page).not_to have_content("Entry Z Name")
         end
       end
 
-      scenario "finds the second page of Collections with `per` count" do
+      it "finds the second page of Entries" do
+        visit "/backend/collections/amazing/entries?page=2"
+
+        within("tbody") do
+          expect(page).to have_content("Entry B Name")
+        end
+      end
+
+      it "does not find the first page of Entries with `per` count" do
         visit "/backend/collections/amazing/entries?page=2&per=3"
 
         within("tbody") do
-          expect(page).to_not have_content("Entry Z Name")
-          expect(page).to_not have_content("Entry X Name")
-
-          expect(page).to have_content("Entry W Name")
-          expect(page).to have_content("Entry U Name")
-
-          expect(page).to_not have_content("Entry T Name")
-          expect(page).to_not have_content("Entry A Name")
+          expect(page).not_to have_content("Entry Z Name")
         end
       end
 
-      scenario "finds nothing outside the count" do
+      it "finds the second page of Entries with `per` count" do
+        visit "/backend/collections/amazing/entries?page=2&per=3"
+
+        within("tbody") do
+          expect(page).to have_content("Entry W Name")
+        end
+      end
+
+      it "finds nothing outside the count" do
         visit "/backend/collections/amazing/entries?page=2&per=26"
 
         expect(page).to have_content("No entries found.")
@@ -70,16 +86,13 @@ RSpec.feature "Backend - Collection Entries (HTML)", type: :feature do
     end
 
     describe "excludes" do
-      scenario "deleted Entries" do
-        create(:entry, :deleted, collection: collection,
-                                 value: {
-                                   name: "Deleted Entry Name"
-                                 })
+      it "does not return deleted Entries" do
+        create(:entry, :deleted, collection: collection)
 
         visit "/backend/collections/amazing/entries"
 
         within("tbody") do
-          expect(page).to_not have_content("Deleted Entry Name")
+          expect(page).not_to have_content("Deleted Entry Name")
         end
       end
     end

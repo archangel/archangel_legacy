@@ -9,27 +9,39 @@ RSpec.describe "Backend - Design (HTML)", type: :feature do
     let(:profile) { create(:user) }
 
     describe "is available" do
-      scenario "finds the Design" do
-        resource = create(:design, name: "Amazing Design",
-                                   content: "Content of the Design")
+      let(:resource) do
+        create(:design, name: "Amazing Design",
+                        content: "Content of the Design")
+      end
 
+      it "finds the Design name" do
         visit "/backend/designs/#{resource.id}"
 
         expect(page).to have_content("Name: Amazing Design")
+      end
+
+      it "finds the Design Content" do
+        visit "/backend/designs/#{resource.id}"
+
         expect(page).to have_content("Content: Content of the Design")
+      end
+
+      it "finds the Design Partial" do
+        visit "/backend/designs/#{resource.id}"
+
         expect(page).to have_content("Partial: false")
       end
     end
 
     describe "is not available" do
-      scenario "when it does not exist" do
+      it "returns 404 when it does not exist" do
         visit "/backend/designs/0"
 
         expect(page)
           .to have_content("Page not found. Could not find what was requested")
       end
 
-      scenario "when deleted" do
+      it "returns 404 when it is deleted" do
         resource = create(:design, :deleted, name: "Deleted Design Name")
 
         visit "/backend/designs/#{resource.id}"

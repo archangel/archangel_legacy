@@ -4,32 +4,38 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe RenderService, type: :service do
-    context "#new" do
-      it "builds the liquid content" do
-        content = <<-LIQUID
-          {% assign foo="bar" %}
-          ~{{ foo }}~
-          *{{ bat }}*
-        LIQUID
+    let(:render_content) do
+      %(
+        {% assign foo="bar" %}
+        ~{{ foo }}~
+        *{{ bat }}*
+      )
+    end
 
-        rendered = described_class.new(content, bat: "baz").call
+    context "with #new" do
+      it "return liquid content with value for `foo`" do
+        rendered = described_class.new(render_content).call
 
         expect(rendered).to include("~bar~")
+      end
+
+      it "return custom liquid content with value for `bat`" do
+        rendered = described_class.new(render_content, bat: "baz").call
+
         expect(rendered).to include("*baz*")
       end
     end
 
-    context ".call" do
-      it "builds the liquid content" do
-        content = <<-LIQUID
-          {% assign foo="bar" %}
-          ~{{ foo }}~
-          *{{ bat }}*
-        LIQUID
-
-        rendered = described_class.call(content, bat: "baz")
+    context "with .call" do
+      it "return liquid content with value for `foo`" do
+        rendered = described_class.call(render_content)
 
         expect(rendered).to include("~bar~")
+      end
+
+      it "return custom liquid content with value for `bat`" do
+        rendered = described_class.call(render_content, bat: "baz")
+
         expect(rendered).to include("*baz*")
       end
     end

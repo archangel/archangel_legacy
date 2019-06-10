@@ -4,6 +4,8 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe LogoUploader, type: :uploader do
+    subject(:resource) { described_class.new }
+
     let(:site) { create(:site) }
     let(:uploader) { described_class.new(site, :logo) }
 
@@ -20,7 +22,7 @@ module Archangel
     end
 
     it "uses default image" do
-      expect(subject.default_url).to include("assets/archangel/fallback/logo")
+      expect(resource.default_url).to include("assets/archangel/fallback/logo")
     end
 
     it "scales an original image to be no larger than 512 by 512 pixels" do

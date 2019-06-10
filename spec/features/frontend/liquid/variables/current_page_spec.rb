@@ -3,75 +3,72 @@
 require "rails_helper"
 
 RSpec.describe "Liquid custom variable", type: :feature do
-  let!(:site) { create(:site) }
+  let(:site) { create(:site) }
+
+  let(:inline_current_page) do
+    %(
+      {% if current_page == page.permalink %}
+        Current Page?: Yup!
+      {% else %}
+        Current Page?: Nope!
+      {% endif %}
+    )
+  end
+  let(:inline_other_page) do
+    %(
+      {% if current_page == '/some-other-page' %}
+        Current Page?: Yup!
+      {% else %}
+        Current Page?: Nope!
+      {% endif %}
+    )
+  end
 
   describe "for `current_page` variable" do
     it "knows the current page at root level" do
       create(:page, site: site,
-                    slug: "foo",
+                    slug: "amazing",
                     content: "Current Page: {{ current_page }}")
 
-      visit "/foo"
+      visit "/amazing"
 
-      expect(page).to have_content("Current Page: /foo")
+      expect(page).to have_content("Current Page: /amazing")
     end
 
     it "knows the current page at child level" do
-      parent_resource = create(:page, site: site, slug: "foo")
-      create(:page, site: site,
-                    parent: parent_resource,
-                    slug: "bar",
-                    content: "Current Page: {{ current_page }}")
+      parent_resource = create(:page, site: site, slug: "amazing")
+      create(:page, site: site, parent: parent_resource,
+                    slug: "grace", content: "Current Page: {{ current_page }}")
 
-      visit "/foo/bar"
+      visit "/amazing/grace"
 
-      expect(page).to have_content("Current Page: /foo/bar")
+      expect(page).to have_content("Current Page: /amazing/grace")
     end
 
     it "knows it is on the current page" do
-      content = <<-CONTENT
-        {% if current_page == page.permalink %}
-          Current Page?: Yup!
-        {% else %}
-          Current Page?: Nope!
-        {% endif %}
-      CONTENT
+      create(:page, site: site, slug: "amazing", content: inline_current_page)
 
-      create(:page, site: site, slug: "foo", content: content)
-
-      visit "/foo"
+      visit "/amazing"
 
       expect(page).to have_content("Current Page?: Yup!")
-      expect(page).not_to have_content("Current Page?: Nope!")
     end
 
     it "knows it is not on the current page" do
-      content = <<-CONTENT
-        {% if current_page == '/some-other-page' %}
-          Current Page?: Yup!
-        {% else %}
-          Current Page?: Nope!
-        {% endif %}
-      CONTENT
+      create(:page, site: site, slug: "amazing", content: inline_other_page)
 
-      create(:page, site: site, slug: "foo", content: content)
+      visit "/amazing"
 
-      visit "/foo"
-
-      expect(page).not_to have_content("Current Page?: Yup!")
       expect(page).to have_content("Current Page?: Nope!")
     end
 
     it "knows the current page with all known slug characters" do
+      slug = "abcdefghijklmnopqrstuvwxyz0123456789-_"
       create(:page, site: site,
-                    slug: "abcdefghijklmnopqrstuvwxyz0123456789-_",
-                    content: "Current Page: {{ current_page }}")
+                    slug: slug, content: "Current Page: {{ current_page }}")
 
-      visit "/abcdefghijklmnopqrstuvwxyz0123456789-_"
+      visit "/#{slug}"
 
-      expect(page).to have_content(
-        "Current Page: /abcdefghijklmnopqrstuvwxyz0123456789-_"
-      )
+      expect(page).to have_content("Current Page: /#{slug}")
     end
   end
 end

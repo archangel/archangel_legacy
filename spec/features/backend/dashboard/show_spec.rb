@@ -8,10 +8,10 @@ RSpec.describe "Backend - Dashboard (HTML)", type: :feature do
 
     let(:profile) { create(:user) }
 
-    scenario "returns the Dashboard" do
+    it "returns 200 status" do
       visit "/backend"
 
-      expect(page).to have_content("Dashboard")
+      expect(page.status_code).to eq 200
     end
   end
 end

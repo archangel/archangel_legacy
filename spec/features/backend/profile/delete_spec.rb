@@ -10,18 +10,29 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
       create(:user, email: "me@example.com", password: "password")
     end
 
-    scenario "confirms the User was deleted, logged out and cannot log in" do
+    it "redirects back to the login page" do
       visit "/backend/profile"
 
       click_on "Destroy"
 
-      expect(current_path).to eq("/account/login")
+      expect(page).to have_current_path("/account/login")
+    end
+
+    it "shows message that the User was logged out" do
+      visit "/backend/profile"
+
+      click_on "Destroy"
 
       expect(page)
         .to have_content("You need to sign in or sign up before continuing.")
+    end
 
-      fill_in "Email", with: "me@example.com"
-      fill_in "Password", with: "password"
+    it "does not allow logging back in" do
+      visit "/backend/profile"
+
+      click_on "Destroy"
+
+      fill_in_login_form_with("me@example.com", "password")
       click_button "Log in"
 
       expect(page).to have_content("Invalid Email or password.")

@@ -4,25 +4,38 @@ require "rails_helper"
 
 RSpec.describe "Backend - Widgets (HTML)", type: :feature do
   describe "deletion" do
-    before { stub_authorization!(profile) }
+    before do
+      stub_authorization!
 
-    let(:profile) { create(:user) }
-
-    scenario "confirms the Widget is no longer accessible" do
       create(:widget, name: "Delete Me")
-      create(:widget, name: "Published Widget")
+      create(:widget, name: "Not Deleted Widget")
+    end
 
+    it "confirms the Widget is no longer accessible" do
       visit "/backend/widgets"
 
-      within("tbody tr:eq(1)") do
-        click_on "Destroy"
-      end
+      within("tbody tr:eq(1)") { click_on "Destroy" }
 
       expect(page).to have_content("Widget was successfully destroyed.")
+    end
+
+    it "confirms the deleted Widget is no longer listed" do
+      visit "/backend/widgets"
+
+      within("tbody tr:eq(1)") { click_on "Destroy" }
 
       within("tbody tr:eq(1)") do
         expect(page).not_to have_content("Delete Me")
-        expect(page).to have_content("Published Widget")
+      end
+    end
+
+    it "confirms the first available Widget is correct" do
+      visit "/backend/widgets"
+
+      within("tbody tr:eq(1)") { click_on "Destroy" }
+
+      within("tbody tr:eq(1)") do
+        expect(page).to have_content("Not Deleted Widget")
       end
     end
   end

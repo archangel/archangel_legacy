@@ -4,19 +4,21 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Site, type: :model do
-    context "validations" do
+    subject(:resource) { described_class.new }
+
+    context "with validations" do
       it { is_expected.to validate_presence_of(:locale) }
       it { is_expected.to validate_presence_of(:name) }
 
       it { is_expected.to allow_value("").for(:theme) }
 
       it "allows certain languages" do
-        expect(subject)
+        expect(resource)
           .to validate_inclusion_of(:locale).in_array(Archangel::LANGUAGES)
       end
 
-      it "allows certain languages" do
-        expect(subject)
+      it "allows certain themes" do
+        expect(resource)
           .to validate_inclusion_of(:theme).in_array(Archangel.themes)
       end
     end
@@ -32,11 +34,16 @@ module Archangel
     it { is_expected.to have_many(:entries).through(:collections) }
     it { is_expected.to have_many(:fields).through(:collections) }
 
-    context ".current" do
+    context "with .current" do
       it "returns an existing object" do
-        resource = create(:site, name: "My Awesome New Site")
+        resource = create(:site)
 
         expect(described_class.current).to eq(resource)
+      end
+
+      it "returns an object value" do
+        create(:site, name: "My Awesome New Site")
+
         expect(described_class.current.name).to eq("My Awesome New Site")
       end
 
@@ -45,7 +52,7 @@ module Archangel
       end
     end
 
-    context "#to_liquid" do
+    context "with #to_liquid" do
       it "returns a Liquid object" do
         resource = build(:site)
 

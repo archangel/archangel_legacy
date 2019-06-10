@@ -9,10 +9,15 @@ RSpec.describe "Backend - Site", type: :request do
     describe "PATCH /backend/site (#update)" do
       before { create(:site) }
 
-      it "returns unauthorized" do
+      it "returns 401 status" do
         patch "/backend/site", params: { site: { name: "Site Name" } }
 
         expect(response).to have_http_status(:unauthorized)
+      end
+
+      it "returns unauthorized error message" do
+        patch "/backend/site", params: { site: { name: "Site Name" } }
+
         expect(response.body)
           .to include("Access is denied due to invalid credentials")
       end
@@ -23,24 +28,16 @@ RSpec.describe "Backend - Site", type: :request do
     before { stub_authorization!(create(:user, :admin)) }
 
     describe "GET /backend/site (#show)" do
-      let(:record) { create(:site) }
+      before { create(:site) }
 
-      before { record }
+      it "returns 200 status" do
+        get "/backend/site"
 
-      describe "with a valid Site" do
-        it "assigns the requested resource as @site" do
-          get "/backend/site"
-
-          expect(assigns(:site)).to eq(record)
-        end
+        expect(response).to have_http_status(:ok)
       end
     end
 
     describe "PATCH /backend/site (#update)" do
-      let(:record) { create(:site) }
-
-      before { record }
-
       let(:valid_attributes) do
         {
           name: "Updated Site Name",
@@ -48,22 +45,20 @@ RSpec.describe "Backend - Site", type: :request do
         }
       end
 
-      describe "with valid attributes" do
-        it "redirects after updating resource" do
-          patch "/backend/site", params: { site: valid_attributes }
+      before { create(:site) }
 
-          expect(response).to redirect_to(archangel.backend_site_path)
-        end
+      it "redirects after updating resource with valid attributes" do
+        patch "/backend/site", params: { site: valid_attributes }
+
+        expect(response).to redirect_to("/backend/site")
       end
 
-      describe "with invalid attributes" do
-        it "fails with unrecognized locale" do
-          invalid_attributes = valid_attributes.merge(locale: "foo")
+      it "fails with unrecognized locale" do
+        invalid_attributes = valid_attributes.merge(locale: "foo")
 
-          patch "/backend/site", params: { site: invalid_attributes }
+        patch "/backend/site", params: { site: invalid_attributes }
 
-          expect(response.body).to include("is not included in the list")
-        end
+        expect(response.body).to include("is not included in the list")
       end
     end
   end

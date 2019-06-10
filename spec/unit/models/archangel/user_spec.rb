@@ -4,7 +4,9 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe User, type: :model do
-    context "callbacks" do
+    subject(:resource) { described_class.new }
+
+    context "with callbacks" do
       let(:resource) { create(:user) }
 
       it { is_expected.to callback(:parameterize_username).before(:validation) }
@@ -14,7 +16,28 @@ module Archangel
       it { is_expected.to callback(:column_reset).after(:destroy) }
     end
 
-    context "validations" do
+    context "with validations" do
+      let(:allowed_emails) do
+        [
+          "foo@example.com",
+          "foo.bar@example.com",
+          "foo_bar@example.com",
+          "foo+bar@example.com",
+          "~!\#$%^&*_+{}|\?`-='@example.com"
+        ]
+      end
+      let(:not_allowed_emails) do
+        [
+          nil,
+          "",
+          "@",
+          "foo@",
+          "@example",
+          "@example.com",
+          "foo bar@example.com"
+        ]
+      end
+
       it { is_expected.to validate_presence_of(:email) }
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:role) }
@@ -29,42 +52,28 @@ module Archangel
       end
 
       it "allows certain roles" do
-        expect(subject)
+        expect(resource)
           .to validate_inclusion_of(:role).in_array(Archangel::ROLES)
       end
 
       it "allows values for email" do
-        [
-          "foo@example.com",
-          "foo.bar@example.com",
-          "foo_bar@example.com",
-          "foo+bar@example.com",
-          "~!\#$%^&*_+{}|\?`-='@example.com"
-        ].each do |email|
-          expect(subject).to allow_value(email).for(:email)
+        allowed_emails.each do |email|
+          expect(resource).to allow_value(email).for(:email)
         end
       end
 
       it "does not allows values for email" do
-        [
-          nil,
-          "",
-          "@",
-          "foo@",
-          "@example",
-          "@example.com",
-          "foo bar@example.com"
-        ].each do |email|
-          expect(subject).not_to allow_value(email).for(:email)
+        not_allowed_emails.each do |email|
+          expect(resource).not_to allow_value(email).for(:email)
         end
       end
     end
 
-    context "associations" do
+    context "with associations" do
       it { is_expected.to belong_to(:site) }
     end
 
-    context "#to_param" do
+    context "with #to_param" do
       it "uses `slug` as the identifier for routes" do
         resource = build(:user, username: "foo")
 
@@ -72,7 +81,7 @@ module Archangel
       end
     end
 
-    context "#column_reset" do
+    context "with #column_reset" do
       it "resets `slug` to `slug` + current time" do
         resource = create(:user)
 

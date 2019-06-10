@@ -9,18 +9,23 @@ RSpec.describe "Backend - Pages", type: :request do
     let(:record) { create(:page) }
 
     describe "with a valid Page id" do
-      it "assigns the requested resource as @page" do
+      it "returns a 200 status" do
         get "/backend/pages/#{record.id}"
 
-        expect(assigns(:page)).to eq(record)
+        expect(response).to have_http_status(:ok)
       end
     end
 
     describe "with an invalid Page id" do
-      it "shows the error page" do
+      it "returns a 404 status" do
         get "/backend/pages/0"
 
         expect(response).to have_http_status(:not_found)
+      end
+
+      it "shows the error message" do
+        get "/backend/pages/0"
+
         expect(response.body)
           .to include("Page not found. Could not find what was requested")
       end
@@ -40,7 +45,7 @@ RSpec.describe "Backend - Pages", type: :request do
       it "redirects to the listing" do
         post "/backend/pages", params: { page: valid_attributes }
 
-        expect(response).to redirect_to(archangel.backend_pages_path)
+        expect(response).to redirect_to("/backend/pages")
       end
     end
   end
@@ -48,10 +53,10 @@ RSpec.describe "Backend - Pages", type: :request do
   describe "GET /backend/pages/:id/edit (#edit)" do
     let(:record) { create(:page) }
 
-    it "assigns a resource as Page" do
+    it "returns a 200 status" do
       get "/backend/pages/#{record.id}/edit"
 
-      expect(assigns(:page)).to eq(record)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -72,7 +77,7 @@ RSpec.describe "Backend - Pages", type: :request do
           page: valid_attributes
         }
 
-        expect(response).to redirect_to(archangel.backend_pages_path)
+        expect(response).to redirect_to("/backend/pages")
       end
     end
 
@@ -95,7 +100,7 @@ RSpec.describe "Backend - Pages", type: :request do
     it "redirects to the listing" do
       delete "/backend/pages/#{record.id}"
 
-      expect(response).to redirect_to(archangel.backend_pages_path)
+      expect(response).to redirect_to("/backend/pages")
     end
 
     it "ensures the Page no longer accessable" do

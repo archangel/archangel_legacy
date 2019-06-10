@@ -16,7 +16,7 @@ module Archangel
           )
         end
 
-        context "Ruby request" do
+        context "with Ruby request" do
           let(:content_url) { "https://www.youtube.com/watch?v=-X2atEH7nCg" }
           let(:content) { "{% noembed '#{content_url}' %}" }
 
@@ -60,7 +60,7 @@ module Archangel
           end
         end
 
-        context "Javascript request" do
+        context "with Javascript request" do
           it "returns YouTube video embed" do
             video = "https://player.vimeo.com/video/183344978"
             content = "{% noembed '#{video}' remote:true %}"

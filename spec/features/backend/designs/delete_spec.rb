@@ -4,25 +4,28 @@ require "rails_helper"
 
 RSpec.describe "Backend - Designs (HTML)", type: :feature do
   describe "deletion" do
-    before { stub_authorization!(profile) }
+    before do
+      stub_authorization!
 
-    let(:profile) { create(:user) }
-
-    scenario "confirms the Design is no longer accessible" do
       create(:design, name: "Delete Me")
       create(:design, name: "Main Design")
+    end
 
+    it "displays error message when deleted" do
       visit "/backend/designs"
 
-      within("tbody tr:eq(1)") do
-        click_on "Destroy"
-      end
+      within("tbody tr:eq(1)") { click_on "Destroy" }
 
       expect(page).to have_content("Design was successfully destroyed.")
+    end
+
+    it "does not list deleted Designs" do
+      visit "/backend/designs"
+
+      within("tbody tr:eq(1)") { click_on "Destroy" }
 
       within("tbody tr:eq(1)") do
         expect(page).not_to have_content("Delete Me")
-        expect(page).to have_content("Main Design")
       end
     end
   end

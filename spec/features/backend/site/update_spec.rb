@@ -8,8 +8,8 @@ RSpec.describe "Backend - Site (HTML)", type: :feature do
 
     let(:profile) { create(:user, :admin) }
 
-    describe "successful" do
-      scenario "with valid data for site" do
+    context "with valid data" do
+      it "updates the Site successfully" do
         visit "/backend/site/edit"
 
         fill_in "Name", with: "Amazing Site"
@@ -19,31 +19,26 @@ RSpec.describe "Backend - Site (HTML)", type: :feature do
         expect(page).to have_content("Site was successfully updated.")
       end
 
-      scenario "with valid data for site with Logo" do
+      it "updates the Site successfully with custom logo" do
         visit "/backend/site/edit"
 
         attach_file "Logo", uploader_test_image
 
         click_button "Update Site"
 
-        expect(page).to have_content("Site was successfully updated.")
-
         expect(page).to have_css("img[src^='/uploads/archangel/site/logo']")
       end
     end
 
-    describe "unsuccessful" do
-      scenario "without name" do
+    context "with invalid data" do
+      it "fails without Site name" do
         visit "/backend/site/edit"
 
         fill_in "Name", with: ""
 
         click_button "Update Site"
 
-        expect(page.find(".input.site_name"))
-          .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Site was successfully created.")
+        expect(page.find(".input.site_name")).to have_content("can't be blank")
       end
     end
   end

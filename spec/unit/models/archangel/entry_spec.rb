@@ -4,7 +4,7 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Entry, type: :model do
-    context "validations" do
+    context "with validations" do
       it { is_expected.to validate_presence_of(:collection_id) }
       it { is_expected.to validate_presence_of(:value) }
 
@@ -15,12 +15,12 @@ module Archangel
       it { is_expected.not_to allow_value("invalid").for(:published_at) }
     end
 
-    context "associations" do
+    context "with associations" do
       it { is_expected.to belong_to(:collection) }
     end
 
-    context "scopes" do
-      context ".available" do
+    context "with scopes" do
+      context "with .available" do
         it "returns all where published_at <= now" do
           entry = create(:entry)
 
@@ -34,7 +34,7 @@ module Archangel
         end
       end
 
-      context ".available" do
+      context "with .available" do
         it "returns all where published_at <= now" do
           entry = create(:entry)
 
@@ -48,7 +48,7 @@ module Archangel
         end
       end
 
-      context ".unpublished" do
+      context "with .unpublished" do
         it "returns all where available_at is nil" do
           entry = create(:entry, :unpublished)
 
@@ -63,43 +63,43 @@ module Archangel
       end
     end
 
-    context ".available?" do
+    context "with .available?" do
       it "is available" do
         entry = build(:entry, published_at: 1.minute.ago)
 
-        expect(entry.available?).to be_truthy
+        expect(entry).to be_available
       end
 
       it "is not available in the future" do
         entry = build(:entry, published_at: 1.week.from_now)
 
-        expect(entry.available?).to be_falsey
+        expect(entry).not_to be_available
       end
 
       it "is not available" do
         entry = build(:entry, :unpublished)
 
-        expect(entry.available?).to be_falsey
+        expect(entry).not_to be_available
       end
     end
 
-    context ".published?" do
+    context "with .published?" do
       it "is published" do
         entry = build(:entry)
 
-        expect(entry.published?).to be_truthy
+        expect(entry).to be_published
       end
 
       it "is published in the future" do
         entry = build(:entry, published_at: 1.week.from_now)
 
-        expect(entry.published?).to be_truthy
+        expect(entry).to be_published
       end
 
       it "is not published" do
         entry = build(:entry, :unpublished)
 
-        expect(entry.published?).to be_falsey
+        expect(entry).not_to be_published
       end
     end
   end

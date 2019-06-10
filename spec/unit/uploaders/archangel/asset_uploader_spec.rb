@@ -4,15 +4,17 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe AssetUploader, type: :uploader do
+    subject(:resource) { described_class.new }
+
     let(:asset) { create(:asset) }
     let(:uploader) { described_class.new(asset, :file) }
 
     it "uses default image" do
-      expect(subject.default_url).to include("assets/archangel/fallback/asset")
+      expect(resource.default_url).to include("assets/archangel/fallback/asset")
     end
 
     it "allows certain extensions" do
-      expect(subject.extension_whitelist).to eq %w[gif jpeg jpg png]
+      expect(resource.extension_whitelist).to eq %w[gif jpeg jpg png]
     end
 
     context "with image file" do
@@ -29,7 +31,7 @@ module Archangel
       end
 
       it "is an image file" do
-        expect(uploader.image?).to be_truthy
+        expect(uploader).to be_image
       end
 
       it "scales a small image to be no larger than 64 by 64 pixels" do

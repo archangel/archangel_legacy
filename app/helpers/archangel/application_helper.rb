@@ -12,8 +12,8 @@ module Archangel
     # nice way.
     #
     # Example
-    #   <%= frontend_resource_path('foo/bar') %> #=> /foo/bar
-    #   <%= frontend_resource_path(@page) %> #=> /foo/bar
+    #   <%= frontend_resource_path('amazing/grace') %> #=> /amazing/grace
+    #   <%= frontend_resource_path(@page) %> #=> /amazing/grace
     #
     # @return [String] frontend resource permalink
     #

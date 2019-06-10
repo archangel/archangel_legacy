@@ -3,121 +3,120 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Widgets (HTML)", type: :feature do
+  def fill_in_widget_form_with(name = "", slug = "", content = "")
+    fill_in "Name", with: name
+    fill_in "Slug", with: slug
+    fill_in "Content", with: content
+  end
+
   describe "creation" do
-    before { stub_authorization!(profile) }
+    before { stub_authorization! }
 
-    let(:profile) { create(:user) }
+    describe "with Designs in select" do
+      before do
+        create(:design, name: "My Full Design")
+        create(:design, :partial, name: "My Partial Design")
+      end
 
-    describe "successful" do
-      scenario "with valid data" do
+      it "has only partial Designs in select" do
         visit "/backend/widgets/new"
 
-        fill_in "Name", with: "Amazing Widget"
-        fill_in "Slug", with: "amazing"
-        fill_in "Content", with: "<p>Content of the widget</p>"
+        expect(page).to have_select "Design", options: ["Select design",
+                                                        "My Partial Design"]
+      end
 
+      it "does not contain non-partial Designs in select" do
+        visit "/backend/widgets/new"
+
+        expect(page).not_to have_select "Design", options: ["Select design",
+                                                            "My Full Design"]
+      end
+
+      it "is A-Z alphabetized" do
+        create(:design, :partial, name: "Good Partial Design")
+
+        visit "/backend/widgets/new"
+
+        expect(page).to have_select "Design", options: ["Select design",
+                                                        "Good Partial Design",
+                                                        "My Partial Design"]
+      end
+    end
+
+    describe "with valid data" do
+      before { create(:design, :partial, name: "My Partial Design") }
+
+      it "is successful" do
+        visit "/backend/widgets/new"
+
+        fill_in_widget_form_with("Great Title", "amazing", "<p>Content</p>")
         click_button "Create Widget"
 
         expect(page).to have_content("Widget was successfully created.")
       end
 
-      scenario "with valid data with Design" do
-        create(:design, name: "My Full Design")
-        create(:design, :partial, name: "My Partial Design")
-
+      it "with valid data with Design" do
         visit "/backend/widgets/new"
 
-        expect(page).to have_select "Design", options: ["Select design",
-                                                        "My Partial Design"]
-
-        fill_in "Name", with: "Amazing"
-        fill_in "Slug", with: "amazing"
+        fill_in_widget_form_with("Amazing Title", "amazing", "<p>Content</p>")
         select "My Partial Design", from: "Design"
-        fill_in "Content", with: "<p>Content of the widget</p>"
-
         click_button "Create Widget"
 
         expect(page).to have_content("Widget was successfully created.")
       end
     end
 
-    describe "unsuccessful" do
-      scenario "without name" do
+    context "with invalid data" do
+      it "fails without name" do
         visit "/backend/widgets/new"
 
-        fill_in "Name", with: ""
-        fill_in "Slug", with: "amazing"
-        fill_in "Content", with: "<p>Content of the widget</p>"
-
+        fill_in_widget_form_with("", "amazing", "<p>Content of the widget</p>")
         click_button "Create Widget"
 
         expect(page.find(".input.widget_name"))
           .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Widget was successfully created.")
       end
 
-      scenario "without slug" do
+      it "fails without slug" do
         visit "/backend/widgets/new"
 
-        fill_in "Name", with: "Amazing"
-        fill_in "Slug", with: ""
-        fill_in "Content", with: "<p>Content of the widget</p>"
-
+        fill_in_widget_form_with("Amazing", "", "<p>Content of the widget</p>")
         click_button "Create Widget"
 
         expect(page.find(".input.widget_slug"))
           .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Widget was successfully created.")
       end
 
-      scenario "with used slug" do
+      it "fails with used slug" do
         create(:widget, slug: "amazing")
 
         visit "/backend/widgets/new"
 
-        fill_in "Name", with: "Amazing"
-        fill_in "Slug", with: "amazing"
-        fill_in "Content", with: "<p>Content of the widget</p>"
-
+        fill_in_widget_form_with("Amazing Title", "amazing", "<p>Content</p>")
         click_button "Create Widget"
 
-        within(".widget_slug") do
-          expect(page).to have_content("has already been taken")
-        end
-
-        expect(page).not_to have_content("Widget was successfully created.")
+        expect(page.find(".input.widget_slug"))
+          .to have_content("has already been taken")
       end
 
-      scenario "without content" do
+      it "fails without content" do
         visit "/backend/widgets/new"
 
-        fill_in "Name", with: "Amazing"
-        fill_in "Slug", with: "amazing"
-        fill_in "Content", with: ""
-
+        fill_in_widget_form_with("Amazing", "amazing", "")
         click_button "Create Widget"
 
         expect(page.find(".input.widget_content"))
           .to have_content("can't be blank")
-
-        expect(page).not_to have_content("Widget was successfully created.")
       end
 
-      scenario "with invalid Liquid data in Content" do
+      it "fails with invalid Liquid data in Content" do
         visit "/backend/widgets/new"
 
-        fill_in "Name", with: "Amazing Widget"
-        fill_in "Slug", with: "amazing"
-        fill_in "Content", with: "{% widget %}"
-
+        fill_in_widget_form_with("Amazing", "amazing", "{% widget %}")
         click_button "Create Widget"
 
         expect(page.find(".input.widget_content"))
           .to have_content("contains invalid Liquid formatting")
-
-        expect(page).not_to have_content("Widget was successfully created.")
       end
     end
   end

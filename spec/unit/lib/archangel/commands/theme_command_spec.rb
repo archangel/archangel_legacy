@@ -20,18 +20,20 @@ module Archangel
 
           after { after_generation(theme_path) }
 
-          it "should write common directories" do
+          it "writes common directories" do
             %w[app bin lib spec].each do |dir|
               expect(glob_directories_in(theme_path)).to include(dir)
             end
           end
 
-          it "should write common files" do
+          it "writes common files" do
             %w[.gitignore .rspec .rubocop.yml Gemfile MIT-LICENSE Rakefile
                README.md].each do |file|
               expect(glob_files_in(theme_path)).to include(file)
             end
+          end
 
+          it "writes gemspec file" do
             expect(glob_files_in(theme_path))
               .to include("#{theme_full_name}.gemspec")
           end
@@ -46,7 +48,7 @@ module Archangel
 
           after { after_generation(theme_path) }
 
-          it "should write common files for `sample`" do
+          it "writes common files for `sample`" do
             expect(glob_files_in(theme_path))
               .to include("#{theme_full_name}.gemspec")
           end
