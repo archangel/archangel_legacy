@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe "Backend - Pages (HTML)", type: :feature do
   def fill_in_page_form_with(title = "", slug = "", content = "",
-                             published_at = Time.now)
+                             published_at = Time.current)
     fill_in "Title", with: title
     fill_in "Slug", with: slug
     page.find("textarea#page_content").set(content)

@@ -14,7 +14,7 @@ module Archangel
     typed_store :settings, coder: JSON do |s|
       s.boolean :allow_registration, default: false
       s.boolean :homepage_redirect, default: false
-      s.datetime :preferred_at, default: Time.now, accessor: false
+      s.datetime :preferred_at, default: Time.current, accessor: false
     end
 
     validates :locale, presence: true, inclusion: { in: Archangel::LANGUAGES }

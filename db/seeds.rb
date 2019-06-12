@@ -53,7 +53,7 @@ end
 
 # Homepage
 curent_site.pages.published.find_or_create_by(homepage: true) do |item|
-  item.slug = "homepage-#{Time.now.to_i}"
+  item.slug = "homepage-#{Time.current.to_i}"
   item.title = "Welcome to Archangel"
   item.content = "<p>Welcome to the site.</p>"
   item.published_at = Time.current
@@ -78,7 +78,7 @@ curent_site.pages.find_or_create_by(slug: "example-page",
                                     homepage: false) do |item|
   item.title = "Example Page"
   item.content = "<p>This is an example page.</p>"
-  item.published_at = Time.now
+  item.published_at = Time.current
 end
 
 # Design
@@ -121,5 +121,5 @@ end
 # Entry
 collection.entries.find_or_create_by(collection: collection) do |item|
   item.value = { field1: "Value for field 1" }
-  item.published_at = Time.now
+  item.published_at = Time.current
 end

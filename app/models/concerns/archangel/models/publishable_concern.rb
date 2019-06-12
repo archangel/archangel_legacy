@@ -15,7 +15,7 @@ module Archangel
         validates :published_at, allow_blank: true, date: true
 
         scope :available, (lambda do
-          published.where("published_at <= ?", Time.now)
+          published.where("published_at <= ?", Time.current)
         end)
 
         scope :published, (lambda do
@@ -23,7 +23,7 @@ module Archangel
         end)
 
         scope :unpublished, (lambda do
-          where("published_at IS NULL OR published_at > ?", Time.now)
+          where("published_at IS NULL OR published_at > ?", Time.current)
         end)
       end
 
@@ -50,7 +50,7 @@ module Archangel
       # @return [Boolean] if available
       #
       def available?
-        published? && published_at <= Time.now
+        published? && published_at <= Time.current
       end
     end
   end

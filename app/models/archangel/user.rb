@@ -13,7 +13,7 @@ module Archangel
 
     typed_store :preferences, coder: JSON do |s|
       s.boolean :newsletter, default: false
-      s.datetime :preferred_at, default: Time.now, accessor: false
+      s.datetime :preferred_at, default: Time.current, accessor: false
     end
 
     before_validation :parameterize_username
