@@ -11,73 +11,74 @@ module Archangel
 
         let(:dummy_path) { "spec/dummy" }
 
-        context "when given an theme name" do
-          let(:theme_name) { "example" }
-          let(:theme_full_name) { "archangel_#{theme_name}_theme" }
-          let(:theme_path) { "#{dummy_path}/#{theme_full_name}" }
+        context "when given an extension name" do
+          let(:extension_name) { "example" }
+          let(:extension_full_name) { "archangel_#{extension_name}_theme" }
+          let(:extension_path) { "#{dummy_path}/#{extension_full_name}" }
 
-          before { before_generation(theme_name) }
+          before { before_generation(extension_name) }
 
-          after { after_generation(theme_path) }
+          after { after_generation(extension_path) }
 
           it "writes common directories" do
             %w[app bin lib spec].each do |dir|
-              expect(glob_directories_in(theme_path)).to include(dir)
+              expect(glob_directories_in(extension_path)).to include(dir)
             end
           end
 
           it "writes common files" do
-            %w[.gitignore .rspec .rubocop.yml Gemfile MIT-LICENSE Rakefile
-               README.md].each do |file|
-              expect(glob_files_in(theme_path)).to include(file)
+            %w[
+              .gitignore .rspec Gemfile MIT-LICENSE Rakefile README.md
+            ].each do |file|
+              expect(glob_files_in(extension_path)).to include(file)
             end
           end
 
           it "writes gemspec file" do
-            expect(glob_files_in(theme_path))
-              .to include("#{theme_full_name}.gemspec")
+            expect(glob_files_in(extension_path))
+              .to include("#{extension_full_name}.gemspec")
           end
         end
 
-        context "when not given an theme name" do
-          let(:theme_name) { nil }
-          let(:theme_full_name) { "archangel_sample_theme" }
-          let(:theme_path) { "#{dummy_path}/#{theme_full_name}" }
+        context "when not given an extension name" do
+          let(:extension_name) { nil }
+          let(:extension_full_name) { "archangel_sample_theme" }
+          let(:extension_path) { "#{dummy_path}/#{extension_full_name}" }
 
-          before { before_generation(theme_name) }
+          before { before_generation(extension_name) }
 
-          after { after_generation(theme_path) }
+          after { after_generation(extension_path) }
 
           it "writes common files for `sample`" do
-            expect(glob_files_in(theme_path))
-              .to include("#{theme_full_name}.gemspec")
+            expect(glob_files_in(extension_path))
+              .to include("#{extension_full_name}.gemspec")
           end
         end
       end
 
-      def before_generation(theme_name)
+      def before_generation(extension_name)
         silence_output
 
         Dir.chdir("spec/dummy") do
-          subject = described_class.new([theme_name])
+          subject = described_class.new([extension_name])
           subject.invoke_all
         end
       end
 
-      def after_generation(theme_path)
+      def after_generation(extension_path)
         enable_output
 
-        FileUtils.rm_rf("#{theme_path}/")
+        FileUtils.rm_rf("#{extension_path}/")
       end
 
-      def glob_directories_in(theme_path)
-        Dir.glob("#{theme_path}/*")
+      def glob_directories_in(extension_path)
+        Dir.glob("#{extension_path}/*")
            .reject { |file| File.file?(file) }
            .map { |file| File.basename(file) }
       end
 
-      def glob_files_in(theme_path)
-        Dir.glob("#{theme_path}/{.[^\.]*,*}")
+      def glob_files_in(extension_path)
+        Dir.glob("#{extension_path}/{.[^\.]*,*}")
            .select { |file| File.file?(file) }
            .map { |file| File.basename(file) }
       end

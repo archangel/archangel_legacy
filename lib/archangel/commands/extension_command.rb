@@ -15,7 +15,7 @@ module Archangel
     class ExtensionCommand < BaseCommand
       source_root File.expand_path("templates/extension", __dir__)
 
-      desc "Build an Archangel extension"
+      desc "Generate an Archangel extension"
       argument :extension_name, type: :string,
                                 desc: "Extension name",
                                 default: "sample"
@@ -41,8 +41,8 @@ module Archangel
       ##
       # Create extension .gemspec file
       #
-      def create_plugin_gemspec
-        template("extension.gemspec",
+      def create_common_plugin_gemspec
+        template("../common/extension.gemspec",
                  "#{extension_name}/#{extension_name}.gemspec")
       end
 
@@ -50,18 +50,9 @@ module Archangel
       # Copy common directories that are shared with theme generator
       #
       def copy_common_directories
-        %w[spec].each do |dir|
+        %w[bin lib spec].each do |dir|
           directory("../common/#{dir}", "#{extension_name}/#{dir}")
         end
-      end
-
-      ##
-      # Copy extension directories and chmod bin scripts
-      #
-      def copy_plugin_directories
-        %w[
-          app bin config lib
-        ].each { |dir| directory(dir, "#{extension_name}/#{dir}") }
 
         chmod("#{extension_name}/bin/rails", 0o755)
       end
@@ -71,9 +62,18 @@ module Archangel
       #
       def copy_common_templates
         %w[
-          .gitignore .rspec .rubocop.yml MIT-LICENSE
+          .gitignore .rspec Gemfile MIT-LICENSE Rakefile
         ].each do |tpl|
           template("../common/#{tpl}", "#{extension_name}/#{tpl}")
+        end
+      end
+
+      ##
+      # Copy extension directories
+      #
+      def copy_plugin_directories
+        %w[app config lib].each do |dir|
+          directory(dir, "#{extension_name}/#{dir}")
         end
       end
 
@@ -81,9 +81,7 @@ module Archangel
       # Copy extension templates
       #
       def copy_plugin_templates
-        %w[
-          Gemfile Rakefile README.md
-        ].each { |tpl| template(tpl, "#{extension_name}/#{tpl}") }
+        %w[README.md].each { |tpl| template(tpl, "#{extension_name}/#{tpl}") }
       end
 
       ##
@@ -92,7 +90,7 @@ module Archangel
       # Say something nice
       #
       def banner
-        puts %(
+        say %(
 
   ******************************************************************
 
