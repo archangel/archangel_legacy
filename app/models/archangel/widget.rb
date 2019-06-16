@@ -17,7 +17,9 @@ module Archangel
 
     validate :valid_liquid_content
 
-    belongs_to :design, -> { where(partial: true) }, optional: true
+    belongs_to :design, -> { where(partial: true) },
+               inverse_of: false,
+               optional: true
     belongs_to :site
 
     ##
