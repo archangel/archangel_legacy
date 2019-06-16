@@ -25,6 +25,8 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 
 * Ruby >= 2.4
 * Rails ~> 5.1
+* Chromedriver (`development` and `test` environments)
+  * Install using [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) with `brew cask install chromedriver`
 
 ## Installation
 

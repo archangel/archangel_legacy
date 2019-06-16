@@ -1,6 +1,11 @@
 sudo: false
 language: ruby
-cache: bundler
+cache:
+  - bundler
+addons:
+  apt:
+    - google-chrome-stable
+    - chromium-chromedriver
 env:
   global:
     - CC_TEST_REPORTER_ID=10625f04e4c8c9fe7c22d49639163f1427fe16bc253aabcb316edbe43c41270b
@@ -10,6 +15,7 @@ before_install:
   - gem --version
 install: ruby -S bundle install
 before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
