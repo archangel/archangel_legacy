@@ -16,8 +16,8 @@ module Archangel
 
     belongs_to :site
 
-    has_many :entries
-    has_many :fields
+    has_many :entries, dependent: :destroy
+    has_many :fields, dependent: :destroy
 
     accepts_nested_attributes_for :fields, reject_if: :all_blank,
                                            allow_destroy: true

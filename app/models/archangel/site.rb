@@ -27,12 +27,12 @@ module Archangel
     validates :allow_registration, inclusion: { in: [true, false] }
     validates :homepage_redirect, inclusion: { in: [true, false] }
 
-    has_many :assets
-    has_many :collections
-    has_many :designs
-    has_many :pages
-    has_many :users
-    has_many :widgets
+    has_many :assets, dependent: :destroy
+    has_many :collections, dependent: :destroy
+    has_many :designs, dependent: :destroy
+    has_many :pages, dependent: :destroy
+    has_many :users, dependent: :destroy
+    has_many :widgets, dependent: :destroy
 
     has_many :entries, through: :collections
     has_many :fields, through: :collections
