@@ -145,7 +145,7 @@ module Archangel
       def create
         resource = resource_new_content || {}
 
-        resource.save unless resource.blank?
+        resource.save if resource.present?
 
         respond_with resource, location: -> { location_after_create }
       end
@@ -224,7 +224,7 @@ module Archangel
       def destroy
         resource = resource_content || nil
 
-        resource.destroy unless resource.blank?
+        resource.destroy if resource.present?
 
         respond_with resource, location: -> { location_after_destroy }
       end

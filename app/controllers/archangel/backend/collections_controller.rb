@@ -39,7 +39,7 @@ module Archangel
       def resource_new_content
         @collection = current_site.collections.new(resource_new_params)
 
-        @collection.fields.build unless @collection.fields.present?
+        @collection.fields.build if @collection.fields.blank?
 
         authorize @collection
       end

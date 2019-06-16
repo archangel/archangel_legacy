@@ -40,7 +40,7 @@ module Archangel
       def resource_new_content
         @page = current_site.pages.new(resource_new_params)
 
-        @page.metatags.build unless @page.metatags.present?
+        @page.metatags.build if @page.metatags.blank?
 
         authorize @page
       end
