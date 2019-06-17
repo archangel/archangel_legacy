@@ -6,16 +6,13 @@ RSpec.describe "Meta tag", type: :feature do
   describe "default metatags" do
     let(:site) { create(:site, name: "Site A") }
 
-    let(:canonical_data) do
-      "link[rel='canonical'][href='http://www.example.com/amazing']"
-    end
-
     it "contains canonical meta tag" do
       create(:page, site: site, slug: "amazing")
 
       visit "/amazing"
 
-      expect(page).to have_css(canonical_data, visible: false)
+      canonical = "link[rel='canonical'][href='#{page.current_url}']"
+      expect(page).to have_css(canonical, visible: false)
     end
 
     it "contains default title format (e.g. Page Name | Site Name)" do
