@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
   s.add_dependency "mini_magick", "~> 4.9"
   s.add_dependency "paranoia", "~> 2.4"
   s.add_dependency "pundit", "~> 2.0"
-  s.add_dependency "responders", "~> 2.4"
+  s.add_dependency "responders", ">= 2.4", "< 4.0"
   s.add_dependency "sass-rails", "~> 5.0"
   s.add_dependency "simple_form", "~> 4.1"
   s.add_dependency "validates", "~> 1.0"
