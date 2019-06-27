@@ -23,7 +23,7 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 
 ## Requirements
 
-* Ruby >= 2.4
+* Ruby >= 2.4.6
 * Rails ~> 5.1
 
 ## Installation
