@@ -21,6 +21,8 @@ module Archangel
           let(:content_url) { "https://www.youtube.com/watch?v=#{vid_id}" }
           let(:content) { "{% noembed '#{content_url}' %}" }
 
+          # In leiu of adding VRC or WebMock as a dependency, hard code the
+          # expected API response in order to make the test work offline.
           let(:expected_json) do
             {
               author_name: "treatsforbeasts",
