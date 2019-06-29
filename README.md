@@ -23,7 +23,7 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 
 ## Requirements
 
-* Ruby >= 2.4
+* Ruby >= 2.4.6
 * Rails ~> 5.1
 * Chromedriver (`development` and `test` environments)
   * Install using [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) with `brew cask install chromedriver`
@@ -73,7 +73,6 @@ $ bundle exec rails db:migrate
 ## Code Analysis
 
 * [Travis CI](https://travis-ci.org/) is used for running tests.
-* [Hound](https://houndci.com/) is used as the code analyzer in pull request.
 * [Code Climate](https://codeclimate.com/) is used to analyze overall maintainability.
 
 ## Developers
@@ -86,11 +85,9 @@ General documentation for developers
 * [Documentation for theme developers](https://github.com/archangel/archangel/blob/master/docs/Theme/Developers.md)
 * [Documentation for releasing a gem version](https://github.com/archangel/archangel/blob/master/docs/Release.md) (maintainers only)
 
-## Logo
+## Special Thanks
 
 Archangel's logo was created by [Joshua Boyd](http://www.joshadamboyd.com/).
-
-## Special Thanks
 
 [@archangel-dlt](https://github.com/archangel-dlt/) originally had the "archangel" gem name and were kind enough to give it up
 

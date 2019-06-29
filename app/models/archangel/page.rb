@@ -31,7 +31,9 @@ module Archangel
     validate :valid_liquid_content
     validate :within_valid_path
 
-    belongs_to :design, -> { where(partial: false) }, optional: true
+    belongs_to :design, -> { where(partial: false) },
+               inverse_of: false,
+               optional: true
     belongs_to :parent, class_name: "Archangel::Page", optional: true
     belongs_to :site
 
