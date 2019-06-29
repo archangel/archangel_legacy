@@ -71,7 +71,6 @@ $ bundle exec rails db:migrate
 ## Code Analysis
 
 * [Travis CI](https://travis-ci.org/) is used for running tests.
-* [Hound](https://houndci.com/) is used as the code analyzer in pull request.
 * [Code Climate](https://codeclimate.com/) is used to analyze overall maintainability.
 
 ## Developers
