@@ -11,7 +11,7 @@ RSpec.describe "Meta tag", type: :feature do
 
       visit "/amazing"
 
-      canonical = "link[rel='canonical'][href='#{page.current_url}']"
+      canonical = "link[rel='canonical'][href='#{page.current_host}/amazing']"
       expect(page).to have_css(canonical, visible: false)
     end
 

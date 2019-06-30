@@ -26,6 +26,13 @@ Deploy a sample application to [Heroku](https://www.heroku.com/) to play with.
 * Ruby >= 2.4.6
 * Rails ~> 5.1
 
+Additional requirements for `development` and `test` environment:
+
+* Google Chrome
+  * Install using [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) with `brew cask install google-chrome`
+* Chromedriver
+  * Install using [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) with `brew cask install chromedriver`
+
 ## Installation
 
 Add to your application's Gemfile
