@@ -21,14 +21,17 @@ module Archangel
           after { after_generation(extension_path) }
 
           it "writes common directories" do
-            %w[app bin config lib spec].each do |dir|
+            %w[
+              bin config lib spec
+            ].each do |dir|
               expect(glob_directories_in(extension_path)).to include(dir)
             end
           end
 
           it "writes common files" do
-            %w[.gitignore .rspec .rubocop.yml Gemfile MIT-LICENSE Rakefile
-               README.md].each do |file|
+            %w[
+              .gitignore .rspec Gemfile MIT-LICENSE Rakefile README.md
+            ].each do |file|
               expect(glob_files_in(extension_path)).to include(file)
             end
           end

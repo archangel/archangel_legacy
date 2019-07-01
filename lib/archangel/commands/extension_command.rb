@@ -50,9 +50,13 @@ module Archangel
       # Copy common directories that are shared with theme generator
       #
       def copy_common_directories
-        %w[spec].each do |dir|
+        %w[
+          bin lib spec
+        ].each do |dir|
           directory("../common/#{dir}", "#{extension_name}/#{dir}")
         end
+
+        chmod("#{extension_name}/bin/rails", 0o755)
       end
 
       ##
@@ -60,10 +64,8 @@ module Archangel
       #
       def copy_plugin_directories
         %w[
-          app bin config lib
+          config lib
         ].each { |dir| directory(dir, "#{extension_name}/#{dir}") }
-
-        chmod("#{extension_name}/bin/rails", 0o755)
       end
 
       ##
@@ -71,7 +73,7 @@ module Archangel
       #
       def copy_common_templates
         %w[
-          .gitignore .rspec .rubocop.yml MIT-LICENSE
+          .gitignore .rspec Gemfile MIT-LICENSE Rakefile
         ].each do |tpl|
           template("../common/#{tpl}", "#{extension_name}/#{tpl}")
         end
@@ -82,7 +84,7 @@ module Archangel
       #
       def copy_plugin_templates
         %w[
-          Gemfile Rakefile README.md
+          README.md
         ].each { |tpl| template(tpl, "#{extension_name}/#{tpl}") }
       end
 
@@ -92,14 +94,14 @@ module Archangel
       # Say something nice
       #
       def banner
-        puts %(
+        say %(
 
   ******************************************************************
 
     Your extension has been generated with a gemspec dependency on
-    Archangel v#{archangel_version}
+    Archangel ~> v#{archangel_version}
 
-      #{random_compliment}
+      I have a feeling you're about to build something amazing.
 
   ******************************************************************
 
@@ -107,10 +109,6 @@ module Archangel
       end
 
       no_tasks do
-        def class_name
-          plugin_class_name(extension_name)
-        end
-
         def name_plugin
           @extension_name = corrected_plugin_name
         end

@@ -1,9 +1,0 @@
-# frozen_string_literal: true
-
-require "archangel"
-
-require "<%= theme_name %>/engine"
-require "<%= theme_name %>/version"
-
-module <%= class_name %>
-end
