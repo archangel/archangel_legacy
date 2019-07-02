@@ -1,4 +1,4 @@
 en:
   archangel:
     hello: "Hello world"
-    <%= theme_name %>: <%= class_name %>
+    <%= extension_name %>: <%= class_name %>

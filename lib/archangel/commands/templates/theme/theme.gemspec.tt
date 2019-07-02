@@ -2,14 +2,14 @@
 
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 
-require "<%= theme_name %>/version"
+require "<%= extension_name %>/version"
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = "<%= theme_name %>"
+  s.name        = "<%= extension_name %>"
   s.version     = <%= class_name %>::VERSION
   s.authors     = ["Your Name"]
-  s.homepage    = "https://github.com/USERNAME/<%= theme_name %>"
+  s.homepage    = "https://github.com/USERNAME/<%= extension_name %>"
   s.summary     = "TODO: Summary of <%= class_name %>."
   s.description = "TODO: Description of <%= class_name %>."
   s.license     = "MIT"

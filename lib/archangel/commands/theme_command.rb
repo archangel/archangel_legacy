@@ -16,14 +16,16 @@ module Archangel
       source_root File.expand_path("templates/theme", __dir__)
 
       desc "Build an Archangel theme"
-      argument :theme_name, type: :string, desc: "Theme name", default: "sample"
+      argument :extension_name, type: :string,
+                                desc: "Theme name",
+                                default: "sample"
 
       ##
       # Generate theme
       #
       # Usage
-      #   archangel theme [THEME_NAME]
-      #   bundle exec bin/archangel theme [THEME_NAME]
+      #   archangel theme [EXTENSION_NAME]
+      #   bundle exec bin/archangel theme [EXTENSION_NAME]
       #
       def generate
         name_plugin
@@ -33,23 +35,27 @@ module Archangel
       # Create theme directory
       #
       def create_plugin_directory
-        empty_directory(theme_name)
+        empty_directory(extension_name)
       end
 
       ##
       # Create theme .gemspec file
       #
       def create_plugin_gemspec
-        template("theme.gemspec", "#{theme_name}/#{theme_name}.gemspec")
+        template("theme.gemspec", "#{extension_name}/#{extension_name}.gemspec")
       end
 
       ##
       # Copy common directories that are shared with extension generator
       #
       def copy_common_directories
-        %w[spec].each do |dir|
-          directory("../common/#{dir}", "#{theme_name}/#{dir}")
+        %w[
+          bin lib spec
+        ].each do |dir|
+          directory("../common/#{dir}", "#{extension_name}/#{dir}")
         end
+
+        chmod("#{extension_name}/bin/rails", 0o755)
       end
 
       ##
@@ -57,10 +63,8 @@ module Archangel
       #
       def copy_plugin_directories
         %w[
-          app bin lib
-        ].each { |dir| directory(dir, "#{theme_name}/#{dir}") }
-
-        chmod("#{theme_name}/bin/rails", 0o755)
+          app
+        ].each { |dir| directory(dir, "#{extension_name}/#{dir}") }
       end
 
       ##
@@ -68,9 +72,9 @@ module Archangel
       #
       def copy_common_templates
         %w[
-          .gitignore .rspec .rubocop.yml MIT-LICENSE
+          .gitignore .rspec Gemfile MIT-LICENSE Rakefile
         ].each do |tpl|
-          template("../common/#{tpl}", "#{theme_name}/#{tpl}")
+          template("../common/#{tpl}", "#{extension_name}/#{tpl}")
         end
       end
 
@@ -79,8 +83,8 @@ module Archangel
       #
       def copy_plugin_templates
         %w[
-          Gemfile Rakefile README.md
-        ].each { |tpl| template(tpl, "#{theme_name}/#{tpl}") }
+          README.md
+        ].each { |tpl| template(tpl, "#{extension_name}/#{tpl}") }
       end
 
       ##
@@ -89,14 +93,14 @@ module Archangel
       # Say something nice
       #
       def banner
-        puts %(
+        say %(
 
   ******************************************************************
 
     Your theme has been generated with a gemspec dependency on
-    Archangel v#{archangel_version}
+    Archangel ~> v#{archangel_version}
 
-      #{random_compliment}
+      You look lovely today by the way.
 
   ******************************************************************
 
@@ -104,20 +108,16 @@ module Archangel
       end
 
       no_tasks do
-        def class_name
-          plugin_class_name(theme_name)
-        end
-
         def name_plugin
-          @theme_name = corrected_plugin_name
+          @extension_name = corrected_plugin_name
         end
 
         def theme_base_name
-          theme_name.sub(/^archangel_/, "").sub(/_theme$/, "")
+          extension_name.sub(/^archangel_/, "").sub(/_theme$/, "")
         end
 
         def corrected_plugin_name
-          ext_name = theme_name.downcase
+          ext_name = extension_name.downcase
           ext_name = "archangel_#{ext_name}" unless ext_name =~ /^archangel_/
           ext_name = "#{ext_name}_theme" unless ext_name =~ /_theme$/
 

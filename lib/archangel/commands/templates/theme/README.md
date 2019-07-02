@@ -7,7 +7,7 @@ Introduction goes here.
 Add to your application's Gemfile
 
 ```
-gem "<%= theme_name %>", github: "USERNAME/<%= theme_name %>"
+gem "<%= extension_name %>", github: "USERNAME/<%= extension_name %>"
 ```
 
 Run the bundle command
@@ -37,7 +37,7 @@ $ bundle exec rspec spec
 
 ## Contributing
 
-1. Fork it ( https://github.com/USERNAME/<%= theme_name %>/fork )
+1. Fork it ( https://github.com/USERNAME/<%= extension_name %>/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

@@ -6,19 +6,19 @@ module <%= class_name %>
       class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_javascripts
-        %w[auth backend frontend].each do |section|
-          append_file "vendor/assets/javascripts/archangel/#{section}.js",
-                      "//= require archangel/#{section}/<%= extension_name %>\n"
-        end
+        # %w[backend].each do |section|
+        #   append_file "vendor/assets/javascripts/archangel/#{section}.js",
+        #               "//= require archangel/#{section}/<%= extension_name %>\n"
+        # end
       end
 
       def add_stylesheets
-        %w[auth backend frontend].each do |section|
-          inject_into_file "vendor/assets/stylesheets/archangel/#{section}.css",
-                           "*= require archangel/#{section}/<%= extension_name %>\n ",
-                           before: %r{\*/},
-                           verbose: true
-        end
+        # %w[backend].each do |section|
+        #   inject_into_file "vendor/assets/stylesheets/archangel/#{section}.css",
+        #                    "*= require archangel/#{section}/<%= extension_name %>\n ",
+        #                    before: %r{\*/},
+        #                    verbose: true
+        # end
       end
 
       def add_migrations
