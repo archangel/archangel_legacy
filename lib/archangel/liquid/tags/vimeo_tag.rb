@@ -60,17 +60,23 @@ module Archangel
 
         def video_attributes
           {
-            id: attributes.fetch(:id, nil),
-            class: attributes.fetch(:class, nil),
-            style: attributes.fetch(:style, nil),
             src: video_url,
             width: video_width,
-            height: video_height,
-            frameborder: attributes.fetch(:frameborder, 0),
-            allowtransparency: attributes.fetch(:allowtransparency, "true"),
-            allowFullScreen:
-              attributes.fetch(:allowfullscreen, "allowFullScreen")
-          }
+            height: video_height
+          }.merge(video_fetch_attributes)
+        end
+
+        def video_fetch_attributes
+          {
+            id: nil,
+            class: nil,
+            style: nil,
+            frameborder: 0,
+            allowtransparency: "true",
+            allowFullScreen: "allowFullScreen"
+          }.each_with_object({}) do |(key, value), hash|
+            hash[key] = attributes.fetch(key.to_s.downcase.to_sym, value)
+          end
         end
 
         def video_url
