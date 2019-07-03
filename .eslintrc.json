@@ -8,11 +8,12 @@
     "sourceType": "module"
   },
   "globals": {
-    "window": true,
     "document": true,
+    "window": true,
     "$": true,
     "jQuery": true,
-    "Archangel": true
+    "Archangel": true,
+    "Sortable": true
   },
   "rules": {
     "indent": [
