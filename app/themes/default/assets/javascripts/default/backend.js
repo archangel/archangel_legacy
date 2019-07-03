@@ -1,13 +1,16 @@
 //
-///  Default Archangel backend theme
+//// Default Archangel backend theme
 //
-//  Third-party assets
+//  Third-party assets (from Ruby gems)
 //= require jquery3
 //= require rails-ujs
 //= require cocoon
 //
-//  Third-party Archangel assets (from the vendor directory)
+//  Third-party assets (from gem vendor directory)
+//= require sortable/sortable
+//
+//  Third-party Archangel assets (from the application vendor directory)
 //= require archangel/backend
 //
 //  Theme assets
-// none
+//= require default/backend/entries/sorting

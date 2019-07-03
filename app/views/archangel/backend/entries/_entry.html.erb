@@ -1,6 +1,8 @@
 <tr class="entry-<%= entry.published? ? "published" : "unpublished" %> entry-<%= entry.available? ? "available" : "unavailable" %>"
-    data-id="<%= entry.id %>">
-  <td class="text-center"><%= Archangel.t(:sort) %></td>
+    data-sortable-item-id="<%= entry.id %>">
+  <td class="text-center">
+    <span class="sortable-handle" draggable="true"><%= Archangel.t(:sort) %></span>
+  </td>
   <% fields.each do |field| %>
     <td><%= entry.value[field] %></td>
   <% end %>

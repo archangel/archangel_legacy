@@ -29,22 +29,20 @@ module Archangel
       # Parameters
       #   {
       #     "collection_entry": {
-      #       "sort": ["0" => "1234", "1" => "5678", "2" => "4321"]
+      #       "sort": {
+      #         "id" => "1234",
+      #         "position" => "1"
       #     }
       #   }
       #
       def sort
-        ApplicationRecord.transaction do
-          sort_resource_params.fetch(:sort, []).each do |index, entry_id|
-            entry = current_site.entries
-                                .where(collection: @collection)
-                                .find_by(id: entry_id.to_i)
+        entry = current_site.entries
+                            .where(collection: @collection)
+                            .find_by(id: sort_resource_params.dig(:sort, :id))
 
-            authorize entry
+        authorize entry
 
-            entry.set_list_position(index)
-          end
-        end
+        entry.insert_at(sort_resource_params.dig(:sort, :position).to_i)
 
         render json: { status: :accepted, success: true }, status: :accepted
       end
@@ -59,7 +57,7 @@ module Archangel
 
       def permitted_sort_attributes
         [
-          sort: {}
+          sort: %i[id position]
         ]
       end
 

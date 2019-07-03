@@ -30,7 +30,7 @@
                   </tr>
                 </thead>
 
-                <tbody id="sortable">
+                <tbody id="sortable" data-sortable-url="<%= sort_backend_collection_entries_path(@collection) %>">
                   <%= render partial: "entry", collection: @entries,
                                                locals: { fields: @collection.fields.map(&:slug) } %>
                 </tbody>
