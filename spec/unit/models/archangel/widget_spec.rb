@@ -6,12 +6,6 @@ module Archangel
   RSpec.describe Widget, type: :model do
     subject(:resource) { described_class.new }
 
-    context "with callbacks" do
-      it { is_expected.to callback(:parameterize_slug).before(:validation) }
-
-      it { is_expected.to callback(:column_reset).after(:destroy) }
-    end
-
     context "with validations" do
       it { is_expected.to validate_presence_of(:content) }
       it { is_expected.to validate_presence_of(:name) }
@@ -25,16 +19,6 @@ module Archangel
 
         expect(resource)
           .to validate_uniqueness_of(:slug).scoped_to(:site_id).case_insensitive
-      end
-    end
-
-    context "with associations" do
-      it { is_expected.to belong_to(:site) }
-
-      it "belongs to Design" do
-        expect(resource).to(
-          belong_to(:design).conditions(partial: true).optional
-        )
       end
     end
 

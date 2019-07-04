@@ -18,17 +18,5 @@ module Archangel
       it { is_expected.to allow_value("{{ foo }}").for(:content) }
       it { is_expected.not_to allow_value("{{ foo }").for(:content) }
     end
-
-    context "with associations" do
-      it { is_expected.to belong_to(:site) }
-
-      it "belongs to Design" do
-        expect(resource).to(
-          belong_to(:parent).conditions(partial: false)
-                            .class_name("Archangel::Design")
-                            .optional
-        )
-      end
-    end
   end
 end

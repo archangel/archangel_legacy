@@ -6,16 +6,6 @@ module Archangel
   RSpec.describe User, type: :model do
     subject(:resource) { described_class.new }
 
-    context "with callbacks" do
-      let(:resource) { create(:user) }
-
-      it { is_expected.to callback(:parameterize_username).before(:validation) }
-
-      it { is_expected.to callback(:column_default).after(:initialize) }
-
-      it { is_expected.to callback(:column_reset).after(:destroy) }
-    end
-
     context "with validations" do
       let(:allowed_emails) do
         [
@@ -67,10 +57,6 @@ module Archangel
           expect(resource).not_to allow_value(email).for(:email)
         end
       end
-    end
-
-    context "with associations" do
-      it { is_expected.to belong_to(:site) }
     end
 
     context "with #to_param" do

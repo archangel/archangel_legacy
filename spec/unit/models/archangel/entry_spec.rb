@@ -15,10 +15,6 @@ module Archangel
       it { is_expected.not_to allow_value("invalid").for(:published_at) }
     end
 
-    context "with associations" do
-      it { is_expected.to belong_to(:collection) }
-    end
-
     context "with scopes" do
       context "with .available" do
         it "returns all where published_at <= now" do

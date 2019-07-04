@@ -4,12 +4,6 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Collection, type: :model do
-    context "with callbacks" do
-      it { is_expected.to callback(:parameterize_slug).before(:validation) }
-
-      it { is_expected.to callback(:column_reset).after(:destroy) }
-    end
-
     context "with validations" do
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:slug) }
@@ -20,13 +14,6 @@ module Archangel
         expect(resource)
           .to validate_uniqueness_of(:slug).scoped_to(:site_id).case_insensitive
       end
-    end
-
-    context "with associations" do
-      it { is_expected.to belong_to(:site) }
-
-      it { is_expected.to have_many(:entries) }
-      it { is_expected.to have_many(:fields) }
     end
 
     context "with #to_param" do

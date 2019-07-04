@@ -4,10 +4,6 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Asset, type: :model do
-    context "with callbacks" do
-      it { is_expected.to callback(:save_asset_attributes).before(:save) }
-    end
-
     context "with validations" do
       it { is_expected.to validate_presence_of(:file) }
       it { is_expected.to validate_presence_of(:file_name) }
@@ -25,10 +21,6 @@ module Archangel
       it { is_expected.not_to allow_value("with space.jpg").for(:file_name) }
       it { is_expected.not_to allow_value("with/slash.jpg").for(:file_name) }
       it { is_expected.not_to allow_value("with/numbers.18").for(:file_name) }
-    end
-
-    context "with associations" do
-      it { is_expected.to belong_to(:site) }
     end
   end
 end

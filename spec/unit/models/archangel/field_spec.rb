@@ -34,9 +34,5 @@ module Archangel
         )
       end
     end
-
-    context "with associations" do
-      it { is_expected.to belong_to(:collection) }
-    end
   end
 end

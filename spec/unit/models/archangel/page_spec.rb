@@ -4,16 +4,6 @@ require "rails_helper"
 
 module Archangel
   RSpec.describe Page, type: :model do
-    context "with callbacks" do
-      it { is_expected.to callback(:parameterize_slug).before(:validation) }
-
-      it { is_expected.to callback(:build_page_permalink).before(:save) }
-
-      it { is_expected.to callback(:homepage_reset).after(:save) }
-
-      it { is_expected.to callback(:column_reset).after(:destroy) }
-    end
-
     context "with validations" do
       it { is_expected.to validate_presence_of(:content) }
       it { is_expected.to validate_presence_of(:slug) }
@@ -50,22 +40,6 @@ module Archangel
 
       it { is_expected.to allow_value("{{ foo }}").for(:content) }
       it { is_expected.not_to allow_value("{{ foo }").for(:content) }
-    end
-
-    context "with associations" do
-      it "optionally belongs to non-partial Design" do
-        expect(described_class.new)
-          .to belong_to(:design).conditions(partial: false).optional
-      end
-
-      it "optionally belongs to parent Page" do
-        expect(described_class.new)
-          .to belong_to(:parent).class_name("Archangel::Page").optional
-      end
-
-      it { is_expected.to belong_to(:site) }
-
-      it { is_expected.to have_many(:metatags) }
     end
 
     context "with scopes" do
