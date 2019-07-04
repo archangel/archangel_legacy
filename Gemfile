@@ -36,6 +36,5 @@ group :test do
   gem "database_cleaner", "~> 1.7"
   gem "factory_bot_rails", "~> 5.0"
   gem "rspec-rails", "~> 3.8"
-  gem "shoulda-callback-matchers", "~> 1.1"
   gem "shoulda-matchers", "~> 4.0"
 end

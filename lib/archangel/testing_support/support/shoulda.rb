@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "shoulda-matchers"
-require "shoulda-callback-matchers"
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
