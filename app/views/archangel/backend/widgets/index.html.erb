@@ -4,46 +4,38 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
-        </div>
+<div class="card widgets-index">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
 
-        <div class="card-body">
-          <% if @widgets.present? %>
+  <div class="card-body">
+    <% if @widgets.present? %>
 
-            <%= paginate @widgets %>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col"><%= Archangel.t(:name) %></th>
+              <th scope="col"><%= Archangel.t(:slug) %></th>
+              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+            </tr>
+          </thead>
 
-            <div class="table-responsive">
-              <table class="table table-hover table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col"><%= Archangel.t(:name) %></th>
-                    <th scope="col"><%= Archangel.t(:slug) %></th>
-                    <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <%= render partial: "widget", collection: @widgets %>
-                </tbody>
-              </table>
-            </div>
-
-            <%= paginate @widgets %>
-
-          <% else %>
-
-            <p class="no-resources">
-              <%= Archangel.t(:no_resources, resources: @widgets.model_name.human.pluralize.downcase) %>
-            </p>
-
-          <% end %>
-        </div>
+          <tbody>
+            <%= render partial: "widget", collection: @widgets %>
+          </tbody>
+        </table>
       </div>
-    </div>
+
+      <%= paginate @widgets %>
+
+    <% else %>
+
+      <p class="no-resources">
+        <%= Archangel.t(:no_resources, resources: @widgets.model_name.human.pluralize.downcase) %>
+      </p>
+
+    <% end %>
   </div>
 </div>

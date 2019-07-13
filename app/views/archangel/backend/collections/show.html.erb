@@ -4,28 +4,25 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
-        </div>
+<div class="card collections-show">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
 
-        <div class="card-body">
-          <p>
-            <strong><%= Archangel.t(:name) %>:</strong>
-            <%= @collection.name %>
-          </p>
+  <div class="card-body">
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @collection.name %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:slug) %>:</strong>
-            <%= @collection.slug %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:slug) %>:</strong>
+      <%= @collection.slug %>
+    </p>
 
-          <p>
-            <pre>
-              <code>
+    <p>
+      <pre>
+        <code>
 {% collectionfor item in "<%= @collection.slug %>" %}
   {{ forloop.index }}: {{ item.id }}
 {% endcollectionfor %}
@@ -34,11 +31,8 @@
 {% for item in items %}
   {{ forloop.index }}: {{ item.id }}
 {% endfor %}
-              </code>
-            </pre>
-          </p>
-        </div>
-      </div>
-    </div>
+        </code>
+      </pre>
+    </p>
   </div>
 </div>

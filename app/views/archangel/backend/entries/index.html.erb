@@ -4,50 +4,42 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
-        </div>
+<div class="card entries-index">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
 
-        <div class="card-body">
-          <% if @entries.present? %>
+  <div class="card-body">
+    <% if @entries.present? %>
 
-            <%= paginate @entries %>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th class="sort-handle text-center" scope="col">&nbsp;</th>
+              <% @collection.fields.map(&:label).each do |field| %>
+                <th scope="col"><%= field %></th>
+              <% end %>
+              <th scope="col"><%= Archangel.t(:published_at) %></th>
+              <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
+            </tr>
+          </thead>
 
-            <div class="table-responsive">
-              <table class="table table-hover table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th class="sort-handle text-center" scope="col">&nbsp;</th>
-                    <% @collection.fields.map(&:label).each do |field| %>
-                      <th scope="col"><%= field %></th>
-                    <% end %>
-                    <th scope="col"><%= Archangel.t(:published_at) %></th>
-                    <th class="actions text-right" scope="col"><%= Archangel.t(:actions) %></th>
-                  </tr>
-                </thead>
-
-                <tbody id="sortable" data-sortable-url="<%= sort_backend_collection_entries_path(@collection) %>">
-                  <%= render partial: "entry", collection: @entries,
-                                               locals: { fields: @collection.fields.map(&:slug) } %>
-                </tbody>
-              </table>
-            </div>
-
-            <%= paginate @entries %>
-
-          <% else %>
-
-            <p class="no-resources">
-              <%= Archangel.t(:no_resources, resources: @entries.model_name.human.pluralize.downcase) %>
-            </p>
-
-          <% end %>
-        </div>
+          <tbody id="sortable" data-sortable-url="<%= sort_backend_collection_entries_path(@collection) %>">
+            <%= render partial: "entry", collection: @entries,
+                                         locals: { fields: @collection.fields.map(&:slug) } %>
+          </tbody>
+        </table>
       </div>
-    </div>
+
+      <%= paginate @entries %>
+
+    <% else %>
+
+      <p class="no-resources">
+        <%= Archangel.t(:no_resources, resources: @entries.model_name.human.pluralize.downcase) %>
+      </p>
+
+    <% end %>
   </div>
 </div>

@@ -1,7 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html dir="<%= text_direction %>" lang="<%= locale %>">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= display_meta_tags %>
@@ -14,20 +15,26 @@
     <%= render "archangel/shared/auth_token" %>
   </head>
 
-  <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+  <body class="app" id="page-top">
     <%= render "layouts/backend/header" %>
 
-    <div class="app-body">
+    <div id="wrapper">
       <%= render "layouts/backend/sidebar" %>
 
-      <main class="main">
-        <%= render "archangel/shared/flash_messages" %>
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <%= render "archangel/shared/flash_messages" %>
 
-        <%= yield %>
-      </main>
+          <%= yield %>
+        </div>
+
+        <%= render "layouts/backend/footer" %>
+      </div>
     </div>
 
-    <%= render "layouts/backend/footer" %>
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
     <%= javascript_include_tag "#{current_theme}/backend" %>
     <%= yield(:javascript) if content_for?(:javascript) %>

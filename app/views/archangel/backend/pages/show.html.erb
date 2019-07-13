@@ -4,36 +4,30 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
-        </div>
+<div class="card pages-show">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
 
-        <div class="card-body">
-          <p>
-            <strong><%= Archangel.t(:title) %>:</strong>
-            <%= @page.title %>
-          </p>
+  <div class="card-body">
+    <p>
+      <strong><%= Archangel.t(:title) %>:</strong>
+      <%= @page.title %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:permalink) %>:</strong>
-            <%= frontend_resource_path(@page) %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:permalink) %>:</strong>
+      <%= frontend_resource_path(@page) %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:slug) %>:</strong>
-            <%= @page.slug %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:slug) %>:</strong>
+      <%= @page.slug %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:content) %>:</strong>
-            <%= @page.content %>
-          </p>
-        </div>
-      </div>
-    </div>
+    <p>
+      <strong><%= Archangel.t(:content) %>:</strong>
+      <%= @page.content %>
+    </p>
   </div>
 </div>

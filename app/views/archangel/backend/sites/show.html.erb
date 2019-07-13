@@ -4,35 +4,29 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
-        </div>
+<div class="card sites-show">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
 
-        <div class="card-body">
-          <p>
-            <%= image_tag(@site.logo.small.url, alt: @site.name) %>
-          </p>
+  <div class="card-body">
+    <p>
+      <%= image_tag(@site.logo.small.url, alt: @site.name) %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:name) %>:</strong>
-            <%= @site.name %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @site.name %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:theme) %>:</strong>
-            <%= @site.theme %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:theme) %>:</strong>
+      <%= @site.theme %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:locale) %>:</strong>
-            <%= @site.locale %>
-          </p>
-        </div>
-      </div>
-    </div>
+    <p>
+      <strong><%= Archangel.t(:locale) %>:</strong>
+      <%= @site.locale %>
+    </p>
   </div>
 </div>

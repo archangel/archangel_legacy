@@ -1,12 +1,15 @@
-/**
- **  Default Archangel frontend theme
- *
- *  Third-party assets
- * none
- *
- *  Third-party Archangel assets (from the vendor directory)
- *= require archangel/frontend
- *
- *  Theme assets
- *= require default/frontend/base
- */
+ /**
+  *** Default Archangel frontend theme
+  *
+  **  Third-party assets (from Ruby gems)
+  * none
+  *
+  **  Third-party assets (from gem vendor directory)
+  * none
+  *
+  **  Theme assets
+  *= require default/frontend/base
+  *
+  **  Third-party Archangel assets (from the application vendor directory)
+  *= require archangel/frontend
+  */

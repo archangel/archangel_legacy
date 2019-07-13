@@ -4,33 +4,27 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
-        </div>
+<div class="card profiles-show">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
 
-        <div class="card-body">
-          <%= image_tag(@profile.avatar.small.url, alt: @profile.username) %>
+  <div class="card-body">
+    <%= image_tag(@profile.avatar.small.url, alt: @profile.username) %>
 
-          <p>
-            <strong><%= Archangel.t(:name) %>:</strong>
-            <%= @profile.name %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @profile.name %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:username) %>:</strong>
-            <%= @profile.username %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:username) %>:</strong>
+      <%= @profile.username %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:email) %>:</strong>
-            <%= @profile.email %>
-          </p>
-        </div>
-      </div>
-    </div>
+    <p>
+      <strong><%= Archangel.t(:email) %>:</strong>
+      <%= @profile.email %>
+    </p>
   </div>
 </div>

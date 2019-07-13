@@ -1,12 +1,16 @@
 //
-///  Default Archangel auth theme
+//// Default Archangel auth theme
 //
-//  Third-party assets
+//  Third-party assets (from Ruby gems)
 //= require jquery3
-//= require rails-ujs
+//= require popper
+//= require bootstrap
 //
-//  Third-party Archangel assets (from the vendor directory)
-//= require archangel/auth
+//  Third-party assets (from gem vendor directory)
+// none
 //
 //  Theme assets
 // none
+//
+//  Third-party Archangel assets (from the application vendor directory)
+//= require archangel/auth

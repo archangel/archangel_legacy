@@ -1,12 +1,15 @@
 /**
- **  Default Archangel backend theme
+ *** Default Archangel backend theme
  *
- *  Third-party assets
+ **  Third-party assets (from Ruby gems)
  * none
  *
- *  Third-party Archangel assets (from the vendor directory)
- *= require archangel/backend
+ **  Third-party assets (from gem vendor directory)
+ * none
  *
- *  Theme assets
+ **  Theme assets
  *= require default/backend/base
+ *
+ **  Third-party Archangel assets (from the application vendor directory)
+ *= require archangel/backend
  */
