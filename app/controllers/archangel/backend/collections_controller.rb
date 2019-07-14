@@ -13,7 +13,7 @@ module Archangel
 
       protected
 
-      def permitted_attributes
+      def permitted_resource_attributes
         [
           :name, :slug,
           fields_attributes: %i[id _destroy classification label required slug]

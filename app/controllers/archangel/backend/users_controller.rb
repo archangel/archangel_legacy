@@ -74,7 +74,7 @@ module Archangel
 
       protected
 
-      def permitted_attributes
+      def permitted_resource_attributes
         %w[email locale name remove_avatar role username]
       end
 

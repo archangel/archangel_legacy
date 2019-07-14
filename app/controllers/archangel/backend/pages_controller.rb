@@ -13,7 +13,7 @@ module Archangel
 
       protected
 
-      def permitted_attributes
+      def permitted_resource_attributes
         [
           :content, :design_id, :homepage, :parent_id, :permalink,
           :published_at, :slug, :title,

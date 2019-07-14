@@ -203,7 +203,7 @@ module Archangel
       def update
         resource = resource_content || {}
 
-        resource.update(resource_params)
+        resource.update(resource_params) if resource.present?
 
         respond_with resource, location: -> { location_after_update }
       end
@@ -231,6 +231,14 @@ module Archangel
 
       protected
 
+      def permitted_attributes
+        permitted_resource_attributes || %w[]
+      end
+
+      def permitted_new_attributes
+        permitted_attributes
+      end
+
       def resource_controller
         controller_name.to_sym
       end
@@ -244,13 +252,19 @@ module Archangel
       end
 
       def resource_params
-        permitted = permitted_attributes || %w[]
+        permitted = permitted_attributes
+
+        params.require(resource_scope).permit(permitted)
+      end
+
+      def resource_params_new
+        permitted = permitted_new_attributes
 
         params.require(resource_scope).permit(permitted)
       end
 
       def resource_new_params
-        action_name.to_sym == :create ? resource_params : nil
+        action_name.to_sym == :create ? resource_params_new : nil
       end
 
       def location_after_create
@@ -268,6 +282,8 @@ module Archangel
       def location_after_save
         resources_path
       end
+
+      private
 
       def resources_path(options = {})
         location_path = [resource_namespace, resource_controller].compact

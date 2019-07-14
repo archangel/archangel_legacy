@@ -47,7 +47,7 @@ module Archangel
 
       protected
 
-      def permitted_attributes
+      def permitted_resource_attributes
         %w[file file_name]
       end
 

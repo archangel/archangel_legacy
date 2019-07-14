@@ -49,7 +49,7 @@ module Archangel
 
       protected
 
-      def permitted_attributes
+      def permitted_resource_attributes
         fields = @collection.fields.map(&:slug).map(&:to_sym)
 
         fields + %i[published_at]
