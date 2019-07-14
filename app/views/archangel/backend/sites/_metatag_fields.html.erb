@@ -2,5 +2,6 @@
   <%= f.input :name %>
   <%= f.input :content %>
 
-  <%= link_to_remove_association Archangel.t(:remove_metatag), f %>
+  <%= link_to_remove_association(Archangel.t(:remove_metatag), f,
+                                 class: "btn btn-link", role: "button") %>
 </div>
