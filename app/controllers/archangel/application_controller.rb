@@ -24,8 +24,8 @@ module Archangel
     theme :theme_resolver
 
     rescue_from AbstractController::ActionNotFound,
-                ActionView::MissingTemplate,
-                ActiveRecord::RecordNotFound, with: :render_404_error
+                ActiveRecord::RecordNotFound,
+                ActionView::MissingTemplate, with: :render_404_error
 
     ##
     # Current site
