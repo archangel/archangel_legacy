@@ -39,8 +39,8 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         fill_in_field_form_with("Name", "name", "String")
         click_button "Create Collection"
 
-        expect(page.find(".input.collection_name"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.collection_name"))
+          .to have_content("Name can't be blank")
       end
 
       it "fails without Collection slug" do
@@ -50,8 +50,8 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         fill_in_field_form_with("Name", "name", "String")
         click_button "Create Collection"
 
-        expect(page.find(".input.collection_slug"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.collection_slug"))
+          .to have_content("Slug can't be blank")
       end
 
       it "fails with repeated Collection slug" do
@@ -63,8 +63,8 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         fill_in_field_form_with("Name", "name", "String")
         click_button "Create Collection"
 
-        expect(page.find(".input.collection_slug"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.collection_slug"))
+          .to have_content("Slug has already been taken")
       end
 
       it "fails without Field label" do
@@ -75,8 +75,8 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         click_button "Create Collection"
 
         within ".form-group.collection_fields" do
-          expect(page.find(".input.collection_fields_label"))
-            .to have_content("can't be blank")
+          expect(page.find(".form-group.collection_fields_label"))
+            .to have_content("Label can't be blank")
         end
       end
 
@@ -88,8 +88,8 @@ RSpec.describe "Backend - Collections (HTML)", type: :feature do
         click_button "Create Collection"
 
         within ".form-group.collection_fields" do
-          expect(page.find(".input.collection_fields_slug"))
-            .to have_content("can't be blank")
+          expect(page.find(".form-group.collection_fields_slug"))
+            .to have_content("Slug can't be blank")
         end
       end
     end

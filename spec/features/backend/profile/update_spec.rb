@@ -66,8 +66,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         fill_in "Name", with: ""
         click_button "Update User"
 
-        expect(page.find(".input.profile_name"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.profile_name"))
+          .to have_content("Name can't be blank")
       end
 
       it "fails with non-image avatar" do
@@ -76,7 +76,7 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         attach_file "Avatar", uploader_test_stylesheet
         click_button "Update User"
 
-        expect(page.find(".input.profile_avatar"))
+        expect(page.find(".form-group.profile_avatar"))
           .to have_content("You are not allowed to upload \"css\" files")
       end
 
@@ -86,8 +86,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         fill_in "Username", with: ""
         click_button "Update User"
 
-        expect(page.find(".input.profile_username"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.profile_username"))
+          .to have_content("Username can't be blank")
       end
 
       it "fails with already used username" do
@@ -96,8 +96,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         fill_in "Username", with: "gabriel"
         click_button "Update User"
 
-        expect(page.find(".input.profile_username"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.profile_username"))
+          .to have_content("Username has already been taken")
       end
 
       it "fails with password and password confirmation mismatch" do
@@ -106,8 +106,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         fill_in_password_with("correct password", "incorrect password")
         click_button "Update User"
 
-        expect(page.find(".input.profile_password_confirmation"))
-          .to have_content("doesn't match Password")
+        expect(page.find(".form-group.profile_password_confirmation"))
+          .to have_content("Confirm Password doesn't match Password")
       end
 
       it "fails without email" do
@@ -116,8 +116,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         fill_in "Email", with: ""
         click_button "Update User"
 
-        expect(page.find(".input.profile_email"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.profile_email"))
+          .to have_content("Email can't be blank")
       end
 
       it "fails with already used email" do
@@ -126,8 +126,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         fill_in "Email", with: "gabriel@email.com"
         click_button "Update User"
 
-        expect(page.find(".input.profile_email"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.profile_email"))
+          .to have_content("Email has already been taken")
       end
 
       it "fails when email isn't an email" do
@@ -136,7 +136,8 @@ RSpec.describe "Backend - Profile (HTML)", type: :feature do
         fill_in "Email", with: "gabriel_at_email_dot_com"
         click_button "Update User"
 
-        expect(page.find(".input.profile_email")).to have_content("is invalid")
+        expect(page.find(".form-group.profile_email"))
+          .to have_content("Email is invalid")
       end
     end
   end

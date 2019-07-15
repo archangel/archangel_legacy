@@ -70,8 +70,8 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
                                "<p>Amazing content</p>", "In the beginning")
         click_button "Create Page"
 
-        expect(page.find(".input.page_published_at"))
-          .to have_content("is not a date")
+        expect(page.find(".form-group.page_published_at"))
+          .to have_content("Published At is not a date")
       end
 
       it "fails without title" do
@@ -80,7 +80,8 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
         fill_in_page_form_with("", "amazing", "<p>Content of the page</p>")
         click_button "Create Page"
 
-        expect(page.find(".input.page_title")).to have_content("can't be blank")
+        expect(page.find(".form-group.page_title"))
+          .to have_content("Title can't be blank")
       end
 
       it "fails without slug" do
@@ -89,7 +90,8 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
         fill_in_page_form_with("Amazing", "", "<p>Amazing content</p>")
         click_button "Create Page"
 
-        expect(page.find(".input.page_slug")).to have_content("can't be blank")
+        expect(page.find(".form-group.page_slug"))
+          .to have_content("Slug can't be blank")
       end
 
       it "fails ith used slug as same level" do
@@ -100,8 +102,8 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
         fill_in_page_form_with("Amazing", "amazing", "<p>Amazing content</p>")
         click_button "Create Page"
 
-        expect(page.find(".input.page_slug"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.page_slug"))
+          .to have_content("Slug has already been taken")
       end
 
       %w[account backend].each do |reserved_path|
@@ -111,8 +113,8 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
           fill_in_page_form_with("Amazing", reserved_path, "<p>Content</p>")
           click_button "Create Page"
 
-          expect(page.find(".input.page_slug"))
-            .to have_content("contains restricted path")
+          expect(page.find(".form-group.page_slug"))
+            .to have_content("Slug contains restricted path")
         end
       end
 
@@ -122,8 +124,8 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
         fill_in_page_form_with("Amazing", "amazing", "")
         click_button "Create Page"
 
-        expect(page.find(".input.page_content"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.page_content"))
+          .to have_content("Content can't be blank")
       end
 
       it "fails with invalid Liquid data in Content" do
@@ -133,8 +135,8 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
 
         click_button "Create Page"
 
-        expect(page.find(".input.page_content"))
-          .to have_content("contains invalid Liquid formatting")
+        expect(page.find(".form-group.page_content"))
+          .to have_content("Content contains invalid Liquid formatting")
       end
     end
   end

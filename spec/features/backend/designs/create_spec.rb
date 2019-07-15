@@ -48,8 +48,8 @@ RSpec.describe "Backend - Designs (HTML)", type: :feature do
         fill_in_design_form_with("", design_content)
         click_button "Create Design"
 
-        expect(page.find(".input.design_name"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.design_name"))
+          .to have_content("Name can't be blank")
       end
 
       it "fails without content" do
@@ -58,8 +58,8 @@ RSpec.describe "Backend - Designs (HTML)", type: :feature do
         fill_in_design_form_with("Amazing Design", "")
         click_button "Create Design"
 
-        expect(page.find(".input.design_content"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.design_content"))
+          .to have_content("Content can't be blank")
       end
 
       it "fails with invalid Liquid data in Content" do
@@ -68,8 +68,8 @@ RSpec.describe "Backend - Designs (HTML)", type: :feature do
         fill_in_design_form_with("Amazing Design", "<div>{% widget %}</div>")
         click_button "Create Design"
 
-        expect(page.find(".input.design_content"))
-          .to have_content("contains invalid Liquid formatting")
+        expect(page.find(".form-group.design_content"))
+          .to have_content("Content contains invalid Liquid formatting")
       end
     end
   end

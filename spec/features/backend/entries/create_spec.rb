@@ -57,8 +57,8 @@ RSpec.describe "Backend - Collection Entries (HTML)", type: :feature do
         fill_in "Required Field", with: ""
         click_button "Create Entry"
 
-        expect(page.find(".input.collection_entry_required_field"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.collection_entry_required_field"))
+          .to have_content("Required field can't be blank")
       end
 
       it "fails without valid email for email field" do
@@ -68,8 +68,8 @@ RSpec.describe "Backend - Collection Entries (HTML)", type: :feature do
         fill_in "Email Field", with: "me_at_email_dot_com"
         click_button "Create Entry"
 
-        expect(page.find(".input.collection_entry_email_field"))
-          .to have_content("not a valid email address")
+        expect(page.find(".form-group.collection_entry_email_field"))
+          .to have_content("Email field not a valid email address")
       end
 
       it "fails without valid integer for integer field" do
@@ -79,8 +79,8 @@ RSpec.describe "Backend - Collection Entries (HTML)", type: :feature do
         fill_in "Integer Field", with: "One"
         click_button "Create Entry"
 
-        expect(page.find(".input.collection_entry_integer_field"))
-          .to have_content("not a valid integer")
+        expect(page.find(".form-group.collection_entry_integer_field"))
+          .to have_content("Integer field not a valid integer")
       end
 
       it "fails without valid URL for url field" do
@@ -90,8 +90,8 @@ RSpec.describe "Backend - Collection Entries (HTML)", type: :feature do
         fill_in "Url Field", with: "not a valid URL"
         click_button "Create Entry"
 
-        expect(page.find(".input.collection_entry_url_field"))
-          .to have_content("not a valid URL")
+        expect(page.find(".form-group.collection_entry_url_field"))
+          .to have_content("Url field not a valid URL")
       end
     end
   end

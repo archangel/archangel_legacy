@@ -38,7 +38,8 @@ RSpec.describe "Backend - Site (HTML)", type: :feature do
 
         click_button "Update Site"
 
-        expect(page.find(".input.site_name")).to have_content("can't be blank")
+        expect(page.find(".form-group.site_name"))
+          .to have_content("Name can't be blank")
       end
     end
   end

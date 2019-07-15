@@ -31,8 +31,8 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
         fill_in "Email", with: "grace@example.com"
         click_button "Update User"
 
-        expect(page.find(".input.user_email"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.user_email"))
+          .to have_content("Email has already been taken")
       end
 
       it "fails with used username" do
@@ -41,8 +41,8 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
         fill_in "Username", with: "grace"
         click_button "Update User"
 
-        expect(page.find(".input.user_username"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.user_username"))
+          .to have_content("Username has already been taken")
       end
     end
   end
