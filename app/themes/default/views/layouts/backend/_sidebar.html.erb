@@ -2,21 +2,21 @@
   <ul class="sidebar navbar-nav">
     <li class="nav-item active">
       <a class="nav-link" href="<%= backend_root_path %>">
-        <i class="fas fa-fw fa-home"></i>
+        <i class="fas fa-home"></i>
         <span><%= Archangel.t(:dashboard) %></span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="<%= backend_pages_path %>">
-        <i class="fas fa-fw fa-file"></i>
+        <i class="fas fa-file"></i>
         <span><%= Archangel.t(:pages) %></span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="<%= backend_widgets_path %>">
-        <i class="fas fa-fw fa-star"></i>
+        <i class="fas fa-star"></i>
         <span><%= Archangel.t(:widgets) %></span>
       </a>
     </li>
@@ -26,7 +26,7 @@
                                                 role="button"
                                                 data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-layer-group"></i>
+        <i class="fas fa-layer-group"></i>
         <span><%= Archangel.t(:collections) %></span>
       </a>
 
@@ -36,7 +36,7 @@
             <% next unless item.persisted? %>
 
             <a class="dropdown-item" href="<%= backend_collection_entries_path(item) %>">
-              <i class="fas fa-fw fa-folder"></i>
+              <i class="fas fa-folder"></i>
               <span><%= item.name %></span>
             </a>
           <% end %>
@@ -46,28 +46,28 @@
 
     <li class="nav-item">
       <a class="nav-link" href="<%= backend_designs_path %>">
-        <i class="fas fa-fw fa-paint-roller"></i>
+        <i class="fas fa-paint-roller"></i>
         <span><%= Archangel.t(:designs) %></span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="<%= backend_assets_path %>">
-        <i class="fas fa-fw fa-images"></i>
+        <i class="fas fa-images"></i>
         <span><%= Archangel.t(:assets) %></span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="<%= backend_users_path %>">
-        <i class="fas fa-fw fa-users"></i>
+        <i class="fas fa-users"></i>
         <span><%= Archangel.t(:users) %></span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="<%= backend_site_path %>">
-        <i class="fas fa-fw fa-globe-americas"></i>
+        <i class="fas fa-globe-americas"></i>
         <span><%= Archangel.t(:site) %></span>
       </a>
     </li>
