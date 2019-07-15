@@ -160,8 +160,13 @@ module Archangel
       "default"
     end
 
+    ##
+    # Theme layout
+    #
+    # @return [String] backend
+    #
     def layout_from_theme
-      "frontend"
+      "backend"
     end
 
     def set_locale
@@ -169,6 +174,8 @@ module Archangel
 
       I18n.locale = locale_for(locale)
     end
+
+    private
 
     def locale_for(locale)
       I18n.available_locales.include?(locale) ? locale : I18n.default_locale
