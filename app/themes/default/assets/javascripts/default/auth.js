@@ -10,7 +10,7 @@
 // none
 //
 //  Theme assets
-// none
+//= require default/common/flash
 //
 //  Third-party Archangel assets (from the application vendor directory)
 //= require archangel/auth
