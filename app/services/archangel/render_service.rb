@@ -58,7 +58,7 @@ module Archangel
     #
     def call
       liquid = ::Liquid::Template.parse(template)
-      liquid.send(:render, stringify_assigns, liquid_options).html_safe
+      liquid.send(:render, stringify_assigns, liquid_options)
     end
 
     protected
