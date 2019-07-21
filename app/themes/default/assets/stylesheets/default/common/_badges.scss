@@ -1,0 +1,8 @@
+.badge {
+  padding-bottom: .3em;
+
+  &-warning,
+  &-info {
+    color: $white;
+  }
+}

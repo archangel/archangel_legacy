@@ -1,0 +1,7 @@
+.progress[value] {
+  @include box-shadow(none);
+  background-color: $gray-100;
+  border: 1px solid $gray-400;
+  height: 22px;
+  padding: 2px;
+}

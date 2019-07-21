@@ -7,25 +7,30 @@
     &:last-child {
       margin-bottom: 1rem;
     }
+
     .nav-link {
+      padding: .75rem 1rem;
       text-align: center;
-      padding: 0.75rem 1rem;
       width: $sidebar-collapsed-width;
+
       span {
-        font-size: 0.65rem;
         display: block;
+        font-size: .65rem;
       }
     }
+
     .dropdown-menu {
+      left: calc(#{$sidebar-collapsed-width} + .5rem) !important;
+      margin: 0;
       position: absolute !important;
       transform: none !important;
-      left: calc(#{$sidebar-collapsed-width} + 0.5rem) !important;
-      margin: 0;
+
       &.dropup {
         bottom: 0;
         top: auto !important;
       }
     }
+
     &.dropdown .dropdown-toggle::after {
       display: none;
     }

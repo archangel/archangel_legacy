@@ -1,0 +1,24 @@
+.scroll-to-top {
+  background: fade-out($gray-800, .5);
+  bottom: 15px;
+  color: $white;
+  height: 50px;
+  line-height: 46px;
+  position: fixed;
+  right: 15px;
+  text-align: center;
+  width: 50px;
+
+  &:focus,
+  &:hover {
+    color: $white;
+  }
+
+  &:hover {
+    background: $gray-800;
+  }
+
+  i {
+    font-weight: 800;
+  }
+}

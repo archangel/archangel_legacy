@@ -1,0 +1,32 @@
+.pagination {
+  font-weight: 300;
+
+  .page-link {
+    border-color: transparent;
+    border-radius: 3px;
+    margin-left: .1em;
+    margin-right: .1em;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .page-item.disabled {
+    .page-link {
+      border-color: transparent;
+    }
+  }
+}
+
+.pagination,
+.pagination-lg,
+.pagination-sm {
+  .page-item:first-child,
+  .page-item:last-child {
+    .page-link {
+      border-radius: 3px;
+    }
+  }
+}
