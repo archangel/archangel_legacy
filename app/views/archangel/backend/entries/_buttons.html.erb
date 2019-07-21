@@ -14,7 +14,7 @@
   <%= link_to(Archangel.t(:collection), backend_collection_path(@collection), class: "btn btn-link", role: "button") %>
 
   <% if show_action? || edit_action? %>
-    <%= link_to(Archangel.t(:destroy), backend_collection_entry_path(@collection, @entry), class: "btn btn-link",
+    <%= link_to(Archangel.t(:destroy), backend_collection_entry_path(@collection, @entry), class: "btn btn-link d-none d-md-inline-block",
                                                                                            role: "button",
                                                                                            method: :delete,
                                                                                            data: { confirm: Archangel.t(:are_you_sure) }) %>
