@@ -8,11 +8,14 @@
   <div id="navbarTop" class="navbar-collapse collapse">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="<%= root_path %>" taeget="_blank"><%= Archangel.t(:website) %></a>
+        <a class="nav-link" href="<%= root_path %>" target="_blank"><%= Archangel.t(:website) %></a>
       </li>
 
       <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a href="#" id="userDropdown"class="nav-link dropdown-toggle"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
           <%= image_tag(current_user.avatar.tiny.url, alt: current_user.username, class: "rounded") %>
         </a>
 
@@ -21,7 +24,7 @@
 
           <div class="dropdown-divider" role="separator"></div>
 
-          <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="delete" rel="nofollow"><%= Archangel.t(:logout) %></a>
+          <a href="<%= destroy_user_session_path %>" class="dropdown-item" data-method="delete" rel="nofollow"><%= Archangel.t(:logout) %></a>
         </div>
       </li>
     </ul>
