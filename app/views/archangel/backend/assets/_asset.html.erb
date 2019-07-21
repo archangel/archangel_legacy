@@ -1,6 +1,8 @@
 <tr>
   <td><%= image_tag(asset.file.tiny.url, alt: asset.file_name) %></td>
-  <td><%= asset.file_name %></td>
+  <td class="d-none d-sm-table-cell">
+    <%= asset.file_name %>
+  </td>
   <td class="d-none d-lg-table-cell">
     <%= asset.content_type %>
   </td>
