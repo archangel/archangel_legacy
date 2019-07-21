@@ -5,17 +5,13 @@
   "author": "dfreerksen <dfreerksen@gmail.com>",
   "homepage": "https://github.com/archangel/archangel/",
   "description": "Archangel is a Rails CMS.",
+  "license": "MIT",
   "keywords": [
     "archangel",
     "cms",
     "rails",
     "ruby"
   ],
-  "license": "MIT",
-  "engines": {
-    "node": ">= 8.11.1",
-    "yarn": ">= 1.6.0"
-  },
   "repository": {
     "type": "git",
     "url": "archangel/archangel"
@@ -23,12 +19,9 @@
   "bugs": {
     "url": "https://github.com/archangel/archangel/issues"
   },
-  "files": [
-    "lib/assets/compiled/*.js"
-  ],
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
+  "engines": {
+    "node": ">= 10.16.0",
+    "yarn": ">= 1.6.0"
   },
   "dependencies": {},
   "devDependencies": {

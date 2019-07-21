@@ -4,3 +4,5 @@ files:
     - 'app/themes/**/*.s+(a|c)ss'
   ignore:
     - 'vendor/assets/**/*.*'
+    - 'node_modules/**/*.*'
+    - 'RESOURCES/**/*.*'
