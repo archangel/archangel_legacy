@@ -14,7 +14,7 @@ module Archangel
       included do
         store :value, coder: JSON
 
-        validates :value, presence: true
+        validates :value, presence: true, allow_blank: true
 
         after_initialize :add_accessors_for_entry_fields
         after_initialize :add_presence_validator_for_entry_fields
