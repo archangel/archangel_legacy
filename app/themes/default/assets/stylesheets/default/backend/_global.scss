@@ -3,7 +3,7 @@
 
   #content-wrapper {
     overflow-x: hidden;
-    padding-bottom: $sticky-footer-height + 15px;
+    padding-bottom: $sticky-footer-height + 1rem;
     width: 100%;
   }
 }
@@ -12,8 +12,8 @@
   &.sticky-title {
     background-color: $gray-200;
     height: $sticky-footer-height;
-    margin-bottom: 15px;
-    margin-left: -15px;
-    width: calc(100% + 30px);
+    margin-bottom: 1rem;
+    margin-left: -1rem;
+    width: calc(100% + 1.875rem);
   }
 }
