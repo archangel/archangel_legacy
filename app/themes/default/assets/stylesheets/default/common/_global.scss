@@ -1,5 +1,3 @@
-// Global styling for this template
-
 html {
   min-height: 100%;
   position: relative;
@@ -7,15 +5,4 @@ html {
 
 body {
   height: 100%;
-}
-
-#wrapper {
-  display: flex;
-
-  #content-wrapper {
-    overflow-x: hidden;
-    padding-bottom: $sticky-footer-height;
-    padding-top: 1rem;
-    width: 100%;
-  }
 }
