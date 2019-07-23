@@ -3,8 +3,10 @@
   <td class="text-center">
     <span class="sortable-handle" draggable="true"><%= Archangel.t(:sort) %></span>
   </td>
-  <% fields.each do |field| %>
-    <td><%= entry.value[field] %></td>
+  <% fields.each.with_index do |field, index| %>
+    <% cell_display = index > 1 ? "d-md-table-cell" : "d-table-cell" %>
+
+    <td class="d-none <%= cell_display %>"><%= entry.value[field] %></td>
   <% end %>
   <td class="d-none d-lg-table-cell">
     <%= entry.published_at %>
