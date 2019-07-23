@@ -11,18 +11,20 @@
     <%= stylesheet_link_tag "#{current_theme}/auth", media: "all" %>
     <%= yield(:stylesheet) if content_for?(:stylesheet) %>
   </head>
-  <body class="app flex-row align-items-center">
+  <body class="app bg-light">
 
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <%= render "archangel/shared/flash_messages" %>
+        <div class="col-lg-6 col-md-8 col-10">
+          <div class="card o-hidden shadow-lg my-5">
+            <div class="card-body p-0">
+              <div class="p-4">
+                <%= image_tag(current_site.logo.medium.url, alt: current_site.name, class: "mx-auto d-block") %>
 
-              <%= image_tag(current_site.logo.medium.url, alt: current_site.name, class: "mx-auto d-block") %>
+                <%= render "archangel/shared/flash_messages" %>
 
-              <%= yield %>
+                <%= yield %>
+              </div>
             </div>
           </div>
         </div>

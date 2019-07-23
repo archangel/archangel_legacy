@@ -8,7 +8,7 @@
   * none
   *
   **  Theme assets
-  *= require default/frontend/base
+  *= require default/frontend/default
   *
   **  Third-party Archangel assets (from the application vendor directory)
   *= require archangel/frontend
