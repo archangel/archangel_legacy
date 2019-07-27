@@ -12,6 +12,8 @@
 //= require sortable/sortable
 //
 //  Theme assets
+//= require archangel/object
+//= require archangel/object/flash
 //= require default/common/flash
 //= require default/backend/entries/sorting
 //= require default/backend/archangel

@@ -34,14 +34,17 @@
 
       type = type || 'warning';
 
-      var messagesContainer = document.querySelector('#alert-messages'),
-          msgContainer = document.createElement('div');
+      $('.alert-messages').append(
+        '<div class="alert alert-' + type + ' alert-link alert-dismissable" role="alert">' +
+          'Sort order has been updated' +
+          '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span>' +
+          '</button>' +
+        '</div>');
 
-      msgContainer.setAttribute('class', 'alert alert-' + type + ' alert-link alert-dismissable fade-in');
-      msgContainer.setAttribute('role', 'alert');
-      msgContainer.innerHTML = message;
-
-      messagesContainer.appendChild(msgContainer);
+      setTimeout(function(){
+        $('.alert').alert('close');
+      }, 5000);
     }
   };
 

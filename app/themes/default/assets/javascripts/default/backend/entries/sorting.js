@@ -25,16 +25,10 @@
           }
         })
           .done(function() {
-            $('#alert-messages').append(
-              '<div class="alert alert-info alert-link alert-dismissable" role="alert">' +
-                'Sort order has been updated' +
-              '</div>');
+            Archangel.flash.flashMessage('info', 'Sort order has been updated');
           })
           .fail(function() {
-            $('#alert-messages').append(
-              '<div class="alert alert-error alert-link alert-dismissable" role="alert">' +
-                'There was a problem updating position' +
-              '</div>');
+            Archangel.flash.flashMessage('error', 'There was a problem updating position');
           });
       }
     });
