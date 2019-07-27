@@ -1,25 +1,16 @@
 .table {
   tr {
-    &.entry-published {
-      border-left: solid .5rem $primary;
-    }
-
-    &.entry-unpublished {
-      border-left: solid .5rem $warning;
-    }
-
-    &.entry-available {
-      border-left: solid .5rem $success;
-    }
-
+    &.entry-published,
     &.page-published {
       border-left: solid .5rem $primary;
     }
 
+    &.entry-unpublished,
     &.page-unpublished {
-      border-left: solid .5rem $warning;
+      border-left: solid .5rem $gray-400;
     }
 
+    &.entry-available,
     &.page-available {
       border-left: solid .5rem $success;
     }
