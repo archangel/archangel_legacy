@@ -1,0 +1,27 @@
+.table {
+  tr {
+    &.entry-published {
+      border-left: solid .5rem $primary;
+    }
+
+    &.entry-unpublished {
+      border-left: solid .5rem $warning;
+    }
+
+    &.entry-available {
+      border-left: solid .5rem $success;
+    }
+
+    &.page-published {
+      border-left: solid .5rem $primary;
+    }
+
+    &.page-unpublished {
+      border-left: solid .5rem $warning;
+    }
+
+    &.page-available {
+      border-left: solid .5rem $success;
+    }
+  }
+}
