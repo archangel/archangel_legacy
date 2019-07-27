@@ -1,0 +1,25 @@
+#sortable {
+  .sortable-handle {
+    &::before {
+      content: '\f0dc';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
+  }
+
+  tr:nth-child(1),
+  tr:last-child {
+    .sortable-handle::before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+    }
+  }
+
+  tr:nth-child(1) .sortable-handle::before {
+    content: '\f0dd';
+  }
+
+  tr:last-child .sortable-handle::before {
+    content: '\f0de';
+  }
+}
