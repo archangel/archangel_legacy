@@ -11,6 +11,8 @@ module Archangel
     class PagesController < BackendController
       include Archangel::Controllers::ResourcefulConcern
 
+      helper Archangel::Backend::MetatagsHelper
+
       protected
 
       def permitted_attributes

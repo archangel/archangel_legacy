@@ -10,12 +10,14 @@
 //
 //  Third-party assets (from gem vendor directory)
 //= require sortable/sortable
+//= require select2/select2
 //
 //  Theme assets
 //= require archangel/object
 //= require archangel/object/flash
 //= require default/common/flash
 //= require default/backend/entries/sorting
+//= require default/backend/misc/metatags
 //= require default/backend/archangel
 //
 //  Third-party Archangel assets (from the application vendor directory)
