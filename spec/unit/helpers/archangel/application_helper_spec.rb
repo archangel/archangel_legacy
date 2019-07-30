@@ -3,10 +3,11 @@
 require "rails_helper"
 
 module Archangel
-  RSpec.describe ApplicationHelper, type: :helper,
-                                    disable: :verify_partial_doubles do
+  RSpec.describe ApplicationHelper, type: :helper do
     before do
-      allow(helper).to receive(:current_site).and_return(site)
+      without_partial_double_verification do
+        allow(helper).to receive(:current_site).and_return(site)
+      end
     end
 
     let(:site) { create(:site) }
@@ -36,7 +37,9 @@ module Archangel
       end
 
       it "returns rtl text direction" do
-        allow(helper).to receive(:text_direction).and_return("rtl")
+        without_partial_double_verification do
+          allow(helper).to receive(:text_direction).and_return("rtl")
+        end
 
         expect(helper.text_direction).to eq("rtl")
       end
