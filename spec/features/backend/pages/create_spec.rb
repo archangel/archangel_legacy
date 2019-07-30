@@ -7,7 +7,7 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
                              published_at = Time.current)
     fill_in "Title", with: title
     fill_in "Slug", with: slug
-    page.find("textarea#page_content").set(content)
+    fill_in "Content", with: content
     fill_in "Published At", with: published_at
   end
 

@@ -1,6 +1,5 @@
 <div class="nested-fields">
-  &lt;meta name="<%= f.select(:name, suggested_metatags, prompt: "") %>
-" content="<%= f.text_field :content %>" /&gt;
+  &lt;meta name="<%= f.select(:name, suggested_metatags, prompt: "") %>" content="<%= f.text_field :content %>" /&gt;
 
   <%= link_to_remove_association(Archangel.t(:remove_metatag), f,
                                  class: "btn btn-link", role: "button") %>

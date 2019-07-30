@@ -3,6 +3,30 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Pages (HTML)", type: :feature do
+  def fill_in_page_form_with(title = "", slug = "", content = "",
+                             published_at = Time.zone.now)
+    fill_in "Title", with: title
+    fill_in "Slug", with: slug
+    fill_in "Content", with: content
+    fill_in "Published At", with: published_at
+  end
+
+  def fill_in_metatag_form_with(index = 1, name = "", content = "")
+    click_link "Add Meta Tag"
+
+    within ".form-group.page_metatags .nested-fields:nth-of-type(#{index})" do
+      first(".select2-container", minimum: 1).click
+    end
+
+    find(".select2-dropdown input.select2-search__field")
+      .send_keys(name, :enter)
+
+    within ".form-group.page_metatags .nested-fields:nth-of-type(#{index})" do
+      find(:css, "input[id^='page_metatags'][id$='_content']")
+        .set(content)
+    end
+  end
+
   describe "creation with meta tags" do
     before { stub_authorization! }
 
@@ -27,23 +51,6 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
 
         expect(page).to have_content("Page was successfully created.")
       end
-    end
-  end
-
-  def fill_in_page_form_with(title = "", slug = "", content = "",
-                             published_at = Time.zone.now)
-    fill_in "Title", with: title
-    fill_in "Slug", with: slug
-    page.find("textarea#page_content").set(content)
-    fill_in "Published At", with: published_at
-  end
-
-  def fill_in_metatag_form_with(index = 1, name = "", content = "")
-    click_link "Add Meta Tag"
-
-    within ".form-group.page_metatags .nested-fields:nth-of-type(#{index})" do
-      fill_in "Name", with: name
-      fill_in "Content", with: content
     end
   end
 end
