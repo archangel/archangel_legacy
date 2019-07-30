@@ -70,7 +70,7 @@ module Archangel
           val = load_collection(site)
 
           context.scopes.last[key] = val
-          context.resource_limits.assign_score += assign_score_of(val)
+          context.resource_limits.assign_score << assign_score_of(val)
 
           ""
         end

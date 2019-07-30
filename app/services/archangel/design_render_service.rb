@@ -23,7 +23,7 @@ module Archangel
       template_content = current_template_content(template)
 
       unless /\{\{\s*content_for_layout\s*\}\}/.match?(template_content)
-        template_content += "{{ content_for_layout }}"
+        template_content << "{{ content_for_layout }}"
       end
 
       template_content
