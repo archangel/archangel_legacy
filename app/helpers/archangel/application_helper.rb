@@ -19,7 +19,7 @@ module Archangel
     #
     def frontend_resource_path(resource)
       permalink_path = proc do |permalink|
-        archangel.frontend_page_path(permalink).gsub("%2F", "/")
+        archangel.frontend_page_path(permalink).sub("%2F", "/")
       end
 
       return permalink_path.call(resource) unless resource.class == Page
