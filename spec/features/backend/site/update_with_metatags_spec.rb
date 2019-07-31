@@ -7,16 +7,13 @@ RSpec.describe "Backend - Site (HTML)", type: :feature do
     click_link "Add Meta Tag"
 
     within ".form-group.site_metatags .nested-fields:nth-of-type(#{index})" do
+      find(:css, "input[id^='site_metatags_attributes_'][id$='_content']")
+        .set(content)
       first(".select2-container", minimum: 1).click
     end
 
     find(".select2-dropdown input.select2-search__field")
       .send_keys(name, :enter)
-
-    within ".form-group.site_metatags .nested-fields:nth-of-type(#{index})" do
-      find(:css, "input[id^='site_metatags_attributes_'][id$='_content']")
-        .set(content)
-    end
   end
 
   describe "updating with meta tags" do

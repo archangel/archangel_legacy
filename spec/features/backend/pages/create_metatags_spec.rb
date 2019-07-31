@@ -15,16 +15,13 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
     click_link "Add Meta Tag"
 
     within ".form-group.page_metatags .nested-fields:nth-of-type(#{index})" do
+      find(:css, "input[id^='page_metatags'][id$='_content']")
+        .set(content)
       first(".select2-container", minimum: 1).click
     end
 
     find(".select2-dropdown input.select2-search__field")
       .send_keys(name, :enter)
-
-    within ".form-group.page_metatags .nested-fields:nth-of-type(#{index})" do
-      find(:css, "input[id^='page_metatags'][id$='_content']")
-        .set(content)
-    end
   end
 
   describe "creation with meta tags" do
