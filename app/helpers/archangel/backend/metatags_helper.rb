@@ -15,12 +15,11 @@ module Archangel
       # @return [Array] suggested site metatags
       #
       def suggested_site_metatags
-        %w[
-          author copyright description keywords robots googlebot viewport
-          google-site-verification
-          og:title og:image og:description
-          twitter:card twitter:description twitter:image twitter:title
-        ]
+        %w[description keywords author copyright viewport
+           google-site-verification] +
+          suggested_bot_metatags +
+          suggested_og_metatags +
+          suggested_twitter_metatags
       end
 
       ##
@@ -29,11 +28,24 @@ module Archangel
       # @return [Array] suggested metatags
       #
       def suggested_metatags
-        %w[
-          description keywords robots googlebot
-          og:title og:image og:description
-          twitter:card twitter:description twitter:image twitter:title
-        ]
+        %w[description keywords] +
+          suggested_bot_metatags +
+          suggested_og_metatags +
+          suggested_twitter_metatags
+      end
+
+      protected
+
+      def suggested_bot_metatags
+        %w[googlebot robots]
+      end
+
+      def suggested_og_metatags
+        %w[og:title og:image og:description]
+      end
+
+      def suggested_twitter_metatags
+        %w[twitter:card twitter:description twitter:image twitter:title]
       end
     end
   end
