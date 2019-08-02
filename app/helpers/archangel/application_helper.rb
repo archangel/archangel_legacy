@@ -51,5 +51,18 @@ module Archangel
     def text_direction
       Archangel.t("language.#{locale}.direction", default: "ltr")
     end
+
+    ##
+    # Check if active backend menu for a controller
+    #
+    # Example
+    #   <%= active_backend_menu_for("users") %> #=> true
+    #   <%= active_backend_menu_for("pages") %> #=> false
+    #
+    # @return [Boolean] if current controller
+    #
+    def active_backend_menu_for(ctrlr)
+      params.fetch(:controller) == "archangel/backend/#{ctrlr}"
+    end
   end
 end
