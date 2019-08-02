@@ -36,7 +36,7 @@
             <% next unless item.persisted? %>
 
             <a class="dropdown-item" href="<%= backend_collection_entries_path(item) %>">
-              <i class="fas fa-folder"></i>
+              <i class="fas fa-circle"></i>
               <span><%= item.name %></span>
             </a>
           <% end %>
