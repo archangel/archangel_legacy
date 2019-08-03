@@ -116,7 +116,9 @@ module Archangel
         def corrected_plugin_name
           ext_name = extension_name.downcase
 
-          ext_name = "archangel_#{ext_name}" unless ext_name =~ /^archangel_/
+          unless /^archangel_/.match?(ext_name)
+            ext_name = "archangel_#{ext_name}"
+          end
 
           Thor::Util.snake_case(ext_name)
         end
