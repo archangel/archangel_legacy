@@ -24,12 +24,6 @@ RSpec.describe "Backend - Widget (HTML)", type: :feature do
 
         expect(page).to have_content("Slug: amazing")
       end
-
-      it "has the correct Content" do
-        visit "/backend/widgets/amazing"
-
-        expect(page).to have_content("Content: Content of the Widget")
-      end
     end
 
     context "when not available" do

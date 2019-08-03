@@ -34,14 +34,6 @@ RSpec.describe "Backend - User (HTML)", type: :feature do
         expect(page).to have_content("Username: amazing")
       end
 
-      it "knows the correct Email" do
-        create(:user, username: "amazing", email: "amazing@example.com")
-
-        visit "/backend/users/amazing"
-
-        expect(page).to have_content("Email: amazing@example.com")
-      end
-
       it "uses the default Avatar" do
         create(:user, username: "amazing")
 
