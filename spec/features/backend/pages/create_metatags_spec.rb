@@ -7,7 +7,13 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
                              published_at = Time.zone.now)
     fill_in "Title", with: title
     fill_in "Slug", with: slug
-    fill_in "Content", with: content
+
+    within ".form-group.page_content" do
+      first(".jodit_wysiwyg[contenteditable='true']", minimum: 1)
+        .click
+        .set(content)
+    end
+
     fill_in "Published At", with: published_at
   end
 
@@ -15,8 +21,7 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
     click_link "Add Meta Tag"
 
     within ".form-group.page_metatags .nested-fields:nth-of-type(#{index})" do
-      find(:css, "input[id^='page_metatags'][id$='_content']")
-        .set(content)
+      find(:css, "input[id^='page_metatags'][id$='_content']").set(content)
       first(".select2-container", minimum: 1).click
     end
 
@@ -25,13 +30,15 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
   end
 
   describe "creation with meta tags" do
-    before { stub_authorization! }
+    before do
+      stub_authorization!
+
+      visit "/backend/pages/new"
+    end
 
     context "with valid data, including meta tags", js: true do
       it "creates the Page successfully with one meta tag" do
-        visit "/backend/pages/new"
-
-        fill_in_page_form_with("Amazing", "amazing", "<p>Amazing content</p>")
+        fill_in_page_form_with("Amazing", "amazing", "Amazing content")
         fill_in_metatag_form_with(1, "description", "Description of the Page")
         click_button "Create Page"
 
@@ -39,9 +46,7 @@ RSpec.describe "Backend - Pages (HTML)", type: :feature do
       end
 
       it "creates the Page successfully with multiple meta tags" do
-        visit "/backend/pages/new"
-
-        fill_in_page_form_with("Amazing", "amazing", "<p>Amazing content</p>")
+        fill_in_page_form_with("Amazing", "amazing", "Amazing content")
         fill_in_metatag_form_with(1, "description", "Description of the Page")
         fill_in_metatag_form_with(2, "keywords", "keywords, of, the, page")
         click_button "Create Page"

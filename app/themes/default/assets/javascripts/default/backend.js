@@ -9,12 +9,14 @@
 //= require cocoon
 //
 //  Third-party assets (from gem vendor directory)
-//= require sortable/sortable
+//= require jodit/jodit
 //= require select2/select2
+//= require sortable/sortable
 //
 //  Theme assets
 //= require archangel/object
 //= require archangel/object/flash
+//= require archangel/input/wysiwyg
 //= require default/common/flash
 //= require default/backend/entries/sorting
 //= require default/backend/misc/metatags
