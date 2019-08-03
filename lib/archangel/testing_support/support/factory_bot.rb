@@ -6,10 +6,12 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
-    DatabaseCleaner.start
+    begin
+      DatabaseCleaner.start
 
-    FactoryBot.lint traits: true
-  ensure
-    DatabaseCleaner.clean
+      FactoryBot.lint traits: true
+    ensure
+      DatabaseCleaner.clean
+    end
   end
 end
