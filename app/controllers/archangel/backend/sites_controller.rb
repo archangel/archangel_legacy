@@ -9,6 +9,8 @@ module Archangel
     # Backend sites controller
     #
     class SitesController < BackendController
+      helper Archangel::Backend::MetatagsHelper
+
       ##
       # Backend site
       #

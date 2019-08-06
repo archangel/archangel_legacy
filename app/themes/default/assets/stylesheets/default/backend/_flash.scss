@@ -1,0 +1,19 @@
+.alert-messages {
+  position: absolute;
+  right: $spacer;
+  top: 5rem;
+  width: 14rem;
+  z-index: 1;
+
+  @media (min-width: 576px) {
+    width: 18rem;
+  }
+
+  @media (min-width: 768px) {
+    width: 18rem;
+  }
+
+  @media (min-width: 1200px) {
+    width: 18rem;
+  }
+}

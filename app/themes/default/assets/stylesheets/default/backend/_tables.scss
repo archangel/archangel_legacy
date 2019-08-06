@@ -1,0 +1,18 @@
+.table {
+  tr {
+    &.entry-published,
+    &.page-published {
+      border-left: solid .5rem $primary;
+    }
+
+    &.entry-unpublished,
+    &.page-unpublished {
+      border-left: solid .5rem $gray-400;
+    }
+
+    &.entry-available,
+    &.page-available {
+      border-left: solid .5rem $success;
+    }
+  }
+}

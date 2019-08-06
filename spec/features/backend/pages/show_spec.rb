@@ -24,18 +24,6 @@ RSpec.describe "Backend - Page (HTML)", type: :feature do
 
         expect(page).to have_content("Permalink: /amazing")
       end
-
-      it "finds the Page slug" do
-        visit "/backend/pages/#{resource.id}"
-
-        expect(page).to have_content("Slug: amazing")
-      end
-
-      it "finds the Page content" do
-        visit "/backend/pages/#{resource.id}"
-
-        expect(page).to have_content("Content: Content of the Page")
-      end
     end
 
     describe "is not available" do

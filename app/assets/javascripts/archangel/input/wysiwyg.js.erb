@@ -1,5 +1,61 @@
 $.fn.inputTextareaWysiwyg = function () {
   'use strict';
+
+  $(this).each(function() {
+    new Jodit(this, {
+      buttons: [
+        'source',
+        '|',
+        'bold', 'underline', 'italic',
+        '|',
+        'link', 'image', 'video',
+        '|',
+        'ul', 'ol',
+        '|',
+        'align', 'outdent', 'indent',
+        '|',
+        'eraser', 'brush'
+      ],
+      disablePlugins: [
+        'font', 'formatBlock', 'fullsize', 'mobile', 'redoundo', 'symbols'
+      ],
+      filebrowser: {
+        buttons: [
+          'filebrowser.upload', 'filebrowser.update', 'filebrowser.select',
+          '|',
+          'filebrowser.tiles', 'filebrowser.list',
+          '|',
+          'filebrowser.filter',
+          '|',
+          'filebrowser.sort'
+        ],
+        fullsize: false,
+        headers: {
+          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+        },
+        items: {
+          url: '<%= Archangel::Engine.routes.url_helpers.wysiwyg_backend_assets_path %>',
+          method: 'GET'
+        },
+        showFileName: false,
+        showFileSize: false,
+        showFileChangeTime: false,
+      },
+      imageDefaultWidth: null,
+      showCharsCounter: false,
+      showWordsCounter: false,
+      spellcheck: false,
+      toolbarAdaptive: false,
+      toolbarSticky: true,
+      uploader: {
+        headers: {
+          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+        },
+        url: '<%= Archangel::Engine.routes.url_helpers.wysiwyg_backend_assets_path %>'
+      }
+    });
+  });
+
 };
 
 $(function() {

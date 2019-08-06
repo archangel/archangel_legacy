@@ -1,49 +1,75 @@
-<div class="sidebar">
-  <nav class="sidebar-nav">
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_root_path %>"><%= Archangel.t(:dashboard) %></a>
-      </li>
+<div id="navbarSidebar">
+  <ul class="sidebar navbar-nav">
+    <li class="nav-item<%= " active" if active_backend_menu_for("dashboards") %>">
+      <a class="nav-link" href="<%= backend_root_path %>">
+        <i class="fas fa-home"></i>
+        <span><%= Archangel.t(:dashboard) %></span>
+      </a>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_pages_path %>"><%= Archangel.t(:pages) %></a>
-      </li>
+    <li class="nav-item<%= " active" if active_backend_menu_for("pages") %>">
+      <a class="nav-link" href="<%= backend_pages_path %>">
+        <i class="fas fa-file"></i>
+        <span><%= Archangel.t(:pages) %></span>
+      </a>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_designs_path %>"><%= Archangel.t(:designs) %></a>
-      </li>
+    <li class="nav-item<%= " active" if active_backend_menu_for("widgets") %>">
+      <a class="nav-link" href="<%= backend_widgets_path %>">
+        <i class="fas fa-star"></i>
+        <span><%= Archangel.t(:widgets) %></span>
+      </a>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_widgets_path %>"><%= Archangel.t(:widgets) %></a>
-      </li>
+    <li class="nav-item dropdown<%= " active" if active_backend_menu_for("collections") %>">
+      <a href="<%= backend_collections_path %>" id="entriesDropdown" class="nav-link dropdown-toggle"
+                                                role="button"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-layer-group"></i>
+        <span><%= Archangel.t(:collections) %></span>
+      </a>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="<%= backend_collections_path %>" role="button" aria-haspopup="true" aria-expanded="false"><%= Archangel.t(:collections) %></a>
+      <% if current_site.collections.present? %>
+        <div class="dropdown-menu" aria-labelledby="entriesDropdown">
+          <% current_site.collections.each_with_index do |item, index| %>
+            <% next unless item.persisted? %>
 
-        <% if current_site.collections.present? %>
-          <ul class="dropdown-menu">
-            <% current_site.collections.each_with_index do |item, index| %>
-              <% next unless item.persisted? %>
+            <a class="dropdown-item" href="<%= backend_collection_entries_path(item) %>">
+              <i class="fas fa-circle"></i>
+              <span><%= item.name %></span>
+            </a>
+          <% end %>
+        </div>
+      <% end %>
+    </li>
 
-              <li class="dropdown-item"><a href="<%= backend_collection_entries_path(item) %>"><%= item.name %></a></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </li>
+    <li class="nav-item<%= " active" if active_backend_menu_for("designs") %>">
+      <a class="nav-link" href="<%= backend_designs_path %>">
+        <i class="fas fa-paint-roller"></i>
+        <span><%= Archangel.t(:designs) %></span>
+      </a>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_users_path %>"><%= Archangel.t(:users) %></a>
-      </li>
+    <li class="nav-item<%= " active" if active_backend_menu_for("assets") %>">
+      <a class="nav-link" href="<%= backend_assets_path %>">
+        <i class="fas fa-images"></i>
+        <span><%= Archangel.t(:assets) %></span>
+      </a>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_assets_path %>"><%= Archangel.t(:assets) %></a>
-      </li>
+    <li class="nav-item<%= " active" if active_backend_menu_for("users") %>">
+      <a class="nav-link" href="<%= backend_users_path %>">
+        <i class="fas fa-users"></i>
+        <span><%= Archangel.t(:users) %></span>
+      </a>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<%= backend_site_path %>"><%= Archangel.t(:site) %></a>
-      </li>
-    </ul>
-  </nav>
-
-  <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    <li class="nav-item<%= " active" if active_backend_menu_for("sites") %>">
+      <a class="nav-link" href="<%= backend_site_path %>">
+        <i class="fas fa-globe-americas"></i>
+        <span><%= Archangel.t(:site) %></span>
+      </a>
+    </li>
+  </ul>
 </div>

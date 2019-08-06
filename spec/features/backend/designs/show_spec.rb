@@ -20,12 +20,6 @@ RSpec.describe "Backend - Design (HTML)", type: :feature do
         expect(page).to have_content("Name: Amazing Design")
       end
 
-      it "finds the Design Content" do
-        visit "/backend/designs/#{resource.id}"
-
-        expect(page).to have_content("Content: Content of the Design")
-      end
-
       it "finds the Design Partial" do
         visit "/backend/designs/#{resource.id}"
 

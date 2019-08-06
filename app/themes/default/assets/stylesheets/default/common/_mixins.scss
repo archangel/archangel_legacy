@@ -1,0 +1,38 @@
+@mixin rotate {
+  transform: rotate(15deg);
+}
+
+@mixin sidebar-icons {
+  .nav-item {
+    &:last-child {
+      margin-bottom: $spacer;
+    }
+
+    .nav-link {
+      padding: .75rem 1rem;
+      text-align: center;
+      width: $sidebar-collapsed-width;
+
+      span {
+        display: block;
+        font-size: .65rem;
+      }
+    }
+
+    .dropdown-menu {
+      left: calc(#{$sidebar-collapsed-width} + .5rem) !important;
+      margin: 0;
+      position: absolute !important;
+      transform: none !important;
+
+      &.dropup {
+        bottom: 0;
+        top: auto !important;
+      }
+    }
+
+    &.dropdown .dropdown-toggle::after {
+      display: none;
+    }
+  }
+}

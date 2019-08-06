@@ -1,5 +1,5 @@
 <%%= simple_form_for(@<%= singular_table_name %>, html: { class: "form-horizontal", autocomplete: "false" }) do |f| %>
-  <%%= f.error_notification %>
+  <%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
   <%- attributes.each do |attribute| -%>
@@ -8,6 +8,6 @@
   </div>
 
   <div class="form-actions">
-    <%%= f.button :submit %>
+    <%%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <%% end %>

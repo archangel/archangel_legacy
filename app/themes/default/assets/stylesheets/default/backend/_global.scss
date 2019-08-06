@@ -1,0 +1,22 @@
+#wrapper {
+  display: flex;
+}
+
+#content-wrapper {
+  overflow-x: hidden;
+  padding-bottom: $sticky-footer-height + 1rem;
+  width: 100%;
+}
+
+.card {
+  &.sticky-title {
+    background-color: $gray-200;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    height: $sticky-footer-height;
+    margin-bottom: 1rem;
+    margin-left: -1rem;
+    width: calc(100% + 1.875rem);
+  }
+}

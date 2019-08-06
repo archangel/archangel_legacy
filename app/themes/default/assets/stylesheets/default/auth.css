@@ -1,12 +1,15 @@
-/**
- **  Default Archangel auth theme
- *
- *  Third-party assets
- * none
- *
- *  Third-party Archangel assets (from the vendor directory)
- *= require archangel/auth
- *
- *  Theme assets
- *= require default/auth/base
- */
+ /**
+  *** Default Archangel auth theme
+  *
+  **  Third-party assets (from Ruby gems)
+  * none
+  *
+  **  Third-party assets (from gem vendor directory)
+  * none
+  *
+  **  Theme assets
+  *= require default/auth/default
+  *
+  **  Third-party Archangel assets (from the application vendor directory)
+  *= require archangel/auth
+  */

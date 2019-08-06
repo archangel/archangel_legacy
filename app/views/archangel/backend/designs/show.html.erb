@@ -1,34 +1,23 @@
-<div class="card card-default">
+<div class="card card-default sticky-title rounded-0">
   <div class="card-body">
     <h2><%= Archangel.t(:show_resource, resource: @design.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
-        </div>
+<div class="card designs-show">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
 
-        <div class="card-body">
-          <p>
-            <strong><%= Archangel.t(:name) %>:</strong>
-            <%= @design.name %>
-          </p>
+  <div class="card-body">
+    <p>
+      <strong><%= Archangel.t(:name) %>:</strong>
+      <%= @design.name %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:content) %>:</strong>
-            <%= @design.content %>
-          </p>
-
-          <p>
-            <strong><%= Archangel.t(:partial) %>:</strong>
-            <%= @design.partial? %>
-          </p>
-        </div>
-      </div>
-    </div>
+    <p>
+      <strong><%= Archangel.t(:partial) %>:</strong>
+      <%= @design.partial? %>
+    </p>
   </div>
 </div>

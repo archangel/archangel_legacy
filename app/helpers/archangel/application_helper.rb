@@ -19,7 +19,7 @@ module Archangel
     #
     def frontend_resource_path(resource)
       permalink_path = proc do |permalink|
-        archangel.frontend_page_path(permalink).gsub("%2F", "/")
+        archangel.frontend_page_path(permalink).sub("%2F", "/")
       end
 
       return permalink_path.call(resource) unless resource.class == Page
@@ -50,6 +50,19 @@ module Archangel
     #
     def text_direction
       Archangel.t("language.#{locale}.direction", default: "ltr")
+    end
+
+    ##
+    # Check if active backend menu for a controller
+    #
+    # Example
+    #   <%= active_backend_menu_for("users") %> #=> true
+    #   <%= active_backend_menu_for("pages") %> #=> false
+    #
+    # @return [Boolean] if current controller
+    #
+    def active_backend_menu_for(ctrlr)
+      params.fetch(:controller) == "archangel/backend/#{ctrlr}"
     end
   end
 end

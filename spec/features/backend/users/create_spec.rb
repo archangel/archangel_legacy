@@ -42,7 +42,8 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
         fill_in_user_form_with("", "amazing", "me@example.com")
         click_button "Create User"
 
-        expect(page.find(".input.user_name")).to have_content("can't be blank")
+        expect(page.find(".form-group.user_name"))
+          .to have_content("Name can't be blank")
       end
 
       it "fails without username" do
@@ -51,8 +52,8 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
         fill_in_user_form_with("Amazing User", "", "me@example.com")
         click_button "Create User"
 
-        expect(page.find(".input.user_username"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.user_username"))
+          .to have_content("Username can't be blank")
       end
 
       it "fails with used username" do
@@ -61,8 +62,8 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
         fill_in_user_form_with("Amazing User", "gabriel", "me@example.com")
         click_button "Create User"
 
-        expect(page.find(".input.user_username"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.user_username"))
+          .to have_content("Username has already been taken")
       end
 
       it "fails without email" do
@@ -71,7 +72,8 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
         fill_in_user_form_with("Amazing User", "amazing", "")
         click_button "Create User"
 
-        expect(page.find(".input.user_email")).to have_content("can't be blank")
+        expect(page.find(".form-group.user_email"))
+          .to have_content("Email can't be blank")
       end
 
       it "fails with used emaill" do
@@ -80,8 +82,8 @@ RSpec.describe "Backend - Users (HTML)", type: :feature do
         fill_in_user_form_with("Amazing User", "amazing", "g@email.com")
         click_button "Create User"
 
-        expect(page.find(".input.user_email"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.user_email"))
+          .to have_content("Email has already been taken")
       end
     end
   end

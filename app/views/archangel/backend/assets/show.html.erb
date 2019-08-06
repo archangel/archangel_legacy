@@ -1,53 +1,47 @@
-<div class="card card-default">
+<div class="card card-default sticky-title rounded-0">
   <div class="card-body">
     <h2><%= Archangel.t(:show_resource, resource: @asset.model_name.human.titleize) %></h2>
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card pages-index">
-        <div class="card-header">
-          <%= render "buttons" %>
+<div class="card assets-show">
+  <div class="card-header">
+    <%= render "buttons" %>
+  </div>
+
+  <div class="card-body">
+    <p>
+      <strong><%= Archangel.t(:file_name) %>:</strong>
+      <%= @asset.file_name %>
+    </p>
+
+    <p>
+      <strong><%= Archangel.t(:file) %>:</strong>
+      <%= @asset.file %>
+
+      <% if @asset.file.image? %>
+        <div>
+          <%= image_tag(@asset.file.small.url, alt: @asset.file_name) %>
         </div>
+      <% end %>
+    </p>
 
-        <div class="card-body">
-          <p>
-            <strong><%= Archangel.t(:file_name) %>:</strong>
-            <%= @asset.file_name %>
-          </p>
+    <p>
+      <strong><%= Archangel.t(:file_size) %>:</strong>
+      <%= number_to_human_size(@asset.file_size) %>
+    </p>
 
-          <p>
-            <strong><%= Archangel.t(:file) %>:</strong>
-            <%= @asset.file %>
+    <p>
+      <strong><%= Archangel.t(:content_type) %>:</strong>
+      <%= @asset.content_type %>
+    </p>
 
-            <% if @asset.file.image? %>
-              <div>
-                <%= image_tag(@asset.file.small.url, alt: @asset.file_name) %>
-              </div>
-            <% end %>
-          </p>
-
-          <p>
-            <strong><%= Archangel.t(:file_size) %>:</strong>
-            <%= number_to_human_size(@asset.file_size) %>
-          </p>
-
-          <p>
-            <strong><%= Archangel.t(:content_type) %>:</strong>
-            <%= @asset.content_type %>
-          </p>
-
-          <p>
-            <pre>
-              <code>
+    <div>
+      <pre>
+        <code>
 {% asset "<%= @asset.file_name %>" %}
-              </code>
-            </pre>
-          </p>
-        </div>
-      </div>
+        </code>
+      </pre>
     </div>
   </div>
 </div>

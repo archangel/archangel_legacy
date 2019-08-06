@@ -34,7 +34,7 @@ module Archangel
     end
 
     def valid_file_name
-      return if /^[\w-]+\.[A-Za-z]{2,}$/ =~ file_name
+      return if /^[\w-]+\.[A-Za-z]{2,}$/.match?(file_name)
 
       errors.add(:file_name, Archangel.t(:file_name_invalid))
     end

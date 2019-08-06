@@ -1,0 +1,15 @@
+footer {
+  &.sticky-footer {
+    background-color: $gray-200;
+    bottom: 0;
+    display: flex;
+    height: $sticky-footer-height;
+    position: absolute;
+    right: 0;
+    width: calc(100% - #{$sidebar-collapsed-width});
+
+    @media (min-width: 768px) {
+      width: calc(100% - #{$sidebar-base-width});
+    }
+  }
+}

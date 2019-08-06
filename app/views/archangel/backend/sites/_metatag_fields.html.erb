@@ -1,6 +1,6 @@
 <div class="nested-fields">
-  <%= f.input :name %>
-  <%= f.input :content %>
+  &lt;meta name="<%= f.select(:name, suggested_site_metatags, prompt: "") %>" content="<%= f.text_field :content %>" /&gt;
 
-  <%= link_to_remove_association Archangel.t(:remove_metatag), f %>
+  <%= link_to_remove_association(tag.i(class: "fas fa-trash-alt"), f,
+                                 class: "btn btn-outline-danger", title: Archangel.t(:remove_metatag), role: "button") %>
 </div>

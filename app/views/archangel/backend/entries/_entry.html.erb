@@ -3,14 +3,18 @@
   <td class="text-center">
     <span class="sortable-handle" draggable="true"><%= Archangel.t(:sort) %></span>
   </td>
-  <% fields.each do |field| %>
-    <td><%= entry.value[field] %></td>
+  <% fields.each.with_index do |field, index| %>
+    <% cell_display = index > 1 ? "d-md-table-cell" : "d-table-cell" %>
+
+    <td class="d-none <%= cell_display %>"><%= entry.value[field] %></td>
   <% end %>
-  <td><%= entry.published_at %></td>
+  <td class="d-none d-lg-table-cell">
+    <%= entry.published_at %>
+  </td>
   <td class="actions text-right">
     <%= link_to(Archangel.t(:show), backend_collection_entry_path(entry.collection, entry), class: "btn btn-info btn-sm") %>
     <%= link_to(Archangel.t(:edit), edit_backend_collection_entry_path(entry.collection, entry), class: "btn btn-warning btn-sm") %>
-    <%= link_to(Archangel.t(:destroy), backend_collection_entry_path(entry.collection, entry), class: "btn btn-danger btn-sm",
+    <%= link_to(Archangel.t(:destroy), backend_collection_entry_path(entry.collection, entry), class: "btn btn-danger btn-sm d-none d-md-inline-block",
                                                                                                method: :delete,
                                                                                                data: { confirm: Archangel.t(:are_you_sure) }) %>
   </td>

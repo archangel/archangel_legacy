@@ -1,14 +1,14 @@
 <tr>
-  <td class="text-center">
+  <td class="text-center d-none d-sm-table-cell">
       <%= image_tag(user.avatar.tiny.url, class: "img-center img-circle img-responsive",
                                           alt: user.username) %>
   </td>
   <td><%= user.name %></td>
-  <td><%= user.username %></td>
+  <td class="d-none d-md-table-cell"><%= user.username %></td>
   <td class="actions text-right">
     <%= link_to(Archangel.t(:show), backend_user_path(user), class: "btn btn-info btn-sm") %>
     <%= link_to(Archangel.t(:edit), edit_backend_user_path(user), class: "btn btn-warning btn-sm") %>
-    <%= link_to(Archangel.t(:destroy), backend_user_path(user), class: "btn btn-danger btn-sm",
+    <%= link_to(Archangel.t(:destroy), backend_user_path(user), class: "btn btn-danger btn-sm d-none d-md-inline-block",
                                                                 method: :delete,
                                                                 data: { confirm: Archangel.t(:are_you_sure) }) %>
   </td>

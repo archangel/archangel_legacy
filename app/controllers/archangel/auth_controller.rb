@@ -9,6 +9,11 @@ module Archangel
 
     protected
 
+    ##
+    # Theme layout
+    #
+    # @return [String] auth
+    #
     def layout_from_theme
       "auth"
     end

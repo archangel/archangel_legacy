@@ -10,6 +10,15 @@ module Archangel
     protected
 
     ##
+    # Theme layout
+    #
+    # @return [String] frontend
+    #
+    def layout_from_theme
+      "frontend"
+    end
+
+    ##
     # Theme switcher
     #
     # Theme to use to retrieve Javascripts and styles from.

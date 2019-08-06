@@ -3,10 +3,11 @@
 require "rails_helper"
 
 module Archangel
-  RSpec.describe ApplicationHelper, type: :helper,
-                                    disable: :verify_partial_doubles do
+  RSpec.describe ApplicationHelper, type: :helper do
     before do
-      allow(helper).to receive(:current_site).and_return(site)
+      without_partial_double_verification do
+        allow(helper).to receive(:current_site).and_return(site)
+      end
     end
 
     let(:site) { create(:site) }
@@ -36,9 +37,28 @@ module Archangel
       end
 
       it "returns rtl text direction" do
-        allow(helper).to receive(:text_direction).and_return("rtl")
+        without_partial_double_verification do
+          allow(helper).to receive(:text_direction).and_return("rtl")
+        end
 
         expect(helper.text_direction).to eq("rtl")
+      end
+    end
+
+    context "with #active_backend_menu_for" do
+      before do
+        without_partial_double_verification do
+          allow(helper).to receive(:params)
+            .and_return(controller: "archangel/backend/pages")
+        end
+      end
+
+      it "returns `true` when in the current controller" do
+        expect(helper.active_backend_menu_for("pages")).to be_truthy
+      end
+
+      it "returns `false` when in not the current controller" do
+        expect(helper.active_backend_menu_for("users")).to be_falsey
       end
     end
   end

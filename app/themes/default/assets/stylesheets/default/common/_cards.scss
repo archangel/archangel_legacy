@@ -1,0 +1,15 @@
+// Styling for custom cards
+// Override breakpoints for card columns to work well with sidebar layout
+.card-columns {
+  @media (min-width: 576px) {
+    column-count: 1;
+  }
+
+  @media (min-width: 768px) {
+    column-count: 2;
+  }
+
+  @media (min-width: 1200px) {
+    column-count: 2;
+  }
+}

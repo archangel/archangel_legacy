@@ -3,6 +3,19 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Site (HTML)", type: :feature do
+  def fill_in_metatag_form_with(index = 1, name = "", content = "")
+    click_link "Add Meta Tag"
+
+    within ".form-group.site_metatags .nested-fields:nth-of-type(#{index})" do
+      find(:css, "input[id^='site_metatags_attributes_'][id$='_content']")
+        .set(content)
+      first(".select2-container", minimum: 1).click
+    end
+
+    find(".select2-dropdown input.select2-search__field")
+      .send_keys(name, :enter)
+  end
+
   describe "updating with meta tags" do
     before { stub_authorization!(profile) }
 
@@ -27,15 +40,6 @@ RSpec.describe "Backend - Site (HTML)", type: :feature do
 
         expect(page).to have_content("Site was successfully updated.")
       end
-    end
-  end
-
-  def fill_in_metatag_form_with(index = 1, name = "", content = "")
-    click_link "Add Meta Tag"
-
-    within ".form-group.site_metatags .nested-fields:nth-of-type(#{index})" do
-      fill_in "Name", with: name
-      fill_in "Content", with: content
     end
   end
 end

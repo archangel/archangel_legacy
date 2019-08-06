@@ -73,8 +73,8 @@ RSpec.describe "Backend - Widgets (HTML)", type: :feature do
         fill_in_widget_form_with("", "amazing", "<p>Content of the widget</p>")
         click_button "Create Widget"
 
-        expect(page.find(".input.widget_name"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.widget_name"))
+          .to have_content("Name can't be blank")
       end
 
       it "fails without slug" do
@@ -83,20 +83,8 @@ RSpec.describe "Backend - Widgets (HTML)", type: :feature do
         fill_in_widget_form_with("Amazing", "", "<p>Content of the widget</p>")
         click_button "Create Widget"
 
-        expect(page.find(".input.widget_slug"))
-          .to have_content("can't be blank")
-      end
-
-      it "fails with used slug" do
-        create(:widget, slug: "amazing")
-
-        visit "/backend/widgets/new"
-
-        fill_in_widget_form_with("Amazing Title", "amazing", "<p>Content</p>")
-        click_button "Create Widget"
-
-        expect(page.find(".input.widget_slug"))
-          .to have_content("has already been taken")
+        expect(page.find(".form-group.widget_slug"))
+          .to have_content("Slug can't be blank")
       end
 
       it "fails without content" do
@@ -105,8 +93,8 @@ RSpec.describe "Backend - Widgets (HTML)", type: :feature do
         fill_in_widget_form_with("Amazing", "amazing", "")
         click_button "Create Widget"
 
-        expect(page.find(".input.widget_content"))
-          .to have_content("can't be blank")
+        expect(page.find(".form-group.widget_content"))
+          .to have_content("Content can't be blank")
       end
 
       it "fails with invalid Liquid data in Content" do
@@ -115,8 +103,8 @@ RSpec.describe "Backend - Widgets (HTML)", type: :feature do
         fill_in_widget_form_with("Amazing", "amazing", "{% widget %}")
         click_button "Create Widget"
 
-        expect(page.find(".input.widget_content"))
-          .to have_content("contains invalid Liquid formatting")
+        expect(page.find(".form-group.widget_content"))
+          .to have_content("Content contains invalid Liquid formatting")
       end
     end
   end

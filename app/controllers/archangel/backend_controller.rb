@@ -16,10 +16,6 @@ module Archangel
 
     protected
 
-    def layout_from_theme
-      "backend"
-    end
-
     def default_meta_tags
       super.merge(noindex: true, nofollow: true, noarchive: true)
     end

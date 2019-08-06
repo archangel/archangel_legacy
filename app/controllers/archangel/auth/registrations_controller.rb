@@ -9,9 +9,8 @@ module Archangel
     # Authentication registrations controller
     #
     class RegistrationsController < Devise::RegistrationsController
-      before_action :allow_registration,
-                    only: %i[cancel create destroy edit new update]
-      before_action :configure_permitted_parameters, if: :devise_controller?
+      before_action :allow_registration
+      before_action :configure_permitted_parameters
 
       protected
 

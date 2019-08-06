@@ -6,7 +6,9 @@ module Archangel
   RSpec.describe Entry, type: :model do
     context "with validations" do
       it { is_expected.to validate_presence_of(:collection_id) }
-      it { is_expected.to validate_presence_of(:value) }
+
+      it { is_expected.to allow_value(nil).for(:value) }
+      it { is_expected.to allow_value("").for(:value) }
 
       it { is_expected.to allow_value(nil).for(:published_at) }
       it { is_expected.to allow_value("").for(:published_at) }

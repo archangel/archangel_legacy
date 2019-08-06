@@ -1,0 +1,60 @@
+.sidebar {
+  @include sidebar-icons;
+  background-color: $gray-900;
+  height: 100%;
+  min-height: calc(100vh - #{$navbar-base-height});
+  width: $sidebar-collapsed-width;
+
+  .nav-item {
+    .nav-link {
+      color: fade-out($white, .5);
+
+      &:active,
+      &:focus,
+      &:hover {
+        color: fade-out($white, .25);
+      }
+    }
+  }
+
+  &.toggled {
+    overflow: hidden;
+    width: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    width: $sidebar-base-width;
+
+    .nav-item {
+      .nav-link {
+        display: block;
+        padding: 1rem;
+        text-align: left;
+        width: $sidebar-base-width;
+
+        span {
+          display: inline;
+          font-size: 1rem;
+        }
+      }
+
+      .dropdown-menu {
+        margin: 0 1rem;
+        position: static !important;
+        top: 0;
+      }
+
+      &.dropdown .dropdown-toggle::after {
+        display: block;
+      }
+    }
+
+    &.toggled {
+      @include sidebar-icons;
+      overflow: visible;
+      width: $sidebar-collapsed-width;
+    }
+  }
+}

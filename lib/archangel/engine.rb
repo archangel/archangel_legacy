@@ -48,7 +48,9 @@ module Archangel
 
           file_path = Pathname.new(file).relative_path_from(path).to_s
 
-          app.config.assets.precompile << file if file_path =~ allowed_regex
+          if allowed_regex.match?(file_path)
+            app.config.assets.precompile << file
+          end
         end
       end
     end

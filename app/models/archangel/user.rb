@@ -29,9 +29,9 @@ module Archangel
     validates :avatar, file_size: {
       less_than_or_equal_to: Archangel.config.image_maximum_file_size
     }
-    validates :email, presence: true,
-                      email: true,
+    validates :email, email: { message: Archangel.t(:email_invalid) },
                       uniqueness: { scope: :site_id }
+
     validates :name, presence: true
     validates :role, presence: true, inclusion: { in: Archangel::ROLES }
     validates :username, presence: true, uniqueness: { scope: :site_id }

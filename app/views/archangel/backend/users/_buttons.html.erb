@@ -1,18 +1,19 @@
 <div class="btn-group pull-right" role="group" aria-label="Button group">
   <% if member_action? || new_action? %>
-    <%= link_to(Archangel.t(:back), backend_users_path, class: "btn btn-link") %>
+    <%= link_to(Archangel.t(:back), backend_users_path, class: "btn btn-link", role: "button") %>
   <% end %>
 
   <% if collection_action? || show_action? || edit_action? %>
-    <%= link_to(Archangel.t(:new), new_backend_user_path, class: "btn btn-link") %>
+    <%= link_to(Archangel.t(:new), new_backend_user_path, class: "btn btn-link", role: "button") %>
   <% end %>
 
   <% if show_action? %>
-    <%= link_to(Archangel.t(:edit), edit_backend_user_path(@user), class: "btn btn-link") %>
+    <%= link_to(Archangel.t(:edit), edit_backend_user_path(@user), class: "btn btn-link", role: "button") %>
   <% end %>
 
   <% if show_action? || edit_action? %>
-    <%= link_to(Archangel.t(:destroy), backend_user_path(@user), class: "btn btn-link",
+    <%= link_to(Archangel.t(:destroy), backend_user_path(@user), class: "btn btn-link d-none d-md-inline-block",
+                                                                 role: "button",
                                                                  method: :delete,
                                                                  data: { confirm: Archangel.t(:are_you_sure) }) %>
   <% end %>
