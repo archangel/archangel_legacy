@@ -1,3 +1,0 @@
-Metrics/ClassLength:
-  Exclude:
-    - 'lib/generators/archangel/install/install_generator.rb'

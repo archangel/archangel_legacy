@@ -2,7 +2,6 @@ inherit_from:
   - .rubocop_disabled.yml
   - .rubocop_enabled.yml
   - .rubocop_exclude.yml
-  - .rubocop_todo.yml
 
 require:
   - rubocop-performance

@@ -47,13 +47,9 @@ module Archangel
         say_quietly "Copying files..."
 
         %w[
-          .env.sample
-          config/initializers/carrierwave.rb
-          config/initializers/devise.rb
-          config/archangel.yml
-        ].each do |file|
-          template file
-        end
+          .env.sample config/initializers/carrierwave.rb
+          config/initializers/devise.rb config/archangel.yml
+        ].each { |file| template file }
       end
 
       ##
@@ -66,18 +62,6 @@ module Archangel
           template "vendor/assets/javascripts/archangel/#{section}.js"
           template "vendor/assets/stylesheets/archangel/#{section}.css"
         end
-      end
-
-      ##
-      # Disallow backend indexing in robots.txt
-      #
-      def disallow_robots
-        return unless File.exist? "public/robots.txt"
-
-        append_file "public/robots.txt", <<-ROBOTS.strip_heredoc
-          User-agent: *
-          Disallow: /backend
-        ROBOTS
       end
 
       ##
@@ -111,18 +95,14 @@ module Archangel
       # Install Archangel migrations
       #
       def install_migrations
-        say_quietly "Installing migrations..."
-
-        silence_warnings { rake "railties:install:migrations" }
+        say_with_task("Installing migrations...", "railties:install:migrations")
       end
 
       ##
       # Create database is needed
       #
       def create_database
-        say_quietly "Creating database..."
-
-        silence_warnings { rake "db:create" }
+        say_with_task("Creating database...", "db:create")
       end
 
       ##
@@ -130,9 +110,7 @@ module Archangel
       #
       def run_migrations
         if options[:migrate]
-          say_quietly "Running migrations..."
-
-          silence_warnings { rake "db:migrate" }
+          say_with_task("Running migrations...", "db:migrate")
         else
           say_quietly "Skipping migrations. Run `rake db:migrate` yourself."
         end
@@ -143,9 +121,7 @@ module Archangel
       #
       def seed_database
         if options[:migrate] && options[:seed]
-          say_quietly "Inseminating..."
-
-          silence_warnings { rake "db:seed #{rake_seed_options}" }
+          say_with_task("Inseminating...", "db:seed #{rake_seed_options}")
         else
           say_quietly "Skipping seed data. Run `rake db:seed` yourself."
         end
@@ -189,12 +165,18 @@ module Archangel
           fields.map do |field|
             field_option = options[field.to_sym]
 
-            "#{field.upcase}=#{field_option}" unless field_option.blank?
+            "#{field.upcase}=#{field_option}" if field_option.present?
           end.compact.join(" ")
         end
 
+        def say_with_task(message, task)
+          say_quietly message
+
+          silence_warnings { rake task }
+        end
+
         def say_quietly(message)
-          puts message unless options[:quiet]
+          say(message) unless options[:quiet]
         end
       end
     end
