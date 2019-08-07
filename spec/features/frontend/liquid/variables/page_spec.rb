@@ -4,17 +4,7 @@ require "rails_helper"
 
 RSpec.describe "Liquid custom variables", type: :feature do
   let(:site) { create(:site) }
-
-  let(:resource_content) do
-    %(
-      Page Title: {{ page.title }}
-      Page Permalink: {{ page.permalink }}
-      Page Published At: {{ page.published_at }}
-      Page Unknown: >{{ page.unknown_variable }}<
-    )
-  end
-
-  before do
+  let(:resource) do
     create(:page, site: site,
                   slug: "amazing",
                   title: "Amazing Page Title",
@@ -22,11 +12,29 @@ RSpec.describe "Liquid custom variables", type: :feature do
                   published_at: "2019-04-22 03:09:40 UTC")
   end
 
+  let(:resource_content) do
+    %(
+      Page ID: {{ page.id }}
+      Page Title: {{ page.title }}
+      Page Permalink: {{ page.permalink }}
+      Page Published At: {{ page.published_at }}
+      Page Unknown: >{{ page.unknown_variable }}<
+    )
+  end
+
+  before { resource }
+
   describe "for `page` variable object" do
     it "knows the `page` title property" do
       visit "/amazing"
 
       expect(page).to have_content("Page Title: Amazing Page Title")
+    end
+
+    it "knows the `page` id property" do
+      visit "/amazing"
+
+      expect(page).to have_content("Page ID: #{resource.id}")
     end
 
     it "knows the `page` permalink property" do

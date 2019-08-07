@@ -14,14 +14,6 @@ module Archangel
             expect(resource_drop.class._attributes).to eq(%i[locale name])
           end
 
-          it "returns correct attribute value for locale" do
-            expect(resource_drop.locale).to eq("en")
-          end
-
-          it "returns correct attribute value for name" do
-            expect(resource_drop.name).to eq("Test Site")
-          end
-
           it "returns correct #logo value" do
             expect(resource_drop.logo)
               .to match(%r{/assets/archangel/fallback/logo(.+).png})
