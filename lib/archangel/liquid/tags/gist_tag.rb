@@ -7,8 +7,8 @@ module Archangel
       # Gist custom tag for Liquid
       #
       # Example
-      #   {% gist '9bbaf7332bff1042c2d83fc88683b9df' %}
-      #   {% gist '9bbaf7332bff1042c2d83fc88683b9df' file:'hello.rb' %}
+      #   {% gist '0d6f8a168a225fda62e8d2ddfe173271' %}
+      #   {% gist '0d6f8a168a225fda62e8d2ddfe173271' file:'hello.rb' %}
       #
       class GistTag < ApplicationTag
         include ::ActionView::Helpers::AssetTagHelper
@@ -25,9 +25,7 @@ module Archangel
 
           match = ASSET_ATTRIBUTES_SYNTAX.match(markup)
 
-          if match.blank?
-            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.gist")
-          end
+          return if match.blank?
 
           @key = ::Liquid::Variable.new(match[:asset], options).name
           @attributes = {}
@@ -44,9 +42,12 @@ module Archangel
         # @return [String] the rendered Gist
         #
         def render(_context)
-          return if key.blank?
+          if key.blank?
+            return content_tag(:span, Archangel.t("errors.syntax.gist"),
+                               class: "liquid-syntax-error")
+          end
 
-          src =  gist_source(key, attributes.fetch(:file, nil))
+          src = gist_source(key, attributes.fetch(:file, nil))
 
           javascript_include_tag(src)
         end
