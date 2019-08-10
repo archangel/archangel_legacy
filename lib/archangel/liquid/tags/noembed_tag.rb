@@ -9,7 +9,7 @@ module Archangel
       # For more information about Noembed, see https://noembed.com/
       #
       # Example
-      #   {% noembed "https://www.youtube.com/watch?v=-X2atEH7nCg" %}
+      #   {% noembed "https://www.youtube.com/watch?v=NOGEyBeoBGM" %}
       #   {% noembed "https://vimeo.com/70707344" %}
       #   {% noembed "https://vimeo.com/70707344" remote: true %}
       #   {% noembed "https://vimeo.com/70707344" maxwidth:600 %}
