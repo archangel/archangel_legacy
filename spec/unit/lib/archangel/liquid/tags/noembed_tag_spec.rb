@@ -8,14 +8,6 @@ module Archangel
       RSpec.describe NoembedTag, type: :liquid_tag do
         let(:context) { ::Liquid::Context.new({}, {}, view: view) }
 
-        it "raises error with invalid syntax" do
-          content = "{% noembed %}"
-
-          expect { ::Liquid::Template.parse(content).render(context) }.to(
-            raise_error(::Liquid::SyntaxError)
-          )
-        end
-
         context "with Ruby request" do
           let(:vid_id) { "NOGEyBeoBGM" }
           let(:content_url) { "https://www.youtube.com/watch?v=#{vid_id}" }

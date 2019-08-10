@@ -64,7 +64,6 @@ RSpec.describe "Liquid custom tags", type: :feature do
 
     it "returns nothing when there is nothing in the Collection" do
       create(:collection, slug: "empty-collection")
-
       create(:page, slug: "amazing",
                     content: "~{% collection things = 'empty-collection' %}~")
 
@@ -75,7 +74,6 @@ RSpec.describe "Liquid custom tags", type: :feature do
 
     it "returns nothing when the Collection is deleted" do
       create(:collection, :deleted, slug: "empty-collection")
-
       create(:page, slug: "amazing",
                     content: "~{% collection things = 'unknown-collection' %}~")
 
