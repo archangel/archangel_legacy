@@ -41,17 +41,6 @@ module Archangel
             expect(resource_drop.to_json).to eq(json_object.to_json)
           end
         end
-
-        context "with #inspect" do
-          it "returns SiteDrop in inspect string" do
-            expect(resource_drop.inspect)
-              .to include("#<Archangel::Liquid::Drops::SiteDrop")
-          end
-
-          it "returns Archangel::Site in inspect string" do
-            expect(resource_drop.inspect).to include("#<Archangel::Site")
-          end
-        end
       end
     end
   end

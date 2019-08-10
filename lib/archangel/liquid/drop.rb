@@ -72,16 +72,6 @@ module Archangel
       def to_json(options = {})
         as_json.to_json(options)
       end
-
-      ##
-      # Object inspect
-      #
-      # @return [String] object inspect
-      #
-      def inspect
-        "#<#{self.class.name} " \
-          "@object: #{object.inspect} @attributes: #{attributes.inspect}>"
-      end
     end
   end
 end
