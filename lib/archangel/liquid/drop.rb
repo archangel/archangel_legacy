@@ -15,8 +15,8 @@ module Archangel
       end
 
       def self.inherited(base)
-        base._attributes   = []
         base._associations = {}
+        base._attributes = []
       end
 
       ##
@@ -41,36 +41,6 @@ module Archangel
       #
       def initialize(object, _options = {})
         @object = object
-      end
-
-      ##
-      # Hash of attributes
-      #
-      # @return [Hash] the attributes
-      #
-      def attributes
-        @attributes ||=
-          self.class._attributes.dup.each_with_object({}) do |name, hash|
-            hash[name.to_s] = send(name)
-          end
-      end
-
-      ##
-      # Object as JSON
-      #
-      # @return [Object] the JSON object
-      #
-      def as_json(options = {})
-        attributes.as_json(options)
-      end
-
-      ##
-      # Object to JSON
-      #
-      # @return [Object] the JSON object
-      #
-      def to_json(options = {})
-        as_json.to_json(options)
       end
     end
   end
