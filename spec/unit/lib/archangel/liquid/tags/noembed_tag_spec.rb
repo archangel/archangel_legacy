@@ -17,7 +17,7 @@ module Archangel
         end
 
         context "with Ruby request" do
-          let(:vid_id) { "-X2atEH7nCg" }
+          let(:vid_id) { "NOGEyBeoBGM" }
           let(:content_url) { "https://www.youtube.com/watch?v=#{vid_id}" }
           let(:content) { "{% noembed '#{content_url}' %}" }
 
