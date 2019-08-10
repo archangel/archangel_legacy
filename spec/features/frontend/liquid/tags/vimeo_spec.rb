@@ -6,17 +6,6 @@ RSpec.describe "Liquid custom tags", type: :feature do
   describe "for `vimeo` tag" do
     let(:vimeo_id) { "1234567890" }
 
-    it "returns error without a Vimeo ID" do
-      create(:page, slug: "amazing", content: "{% vimeo %}")
-
-      visit "/amazing"
-
-      syntax_error = "Syntax Error in 'vimeo' - Valid syntax: " \
-                     "{% vimeo '[key]' width:640 height:480 %}"
-
-      expect(page).to have_css("span.liquid-syntax-error", text: syntax_error)
-    end
-
     it "returns video with valid video" do
       create(:page, slug: "amazing", content: "{% vimeo '#{vimeo_id}' %}")
 

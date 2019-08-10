@@ -10,16 +10,6 @@ RSpec.describe "Liquid custom tags", type: :feature do
     let(:gist_path_js) { "https://gist.github.com/#{gist_path}.js" }
     let(:gist_file) { "hello.rb" }
 
-    it "returns error without a gist resource" do
-      create(:page, slug: "amazing", content: "{% gist %}")
-
-      visit "/amazing"
-
-      syntax_error = "Syntax Error in 'gist' - Valid syntax: {% gist '[key]' %}"
-
-      expect(page).to have_css("span.liquid-syntax-error", text: syntax_error)
-    end
-
     it "returns the gist with id" do
       create(:page, slug: "amazing", content: "{% gist '#{gist_id}' %}")
 

@@ -25,7 +25,9 @@ module Archangel
 
           match = ASSET_ATTRIBUTES_SYNTAX.match(markup)
 
-          return if match.blank?
+          if match.blank?
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.gist")
+          end
 
           @key = ::Liquid::Variable.new(match[:asset], options).name
           @attributes = {}
@@ -42,10 +44,7 @@ module Archangel
         # @return [String] the rendered Gist
         #
         def render(_context)
-          if key.blank?
-            return content_tag(:span, Archangel.t("errors.syntax.gist"),
-                               class: "liquid-syntax-error")
-          end
+          return if key.blank?
 
           src = gist_source(key, attributes.fetch(:file, nil))
 

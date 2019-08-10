@@ -7,20 +7,20 @@ module Archangel
       # YouTube custom tag for Liquid
       #
       # Example
-      #   Given the YouTube URL https://www.youtube.com/watch?v=-X2atEH7nCg
-      #   {% youtube "-X2atEH7nCg" %}
-      #   {% youtube "-X2atEH7nCg" width:800 height:600 %}
-      #   {% youtube "-X2atEH7nCg" id:"my_video" class:"my-video" %}
-      #   {% youtube "-X2atEH7nCg" autoplay:1 %}
-      #   {% youtube "-X2atEH7nCg" captions: %}
-      #   {% youtube "-X2atEH7nCg" loop:1 %}
-      #   {% youtube "-X2atEH7nCg" annotations:1 %}
-      #   {% youtube "-X2atEH7nCg" start:10 %}
-      #   {% youtube "-X2atEH7nCg" end:60 %}
-      #   {% youtube "-X2atEH7nCg" showinfo:0 %}
-      #   {% youtube "-X2atEH7nCg" allowfullscreen: %}
-      #   {% youtube "-X2atEH7nCg" allowtransparency:0 %}
-      #   {% youtube "-X2atEH7nCg" frameborder:4 %}
+      #   Given the YouTube URL https://www.youtube.com/watch?v=NOGEyBeoBGM
+      #   {% youtube "NOGEyBeoBGM" %}
+      #   {% youtube "NOGEyBeoBGM" width:800 height:600 %}
+      #   {% youtube "NOGEyBeoBGM" id:"my_video" class:"my-video" %}
+      #   {% youtube "NOGEyBeoBGM" autoplay:1 %}
+      #   {% youtube "NOGEyBeoBGM" captions: %}
+      #   {% youtube "NOGEyBeoBGM" loop:1 %}
+      #   {% youtube "NOGEyBeoBGM" annotations:1 %}
+      #   {% youtube "NOGEyBeoBGM" start:10 %}
+      #   {% youtube "NOGEyBeoBGM" end:60 %}
+      #   {% youtube "NOGEyBeoBGM" showinfo:0 %}
+      #   {% youtube "NOGEyBeoBGM" allowfullscreen: %}
+      #   {% youtube "NOGEyBeoBGM" allowtransparency:0 %}
+      #   {% youtube "NOGEyBeoBGM" frameborder:4 %}
       #
       class YoutubeTag < ApplicationTag
         ##
@@ -35,7 +35,9 @@ module Archangel
 
           match = SLUG_ATTRIBUTES_SYNTAX.match(markup)
 
-          return if match.blank?
+          if match.blank?
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.youtube")
+          end
 
           @key = ::Liquid::Variable.new(match[:slug], options).name
           @attributes = {}
@@ -52,10 +54,7 @@ module Archangel
         # @return [String] the rendered video
         #
         def render(_context)
-          if key.blank?
-            return content_tag(:span, Archangel.t("errors.syntax.youtube"),
-                               class: "liquid-syntax-error")
-          end
+          return if key.blank?
 
           content_tag(:iframe, "", video_attributes)
         end

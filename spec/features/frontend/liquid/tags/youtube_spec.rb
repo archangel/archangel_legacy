@@ -6,17 +6,6 @@ RSpec.describe "Liquid custom tags", type: :feature do
   describe "for `youtube` tag" do
     let(:youtube_id) { "NOGEyBeoBGM" }
 
-    it "returns error without a YouTube ID" do
-      create(:page, slug: "amazing", content: "{% youtube %}")
-
-      visit "/amazing"
-
-      syntax_error = "Syntax Error in 'youtube' - Valid syntax: " \
-                     "{% youtube '[key]' width:640 height:480 %}"
-
-      expect(page).to have_css("span.liquid-syntax-error", text: syntax_error)
-    end
-
     it "returns video with valid video" do
       create(:page, slug: "amazing", content: "{% youtube '#{youtube_id}' %}")
 

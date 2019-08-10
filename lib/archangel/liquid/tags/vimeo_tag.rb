@@ -30,7 +30,9 @@ module Archangel
 
           match = SLUG_ATTRIBUTES_SYNTAX.match(markup)
 
-          return if match.blank?
+          if match.blank?
+            raise ::Liquid::SyntaxError, Archangel.t("errors.syntax.vimeo")
+          end
 
           @key = ::Liquid::Variable.new(match[:slug], options).name
           @attributes = {}
@@ -47,10 +49,7 @@ module Archangel
         # @return [String] the rendered video
         #
         def render(_context)
-          if key.blank?
-            return content_tag(:span, Archangel.t("errors.syntax.vimeo"),
-                               class: "liquid-syntax-error")
-          end
+          return if key.blank?
 
           content_tag(:iframe, "", video_attributes)
         end
