@@ -21,10 +21,6 @@ module Archangel
         fill_in_password_with(password, confirm_password)
       end
 
-      def fill_in_password_reset_form_with(email = "")
-        fill_in "Email", with: email
-      end
-
       def fill_in_invitation_form_with(password = "", confirm_password = "")
         fill_in_password_with(password, confirm_password)
       end

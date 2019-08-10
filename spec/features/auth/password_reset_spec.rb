@@ -9,7 +9,7 @@ RSpec.describe "Auth password reset", type: :feature do
     it "returns success message" do
       visit "/account/password/new"
 
-      fill_in_password_reset_form_with("amazing@email.com")
+      fill_in "Email", with: "amazing@email.com"
       click_button "Send me reset password instructions"
 
       expect(page)
@@ -19,7 +19,7 @@ RSpec.describe "Auth password reset", type: :feature do
     it "redirects back to the login form" do
       visit "/account/password/new"
 
-      fill_in_password_reset_form_with("amazing@email.com")
+      fill_in "Email", with: "amazing@email.com"
       click_button "Send me reset password instructions"
 
       expect(page).to have_current_path("/account/login")
