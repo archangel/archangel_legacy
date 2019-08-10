@@ -48,8 +48,7 @@ module Archangel
         def render(context)
           return if key.blank?
 
-          environments = context.environments[0]
-          asset = load_asset_for(environments["site"])
+          asset = load_asset_for(context["site"].object)
 
           return if asset.blank?
 
