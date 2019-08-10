@@ -64,10 +64,7 @@ module Archangel
         # @return [Hash] the object
         #
         def render(context)
-          environments = context.environments.first
-          site = environments["site"]
-
-          val = load_collection(site)
+          val = load_collection(context["site"].object)
 
           context.scopes.last[key] = val
           context.resource_limits.assign_score << assign_score_of(val)
