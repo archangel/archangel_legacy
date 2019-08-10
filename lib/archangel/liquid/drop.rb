@@ -34,6 +34,8 @@ module Archangel
         end
       end
 
+      attr_reader :object
+
       ##
       # Initialize
       #
@@ -80,10 +82,6 @@ module Archangel
         "#<#{self.class.name} " \
           "@object: #{object.inspect} @attributes: #{attributes.inspect}>"
       end
-
-      protected
-
-      attr_reader :object
     end
   end
 end

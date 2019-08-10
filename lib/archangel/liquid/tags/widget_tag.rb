@@ -40,14 +40,12 @@ module Archangel
         def render(context)
           return if slug.blank?
 
-          environments = context.environments.first
-          site = environments["site"]
-
-          widget = load_widget_for(site)
+          widget = load_widget_for(context["site"].object)
 
           return if widget.blank?
 
-          rendered_widget = render_widget(widget.content, environments)
+          rendered_widget = render_widget(widget.content,
+                                          context.environments.first)
 
           if widget.design.present?
             rendered_widget = render_designed_widget(widget.design,
