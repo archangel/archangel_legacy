@@ -45,8 +45,7 @@ module Archangel
           offset = context.evaluate(@from).to_i
           limit = context.evaluate(@limit)
 
-          environments = context.environments.first
-          segment = load_collection(environments["site"], offset, limit)
+          segment = load_collection(context["site"].object, offset, limit)
 
           segment.reverse! if @reversed
 
