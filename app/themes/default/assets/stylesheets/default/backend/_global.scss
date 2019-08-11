@@ -1,8 +1,8 @@
-#wrapper {
+.wrapper {
   display: flex;
 }
 
-#content-wrapper {
+.content-wrapper {
   overflow-x: hidden;
   padding-bottom: $sticky-footer-height + 1rem;
   width: 100%;
