@@ -14,6 +14,9 @@ module Archangel
         attr_accessor :_attributes
       end
 
+      ##
+      # Inherited objects
+      #
       def self.inherited(base)
         base._associations = {}
         base._attributes = []
