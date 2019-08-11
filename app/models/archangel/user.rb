@@ -44,7 +44,7 @@ module Archangel
     # Only send the password reset email if the invitation has been accepted
     #
     def send_reset_password_instructions
-      super if invitation_token.nil?
+      super if invitation_token.blank?
     end
 
     ##
