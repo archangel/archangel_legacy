@@ -28,10 +28,12 @@
 
    This will create a new .gem file in `pkg/`. Fix any errors or warnings that come up.
 
-4. Create the gem, tag it in Github and release to Rubygems
+4. Commit the version change with commit message "Bump to [X.Y.Z]"
+
+5. Create the gem, tag it in Github and release to Rubygems
 
     ```
     $ bundle exec rake release
     ```
 
-5. Profit!
+6. Profit!
