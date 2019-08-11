@@ -3,6 +3,9 @@
 require "i18n"
 require "active_support/core_ext/array/extract_options"
 
+##
+# @see Archangel
+#
 module Archangel
   extend ActionView::Helpers::TranslationHelper
   extend ActionView::Helpers::TagHelper
