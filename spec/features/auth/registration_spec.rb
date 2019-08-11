@@ -48,7 +48,7 @@ RSpec.describe "Auth registration", type: :feature do
       visit "/account/register"
 
       fill_in_registration_form_with("John Doe", "john_doe", "me@example.com",
-                                     "password", "password")
+                                     "password")
       click_button "Sign up"
 
       expect(page).to have_content("Welcome to the homepage")

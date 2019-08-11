@@ -14,11 +14,11 @@ module Archangel
       end
 
       def fill_in_registration_form_with(name = "", username = "", email = "",
-                                         password = "", confirm_password = "")
+                                         password = "")
         fill_in "Name", with: name
         fill_in "Username", with: username
         fill_in "Email", with: email
-        fill_in_password_with(password, confirm_password)
+        fill_in_password_with(password, password)
       end
 
       def fill_in_invitation_form_with(password = "", confirm_password = "")

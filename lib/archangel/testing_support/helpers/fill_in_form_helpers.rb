@@ -17,6 +17,5 @@ module Archangel
 end
 
 RSpec.configure do |config|
-  config.include Archangel::TestingSupport::FillInFormHelpers,
-                 type: :feature
+  config.include Archangel::TestingSupport::FillInFormHelpers, type: :feature
 end
