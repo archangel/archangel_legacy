@@ -38,7 +38,7 @@ Additional requirements for `development` and `test` environment:
 Add to your application's Gemfile
 
 ```
-gem "archangel", "~> 0.3"
+gem "archangel", "~> 0.4"
 ```
 
 Run the bundle command
