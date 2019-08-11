@@ -43,6 +43,9 @@ module Archangel
         end
       end
 
+      ##
+      # Initialize storage for fields
+      #
       def add_accessors_for_entry_fields
         (resource_value_fields || []).each do |field|
           singleton_class.class_eval do
@@ -51,6 +54,9 @@ module Archangel
         end
       end
 
+      ##
+      # Add presence validation for required fields
+      #
       def add_presence_validator_for_entry_fields
         (resource_value_fields || []).each do |field|
           singleton_class.class_eval do
@@ -59,6 +65,9 @@ module Archangel
         end
       end
 
+      ##
+      # Add classification specific validation for fields
+      #
       def add_classification_validator_for_entry_fields
         (resource_value_fields || []).each do |field|
           singleton_class.class_eval do
