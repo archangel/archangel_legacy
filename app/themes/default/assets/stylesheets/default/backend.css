@@ -5,6 +5,7 @@
  * none
  *
  **  Third-party assets (from gem vendor directory)
+ *= require flatpickr/flatpickr
  *= require jodit/jodit
  *= require select2/select2
  *

@@ -3,18 +3,19 @@
 require "rails_helper"
 
 RSpec.describe "Backend - Pages (HTML)", type: :feature do
-  def fill_in_page_form_with(title = "", slug = "", content = "",
-                             published_at = Time.zone.now)
+  def fill_in_page_form_with(title = "", slug = "", content = "")
     fill_in "Title", with: title
     fill_in "Slug", with: slug
 
     within ".form-group.page_content" do
       first(".jodit_wysiwyg[contenteditable='true']", minimum: 1)
-        .click
-        .set(content)
+        .click.set(content)
     end
 
-    fill_in "Published At", with: published_at
+    within ".form-group.page_published_at" do
+      find(:css, "input[readonly='readonly']").click
+    end
+    find(".flatpickr-calendar .flatpickr-day.today").click
   end
 
   def fill_in_metatag_form_with(index = 1, name = "", content = "")

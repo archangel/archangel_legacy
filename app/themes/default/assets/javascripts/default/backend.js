@@ -9,6 +9,7 @@
 //= require cocoon
 //
 //  Third-party assets (from gem vendor directory)
+//= require flatpickr/flatpickr
 //= require jodit/jodit
 //= require select2/select2
 //= require sortable/sortable
@@ -16,6 +17,7 @@
 //  Theme assets
 //= require archangel/object
 //= require archangel/object/flash
+//= require archangel/input/datetimepicker
 //= require archangel/input/wysiwyg
 //= require default/common/flash
 //= require default/backend/entries/sorting
