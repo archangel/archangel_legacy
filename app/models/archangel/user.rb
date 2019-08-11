@@ -11,9 +11,9 @@ module Archangel
 
     mount_uploader :avatar, Archangel::AvatarUploader
 
-    typed_store :preferences, coder: JSON do |s|
-      s.boolean :newsletter, default: false
-      s.datetime :preferred_at, default: Time.current, accessor: false
+    typed_store :preferences, coder: JSON do |preference|
+      preference.boolean :newsletter, default: false
+      preference.datetime :preferred_at, default: Time.current, accessor: false
     end
 
     before_validation :parameterize_username

@@ -11,10 +11,10 @@ module Archangel
 
     mount_uploader :logo, Archangel::LogoUploader
 
-    typed_store :settings, coder: JSON do |s|
-      s.boolean :allow_registration, default: false
-      s.boolean :homepage_redirect, default: false
-      s.datetime :preferred_at, default: Time.current, accessor: false
+    typed_store :settings, coder: JSON do |setting|
+      setting.boolean :allow_registration, default: false
+      setting.boolean :homepage_redirect, default: false
+      setting.datetime :preferred_at, default: Time.current, accessor: false
     end
 
     validates :locale, presence: true, inclusion: { in: Archangel::LANGUAGES }

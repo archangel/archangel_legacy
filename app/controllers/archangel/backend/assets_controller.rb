@@ -42,7 +42,7 @@ module Archangel
 
         resource = resource.merge(url: asset.file.url) if asset.save
 
-        render json: resource.reject { |k, v| k == :error && v.blank? }
+        render json: resource.reject { |key, val| key == :error && val.blank? }
       end
 
       protected
