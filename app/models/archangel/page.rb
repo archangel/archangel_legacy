@@ -39,6 +39,16 @@ module Archangel
 
     scope :homepage, (-> { where(homepage: true) })
 
+    def content_compiled
+      variables = {
+        current_page: "/#{permalink}",
+        page: to_liquid,
+        site: site.to_liquid
+      }
+
+      Archangel::RenderService.call(content, variables)
+    end
+
     ##
     # Liquid object for Page
     #

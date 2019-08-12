@@ -47,8 +47,6 @@ module Archangel
                    layout: layout_from_theme
           end
           format.json do
-            @page.content = liquid_rendered_content
-
             render(template: "archangel/frontend/pages/show", layout: false)
           end
         end
@@ -112,23 +110,12 @@ module Archangel
       end
 
       ##
-      # Render content
-      #
-      # @return [String] the rendered Liquid content
-      #
-      def liquid_rendered_content
-        variables = default_liquid_assign
-
-        Archangel::RenderService.call(@page.content, variables)
-      end
-
-      ##
       # Render content with design
       #
       # @return [String] the rendered Liquid template
       #
       def liquid_rendered_design_content
-        content = liquid_rendered_content
+        content = @page.content_compiled
         variables = default_liquid_assign.merge(content_for_layout: content)
 
         Archangel::DesignRenderService.call(@page.design, variables)
@@ -136,8 +123,7 @@ module Archangel
 
       def default_liquid_assign
         {
-          current_page: request.fullpath,
-          page: @page.to_liquid,
+          current_page: "/#{@page.permalink}",
           site: current_site.to_liquid
         }
       end
