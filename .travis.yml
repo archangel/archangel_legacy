@@ -2,18 +2,16 @@ sudo: false
 dist: trusty
 language: ruby
 cache:
-  - bundler
+  bundler: true
+  directories:
+    - node_modules
 addons:
   chrome: stable
   apt:
     packages:
       - chromium-chromedriver
-env:
-  global:
-    - CC_TEST_REPORTER_ID=10625f04e4c8c9fe7c22d49639163f1427fe16bc253aabcb316edbe43c41270b
 bundler_args: --without production --jobs=3 --retry=3
 before_install:
-  - gem update --system
   - gem --version
 install: ruby -S bundle install
 before_script:
