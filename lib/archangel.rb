@@ -21,7 +21,6 @@ require "mini_magick"
 require "paranoia"
 require "pundit"
 require "responders"
-require "sass-rails"
 require "simple_form"
 require "validates"
 
