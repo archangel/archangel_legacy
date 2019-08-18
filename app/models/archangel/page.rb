@@ -78,7 +78,7 @@ module Archangel
       self.class
           .where(homepage: true)
           .where.not(id: id)
-          .update_all(homepage: false)
+          .update(homepage: false)
     end
 
     def column_reset
