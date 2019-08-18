@@ -71,20 +71,6 @@ module Archangel
         end
       end
 
-      context "with .unpublished" do
-        it "returns all where published_at is nil" do
-          page = create(:page, :unpublished)
-
-          expect(described_class.unpublished.first).to eq(page)
-        end
-
-        it "returns all where published_at is > now" do
-          page = create(:page, :future)
-
-          expect(described_class.unpublished.first).to eq(page)
-        end
-      end
-
       context "with .homepage" do
         it "returns all where homepage is true" do
           page = create(:page, :homepage)

@@ -21,10 +21,6 @@ module Archangel
         scope :published, (lambda do
           where.not(published_at: nil)
         end)
-
-        scope :unpublished, (lambda do
-          where("published_at IS NULL OR published_at > ?", Time.current)
-        end)
       end
 
       ##

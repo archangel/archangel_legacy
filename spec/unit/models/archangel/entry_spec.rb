@@ -45,20 +45,6 @@ module Archangel
           expect(described_class.available.first).not_to eq(entry)
         end
       end
-
-      context "with .unpublished" do
-        it "returns all where available_at is nil" do
-          entry = create(:entry, :unpublished)
-
-          expect(described_class.unpublished.first).to eq(entry)
-        end
-
-        it "returns all where available_at is > now" do
-          entry = create(:entry, :future)
-
-          expect(described_class.unpublished.first).to eq(entry)
-        end
-      end
     end
 
     context "with .available?" do
