@@ -27,8 +27,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.4"
 
-  s.add_dependency "jquery-rails", "~> 4.1", ">= 4.1.0"
-  s.add_dependency "rails", "~> 5.1", ">= 5.1.4"
+  s.add_dependency "jquery-rails", "~> 4.3"
+  s.add_dependency "rails", ">= 5.1.4"
   s.add_dependency "thor", "~> 0.19", ">= 0.19.0"
 
   s.add_dependency "activerecord-typedstore", "~> 1.2"
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_tree", "~> 2.9"
   s.add_dependency "anyway_config", "~> 1.4"
   s.add_dependency "bootstrap", "~> 4.3"
-  s.add_dependency "carrierwave", "~> 1.3"
+  s.add_dependency "carrierwave", "~> 2.0"
   s.add_dependency "cocoon", "~> 1.2"
   s.add_dependency "date_validator", "~> 0.9"
   s.add_dependency "devise", "~> 4.6"
@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   s.add_dependency "meta-tags", "~> 2.11"
   s.add_dependency "mini_magick", "~> 4.9"
   s.add_dependency "paranoia", "~> 2.4"
-  s.add_dependency "pundit", "~> 2.0"
+  s.add_dependency "pundit", "~> 2.1"
   s.add_dependency "responders", "~> 3.0"
   s.add_dependency "simple_form", "~> 4.1"
   s.add_dependency "validates", "~> 1.0"
