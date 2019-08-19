@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.4"
 
   s.add_dependency "jquery-rails", "~> 4.1", ">= 4.1.0"
-  s.add_dependency "rails", "~> 5.1", ">= 5.1.4"
+  s.add_dependency "rails", ">= 5.1.4", "< 7.0"
   s.add_dependency "thor", "~> 0.19", ">= 0.19.0"
 
   s.add_dependency "activerecord-typedstore", "~> 1.2"
