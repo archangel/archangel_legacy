@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_tree", "~> 2.9"
   s.add_dependency "anyway_config", "~> 1.4"
   s.add_dependency "bootstrap", "~> 4.3"
-  s.add_dependency "carrierwave", "~> 1.3"
+  s.add_dependency "carrierwave", ">= 1.3", "< 3.0"
   s.add_dependency "cocoon", "~> 1.2"
   s.add_dependency "date_validator", "~> 0.9"
   s.add_dependency "devise", "~> 4.6"
