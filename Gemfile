@@ -10,7 +10,7 @@ group :development do
   gem "inch", "~> 0.8", require: false
   gem "listen", "~> 3.1", require: false
   gem "mdl", "~> 0.5", require: false
-  gem "reek", "~> 5.4", require: false
+  gem "reek", "~> 6.0", require: false
   gem "rubocop", "~> 0.70", require: false
   gem "rubocop-performance", "~> 1.3", require: false
   gem "rubocop-rails", "~> 2.0", require: false
