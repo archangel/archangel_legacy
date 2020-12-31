@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
   s.add_dependency "date_validator", "~> 0.9"
   s.add_dependency "devise", "~> 4.6"
   s.add_dependency "devise_invitable", "~> 2.0"
-  s.add_dependency "file_validators", "~> 2.3"
+  s.add_dependency "file_validators", ">= 2.3", "< 4.0"
   s.add_dependency "font-awesome-sass", "~> 5.9"
   s.add_dependency "highline", "~> 2.0"
   s.add_dependency "jbuilder", "~> 2.9"
