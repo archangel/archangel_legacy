@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency "highline", "~> 2.0"
   s.add_dependency "jbuilder", "~> 2.9"
   s.add_dependency "kaminari", "~> 1.1"
-  s.add_dependency "liquid", "~> 4.0"
+  s.add_dependency "liquid", ">= 4", "< 6"
   s.add_dependency "meta-tags", "~> 2.11"
   s.add_dependency "mini_magick", "~> 4.9"
   s.add_dependency "paranoia", "~> 2.4"
