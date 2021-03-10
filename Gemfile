@@ -35,6 +35,6 @@ group :test do
   gem "capybara", "~> 3.21"
   gem "database_cleaner", "~> 1.7"
   gem "factory_bot_rails", "~> 5.0"
-  gem "rspec-rails", "~> 3.8"
+  gem "rspec-rails", "~> 5.0"
   gem "shoulda-matchers", "~> 4.0"
 end
